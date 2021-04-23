@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20210423210214_initial_migration")]
+    [Migration("20210423210638_initial_migration")]
     partial class initial_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,7 +51,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            DateOfBirth = new DateTime(2021, 4, 23, 17, 2, 14, 354, DateTimeKind.Local).AddTicks(3872),
+                            DateOfBirth = new DateTime(2021, 4, 23, 17, 6, 38, 353, DateTimeKind.Local).AddTicks(742),
                             FirstName = "John",
                             LastName = "Smith",
                             MiddleName = "",

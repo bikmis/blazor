@@ -27,7 +27,7 @@ namespace DataLayer.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "ID", "DateOfBirth", "FirstName", "LastName", "MiddleName", "Position" },
-                values: new object[] { 1, new DateTime(2021, 4, 23, 17, 2, 14, 354, DateTimeKind.Local).AddTicks(3872), "John", "Smith", "", "Sales Rpresentative" });
+                values: new object[] { 1, new DateTime(2021, 4, 23, 17, 6, 38, 353, DateTimeKind.Local).AddTicks(742), "John", "Smith", "", "Sales Rpresentative" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
