@@ -1,0 +1,4 @@
+﻿Help on Web API
+- Add Web API project to the solution
+- Add connection string in appsettings.json
+- Add a employee controller
