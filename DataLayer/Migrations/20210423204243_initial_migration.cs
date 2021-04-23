@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class initial_migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace DataLayer.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "ID", "DateOfBirth", "FirstName", "LastName", "MiddleName", "Position" },
-                values: new object[] { 1, new DateTime(2021, 4, 23, 13, 45, 13, 735, DateTimeKind.Local).AddTicks(3524), "John", "Smith", "", "Sales Rpresentative" });
+                values: new object[] { 1, new DateTime(2021, 4, 23, 16, 42, 43, 480, DateTimeKind.Local).AddTicks(6100), "John", "Smith", "", "Sales Rpresentative" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
