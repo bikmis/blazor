@@ -7,7 +7,7 @@
 - Create Entities folder and add entity classes here.
 - Create EmployeeDbContext.cs file and inherit from DbContext.
 - Add -> Data -> Service-based Database -> "EmployeeDb.mdf". Right-click on EmployeeDb.mdf and click on "Properties" and set "Copy to Output Directory" to "Copy if newer".
-- Create appsettings.json file with ConnectionStrings property
+- Create appsettings.json file with ConnectionStrings property. Its "Copy to Output Directory" property is set to "Do not copy" and don't change it.
 - Run PM>Add-Migration ....migration_name, then PM>update-database
 - The EmployeeDb.mdf is available for data viewing from "View -> SQL Server Object Explorer"
 - Open .gitignore and comment out *.mdf and *ldf by putting # in front of it so that we can push EmployeeDb.mdf abd EmployeeDb_log.ldf to the remote repository.
