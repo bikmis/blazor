@@ -1,0 +1,16 @@
+﻿Help
+- Add reference to the following from NuGet package source.
+	 - Microsoft.EntityFrameworkCore
+	 - Microsoft.EntityFrameworkCore.SqlServer (to run UseSqlServer on DbContextOptionsBuilder)
+	 - Microsoft.EntityFrameworkCore.Tools (to run following commands PM>add-migration ....name, PM>update-database)
+	 - Microsoft.Extensions.Configuration.Json (to read configurations from appsettings.json)
+- Create Entities folder and add entity classes here.
+- Create EmployeeDbContext.cs file and inherit from DbContext.
+- Add -> Data -> Service-based Database -> "EmployeeDb.mdf". Right-click on EmployeeDb.mdf and click on "Properties" and set "Copy to Output Directory" to "Copy if newer".
+- Create appsettings.json file with ConnectionStrings property
+- Run PM>Add-Migration ....migration_name, then PM>update-database
+- The EmployeeDb.mdf is available for data viewing from "View -> SQL Server Object Explorer"
+- Open .gitignore and comment out *.mdf by putting # in front of it so that we can push EmployeeDb.mdf to the remote repository.
+
+
+
