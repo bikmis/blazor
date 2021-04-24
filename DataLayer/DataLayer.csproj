@@ -14,10 +14,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="EmployeeDb.mdf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
