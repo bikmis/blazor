@@ -41,14 +41,7 @@ namespace EmployeeWebAPI.Controllers
         [HttpPost]
         public IActionResult AddEmployee(Employee employee)
         {
-            if (ModelState.IsValid)
-            {
-                _dbContext.Add(employee);
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
+            _dbContext.Add(employee);
             _dbContext.SaveChanges();
             return Ok();
         }
@@ -69,20 +62,21 @@ namespace EmployeeWebAPI.Controllers
 
         [Route("employee/update")]
         [HttpPost]
-        public IActionResult UpdateEmployee(int id, string firstName, string middleName, string lastName, DateTime dateOfBirth, string position)
+        public IActionResult UpdateEmployee(Employee employee)
         {
-            var employee = _dbContext.Employees.Find(id);
-            if (employee == null)
+            var dbEmployee = _dbContext.Employees.Find(employee.ID);
+            if ( dbEmployee == null)
             {
                 return BadRequest("Employee not found.");
             }
 
-            employee.FirstName = firstName;
-            employee.MiddleName = middleName;
-            employee.LastName = lastName;
-            employee.DateOfBirth = dateOfBirth;
-            employee.Position = position;
-            _dbContext.Employees.Update(employee);
+            dbEmployee.FirstName = employee.FirstName;
+            dbEmployee.MiddleName = employee.MiddleName;
+            dbEmployee.LastName = employee.LastName;
+            dbEmployee.DateOfBirth = employee.DateOfBirth;
+            dbEmployee.Position = employee.Position;
+
+            _dbContext.Employees.Update(dbEmployee);
             _dbContext.SaveChanges();
             return Ok();
         }
