@@ -30,15 +30,18 @@ namespace DataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -49,7 +52,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            DateOfBirth = new DateTime(2021, 4, 23, 21, 14, 23, 617, DateTimeKind.Local).AddTicks(2495),
+                            DateOfBirth = new DateTime(2021, 4, 24, 18, 17, 21, 870, DateTimeKind.Local).AddTicks(6878),
                             FirstName = "John",
                             LastName = "Smith",
                             MiddleName = "",
@@ -58,7 +61,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            DateOfBirth = new DateTime(2021, 4, 23, 21, 14, 23, 619, DateTimeKind.Local).AddTicks(6501),
+                            DateOfBirth = new DateTime(2021, 4, 24, 18, 17, 21, 872, DateTimeKind.Local).AddTicks(8892),
                             FirstName = "Jack",
                             LastName = "Jackson",
                             MiddleName = "",
