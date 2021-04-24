@@ -49,11 +49,20 @@ namespace DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            DateOfBirth = new DateTime(2021, 4, 23, 17, 6, 38, 353, DateTimeKind.Local).AddTicks(742),
+                            DateOfBirth = new DateTime(2021, 4, 23, 21, 14, 23, 617, DateTimeKind.Local).AddTicks(2495),
                             FirstName = "John",
                             LastName = "Smith",
                             MiddleName = "",
                             Position = "Sales Rpresentative"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            DateOfBirth = new DateTime(2021, 4, 23, 21, 14, 23, 619, DateTimeKind.Local).AddTicks(6501),
+                            FirstName = "Jack",
+                            LastName = "Jackson",
+                            MiddleName = "",
+                            Position = "Operations Manager"
                         });
                 });
 #pragma warning restore 612, 618

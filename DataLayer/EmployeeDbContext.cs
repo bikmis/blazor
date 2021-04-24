@@ -36,6 +36,14 @@ namespace DataLayer
                 LastName = "Smith",
                 DateOfBirth = DateTime.Now,
                 Position = "Sales Rpresentative"
+            }, 
+            new Employee { 
+                ID = 2,
+                FirstName = "Jack",
+                MiddleName = "",
+                LastName = "Jackson",
+                DateOfBirth = DateTime.Now,
+                Position = "Operations Manager"
             });
         }
 
