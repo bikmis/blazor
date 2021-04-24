@@ -27,8 +27,13 @@ namespace EmployeeWebAPI.Controllers
 
         [Route("employee/{id}")] //{id} is a variable parameter
         [HttpGet]
-        public IActionResult GetEmployee(int id) {
+        public IActionResult GetEmployee(int id)
+        {
             var employee = _dbContext.Employees.Find(id);
+            if (employee == null)
+            {
+                return NotFound("Employee not found.");
+            }
             return Ok(employee);
         }
 
@@ -36,25 +41,42 @@ namespace EmployeeWebAPI.Controllers
         [HttpPost]
         public IActionResult AddEmployee(Employee employee)
         {
-            _dbContext.Add(employee);
+            if (ModelState.IsValid)
+            {
+                _dbContext.Add(employee);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
             _dbContext.SaveChanges();
             return Ok();
         }
 
         [Route("employee/delete")]
         [HttpPost]
-        public IActionResult DeleteEmployee(int id) {
+        public IActionResult DeleteEmployee(int id)
+        {
             var employee = _dbContext.Employees.Find(id);
+            if (employee == null)
+            {
+                return BadRequest("Employee not found.");
+            }
             _dbContext.Employees.Remove(employee);
             _dbContext.SaveChanges();
             return Ok();
         }
 
-
         [Route("employee/update")]
         [HttpPost]
-        public IActionResult UpdateEmployee(int id, string firstName, string middleName, string lastName, DateTime dateOfBirth, string position) {
+        public IActionResult UpdateEmployee(int id, string firstName, string middleName, string lastName, DateTime dateOfBirth, string position)
+        {
             var employee = _dbContext.Employees.Find(id);
+            if (employee == null)
+            {
+                return BadRequest("Employee not found.");
+            }
+
             employee.FirstName = firstName;
             employee.MiddleName = middleName;
             employee.LastName = lastName;

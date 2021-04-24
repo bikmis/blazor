@@ -9,7 +9,7 @@ namespace DataLayer.Entities
     {
         [Key]
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "First name is required.")]
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         [Required]
