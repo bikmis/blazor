@@ -1,6 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
-using EmployeeWebAPI.Models;
+using EmployeeWebAPI.Dtos.Employee;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace EmployeeWebAPI.Controllers
         [HttpGet]
         public IActionResult GetEmployees()
         {
-            var employees = _dbContext.Employees.Select(e => new EmployeeDto()
+            var response = _dbContext.Employees.Select(e => new EmployeeResponse() 
             {
                 ID = e.ID,
                 FirstName = e.FirstName,
@@ -31,7 +31,7 @@ namespace EmployeeWebAPI.Controllers
                 DateOfBirth = e.DateOfBirth,
                 Position = e.Position
             }).ToList();
-            return Ok(employees);
+            return Ok(response);
         }
 
         [Route("employee/{id}")] //{id} is a variable parameter
@@ -44,7 +44,7 @@ namespace EmployeeWebAPI.Controllers
                 return NotFound("Employee not found.");
             }
 
-            var employeeDto = new EmployeeDto()
+            var response = new EmployeeResponse()
             {
                 ID = employee.ID,
                 FirstName = employee.FirstName,
@@ -54,20 +54,20 @@ namespace EmployeeWebAPI.Controllers
                 Position = employee.Position
             };
 
-            return Ok(employeeDto);
+            return Ok(response);
         }
 
         [Route("employee/add")]
         [HttpPost]
-        public IActionResult AddEmployee(EmployeeDto employeeDto)
+        public IActionResult AddEmployee(EmployeeRequest request)
         {
             Employee employee = new Employee()
             {
-                FirstName = employeeDto.FirstName,
-                MiddleName = employeeDto.MiddleName,
-                LastName = employeeDto.LastName,
-                Position = employeeDto.Position,
-                DateOfBirth = employeeDto.DateOfBirth
+                FirstName = request.FirstName,
+                MiddleName = request.MiddleName,
+                LastName = request.LastName,
+                Position = request.Position,
+                DateOfBirth = request.DateOfBirth
             };
 
             _dbContext.Add(employee);
@@ -91,19 +91,19 @@ namespace EmployeeWebAPI.Controllers
 
         [Route("employee/update")]
         [HttpPost]
-        public IActionResult UpdateEmployee(EmployeeDto employeeDto)
+        public IActionResult UpdateEmployee(EmployeeRequest request)
         {
-            var employee = _dbContext.Employees.Find(employeeDto.ID);
+            var employee = _dbContext.Employees.Find(request.ID);
             if ( employee == null)
             {
                 return BadRequest("Employee not found.");
             }
 
-            employee.FirstName = employeeDto.FirstName;
-            employee.MiddleName = employeeDto.MiddleName;
-            employee.LastName = employeeDto.LastName;
-            employee.DateOfBirth = employeeDto.DateOfBirth;
-            employee.Position = employeeDto.Position;
+            employee.FirstName = request.FirstName;
+            employee.MiddleName = request.MiddleName;
+            employee.LastName = request.LastName;
+            employee.DateOfBirth = request.DateOfBirth;
+            employee.Position = request.Position;
 
             _dbContext.Employees.Update(employee);
             _dbContext.SaveChanges();
