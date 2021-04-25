@@ -34,7 +34,7 @@ namespace DataLayer
                 FirstName = "John",
                 MiddleName = "",
                 LastName = "Smith",
-                DateOfBirth = DateTime.Now,
+                DateOfBirth = new DateTime(1980, 02, 15),
                 Position = "Sales Rpresentative"
             }, 
             new Employee { 
@@ -42,7 +42,7 @@ namespace DataLayer
                 FirstName = "Jack",
                 MiddleName = "",
                 LastName = "Jackson",
-                DateOfBirth = DateTime.Now,
+                DateOfBirth = new DateTime(1985, 03,17),
                 Position = "Operations Manager"
             });
         }

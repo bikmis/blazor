@@ -52,7 +52,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            DateOfBirth = new DateTime(2021, 4, 24, 18, 17, 21, 870, DateTimeKind.Local).AddTicks(6878),
+                            DateOfBirth = new DateTime(1980, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "John",
                             LastName = "Smith",
                             MiddleName = "",
@@ -61,7 +61,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            DateOfBirth = new DateTime(2021, 4, 24, 18, 17, 21, 872, DateTimeKind.Local).AddTicks(8892),
+                            DateOfBirth = new DateTime(1985, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Jack",
                             LastName = "Jackson",
                             MiddleName = "",
