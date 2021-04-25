@@ -34,7 +34,7 @@ namespace EmployeeWebAPI.Controllers
             return Ok(response);
         }
 
-        [Route("employee/{id}")] //{id} is a variable parameter
+        [Route("employees/{id}")] //{id} is a variable parameter
         [HttpGet]
         public IActionResult GetEmployee(int id)
         {
@@ -57,7 +57,7 @@ namespace EmployeeWebAPI.Controllers
             return Ok(response);
         }
 
-        [Route("employee/add")]
+        [Route("employees")]
         [HttpPost]
         public IActionResult AddEmployee(EmployeeRequest request)
         {
@@ -75,22 +75,8 @@ namespace EmployeeWebAPI.Controllers
             return Ok();
         }
 
-        [Route("employee/delete")]
-        [HttpPost]
-        public IActionResult DeleteEmployee(int id)
-        {
-            var employee = _dbContext.Employees.Find(id);
-            if (employee == null)
-            {
-                return BadRequest("Employee not found.");
-            }
-            _dbContext.Employees.Remove(employee);
-            _dbContext.SaveChanges();
-            return Ok();
-        }
-
-        [Route("employee/update")]
-        [HttpPost]
+        [Route("employees")]
+        [HttpPut]
         public IActionResult UpdateEmployee(EmployeeRequest request)
         {
             var employee = _dbContext.Employees.Find(request.ID);
@@ -106,6 +92,20 @@ namespace EmployeeWebAPI.Controllers
             employee.Position = request.Position;
 
             _dbContext.Employees.Update(employee);
+            _dbContext.SaveChanges();
+            return Ok();
+        }
+
+        [Route("employees")]
+        [HttpDelete]
+        public IActionResult DeleteEmployee(int id)
+        {
+            var employee = _dbContext.Employees.Find(id);
+            if (employee == null)
+            {
+                return BadRequest("Employee not found.");
+            }
+            _dbContext.Employees.Remove(employee);
             _dbContext.SaveChanges();
             return Ok();
         }
