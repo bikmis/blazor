@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EmployeeWebAPI.Dtos.Employee
+namespace EmployeeWebAPI.Models.Employee
 {
     public class EmployeeRequest
     {

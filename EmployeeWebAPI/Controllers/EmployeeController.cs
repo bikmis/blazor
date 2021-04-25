@@ -1,6 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
-using EmployeeWebAPI.Dtos.Employee;
+using EmployeeWebAPI.Models.Employee;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
