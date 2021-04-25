@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using EmployeeWebAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -21,7 +22,15 @@ namespace EmployeeWebAPI.Controllers
         [HttpGet]
         public IActionResult GetEmployees()
         {
-            var employees = _dbContext.Employees.ToList();
+            var employees = _dbContext.Employees.Select(e => new EmployeeDto()
+            {
+                ID = e.ID,
+                FirstName = e.FirstName,
+                MiddleName = e.MiddleName,
+                LastName = e.LastName,
+                DateOfBirth = e.DateOfBirth,
+                Position = e.Position
+            }).ToList();
             return Ok(employees);
         }
 
@@ -34,13 +43,33 @@ namespace EmployeeWebAPI.Controllers
             {
                 return NotFound("Employee not found.");
             }
-            return Ok(employee);
+
+            var employeeDto = new EmployeeDto()
+            {
+                ID = employee.ID,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                MiddleName = employee.MiddleName,
+                DateOfBirth = employee.DateOfBirth,
+                Position = employee.Position
+            };
+
+            return Ok(employeeDto);
         }
 
         [Route("employee/add")]
         [HttpPost]
-        public IActionResult AddEmployee(Employee employee)
+        public IActionResult AddEmployee(EmployeeDto employeeDto)
         {
+            Employee employee = new Employee()
+            {
+                FirstName = employeeDto.FirstName,
+                MiddleName = employeeDto.MiddleName,
+                LastName = employeeDto.LastName,
+                Position = employeeDto.Position,
+                DateOfBirth = employeeDto.DateOfBirth
+            };
+
             _dbContext.Add(employee);
             _dbContext.SaveChanges();
             return Ok();
@@ -62,21 +91,21 @@ namespace EmployeeWebAPI.Controllers
 
         [Route("employee/update")]
         [HttpPost]
-        public IActionResult UpdateEmployee(Employee employee)
+        public IActionResult UpdateEmployee(EmployeeDto employeeDto)
         {
-            var dbEmployee = _dbContext.Employees.Find(employee.ID);
-            if ( dbEmployee == null)
+            var employee = _dbContext.Employees.Find(employeeDto.ID);
+            if ( employee == null)
             {
                 return BadRequest("Employee not found.");
             }
 
-            dbEmployee.FirstName = employee.FirstName;
-            dbEmployee.MiddleName = employee.MiddleName;
-            dbEmployee.LastName = employee.LastName;
-            dbEmployee.DateOfBirth = employee.DateOfBirth;
-            dbEmployee.Position = employee.Position;
+            employee.FirstName = employeeDto.FirstName;
+            employee.MiddleName = employeeDto.MiddleName;
+            employee.LastName = employeeDto.LastName;
+            employee.DateOfBirth = employeeDto.DateOfBirth;
+            employee.Position = employeeDto.Position;
 
-            _dbContext.Employees.Update(dbEmployee);
+            _dbContext.Employees.Update(employee);
             _dbContext.SaveChanges();
             return Ok();
         }
