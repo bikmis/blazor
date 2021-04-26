@@ -4,3 +4,6 @@
 - Add a employee controller
 - Attach EmployeeDb.mdf to the localhost sql server by opening SSMS and right-click on database and attach EmployeeDb.mdf. 
   All the folders leading to EmployeeDb.mdf should allow "Everyone" user to have full permission so that it becomes visible for attaching from SSMS.
+- Inject dependencies via service in startup.cs
+- Change launchUrl in launchSettings.json
+- Add connection strings in the appsettings.json
