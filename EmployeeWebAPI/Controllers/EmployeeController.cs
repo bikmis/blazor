@@ -2,7 +2,6 @@
 using DataLayer.Entities;
 using EmployeeWebAPI.Models.Employee;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 
 namespace EmployeeWebAPI.Controllers
@@ -11,11 +10,11 @@ namespace EmployeeWebAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        EmployeeDbContext _dbContext;
+        private readonly EmployeeDbContext _dbContext;
 
-        public EmployeeController()
+        public EmployeeController(EmployeeDbContext dbContext)
         {
-            _dbContext = new EmployeeDbContext();
+            _dbContext = dbContext;
         }
 
         [Route("employees")]
