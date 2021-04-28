@@ -21,6 +21,9 @@ namespace EmployeeWebAPI
         {
             services.AddControllers();
             services.AddScoped<EmployeeDbContext, EmployeeDbContext>();
+            services.AddCors(options => options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin()
+                ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +37,8 @@ namespace EmployeeWebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(); //cors need to be after routing and before authorization
 
             app.UseAuthorization();
 
