@@ -2,17 +2,33 @@
 
 <h3>Employee List</h3>
 
-
-<ul>
-    @foreach (var employee in Employees)
-    {
-        <li>
-            <div>@employee.FirstName</div>
-        </li>
-    }
-</ul>
-
-
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Date Of Birth</th>
+            <th>Position</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Employees)
+        {
+        <tr>
+            <td>@employee.FirstName</td>
+            <td>@employee.MiddleName</td>
+            <td>@employee.LastName</td>
+            <td>@employee.DateOfBirth.ToShortDateString()</td>
+            <td>@employee.Position</td>
+            <td><button>Edit</button></td>
+            <td><button>Delete</button></td>
+        </tr>
+        }
+    </tbody>
+</table>
 
 @code {
 
