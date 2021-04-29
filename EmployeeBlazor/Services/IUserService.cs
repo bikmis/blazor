@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EmployeeBlazor.Services
 {
-    public interface IEmployeeService
+    public interface IUserService
     {
-        public Task<IEnumerable<Employee>> GetEmployees();
+        public Task<IEnumerable<User>> GetUsers();
     }
 }

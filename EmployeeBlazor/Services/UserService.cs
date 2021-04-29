@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace EmployeeBlazor.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class UserService : IUserService
     {
         private readonly HttpClient _httpClient;
-        public EmployeeService(HttpClient httpClient)
+        public UserService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
 
 
-        public async Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return await JsonSerializer.DeserializeAsync<List<Employee>>
-                (await _httpClient.GetStreamAsync("https://localhost:44327/api/employees"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            return await JsonSerializer.DeserializeAsync<List<User>>
+                (await _httpClient.GetStreamAsync("https://jsonplaceholder.typicode.com/users"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
             /*
                 var employees = new List<Employee>() { new Employee() { FirstName = "Jack" } };

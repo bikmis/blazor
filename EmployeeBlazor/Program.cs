@@ -19,7 +19,9 @@ namespace EmployeeBlazor
             builder.RootComponents.Add<App>("#app");
 
             //AddHttpClient() method will be availble after you install Microsoft.Extensions.Http
-            builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => new Uri("https://localhost:44327/"));
+            //builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
+            builder.Services.AddHttpClient<IEmployeeService, EmployeeService>();
+            builder.Services.AddHttpClient<IUserService, UserService>();
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             await builder.Build().RunAsync();
