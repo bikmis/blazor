@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace EmployeeBlazor.Pages
 {
+    //This is a code-behind file for UserList.razor. It is a partial class with the same name as the razor.
     public partial class UserList
     {
         [Inject]
         public IUserService UserService { get; set; }
-        public List<User> Users = new List<User>();
+        public List<User> Users { get; set; } = new List<User>(); //Assign an empty object or check null in the razor to avoid an exception.
 
         protected async override Task OnInitializedAsync()
         {
