@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmployeeBlazor.Pages
+namespace EmployeeBlazor.Pages.EmployeePage
 {
     //This is a code-behind file for EmployeeList.razor. It should be a partial class with the same name as the razor page.
     public partial class EmployeeList

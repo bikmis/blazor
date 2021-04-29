@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebAPI", "EmployeeWebAPI\EmployeeWebAPI.csproj", "{8B4E1B36-ECBA-477B-9FB4-D833BD23C544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeBlazor", "EmployeeBlazor\EmployeeBlazor.csproj", "{2A3E6BF4-201A-468D-A0E9-8147FC57409C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazor", "EmployeeBlazor\EmployeeBlazor.csproj", "{2A3E6BF4-201A-468D-A0E9-8147FC57409C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
