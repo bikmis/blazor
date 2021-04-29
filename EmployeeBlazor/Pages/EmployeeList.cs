@@ -12,7 +12,7 @@ namespace EmployeeBlazor.Pages
     {
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
-        public List<Employee> Employees { get; set; }
+        public List<Employee> Employees = new List<Employee>();
 
         protected async override Task OnInitializedAsync()
         {

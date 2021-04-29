@@ -12,7 +12,7 @@ namespace EmployeeBlazor.Pages
     {
         [Inject]
         public IUserService UserService { get; set; }
-        public List<User> Users { get; set; }
+        public List<User> Users = new List<User>();
 
         protected async override Task OnInitializedAsync()
         {

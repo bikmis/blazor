@@ -2,15 +2,13 @@
 
 <h3>User List</h3>
 
-@if (Users != null)
-{
-    <ul>
-        @foreach (var user in Users)
-        {
-            <li>@user.name</li>
-        }
-    </ul>
-}
+<ul>
+    @foreach (var user in Users)
+    {
+        <li>@user.name</li>
+    }
+</ul>
+
 
 
 @code {
