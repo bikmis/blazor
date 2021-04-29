@@ -17,24 +17,11 @@ namespace EmployeeBlazor.Services
             _httpClient = httpClient;
         }
 
-
-
         public async Task<IEnumerable<User>> GetUsers()
         {
-            return await JsonSerializer.DeserializeAsync<List<User>>
-                (await _httpClient.GetStreamAsync("https://jsonplaceholder.typicode.com/users"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-
-            /*
-                var employees = new List<Employee>() { new Employee() { FirstName = "Jack" } };
-                return employees;
-            */
-
-            /*   
-                var employees = _httpClient.GetAsync("api/employees");
-                var response = await employees.Result.Content.ReadAsStringAsync();
-                var employeeList = JsonConvert.DeserializeObject<List<Employee>>(response);        
-                return employeeList;
-            */
+            var userResponse = await _httpClient.GetStreamAsync("users");
+            var users = await JsonSerializer.DeserializeAsync<List<User>>(userResponse, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            return users;
         }
     }
 }

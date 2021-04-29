@@ -16,14 +16,7 @@ namespace EmployeeBlazor.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            await InitializeUserList();
-            // return base.OnInitializedAsync();
-        }
-
-        private async Task InitializeUserList()
-        {
             Users = (await UserService.GetUsers()).ToList();
         }
-
     }
 }
