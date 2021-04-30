@@ -4,7 +4,7 @@
 
 <NavLink class="mb-4 mt-3 btn btn-primary" href="employeeadd">Add Employee</NavLink>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
@@ -19,15 +19,15 @@
     <tbody>
         @foreach (var employee in Employees)
         {
-        <tr>
-            <td>@employee.FirstName</td>
-            <td>@employee.MiddleName</td>
-            <td>@employee.LastName</td>
-            <td>@employee.DateOfBirth.ToShortDateString()</td>
-            <td>@employee.Position</td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
-        </tr>
+            <tr>
+                <td>@employee.FirstName</td>
+                <td>@employee.MiddleName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.DateOfBirth.ToShortDateString()</td>
+                <td>@employee.Position</td>
+                <td><button>Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
         }
     </tbody>
 </table>
