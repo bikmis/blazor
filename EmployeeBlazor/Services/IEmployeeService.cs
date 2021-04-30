@@ -10,5 +10,6 @@ namespace EmployeeBlazor.Services
     public interface IEmployeeService
     {
         public Task<IEnumerable<Employee>> GetEmployees();
+        public Task AddEmployee(Employee employee);
     }
 }
