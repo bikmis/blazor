@@ -1,5 +1,5 @@
 ﻿using EmployeeBlazor.Models;
-using EmployeeBlazor.Services;
+using EmployeeBlazor.Services.EmployeeService;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;

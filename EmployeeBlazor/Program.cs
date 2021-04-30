@@ -1,4 +1,5 @@
-using EmployeeBlazor.Services;
+using EmployeeBlazor.Services.EmployeeService;
+using EmployeeBlazor.Services.UserService;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

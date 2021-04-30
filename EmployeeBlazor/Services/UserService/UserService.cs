@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 
-namespace EmployeeBlazor.Services
+namespace EmployeeBlazor.Services.UserService
 {
     public class UserService : IUserService
     {
