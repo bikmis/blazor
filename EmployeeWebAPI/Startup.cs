@@ -22,7 +22,7 @@ namespace EmployeeWebAPI
             services.AddControllers();
             services.AddScoped<EmployeeDbContext, EmployeeDbContext>();
             services.AddCors(options => options.AddDefaultPolicy(
-                builder => builder.AllowAnyOrigin()
+                builder => builder.AllowAnyOrigin().AllowAnyHeader()
                 ));
         }
 
