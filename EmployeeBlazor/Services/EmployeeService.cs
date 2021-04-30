@@ -26,7 +26,7 @@ namespace EmployeeBlazor.Services
         public async Task AddEmployee(Employee employee)
         {
             var serializedEmployee = JsonSerializer.Serialize(employee);
-            var stringContent = new StringContent(serializedEmployee, UnicodeEncoding.UTF8, "application/json");
+            var stringContent = new StringContent(serializedEmployee, UnicodeEncoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
             await _httpClient.PostAsync("api/employees", stringContent);           
         }
     }
