@@ -18,16 +18,15 @@ namespace EmployeeBlazor.Services.EmployeeService
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            var employeeResponse = await _httpClient.GetStreamAsync("api/employees");
-            var employees = await JsonSerializer.DeserializeAsync<List<Employee>>(employeeResponse, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var employeesJson = await _httpClient.GetStreamAsync("api/employees");
+            var employees = await JsonSerializer.DeserializeAsync<List<Employee>>(employeesJson, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             return employees;
         }
 
         public async Task AddEmployee(Employee employee)
         {
-            var serializedEmployee = JsonSerializer.Serialize(employee);
-            var stringContent = new StringContent(serializedEmployee, UnicodeEncoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            await _httpClient.PostAsync("api/employees", stringContent);           
+            var employeeJson = new StringContent(JsonSerializer.Serialize(employee), UnicodeEncoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            await _httpClient.PostAsync("api/employees", employeeJson);           
         }
     }
 }
