@@ -1,6 +1,7 @@
 ﻿using EmployeeBlazor.Models;
 using EmployeeBlazor.Services.EmployeeService;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,8 @@ namespace EmployeeBlazor.Pages.EmployeePage
             return base.OnInitializedAsync();
         }
 
-        public async void AddEmployee(Employee employee) {
-            await EmployeeService.AddEmployee(employee);
+        public async void AddEmployee(EditContext editContext) {
+            await EmployeeService.AddEmployee(Employee);
             NavigationManager.NavigateTo("/employeelist");
         }
     }
