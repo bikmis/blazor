@@ -16,11 +16,10 @@ namespace EmployeeBlazor.Pages.EmployeePage
 
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
-        public Employee Employee { get; set; }
+        public Employee Employee { get; set; } = new Employee() { FirstName = "", LastName = "", MiddleName = "", Position = "", DateOfBirth = null };
 
         protected override Task OnInitializedAsync()
         {
-            Employee = new Employee();
             return base.OnInitializedAsync();
         }
 

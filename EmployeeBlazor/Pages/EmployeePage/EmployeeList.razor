@@ -23,7 +23,7 @@
                 <td>@employee.FirstName</td>
                 <td>@employee.MiddleName</td>
                 <td>@employee.LastName</td>
-                <td>@employee.DateOfBirth.ToShortDateString()</td>
+                <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
                 <td>@employee.Position</td>
                 <td><button>Edit</button></td>
                 <td><button>Delete</button></td>

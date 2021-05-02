@@ -7,24 +7,24 @@
     <ValidationSummary />
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstName" @bind-value="@Employee.FirstName" @bind-value:event="oninput"> <span>@Employee.FirstName</span>
+        <input type="text" class="form-control" id="firstName" @bind-value="@Employee.FirstName" @bind-value:event="oninput">
         <ValidationMessage For="@(()=>Employee.FirstName)"/>
     </div>
     <div class="mb-3">
         <label for="middleName" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="middleName" @bind="@Employee.MiddleName"><span>@Employee.MiddleName</span>
+        <input type="text" class="form-control" id="middleName" @bind="@Employee.MiddleName">
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastName" @bind="@Employee.LastName"><span>@Employee.LastName</span>
+        <input type="text" class="form-control" id="lastName" @bind="@Employee.LastName">
     </div>
     <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date Of Birth</label>
-        <input type="date" class="form-control" id="dateOfBirth" @bind="Employee.DateOfBirth"><span>@Employee.DateOfBirth</span>
+        <input type="date" class="form-control" id="dateOfBirth" @bind="Employee.DateOfBirth">
     </div>
     <div class="mb-3">
         <label for="position" class="form-label">Position</label>
-        <input type="text" class="form-control" id="position" @bind="@Employee.Position"><span>@Employee.Position</span>
+        <input type="text" class="form-control" id="position" @bind="@Employee.Position">
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>
