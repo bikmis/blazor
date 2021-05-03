@@ -12,7 +12,7 @@
     </div>
     <div class="mb-3">
         <label for="middleName" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="middleName" @bind="@Employee.MiddleName">
+        <input type="text" class="form-control" id="middleName" @bind="@Employee.MiddleName"> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
