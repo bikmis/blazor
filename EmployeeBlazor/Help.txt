@@ -7,3 +7,4 @@
   This will start the application and automatically update in the browser whenever you make changes to your application.
 - Any variable that you use in the code-behind file needs to be initialized if you want to use it in the razor file.
 - If you make changes to App.css, then you need to ctrl+F5 the browser to update app.css
+- Code-behind file names are recommended to be the same as *.razor or *.razor.cs with a partial class or razor can have @code{} block. Partial class names need to be the same as razor file name.
