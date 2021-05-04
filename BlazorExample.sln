@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebAPI", "EmployeeW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazor", "EmployeeBlazor\EmployeeBlazor.csproj", "{2A3E6BF4-201A-468D-A0E9-8147FC57409C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee.Blazor.Client.UI", "Employee.Blazor.Client.UI\Employee.Blazor.Client.UI.csproj", "{257C296C-A846-46A5-B907-CA8FAD254CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2A3E6BF4-201A-468D-A0E9-8147FC57409C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3E6BF4-201A-468D-A0E9-8147FC57409C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3E6BF4-201A-468D-A0E9-8147FC57409C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257C296C-A846-46A5-B907-CA8FAD254CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257C296C-A846-46A5-B907-CA8FAD254CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257C296C-A846-46A5-B907-CA8FAD254CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257C296C-A846-46A5-B907-CA8FAD254CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
