@@ -26,7 +26,8 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public async void DeleteEmployee(int employeeId)
         {
             await EmployeeService.DeleteEmployee(employeeId);
-            NavigationManager.NavigateTo("/employeelist", true);
+            Employees = (await EmployeeService.GetEmployees()).ToList();
+            StateHasChanged();
         }
 
 
