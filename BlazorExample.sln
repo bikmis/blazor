@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebAPI", "EmployeeW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazor", "EmployeeBlazor\EmployeeBlazor.csproj", "{2A3E6BF4-201A-468D-A0E9-8147FC57409C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee.Blazor.Client.UI", "Employee.Blazor.Client.UI\Employee.Blazor.Client.UI.csproj", "{257C296C-A846-46A5-B907-CA8FAD254CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee.Blazor.Client.UI", "Employee.Blazor.Client.UI\Employee.Blazor.Client.UI.csproj", "{257C296C-A846-46A5-B907-CA8FAD254CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razor.Components.Library", "Razor.Components.Library\Razor.Components.Library.csproj", "{5604C3EA-CF87-457F-8374-606E364F83F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Razor.Components.Library", "Razor.Components.Library\Razor.Components.Library.csproj", "{5604C3EA-CF87-457F-8374-606E364F83F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee.Blazor.Server.UI", "Employee.Blazor.Server.UI\Employee.Blazor.Server.UI.csproj", "{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5604C3EA-CF87-457F-8374-606E364F83F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5604C3EA-CF87-457F-8374-606E364F83F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5604C3EA-CF87-457F-8374-606E364F83F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

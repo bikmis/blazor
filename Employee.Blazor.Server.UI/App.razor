@@ -1,0 +1,10 @@
+<Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Razor.Components.Library.Pages.EmployeePage.EmployeeList).Assembly}" PreferExactMatches="@true">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Razor.Components.Library.Shared.MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(Razor.Components.Library.Shared.MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
