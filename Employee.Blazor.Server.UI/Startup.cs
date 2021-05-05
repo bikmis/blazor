@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Razor.Components.Library.Services.EmployeeService;
 using Razor.Components.Library.Services.UserService;
 using System;
+using System.Net.Http;
 
 namespace Employee.Blazor.Server.UI
 {
@@ -24,6 +26,12 @@ namespace Employee.Blazor.Server.UI
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddScoped(s =>
+            {
+                var navigationManager = s.GetRequiredService<NavigationManager>();
+                return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
+            });
+
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
             services.AddHttpClient<IUserService, UserService>(client => client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
         }
