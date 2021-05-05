@@ -5,10 +5,10 @@ namespace EmployeeBlazor.Models
 {
     public class User
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string username { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Username { get; set; }
         [Required]
-        public string email { get; set; }
+        public string Email { get; set; }
     }
 }
