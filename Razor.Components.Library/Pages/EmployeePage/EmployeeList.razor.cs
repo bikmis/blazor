@@ -12,6 +12,9 @@ namespace Razor.Components.Library.Pages.EmployeePage
     public partial class EmployeeList
     {
         [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
+        [Inject]
         public IEmployeeService EmployeeService { get; set; }
         public List<Employee> Employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
 
@@ -19,6 +22,13 @@ namespace Razor.Components.Library.Pages.EmployeePage
         {
             Employees = (await EmployeeService.GetEmployees()).ToList();
         }
+
+        public async void DeleteEmployee(int employeeId)
+        {
+            await EmployeeService.DeleteEmployee(employeeId);
+            NavigationManager.NavigateTo("/employeelist", true);
+        }
+
 
     }
 }

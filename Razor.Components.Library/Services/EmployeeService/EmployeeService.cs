@@ -28,5 +28,10 @@ namespace Razor.Components.Library.Services.EmployeeService
             var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
             await _httpClient.PostAsync("api/employees", employeeJson);           
         }
+
+        public async Task DeleteEmployee(int employeeId)
+        {
+            await _httpClient.DeleteAsync($"api/employees?id={employeeId}");
+        }
     }
 }
