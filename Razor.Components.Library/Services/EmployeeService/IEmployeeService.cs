@@ -12,5 +12,6 @@ namespace Razor.Components.Library.Services.EmployeeService
         public Task<IEnumerable<Employee>> GetEmployees();
         public Task AddEmployee(Employee employee);
         public Task DeleteEmployee(int employeeId);
+        public Task EditEmployee(Employee employee);
     }
 }

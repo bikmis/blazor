@@ -33,5 +33,11 @@ namespace Razor.Components.Library.Services.EmployeeService
         {
             await _httpClient.DeleteAsync($"api/employees?id={employeeId}");
         }
+
+        public async Task EditEmployee(Employee employee)
+        {
+            var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            await _httpClient.PutAsync("api/employees", employeeJson);
+        }
     }
 }

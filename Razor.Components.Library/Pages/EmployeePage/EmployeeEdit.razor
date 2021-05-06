@@ -7,13 +7,35 @@
                     <span aria-hidden="@AriaHidden">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p>Woohoo, you're reading this text in a modal!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => CloseEditForm()">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
+            <EditForm Model="@Employee" OnValidSubmit="@EditEmployee">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label my-class">First Name</label>
+                        <InputText type="text" class="form-control" id="firstName" @bind-Value="@Employee.FirstName" @bind-Value:event="oninput" />
+                        <ValidationMessage For="@(()=>Employee.FirstName)" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="middleName" class="form-label">Middle Name</label>
+                        <InputText type="text" class="form-control" id="middleName" @bind-Value="@Employee.MiddleName" /> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <InputText type="text" class="form-control" id="lastName" @bind-Value="@Employee.LastName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateOfBirth" class="form-label">Date Of Birth</label>
+                        <InputDate type="date" class="form-control" id="dateOfBirth" @bind-Value="@Employee.DateOfBirth" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="position" class="form-label">Position</label>
+                        <InputText type="text" class="form-control" id="position" @bind-Value="@Employee.Position" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => CloseEditForm()">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </EditForm>
         </div>
     </div>
 </div>

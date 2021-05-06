@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using Razor.Components.Library.Models;
+using Razor.Components.Library.Services.EmployeeService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +11,13 @@ namespace Razor.Components.Library.Pages.EmployeePage
 {
     public partial class EmployeeEdit
     {
-        public string Display;
-        public string Show;
-        public string AriaHidden;
-        public string PaddingRight;
+        [Inject]
+        IEmployeeService EmployeeService { get; set; }
+        public Employee Employee { get; set; } = new Employee();
+        public string Display { get; set; }
+        public string Show { get; set; }
+        public string AriaHidden { get; set; }
+        public string PaddingRight { get; set; }
 
         protected override Task OnInitializedAsync()
         {
@@ -31,6 +37,10 @@ namespace Razor.Components.Library.Pages.EmployeePage
             Show = "";
             AriaHidden = "true";
             PaddingRight = "0px";
+        }
+
+        public async Task EditEmployee() {
+            await EmployeeService.EditEmployee(Employee);
         }
 
     }
