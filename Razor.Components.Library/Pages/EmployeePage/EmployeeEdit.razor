@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="firstName" class="form-label my-class">First Name</label>
-                        <InputText type="text" class="form-control" id="firstName" @bind-Value="@Employee.FirstName" @bind-Value:event="oninput" />
+                        <InputText class="form-control" id="firstName" @bind-Value="@Employee.FirstName" />
                         <ValidationMessage For="@(()=>Employee.FirstName)" />
                     </div>
                     <div class="mb-3">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="dateOfBirth" class="form-label">Date Of Birth</label>
-                        <InputDate type="date" class="form-control" id="dateOfBirth" @bind-Value="@Employee.DateOfBirth" />
+                        <InputDate class="form-control" id="dateOfBirth" @bind-Value="@Employee.DateOfBirth" />
                     </div>
                     <div class="mb-3">
                         <label for="position" class="form-label">Position</label>

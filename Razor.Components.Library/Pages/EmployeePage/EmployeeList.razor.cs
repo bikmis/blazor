@@ -24,19 +24,23 @@ namespace Razor.Components.Library.Pages.EmployeePage
 
         protected async override Task OnInitializedAsync()
         {
-            Employees = (await EmployeeService.GetEmployees()).ToList();
+            await GetEmployees();
         }
 
         public async void DeleteEmployee(int employeeId)
         {
             await EmployeeService.DeleteEmployee(employeeId);
-            Employees = (await EmployeeService.GetEmployees()).ToList();
+            await GetEmployees();
             StateHasChanged();
+
         }
 
-        public void DisplayEditForm() {
-            EmployeeEdit.DisplayEditForm();
+        public void DisplayEditForm(Employee employee) {
+            EmployeeEdit.DisplayEditForm(employee);
         }
 
+        public async Task GetEmployees() {
+            Employees = (await EmployeeService.GetEmployees()).ToList();
+        }
     }
 }

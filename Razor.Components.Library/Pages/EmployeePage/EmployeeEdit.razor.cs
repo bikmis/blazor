@@ -18,13 +18,16 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public string Show { get; set; }
         public string AriaHidden { get; set; }
         public string PaddingRight { get; set; }
+        [Parameter]
+        public EventCallback OnEmployeeEdited { get; set; }
 
         protected override Task OnInitializedAsync()
         {
             return base.OnInitializedAsync();
         }
 
-        public void DisplayEditForm() {
+        public void DisplayEditForm(Employee employee) {
+            Employee = employee;
             Display = "block";
             Show = "show";
             AriaHidden = "false";
@@ -41,6 +44,8 @@ namespace Razor.Components.Library.Pages.EmployeePage
 
         public async Task EditEmployee() {
             await EmployeeService.EditEmployee(Employee);
+            CloseEditForm();
+            await OnEmployeeEdited.InvokeAsync();
         }
 
     }
