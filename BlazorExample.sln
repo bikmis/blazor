@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee.Blazor.Client.UI",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Razor.Components.Library", "Razor.Components.Library\Razor.Components.Library.csproj", "{5604C3EA-CF87-457F-8374-606E364F83F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee.Blazor.Server.UI", "Employee.Blazor.Server.UI\Employee.Blazor.Server.UI.csproj", "{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee.Blazor.Server.UI", "Employee.Blazor.Server.UI\Employee.Blazor.Server.UI.csproj", "{4FE6AE78-4C92-433C-A398-8A2E0B13FF09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
