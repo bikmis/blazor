@@ -25,14 +25,14 @@
                 <td>@employee.LastName</td>
                 <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
                 <td>@employee.Position</td>
-                <td><button>Edit</button></td>
+                <td><button @onclick="() => DisplayEditForm()">Edit</button></td>
                 <td><button @onclick="() => DeleteEmployee(employee.ID)">Delete</button></td>
             </tr>
         }
     </tbody>
 </table>
 
-<EmployeeEdit></EmployeeEdit>
+<EmployeeEdit @ref="EmployeeEdit" ></EmployeeEdit>
 
 @code {
 

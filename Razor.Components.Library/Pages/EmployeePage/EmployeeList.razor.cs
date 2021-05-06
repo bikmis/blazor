@@ -18,6 +18,10 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public IEmployeeService EmployeeService { get; set; }
         public List<Employee> Employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
 
+        public string Display { get; set; } = "";
+
+        public EmployeeEdit EmployeeEdit;
+
         protected async override Task OnInitializedAsync()
         {
             Employees = (await EmployeeService.GetEmployees()).ToList();
@@ -30,6 +34,9 @@ namespace Razor.Components.Library.Pages.EmployeePage
             StateHasChanged();
         }
 
+        public void DisplayEditForm() {
+            EmployeeEdit.DisplayEditForm();
+        }
 
     }
 }
