@@ -17,7 +17,6 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public string Display { get; set; }
         public string Show { get; set; }
         public string AriaHidden { get; set; }
-        public string PaddingRight { get; set; }
         [Parameter]
         public EventCallback OnEmployeeEdited { get; set; }
 
@@ -31,7 +30,6 @@ namespace Razor.Components.Library.Pages.EmployeePage
             Display = "block";
             Show = "show";
             AriaHidden = "false";
-            PaddingRight = "17px";
             StateHasChanged();
         }
 
@@ -39,7 +37,6 @@ namespace Razor.Components.Library.Pages.EmployeePage
             Display = "none";
             Show = "";
             AriaHidden = "true";
-            PaddingRight = "0px";
         }
 
         public async Task EditEmployee() {
