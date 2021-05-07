@@ -18,7 +18,7 @@ namespace Razor.Components.Library
         public ExampleJsInterop(IJSRuntime jsRuntime)
         {
             moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-               "import", "./_content/Razor.Components.Library/exampleJsInterop.js").AsTask());
+               "import", "./_content/Razor.Components.Library/js/exampleJsInterop.js").AsTask());
         }
 
         public async ValueTask<string> Prompt(string message)
