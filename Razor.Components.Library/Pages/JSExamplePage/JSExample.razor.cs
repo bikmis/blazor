@@ -16,6 +16,15 @@ namespace Razor.Components.Library.Pages.JSExamplePage
         public string Answer { get; set; } = string.Empty;
         public ElementReference QuestionInput;
 
+        protected override Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender) { 
+
+            
+            }
+            return base.OnAfterRenderAsync(firstRender);
+        }
+
         public async Task ShowAlert() {
             await JSRuntime.InvokeVoidAsync("showAlert"); //showAlert is the name of a function in js/interop.js file
         }
@@ -27,6 +36,7 @@ namespace Razor.Components.Library.Pages.JSExamplePage
         public async Task FocusOnInputQuestion() {
             await JSRuntime.InvokeVoidAsync("focusOnInputQuestion", QuestionInput); // await QuestionInput.FocusAsync(); u can use this without having to use JavaScript
         }
+
 
     }
 }
