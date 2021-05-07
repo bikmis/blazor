@@ -3,7 +3,13 @@
 <h3>JavaScript Example</h3>
 
 <button class="btn btn-primary" @onclick="() => ShowAlert()">Show Alert</button>
-
+<br />
+<br />
+<label>Question: </label>
+<input @bind="Question"/>
+<button @onclick="() => AskQuestion()">Answer Here!</button>
+<br />
+<span>Answer: @Answer</span>
 
 @code {
 

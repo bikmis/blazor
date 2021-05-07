@@ -12,9 +12,15 @@ namespace Razor.Components.Library.Pages.JSExamplePage
     {
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
+        public string Question { get; set; } = string.Empty;
+        public string Answer { get; set; } = string.Empty;
 
         public async Task ShowAlert() {
             await JSRuntime.InvokeVoidAsync("showAlert"); //showAlert is the name of a function in js/interop.js file
+        }
+
+        public async Task AskQuestion() {
+            Answer = await JSRuntime.InvokeAsync<string>("askQuestion", Question);  //function signature is askQuestion(Question)
         }
 
     }
