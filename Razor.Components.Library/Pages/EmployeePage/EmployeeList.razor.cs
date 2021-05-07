@@ -29,7 +29,6 @@ namespace Razor.Components.Library.Pages.EmployeePage
             await EmployeeService.DeleteEmployee(employeeId);
             await GetEmployees();
             StateHasChanged();
-
         }
 
         public void DisplayEditForm(Employee employee) {
