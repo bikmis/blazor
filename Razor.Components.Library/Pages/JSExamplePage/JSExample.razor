@@ -6,11 +6,12 @@
 <br />
 <br />
 <label>Question: </label>
-<input @bind="Question"/>
+<input @ref="QuestionInput" @bind="Question"/>
 <button @onclick="() => AskQuestion()">Answer Here!</button>
 <br />
 <span>Answer: @Answer</span>
-
+<br />
+<button @onclick="() => FocusOnInputQuestion()">Focus on Question Input</button>
 @code {
 
 }
