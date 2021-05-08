@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".netcore3.1", ".netcore3.1"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".net5.0", ".net5.0", "{B6F0F052-4D69-4AEC-A09B-852B26545540}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorClassLibrary31", "RazorClassLibrary31\RazorClassLibrary31.csproj", "{7B1B22F2-D67D-4A99-9093-C998060031AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{52E40707-72D2-416D-B4A2-9957268FEF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52E40707-72D2-416D-B4A2-9957268FEF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52E40707-72D2-416D-B4A2-9957268FEF5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1B22F2-D67D-4A99-9093-C998060031AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1B22F2-D67D-4A99-9093-C998060031AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1B22F2-D67D-4A99-9093-C998060031AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1B22F2-D67D-4A99-9093-C998060031AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{5604C3EA-CF87-457F-8374-606E364F83F5} = {B6F0F052-4D69-4AEC-A09B-852B26545540}
 		{4FE6AE78-4C92-433C-A398-8A2E0B13FF09} = {B6F0F052-4D69-4AEC-A09B-852B26545540}
 		{52E40707-72D2-416D-B4A2-9957268FEF5C} = {1075B439-0722-4F91-A8F1-E0F7D240D0AD}
+		{7B1B22F2-D67D-4A99-9093-C998060031AA} = {1075B439-0722-4F91-A8F1-E0F7D240D0AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00F41AF-6DF9-4695-B384-2DA67DB232FF}
