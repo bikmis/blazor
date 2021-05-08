@@ -8,6 +8,8 @@
                 </button>
             </div>
             <EditForm Model="@Employee" OnValidSubmit="@EditEmployee">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="firstName" class="form-label my-class">First Name</label>
