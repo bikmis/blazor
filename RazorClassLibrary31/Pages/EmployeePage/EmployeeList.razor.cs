@@ -14,7 +14,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         public IEmployeeService EmployeeService { get; set; }
         public List<Employee> Employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
 
-        public EmployeeEdit EmployeeEdit;
+       // public EmployeeEdit EmployeeEdit;
 
         protected async override Task OnInitializedAsync()
         {
@@ -37,7 +37,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         }
 
         public void PassToEditForm(Employee employee) {
-            EmployeeEdit.Employee = new Employee()
+         /*   EmployeeEdit.Employee = new Employee()
             {
                 ID = employee.ID,
                 FirstName = employee.FirstName,
@@ -46,6 +46,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
                 DateOfBirth = employee.DateOfBirth,
                 Position = employee.Position
             };
+         */
         }
     }
 }
