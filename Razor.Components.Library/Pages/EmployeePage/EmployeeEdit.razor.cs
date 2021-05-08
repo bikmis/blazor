@@ -13,10 +13,9 @@ namespace Razor.Components.Library.Pages.EmployeePage
     {
         [Inject]
         IEmployeeService EmployeeService { get; set; }
+
         public Employee Employee { get; set; } = new Employee();
-        public string Display { get; set; }
-        public string Show { get; set; }
-        public string AriaHidden { get; set; }
+
         [Parameter]
         public EventCallback OnEmployeeEdited { get; set; }
 
@@ -25,18 +24,9 @@ namespace Razor.Components.Library.Pages.EmployeePage
             return base.OnInitializedAsync();
         }
 
-        public void DisplayEditForm(Employee employee) {
-            Employee = employee;
-            Display = "block";
-            Show = "show";
-            AriaHidden = "false";
-            StateHasChanged();
-        }
 
         public void CloseEditForm() {
-            Display = "none";
-            Show = "";
-            AriaHidden = "true";
+            // to do
         }
 
         public async Task EditEmployee() {

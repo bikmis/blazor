@@ -25,8 +25,8 @@
                 <td>@employee.LastName</td>
                 <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
                 <td>@employee.Position</td>
-                <td><button @onclick="() => DisplayEditForm(employee)">Edit</button></td>
-                <td><button @onclick="() => DeleteEmployee(employee.ID)">Delete</button></td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => EmployeeEdit.Employee = employee">Edit</button></td>
+                <td><button type="button" class="btn btn-primary" @onclick="() => DeleteEmployee(employee.ID)">Delete</button></td>
             </tr>
         }
     </tbody>

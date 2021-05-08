@@ -15,8 +15,6 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public IEmployeeService EmployeeService { get; set; }
         public List<Employee> Employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
 
-        public string Display { get; set; } = "";
-
         public EmployeeEdit EmployeeEdit;
 
         protected async override Task OnInitializedAsync()
@@ -29,10 +27,6 @@ namespace Razor.Components.Library.Pages.EmployeePage
             await EmployeeService.DeleteEmployee(employeeId);
             await GetEmployees();
             StateHasChanged();
-        }
-
-        public void DisplayEditForm(Employee employee) {
-            EmployeeEdit.DisplayEditForm(employee);
         }
 
         public async Task GetEmployees() {
