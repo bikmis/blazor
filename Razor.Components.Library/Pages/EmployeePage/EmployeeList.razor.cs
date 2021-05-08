@@ -36,5 +36,17 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public async Task GetEmployees() {
             Employees = (await EmployeeService.GetEmployees()).ToList();
         }
+
+        public void PassToEditForm(Employee employee) {
+            EmployeeEdit.Employee = new Employee()
+            {
+                ID = employee.ID,
+                FirstName = employee.FirstName,
+                MiddleName = employee.MiddleName,
+                LastName = employee.LastName,
+                DateOfBirth = employee.DateOfBirth,
+                Position = employee.Position
+            };
+        }
     }
 }
