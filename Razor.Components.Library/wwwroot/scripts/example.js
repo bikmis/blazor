@@ -10,3 +10,7 @@ function askQuestion(question) {
 function focusOnInputQuestion(element) {
     element.focus()
 }
+
+function closeEmployeeEditModal() {
+    $("#employeeEditModal").modal("hide");
+}

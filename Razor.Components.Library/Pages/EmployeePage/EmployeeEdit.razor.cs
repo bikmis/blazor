@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using Razor.Components.Library.Models;
 using Razor.Components.Library.Services.EmployeeService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Razor.Components.Library.Pages.EmployeePage
@@ -19,19 +16,17 @@ namespace Razor.Components.Library.Pages.EmployeePage
         [Parameter]
         public EventCallback OnEmployeeEdited { get; set; }
 
+        [Inject]
+        public IJSRuntime JsRuntime { get; set; }
+
         protected override Task OnInitializedAsync()
         {
             return base.OnInitializedAsync();
         }
 
-
-        public void CloseEditForm() {
-            // to do
-        }
-
         public async Task EditEmployee() {
             await EmployeeService.EditEmployee(Employee);
-            CloseEditForm();
+            await JsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
             await OnEmployeeEdited.InvokeAsync();
         }
 

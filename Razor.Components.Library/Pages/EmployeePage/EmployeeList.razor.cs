@@ -25,6 +25,10 @@ namespace Razor.Components.Library.Pages.EmployeePage
         public async void DeleteEmployee(int employeeId)
         {
             await EmployeeService.DeleteEmployee(employeeId);
+            await RefreshEmployees();
+        }
+
+        public async Task RefreshEmployees() {
             await GetEmployees();
             StateHasChanged();
         }
