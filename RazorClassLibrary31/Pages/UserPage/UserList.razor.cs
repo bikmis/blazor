@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Razor.Components.Library.Pages.UserPage
+namespace RazorClassLibrary31.Pages.UserPage
 {
     //This is a code-behind file for UserList.razor. It is a partial class with the same name as the razor.
     public partial class UserList : ComponentBase
