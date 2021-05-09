@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.EmployeeService;
@@ -14,7 +15,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         public Employee Employee { get; set; } = new Employee();
 
         [Parameter]
-        public EventCallback OnEmployeeEdited { get; set; }
+        public EventCallback<string> OnEmployeeEdited { get; set; }
 
         [Inject]
         public IJSRuntime JsRuntime { get; set; }
@@ -27,8 +28,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         public async Task EditEmployee() {
             await EmployeeService.EditEmployee(Employee);
             await JsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
-            var isEdited = true;
-            await OnEmployeeEdited.InvokeAsync(isEdited);
+            var editMessage = "Successfully edited.";
+            await OnEmployeeEdited.InvokeAsync(editMessage);
         }
 
     }
