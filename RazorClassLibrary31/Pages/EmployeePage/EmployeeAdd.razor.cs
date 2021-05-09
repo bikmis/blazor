@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Pages.EmployeePage 
+namespace RazorClassLibrary31.Pages.EmployeePage
 {
     public partial class EmployeeAdd : ComponentBase
     {
@@ -23,7 +23,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
             return base.OnInitializedAsync();
         }
 
-        public async void AddEmployee(EditContext editContext) {
+        public async void AddEmployee(EditContext editContext)
+        {
             await EmployeeService.AddEmployee(Employee);
             NavigationManager.NavigateTo("/employeelist");
         }

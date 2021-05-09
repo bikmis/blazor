@@ -6,9 +6,9 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="mb-3">
-        <label for="firstName" class="form-label my-class">First Name</label>
+        <label for="firstName" class="form-label">First Name</label>
         <input type="text" class="form-control" id="firstName" @bind-value="@Employee.FirstName" @bind-value:event="oninput">
-        <ValidationMessage For="@(()=>Employee.FirstName)"/>
+        <ValidationMessage For="@(()=>Employee.FirstName)" />
     </div>
     <div class="mb-3">
         <label for="middleName" class="form-label">Middle Name</label>

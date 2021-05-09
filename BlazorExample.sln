@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".netcore3.1", ".netcore3.1"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".net5.0", ".net5.0", "{B6F0F052-4D69-4AEC-A09B-852B26545540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorClassLibrary31", "RazorClassLibrary31\RazorClassLibrary31.csproj", "{7B1B22F2-D67D-4A99-9093-C998060031AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary31", "RazorClassLibrary31\RazorClassLibrary31.csproj", "{7B1B22F2-D67D-4A99-9093-C998060031AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
