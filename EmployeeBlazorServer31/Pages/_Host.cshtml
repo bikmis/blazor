@@ -12,8 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EmployeeBlazorServer31</title>
     <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/site.css" rel="stylesheet" />
+    <!--
+      <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+      <link href="css/site.css" rel="stylesheet" />
+    -->
+    <script src="_content/RazorClassLibrary31/css/bootstrap/bootstrapCss.js"></script>
+    <link href="_content/RazorClassLibrary31/css/app.css" rel="stylesheet" />
+    <!-- <link href="EmployeeBlazorClient31.styles.css" rel="stylesheet" />  css isolation does not work with blazor with .net core 3.1. It works with .net 5.0-->
+    <link rel="icon" href="_content/RazorClassLibrary31/favicon.ico" />
 </head>
 <body>
     <app>
@@ -32,5 +38,7 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script src="_content/RazorClassLibrary31/scripts/bootstrapScript.js"></script>
+    <script src="_content/RazorClassLibrary31/scripts/example.js"></script>
 </body>
 </html>
