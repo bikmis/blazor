@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DataLayer.Migrations
+namespace DataLayer31.Migrations
 {
     public partial class more_data : Migration
     {

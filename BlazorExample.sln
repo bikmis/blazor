@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5A6C96EE-7D5D-4C02-9DFD-28B1B882F479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer31", "DataLayer\DataLayer31.csproj", "{5A6C96EE-7D5D-4C02-9DFD-28B1B882F479}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebAPI", "EmployeeWebAPI\EmployeeWebAPI.csproj", "{8B4E1B36-ECBA-477B-9FB4-D833BD23C544}"
 EndProject
@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".net5.0", ".net5.0", "{B6F0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary31", "RazorClassLibrary31\RazorClassLibrary31.csproj", "{7B1B22F2-D67D-4A99-9093-C998060031AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeBlazorServer31", "EmployeeBlazorServer31\EmployeeBlazorServer31.csproj", "{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazorServer31", "EmployeeBlazorServer31\EmployeeBlazorServer31.csproj", "{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

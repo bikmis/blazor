@@ -1,10 +1,10 @@
-﻿using DataLayer.Entities;
+﻿using DataLayer31.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 
-namespace DataLayer
+namespace DataLayer31
 {
     public class EmployeeDbContext : DbContext
     {
