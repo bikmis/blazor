@@ -1,10 +1,10 @@
 ﻿using DataLayer31;
 using DataLayer31.Entities;
-using EmployeeWebAPI.Models.Employee;
+using EmployeeWebAPI31.Models.Employee;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-namespace EmployeeWebAPI.Controllers
+namespace EmployeeWebAPI31.Controllers
 {
     [Route("api")]
     [ApiController]

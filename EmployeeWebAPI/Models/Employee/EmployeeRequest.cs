@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EmployeeWebAPI.Models.Employee
+namespace EmployeeWebAPI31.Models.Employee
 {
     public class EmployeeRequest
     {

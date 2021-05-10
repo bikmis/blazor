@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EmployeeWebAPI.Models.Employee
+namespace EmployeeWebAPI31.Models.Employee
 {
     public class EmployeeResponse
     {
