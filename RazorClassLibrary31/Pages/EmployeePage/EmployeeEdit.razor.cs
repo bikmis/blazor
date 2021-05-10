@@ -14,6 +14,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         public Employee Employee { get; set; } = new Employee();
 
+        public Employee EmployeeInitialState { get; set; }
+
         [Parameter]
         public EventCallback<string> OnEmployeeEdited { get; set; }
 
@@ -30,6 +32,18 @@ namespace RazorClassLibrary31.Pages.EmployeePage
             await JsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
             var editMessage = "Successfully edited.";
             await OnEmployeeEdited.InvokeAsync(editMessage);
+        }
+
+        private void ResetForm() {
+            Employee = new Employee()
+            {
+                ID = EmployeeInitialState.ID,
+                FirstName = EmployeeInitialState.FirstName,
+                MiddleName = EmployeeInitialState.MiddleName,
+                LastName = EmployeeInitialState.LastName,
+                DateOfBirth = EmployeeInitialState.DateOfBirth,
+                Position = EmployeeInitialState.Position
+            };
         }
 
     }

@@ -21,7 +21,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
             await GetEmployees();
         }
 
-        private async void DeleteEmployee(int employeeId)
+        private async Task DeleteEmployee(int employeeId)
         {
             await EmployeeService.DeleteEmployee(employeeId);
             await RefreshEmployees("");
@@ -45,7 +45,17 @@ namespace RazorClassLibrary31.Pages.EmployeePage
                 LastName = employee.LastName,
                 DateOfBirth = employee.DateOfBirth,
                 Position = employee.Position
-            };         
+            };
+
+            EmployeeEdit.EmployeeInitialState = new Employee()
+            {
+                ID = employee.ID,
+                FirstName = employee.FirstName,
+                MiddleName = employee.MiddleName,
+                LastName = employee.LastName,
+                DateOfBirth = employee.DateOfBirth,
+                Position = employee.Position
+            };
         }
     }
 }
