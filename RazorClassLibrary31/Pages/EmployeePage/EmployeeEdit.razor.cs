@@ -12,9 +12,9 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         [Inject]
         IEmployeeService EmployeeService { get; set; }
 
-        public Employee Employee { get; set; } = new Employee();
+        public Employee Employee { get; set; } = new Employee(); //Initialized from the Edit button in the parent form
 
-        public Employee EmployeeInitialState { get; set; }
+        public Employee EmployeeInitialState { get; set; }  //Initialized from the Edit button in the parent form
 
         [Parameter]
         public EventCallback<string> OnEmployeeEdited { get; set; }
