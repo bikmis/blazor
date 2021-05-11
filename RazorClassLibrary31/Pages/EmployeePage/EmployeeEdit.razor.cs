@@ -10,7 +10,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
     public partial class EmployeeEdit
     {
         [Inject]
-        IEmployeeService EmployeeService { get; set; }
+        private IEmployeeService employeeService { get; set; }
 
         public Employee Employee { get; set; } = new Employee(); //Initialized from the Edit button in the parent form
 
@@ -20,7 +20,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         public EventCallback<string> OnEmployeeEdited { get; set; }
 
         [Inject]
-        public IJSRuntime JsRuntime { get; set; }
+        private IJSRuntime jsRuntime { get; set; }
 
         protected override Task OnInitializedAsync()
         {
@@ -28,8 +28,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         }
 
         public async Task EditEmployee() {
-            await EmployeeService.EditEmployee(Employee);
-            await JsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
+            await employeeService.EditEmployee(Employee);
+            await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
             var editMessage = "Successfully edited.";
             await OnEmployeeEdited.InvokeAsync(editMessage);
         }
