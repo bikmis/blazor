@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var employee in Employees)
+        @foreach (var employee in employees)
         {
             <tr>
                 <td>@employee.FirstName</td>
@@ -25,14 +25,14 @@
                 <td>@employee.LastName</td>
                 <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
                 <td>@employee.Position</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => PassToEditForm(employee)">Edit</button></td>
-                <td><button type="button" class="btn btn-primary" @onclick="() => DeleteEmployee(employee.ID)">Delete</button></td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => passToEditForm(employee)">Edit</button></td>
+                <td><button type="button" class="btn btn-primary" @onclick="() => deleteEmployee(employee.ID)">Delete</button></td>
             </tr>
         }
     </tbody>
 </table>
 
-<EmployeeEdit @ref="EmployeeEdit" OnEmployeeEdited="RefreshEmployees"></EmployeeEdit>
+<EmployeeEdit @ref="employeeEdit" OnEmployeeEdited="refreshEmployees"></EmployeeEdit>
 
 @code {
 

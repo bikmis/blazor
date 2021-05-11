@@ -11,33 +11,33 @@ namespace RazorClassLibrary31.Pages.EmployeePage
     public partial class EmployeeList : ComponentBase
     {
         [Inject]
-        private IEmployeeService EmployeeService { get; set; }
-        private List<Employee> Employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
+        private IEmployeeService employeeService { get; set; }
+        private List<Employee> employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
 
-        private EmployeeEdit EmployeeEdit;
+        private EmployeeEdit employeeEdit;
 
         protected async override Task OnInitializedAsync()
         {
-            await GetEmployees();
+            await getEmployees();
         }
 
-        private async Task DeleteEmployee(int employeeId)
+        private async Task deleteEmployee(int employeeId)
         {
-            await EmployeeService.DeleteEmployee(employeeId);
-            await RefreshEmployees("");
+            await employeeService.DeleteEmployee(employeeId);
+            await refreshEmployees("");
         }
 
-        private async Task RefreshEmployees(string message) {
-            await GetEmployees();
+        private async Task refreshEmployees(string message) {
+            await getEmployees();
             StateHasChanged();
         }
 
-        private async Task GetEmployees() {
-            Employees = (await EmployeeService.GetEmployees()).ToList();
+        private async Task getEmployees() {
+            employees = (await employeeService.GetEmployees()).ToList();
         }
 
-        private void PassToEditForm(Employee employee) {
-            EmployeeEdit.Employee = new Employee()
+        private void passToEditForm(Employee employee) {
+            employeeEdit.Employee = new Employee()
             {
                 ID = employee.ID,
                 FirstName = employee.FirstName,
@@ -47,7 +47,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
                 Position = employee.Position
             };
 
-            EmployeeEdit.EmployeeInitialState = new Employee()
+            employeeEdit.EmployeeInitialState = new Employee()
             {
                 ID = employee.ID,
                 FirstName = employee.FirstName,
