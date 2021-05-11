@@ -2,16 +2,16 @@
 
 <h3>JavaScript Example (JsInterop)</h3>
 
-<button class="btn btn-primary" @onclick="() => ShowAlert()">Show Alert</button>
+<button class="btn btn-primary" @onclick="() => showAlert()">Show Alert</button>
 <br />
 <br />
 <label>Question: </label>
 <input @ref="questionInput" @bind="question"/>
-<button @onclick="() => AskQuestion()">Answer Here!</button>
+<button @onclick="() => askQuestion()">Answer Here!</button>
 <br />
 <span>Answer: @answer</span>
 <br />
-<button @onclick="() => FocusOnInputQuestion()">Focus on Question Input</button>
+<button @onclick="() => focusOnInputQuestion()">Focus on Question Input</button>
 
 
 @code {

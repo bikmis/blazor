@@ -20,15 +20,15 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
             return base.OnAfterRenderAsync(firstRender);
         }
 
-        private async Task ShowAlert() {
+        private async Task showAlert() {
             await jsRuntime.InvokeVoidAsync("showAlert"); //showAlert is the name of a function in js/interop.js file
         }
 
-        private async Task AskQuestion() {
+        private async Task askQuestion() {
             answer = await jsRuntime.InvokeAsync<string>("askQuestion", question);  //function signature is askQuestion(Question)
         }
 
-        private async Task FocusOnInputQuestion() {
+        private async Task focusOnInputQuestion() {
             await jsRuntime.InvokeVoidAsync("focusOnInputQuestion", questionInput); // await QuestionInput.FocusAsync(); u can use this without having to use JavaScript
         }
 
