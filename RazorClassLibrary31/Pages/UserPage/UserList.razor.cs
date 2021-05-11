@@ -11,12 +11,12 @@ namespace RazorClassLibrary31.Pages.UserPage
     public partial class UserList : ComponentBase
     {
         [Inject]
-        public IUserService UserService { get; set; }
-        public List<User> Users { get; set; } = new List<User>(); //Assign an empty object or check null in the razor to avoid an exception.
+        private IUserService userService { get; set; }
+        private List<User> users { get; set; } = new List<User>(); //Assign an empty object or check null in the razor to avoid an exception.
 
         protected async override Task OnInitializedAsync()
         {
-            Users = (await UserService.GetUsers()).ToList();
+            users = (await userService.GetUsers()).ToList();
         }
     }
 }
