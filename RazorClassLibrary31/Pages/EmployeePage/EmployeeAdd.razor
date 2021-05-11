@@ -2,29 +2,29 @@
 
 <h3>Add Employee</h3>
 
-<EditForm Model="@Employee" OnValidSubmit="@AddEmployee">
+<EditForm Model="@employee" OnValidSubmit="@AddEmployee">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstName" @bind-value="@Employee.FirstName" @bind-value:event="oninput">
-        <ValidationMessage For="@(()=>Employee.FirstName)" />
+        <input type="text" class="form-control" id="firstName" @bind-value="@employee.FirstName" @bind-value:event="oninput">
+        <ValidationMessage For="@(()=>employee.FirstName)" />
     </div>
     <div class="mb-3">
         <label for="middleName" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="middleName" @bind="@Employee.MiddleName"> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
+        <input type="text" class="form-control" id="middleName" @bind="@employee.MiddleName"> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastName" @bind="@Employee.LastName">
+        <input type="text" class="form-control" id="lastName" @bind="@employee.LastName">
     </div>
     <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date Of Birth</label>
-        <input type="date" class="form-control" id="dateOfBirth" @bind="Employee.DateOfBirth">
+        <input type="date" class="form-control" id="dateOfBirth" @bind="@employee.DateOfBirth">
     </div>
     <div class="mb-3">
         <label for="position" class="form-label">Position</label>
-        <input type="text" class="form-control" id="position" @bind="@Employee.Position">
+        <input type="text" class="form-control" id="position" @bind="@employee.Position">
     </div>
     <button type="reset" class="btn btn-secondary">Clear</button>
     <button type="submit" class="btn btn-primary">Save</button>

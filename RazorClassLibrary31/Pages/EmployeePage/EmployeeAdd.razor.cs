@@ -12,11 +12,11 @@ namespace RazorClassLibrary31.Pages.EmployeePage
     public partial class EmployeeAdd : ComponentBase
     {
         [Inject]
-        NavigationManager NavigationManager { get; set; }
+        private NavigationManager navigationManager { get; set; }
 
         [Inject]
-        public IEmployeeService EmployeeService { get; set; }
-        public Employee Employee { get; set; } = new Employee() { FirstName = "", LastName = "", MiddleName = "", Position = "", DateOfBirth = null };
+        private IEmployeeService employeeService { get; set; }
+        private Employee employee { get; set; } = new Employee() { FirstName = "", LastName = "", MiddleName = "", Position = "", DateOfBirth = null };
 
         protected override Task OnInitializedAsync()
         {
@@ -25,8 +25,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         public async void AddEmployee(EditContext editContext)
         {
-            await EmployeeService.AddEmployee(Employee);
-            NavigationManager.NavigateTo("/employeelist");
+            await employeeService.AddEmployee(employee);
+            navigationManager.NavigateTo("/employeelist");
         }
     }
 }
