@@ -7,24 +7,28 @@
     <ValidationSummary />
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstName" @bind-value="@employee.FirstName" @bind-value:event="oninput">
-        <ValidationMessage For="@(()=>employee.FirstName)" />
+        <input type="text" class="form-control" id="firstName" @bind-value="@employee.FirstName">  @* With <input ..> validation fires when form is submitted. With <InputText ...> validation fires immediately when you click outside the element or tab out.*@
+        <ValidationMessage For="()=>employee.FirstName" />
     </div>
     <div class="mb-3">
         <label for="middleName" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="middleName" @bind="@employee.MiddleName"> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
+        <input type="text" class="form-control" id="middleName" @bind="@employee.MiddleName"> @* @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" *@
+        <ValidationMessage For="()=> employee.MiddleName" />
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
         <input type="text" class="form-control" id="lastName" @bind="@employee.LastName">
+        <ValidationMessage For="()=> employee.LastName" />
     </div>
     <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date Of Birth</label>
         <input type="date" class="form-control" id="dateOfBirth" @bind="@employee.DateOfBirth">
+        <ValidationMessage For="()=> employee.DateOfBirth" />
     </div>
     <div class="mb-3">
         <label for="position" class="form-label">Position</label>
         <input type="text" class="form-control" id="position" @bind="@employee.Position">
+        <ValidationMessage For="()=> employee.Position" />
     </div>
     <button type="button" class="btn btn-secondary" @onclick="resetForm">Clear</button>
     <button type="submit" class="btn btn-primary">Save</button>

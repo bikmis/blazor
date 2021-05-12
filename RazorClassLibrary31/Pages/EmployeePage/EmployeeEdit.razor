@@ -13,24 +13,28 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="firstName" class="form-label my-class">First Name</label>
-                        <InputText class="form-control" id="firstName" @bind-Value="@Employee.FirstName" />
-                        <ValidationMessage For="@(()=>Employee.FirstName)" />
+                        <InputText class="form-control" id="firstName" @bind-Value="@Employee.FirstName" /> <!--With <input ..> validation fires when form is submitted. With <InputText ...> validation fires immediately when you click outside the element-->
+                        <ValidationMessage For="() => Employee.FirstName" />
                     </div>
                     <div class="mb-3">
                         <label for="middleName" class="form-label">Middle Name</label>
                         <InputText type="text" class="form-control" id="middleName" @bind-Value="@Employee.MiddleName" /> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
+                        <ValidationMessage For="() => Employee.MiddleName" />
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
                         <InputText type="text" class="form-control" id="lastName" @bind-Value="@Employee.LastName" />
+                        <ValidationMessage For="() => Employee.LastName" />
                     </div>
                     <div class="mb-3">
                         <label for="dateOfBirth" class="form-label">Date Of Birth</label>
                         <InputDate class="form-control" id="dateOfBirth" @bind-Value="@Employee.DateOfBirth" />
+                        <ValidationMessage For="() => Employee.DateOfBirth" />
                     </div>
                     <div class="mb-3">
                         <label for="position" class="form-label">Position</label>
                         <InputText type="text" class="form-control" id="position" @bind-Value="@Employee.Position" />
+                        <ValidationMessage For="() => Employee.Position" />
                     </div>
                 </div>
                 <div class="modal-footer">
