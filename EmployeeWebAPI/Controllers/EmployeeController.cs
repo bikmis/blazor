@@ -28,7 +28,8 @@ namespace EmployeeWebAPI31.Controllers
                 MiddleName = e.MiddleName,
                 LastName = e.LastName,
                 DateOfBirth = e.DateOfBirth,
-                Position = e.Position
+                Position = e.Position,
+                Age = e.Age
             }).ToList();
             return Ok(response);
         }
@@ -50,7 +51,8 @@ namespace EmployeeWebAPI31.Controllers
                 LastName = employee.LastName,
                 MiddleName = employee.MiddleName,
                 DateOfBirth = employee.DateOfBirth,
-                Position = employee.Position
+                Position = employee.Position,
+                Age = employee.Age
             };
 
             return Ok(response);
@@ -66,7 +68,8 @@ namespace EmployeeWebAPI31.Controllers
                 MiddleName = request.MiddleName,
                 LastName = request.LastName,
                 Position = request.Position,
-                DateOfBirth = request.DateOfBirth
+                DateOfBirth = request.DateOfBirth,
+                Age = request.Age
             };
 
             _dbContext.Add(employee);
@@ -89,6 +92,7 @@ namespace EmployeeWebAPI31.Controllers
             employee.LastName = request.LastName;
             employee.DateOfBirth = request.DateOfBirth;
             employee.Position = request.Position;
+            employee.Age = request.Age;
 
             _dbContext.Employees.Update(employee);
             _dbContext.SaveChanges();

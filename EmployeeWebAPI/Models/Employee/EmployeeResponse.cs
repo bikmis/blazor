@@ -13,5 +13,6 @@ namespace EmployeeWebAPI31.Models.Employee
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Position { get; set; }
+        public int Age { get; set; }
     }
 }
