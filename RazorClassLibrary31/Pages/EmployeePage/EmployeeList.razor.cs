@@ -16,6 +16,13 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         private EmployeeEdit employeeEdit;
 
+        private string employeeEditedMessage { get; set; }
+        private bool isHidden { get; set; } = true;
+
+        private void closeMessage() {
+            isHidden = true;
+        }
+
         protected async override Task OnInitializedAsync()
         {
             await getEmployees();
@@ -24,12 +31,18 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         private async Task deleteEmployee(int employeeId)
         {
             await employeeService.DeleteEmployee(employeeId);
-            await refreshEmployees("");
+            await refreshEmployees();
         }
 
-        private async Task refreshEmployees(string message) {
-            await getEmployees();
+        private async Task refreshEmployees() {
+            await getEmployees();        
             StateHasChanged();
+        }
+
+        private async Task refreshEmployeesAndShowMessage(string message) {
+            employeeEditedMessage = message;
+            isHidden = false;
+            await refreshEmployees();
         }
 
         private async Task getEmployees() {
