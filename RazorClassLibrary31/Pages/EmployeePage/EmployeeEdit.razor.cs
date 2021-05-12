@@ -26,14 +26,14 @@ namespace RazorClassLibrary31.Pages.EmployeePage
             return base.OnInitializedAsync();
         }
 
-        public async Task EditEmployee() {
+        private async Task editEmployee() {
             await employeeService.EditEmployee(Employee);
             await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
             var editMessage = "Successfully edited.";
             await OnEmployeeEdited.InvokeAsync(editMessage);
         }
 
-        private void ResetForm() {
+        private void resetForm() {
             Employee = new Employee()
             {
                 ID = EmployeeInitialState.ID,
