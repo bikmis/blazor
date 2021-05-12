@@ -18,5 +18,6 @@ namespace DataLayer31.Entities
         public DateTime DateOfBirth { get; set; }
         [Required]
         public string Position { get; set; }
+        public int Age { get; set; }
     }
 }
