@@ -18,12 +18,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="middleName" class="form-label">Middle Name</label>
-                        <InputText type="text" class="form-control" id="middleName" @bind-Value="@Employee.MiddleName" /> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
+                        <InputText class="form-control" id="middleName" @bind-Value="@Employee.MiddleName" /> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
                         <ValidationMessage For="() => Employee.MiddleName" />
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <InputText type="text" class="form-control" id="lastName" @bind-Value="@Employee.LastName" />
+                        <InputText  class="form-control" id="lastName" @bind-Value="@Employee.LastName" />
                         <ValidationMessage For="() => Employee.LastName" />
                     </div>
                     <div class="mb-3">
@@ -33,8 +33,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="position" class="form-label">Position</label>
-                        <InputText type="text" class="form-control" id="position" @bind-Value="@Employee.Position" />
+                        <InputText class="form-control" id="position" @bind-Value="@Employee.Position" />
                         <ValidationMessage For="() => Employee.Position" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <InputNumber class="form-control" id="age" @bind-Value="@Employee.Age" />
+                        <ValidationMessage For="() => Employee.Age" />
                     </div>
                 </div>
                 <div class="modal-footer">

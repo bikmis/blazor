@@ -57,7 +57,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
                 MiddleName = employee.MiddleName,
                 LastName = employee.LastName,
                 DateOfBirth = employee.DateOfBirth,
-                Position = employee.Position
+                Position = employee.Position,
+                Age = employee.Age
             };
 
             employeeEdit.EmployeeInitialState = new Employee()
@@ -67,7 +68,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
                 MiddleName = employee.MiddleName,
                 LastName = employee.LastName,
                 DateOfBirth = employee.DateOfBirth,
-                Position = employee.Position
+                Position = employee.Position,
+                Age = employee.Age
             };
         }
     }

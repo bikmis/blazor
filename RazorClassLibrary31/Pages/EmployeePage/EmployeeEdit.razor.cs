@@ -41,7 +41,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
                 MiddleName = EmployeeInitialState.MiddleName,
                 LastName = EmployeeInitialState.LastName,
                 DateOfBirth = EmployeeInitialState.DateOfBirth,
-                Position = EmployeeInitialState.Position
+                Position = EmployeeInitialState.Position,
+                Age = EmployeeInitialState.Age
             };
         }
 
