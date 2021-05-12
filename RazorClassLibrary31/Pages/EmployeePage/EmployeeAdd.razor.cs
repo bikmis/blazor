@@ -16,17 +16,21 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         [Inject]
         private IEmployeeService employeeService { get; set; }
-        private Employee employee { get; set; } = new Employee() { FirstName = "", LastName = "", MiddleName = "", Position = "", DateOfBirth = null };
+        private Employee employee { get; set; } = new Employee();
 
         protected override Task OnInitializedAsync()
         {
             return base.OnInitializedAsync();
         }
 
-        public async void AddEmployee(EditContext editContext)
+        private async void addEmployee(EditContext editContext)
         {
             await employeeService.AddEmployee(employee);
             navigationManager.NavigateTo("/employeelist");
+        }
+
+        private void resetForm() {
+            employee = new Employee();
         }
     }
 }
