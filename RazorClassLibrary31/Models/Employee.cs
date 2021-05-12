@@ -15,5 +15,6 @@ namespace RazorClassLibrary31.Models
         public DateTime? DateOfBirth { get; set; }
         [Required]
         public string Position { get; set; }
+        public int Age { get; set; }
     }
 }

@@ -30,6 +30,12 @@
         <InputText class="form-control" id="position" @bind-Value="@employee.Position" />
         <ValidationMessage For="()=> employee.Position" />
     </div>
+    <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <InputNumber class="form-control" id="age" @bind-Value="@employee.Age" />
+        <ValidationMessage For="()=> employee.Age" />
+    </div>
+
     <button type="button" class="btn btn-secondary" @onclick="resetForm">Reset</button>
     <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>
