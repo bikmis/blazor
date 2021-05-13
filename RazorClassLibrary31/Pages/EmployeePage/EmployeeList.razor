@@ -3,14 +3,7 @@
 <h3>Employee List</h3>
 
 <NavLink class="mb-4 mt-3 btn btn-primary" href="employeeadd">Add Employee</NavLink>
-<div hidden="@isHidden">
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>@employeeEditedMessage</strong>
-        <button type="button" class="close" aria-label="Close" @onclick="() => closeMessage()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</div>
+<Alert IsHidden="@isHidden" CloseButtonEvent="closeMessage" AlertColor="alert-primary" Message="@employeeEditedMessage"/>
 <br />
 <table class="table table-striped">
     <thead>
@@ -28,16 +21,16 @@
     <tbody>
         @foreach (var employee in employees)
         {
-        <tr>
-            <td>@employee.FirstName</td>
-            <td>@employee.MiddleName</td>
-            <td>@employee.LastName</td>
-            <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
-            <td>@employee.Position</td>
-            <td>@employee.Age</td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => passToEditForm(employee)">Edit</button></td>
-            <td><button type="button" class="btn btn-primary" @onclick="() => deleteEmployee(employee.ID)">Delete</button></td>
-        </tr>
+            <tr>
+                <td>@employee.FirstName</td>
+                <td>@employee.MiddleName</td>
+                <td>@employee.LastName</td>
+                <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
+                <td>@employee.Position</td>
+                <td>@employee.Age</td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => passToEditForm(employee)">Edit</button></td>
+                <td><button type="button" class="btn btn-primary" @onclick="() => deleteEmployee(employee.ID)">Delete</button></td>
+            </tr>
         }
     </tbody>
 </table>

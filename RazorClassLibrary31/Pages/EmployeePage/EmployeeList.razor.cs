@@ -17,12 +17,13 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         private EmployeeEdit employeeEdit;
 
         private string employeeEditedMessage { get; set; }
+
         private bool isHidden { get; set; } = true;
 
-        private void closeMessage() {
-            isHidden = true;
+        private void closeMessage(bool isHidden) {
+            this.isHidden = isHidden;
         }
-
+      
         protected async override Task OnInitializedAsync()
         {
             await getEmployees();
