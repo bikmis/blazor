@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Shared
 {
@@ -16,9 +17,9 @@ namespace RazorClassLibrary31.Shared
         [Parameter]
         public string Message { get; set; }
 
-        private void closeMessage()
+        private async Task closeMessage()
         {
-            CloseButtonEvent.InvokeAsync(true);
+            await CloseButtonEvent.InvokeAsync(true);
         }
     }
 }
