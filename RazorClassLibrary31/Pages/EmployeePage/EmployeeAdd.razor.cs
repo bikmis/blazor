@@ -25,7 +25,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         {
             await employeeService.AddEmployee(employee);
             var message = "Employee Added Successfully.";
-            navigationManager.NavigateTo($"/employeelist/{message}");
+            //passing values in the url parameter and query string
+            navigationManager.NavigateTo($"/employeelist/{message}?messageOne=message one&messageTwo=message two&messageThree=message three");
         }
 
         private void resetForm() {

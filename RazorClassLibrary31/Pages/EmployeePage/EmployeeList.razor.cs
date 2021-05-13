@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.EmployeeService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace RazorClassLibrary31.Pages.EmployeePage
 {
@@ -24,12 +27,39 @@ namespace RazorClassLibrary31.Pages.EmployeePage
             this.isHidden = isHidden;
         }
       
+        [Inject]
+        private NavigationManager navigationManager { get; set; }
+
         [Parameter]
         public string SaveMessage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+            var queryString = parseUri();
+            var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
+            var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
+            var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
             await getEmployees();
+        }
+
+        private Dictionary<string, string> parseUri()
+        {
+            Dictionary<string, string> queryStringDictionary = new Dictionary<string, string>();
+            var uri = navigationManager.Uri;
+            var uriSplit = uri.Split('?');
+            if (uriSplit.Length == 2)
+            {
+                var queryString = uriSplit[1];
+                var decodedQueryString = WebUtility.UrlDecode(queryString);
+                var decodedQueryStringSplit = decodedQueryString.Split('&').ToList();
+                decodedQueryStringSplit.ForEach(x =>
+                {
+                    var xSplit = x.Split('=');
+                    queryStringDictionary.Add(xSplit[0], xSplit[1]);
+                });
+            }
+
+            return queryStringDictionary;
         }
 
         protected override Task OnParametersSetAsync()
