@@ -1,9 +1,10 @@
 ﻿@page "/employeelist"
+@page "/employeelist/{SaveMessage}"
 
 <h3>Employee List</h3>
 
 <NavLink class="mb-4 mt-3 btn btn-primary" href="employeeadd">Add Employee</NavLink>
-<Alert IsHidden="@isHidden" CloseButtonEvent="closeMessage" AlertColor="alert-primary" Message="@employeeEditedMessage"/>
+<Alert IsHidden="@isHidden" CloseButtonEvent="closeMessage" AlertColor="alert-primary" Message="@message"/>
 <br />
 <table class="table table-striped">
     <thead>
