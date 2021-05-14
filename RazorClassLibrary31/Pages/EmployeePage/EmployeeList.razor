@@ -23,7 +23,7 @@
     <tbody>
         @foreach (var employee in employees)
         {
-            <tr @key="employee">  @*key is a diffing mechanism*@
+            <tr @key="employee">  @*key is used by a diffing algorithm for preserving elements in a collection*@
                 <td>@employee.ID</td>
                 <td>@employee.FirstName</td>
                 <td>@employee.MiddleName</td>
