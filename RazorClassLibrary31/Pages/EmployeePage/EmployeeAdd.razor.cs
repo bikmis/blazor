@@ -21,7 +21,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
             return base.OnInitializedAsync();
         }
 
-        private async void addEmployee(EditContext editContext)
+        private async void addEmployee(EditContext editContext, Employee employee)
         {
             await employeeService.AddEmployee(employee);
             var message = "Employee Added Successfully.";

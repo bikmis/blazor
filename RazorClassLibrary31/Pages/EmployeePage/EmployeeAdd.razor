@@ -2,7 +2,7 @@
 
 <h3>Add Employee</h3>
 
-<EditForm Model="@employee" OnValidSubmit="@addEmployee">
+<EditForm Model="@employee" OnValidSubmit="(e) => addEmployee(e, employee)">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="mb-3">
