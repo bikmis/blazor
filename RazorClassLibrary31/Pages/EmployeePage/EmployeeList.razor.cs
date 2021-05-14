@@ -23,6 +23,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         private bool isHidden { get; set; } = true;
 
+        private string alertColor { get; set; }
+
         private void closeMessage(bool isHidden) {
             this.isHidden = isHidden;
         }
@@ -36,6 +38,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         protected async override Task OnInitializedAsync()
         {
             var queryString = parseUri();
+            alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
             var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
             var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
             var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
@@ -74,6 +77,9 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         private async Task deleteEmployee(int employeeId)
         {
+            message = $"Employee with ID {employeeId} is deleted.";
+            isHidden = false;
+            alertColor = "alert-warning";
             await employeeService.DeleteEmployee(employeeId);
             await refreshEmployees();
         }
@@ -86,6 +92,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         private async Task refreshEmployeesAndShowMessage(string message) {
             this.message = message;
             isHidden = false;
+            alertColor = "alert-primary";
             await refreshEmployees();
         }
 

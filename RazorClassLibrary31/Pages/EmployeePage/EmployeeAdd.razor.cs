@@ -25,8 +25,9 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         {
             await employeeService.AddEmployee(employee);
             var message = "Employee Added Successfully.";
+            var alertColor = "alert-secondary";
             //passing values in the url parameter and query string
-            navigationManager.NavigateTo($"/employeelist/{message}?messageOne=message one&messageTwo=message two&messageThree=message three");
+            navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}&messageOne=message one&messageTwo=message two&messageThree=message three");
         }
 
         private void resetForm() {
