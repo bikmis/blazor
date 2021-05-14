@@ -9,6 +9,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Middle Name</th>
             <th>Last Name</th>
@@ -22,7 +23,8 @@
     <tbody>
         @foreach (var employee in employees)
         {
-            <tr>
+            <tr @key="employee">  @*key is a diffing mechanism*@
+                <td>@employee.ID</td>
                 <td>@employee.FirstName</td>
                 <td>@employee.MiddleName</td>
                 <td>@employee.LastName</td>
