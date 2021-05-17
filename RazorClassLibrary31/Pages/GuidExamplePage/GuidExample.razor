@@ -1,0 +1,53 @@
+﻿@page "/guid"
+
+
+<h3>AddSingleton vs AddScoped vs AddTransient</h3>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Value</th>
+            <th>Counter</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><button class="btn btn-primary" @onclick="addSingleton">AddSingleton</button></td>
+            <td>@guidAddSingleton</td>
+            <td>@counterAddSingleton</td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary" @onclick="addScoped">AddScoped</button></td>
+            <td>@guidAddScoped</td>
+            <td>@counterAddScoped</td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary" @onclick="addTransient">AddTransient</button></td>
+            <td>@guidAddTransient</td>
+            <td>@counterAddTransient</td>
+        </tr>
+    </tbody>
+</table>
+
+Note:
+<ul>
+    <li>In Blazor AddSingleton and AddScoped work the same way i.e. once the service constructor is created, that object is used until the application dies.</li>
+    <li>Click on Guid menu item, for the first time AddSingleton and AddScoped and AddTransient requests hit the creation of the constructor of GuidService.</li>
+    <li>
+        For the second and subsequent times clicking on Guid menu item (first navigate away and then click on Guid menu item),
+        AddSingleton and AddScoped do not hit the GuidService constructor, but AddTransient does.
+    </li>
+    <li>
+        Once the component is rendered, clicking on AddSingleton, AddScoped, AddTransient buttons behave in the same way with
+        one service object, they don't hit the GuidService constructor.
+    </li>
+</ul>
+
+
+
+@code {
+
+
+}
