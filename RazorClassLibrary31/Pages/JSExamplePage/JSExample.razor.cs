@@ -44,13 +44,13 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
         }
 
         private async Task setEmployeeToSessionStorage() {
-            var jsonObj = JsonSerializer.Serialize(employee);
-            await jsRuntime.InvokeVoidAsync("setToSessionStorage", "employee", jsonObj); 
+            var employeeJson = JsonSerializer.Serialize(employee);
+            await jsRuntime.InvokeVoidAsync("setToSessionStorage", "employee", employeeJson); 
         }
 
         private async Task getEmployeeFromSessionStorage() {
-            var jsonObj = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "employee");
-            var employeeObj = JsonSerializer.Deserialize<Employee>(jsonObj);
+            var employeeJson = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "employee");
+            var emp = JsonSerializer.Deserialize<Employee>(employeeJson);
         }
 
     }
