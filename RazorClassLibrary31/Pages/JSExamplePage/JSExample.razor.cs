@@ -50,7 +50,7 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
 
         private async Task getEmployeeFromSessionStorage() {
             var employeeJson = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "employee");
-            var emp = JsonSerializer.Deserialize<Employee>(employeeJson);
+            var emp = JsonSerializer.Deserialize<Employee>(employeeJson, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
     }
