@@ -35,7 +35,7 @@ Note:
 <ul>
     <li>In Blazor AddSingleton and AddScoped work the same way i.e. once the service constructor is created, that object is used until the application dies.</li>
     <li>AddSingleton uses the same object for all users, but for each user for AddScoped the service objects will be different.</li>
-    <li>For server side, AddSinglton will have one object only. Duplicate the tab, AddSingleton value does not change, others do.</li>
+    <li>For server side, AddSingleton will have one object only. Duplicate the tab, AddSingleton value does not change, others do. Two different tabs run in two different circuits.</li>
     <li>For client side, duplicate the tab and all values change.</li>
     <li>Click on Guid menu item, for the first time AddSingleton and AddScoped and AddTransient requests hit the creation of the constructor of GuidService.</li>
     <li>
