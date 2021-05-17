@@ -54,5 +54,4 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
         }
 
     }
-
 }
