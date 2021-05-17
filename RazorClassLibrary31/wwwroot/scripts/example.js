@@ -20,7 +20,7 @@ function setToLocalStorage(key, value) {
 }
 
 function getFromLocalStorage(key) {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
 }
 
 function removeFromLocalStorage(key) {
@@ -36,7 +36,7 @@ function setToSessionStorage(key, value) {
 }
 
 function getFromSessionStorage(key) {
-    sessionStorage.getItem(key);
+    return sessionStorage.getItem(key);
 }
 
 function removeFromSessionStorage(key) {
