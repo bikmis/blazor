@@ -13,9 +13,10 @@ namespace RazorClassLibrary31.Validation
             if (int.Parse(value.ToString()) < MinimumAge)
             {
                 return new ValidationResult($"Age cannot be less than {MinimumAge}.", new[] { validationContext.MemberName });
+                //return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });//In this one, you need to provide the ErrorMessage = "Age cannot be less than 14." in the model itself.
             }
 
-            return null; // base.IsValid(value, validationContext);
+            return null;
         }
 
     }
