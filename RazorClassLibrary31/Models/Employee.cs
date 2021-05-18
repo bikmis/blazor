@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using RazorClassLibrary31.Validation;
 
 namespace RazorClassLibrary31.Models
 {
@@ -15,7 +16,7 @@ namespace RazorClassLibrary31.Models
         public DateTime? DateOfBirth { get; set; }
         [Required]
         public string Position { get; set; }
-        [Required]
+        [Required] [AgeValidator(MinimumAge = 14)]
         public int Age { get; set; }
     }
 }
