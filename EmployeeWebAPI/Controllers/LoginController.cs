@@ -39,7 +39,7 @@ namespace EmployeeWebAPI31.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var token = new JwtSecurityToken(issuer: "domain.com", audience: "domain.com", claims: claims, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
+            var token = new JwtSecurityToken(issuer: "domain.com", audience: "domain.com", claims: claims, notBefore: null, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
