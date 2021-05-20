@@ -1,6 +1,7 @@
 ﻿using DataLayer31;
 using DataLayer31.Entities;
 using EmployeeWebAPI31.Models.Employee;
+using EmployeeWebAPI31.Models.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -122,18 +123,18 @@ namespace EmployeeWebAPI31.Controllers
 
         [Route("login")]
         [HttpPost]
-        public IActionResult Login(string email, string password) {
+        public IActionResult Login(LoginRequest request) {
             //check credentials, if credentials are bad, return Unauthorized.
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password)) {
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password)) {
                 return Unauthorized();
             }
 
-            var jwt = createJWT(email);
-            var jwtObj = new { jwt = $"Bearer {jwt}" };
-            return Ok(jwtObj);
+            var jwt = createJwt(request.Email);
+            var response = new LoginResponse() { Jwt = $"Bearer {jwt}" };
+            return Ok(response);
         }
 
-        private string createJWT(string email) {
+        private string createJwt(string email) {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Your Security Key Goes Here."));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
