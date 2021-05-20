@@ -24,7 +24,7 @@ namespace EmployeeWebAPI31.Controllers
             }
 
             var jwt = createJwt(request.Email);
-            var response = new LoginResponse() { Jwt = $"Bearer {jwt}" };
+            var response = new LoginResponse() { Jwt = jwt };
             return Ok(response);
         }
 
