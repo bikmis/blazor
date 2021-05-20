@@ -25,6 +25,8 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         private string alertColor { get; set; }
 
+        private string errorMessage { get; set; }
+
         private void closeMessage(bool isHidden) {
             this.isHidden = isHidden;
         }
@@ -97,7 +99,12 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         }
 
         private async Task getEmployees() {
-            employees = (await employeeService.GetEmployees()).ToList();
+            try {
+                employees = (await employeeService.GetEmployees()).ToList();
+            }
+            catch (Exception e) {
+                errorMessage = e.Message;
+            }
         }
 
         private void passToEditForm(Employee employee) {

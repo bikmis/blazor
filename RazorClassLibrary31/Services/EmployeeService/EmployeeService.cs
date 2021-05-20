@@ -1,4 +1,5 @@
 ﻿using RazorClassLibrary31.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -18,15 +19,22 @@ namespace RazorClassLibrary31.Services.EmployeeService
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            var employeesJson = await _httpClient.GetStreamAsync("api/employees");
-            var employees = await JsonSerializer.DeserializeAsync<List<Employee>>(employeesJson, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-            return employees;
+            try
+            {
+                var response = await _httpClient.GetAsync("api/employees");
+                var employees = await JsonSerializer.DeserializeAsync<List<Employee>>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                return employees;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public async Task AddEmployee(Employee employee)
         {
             var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            await _httpClient.PostAsync("api/employees", employeeJson);           
+            var response = await _httpClient.PostAsync("api/employees", employeeJson);          
         }
 
         public async Task DeleteEmployee(int employeeId)
