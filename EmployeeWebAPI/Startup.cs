@@ -31,12 +31,12 @@ namespace EmployeeWebAPI31
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
-                    ValidAudience = "domain.com", //check this
+                    ValidAudience = "domain.com",
                     ValidateIssuer = true,
-                    ValidIssuer = "domain.com",   //check this
+                    ValidIssuer = "domain.com",
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Secret Key Here"))
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Security Key Goes Here."))
                 };
             });
         }
@@ -55,9 +55,9 @@ namespace EmployeeWebAPI31
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseCors(); //cors need to be after routing and before authorization
+
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

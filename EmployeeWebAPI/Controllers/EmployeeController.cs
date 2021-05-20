@@ -1,8 +1,14 @@
 ﻿using DataLayer31;
 using DataLayer31.Entities;
 using EmployeeWebAPI31.Models.Employee;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace EmployeeWebAPI31.Controllers
 {
@@ -17,6 +23,7 @@ namespace EmployeeWebAPI31.Controllers
             _dbContext = dbContext;
         }
 
+        [Authorize]
         [Route("employees")]
         [HttpGet]
         public IActionResult GetEmployees()
@@ -112,5 +119,35 @@ namespace EmployeeWebAPI31.Controllers
             _dbContext.SaveChanges();
             return Ok();
         }
+
+        [Route("login")]
+        [HttpPost]
+        public IActionResult Login(string email, string password) {
+            //check credentials, if credentials are bad, return Unauthorized.
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password)) {
+                return Unauthorized();
+            }
+
+            var jwt = createJWT(email);
+            var jwtObj = new { jwt = $"Bearer {jwt}" };
+            return Ok(jwtObj);
+        }
+
+        private string createJWT(string email) {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Your Security Key Goes Here."));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[] {
+                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var token = new JwtSecurityToken(issuer: "domain.com", audience: "domain.com", claims: claims, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
     }
+
 }
