@@ -1,19 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.LoginService;
+using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace EmployeeBlazorServer31
 {
@@ -46,6 +43,7 @@ namespace EmployeeBlazorServer31
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
             services.AddScoped<IGuidServiceAddScoped, GuidService>();
             services.AddTransient<IGuidServiceAddTransient, GuidService>();
+            services.AddScoped<ITokenService, TokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

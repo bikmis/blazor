@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.LoginService;
+using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Net.Http;
@@ -26,6 +27,8 @@ namespace EmployeeBlazorClient31
             builder.Services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
             builder.Services.AddScoped<IGuidServiceAddScoped, GuidService>();
             builder.Services.AddTransient<IGuidServiceAddTransient, GuidService>();
+
+            builder.Services.AddScoped<ITokenService, TokenService>();
 
             await builder.Build().RunAsync();
         }

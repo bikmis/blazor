@@ -15,8 +15,14 @@ namespace RazorClassLibrary31.Pages.LoginPage
 
         private Login login { get; set; } = new Login();
 
+        [Inject]
+        private NavigationManager navigationManager { get; set; }
+
         private async Task loginUser() {
-            var token = await loginService.LoginUser(login);
+            var isLoggedIn = await loginService.LoginUser(login);
+            if (isLoggedIn) {
+                navigationManager.NavigateTo("/");
+            }
         }
     }
 }

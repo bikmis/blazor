@@ -8,6 +8,6 @@ namespace RazorClassLibrary31.Services.LoginService
 {
     public interface ILoginService
     {
-        Task<Token> LoginUser(Login login);
+        Task<bool> LoginUser(Login login);
     }
 }
