@@ -8,6 +8,6 @@ namespace RazorClassLibrary31.Services.HttpService
 {
     public interface IHttpService
     {
-        Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, StringContent data = null);
+        Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data);
     }
 }
