@@ -21,13 +21,19 @@ namespace RazorClassLibrary31.Services.EmployeeService
             tokenService = _tokenService;
         }
 
+        private async Task<HttpResponseMessage> sendAsync(HttpMethod method, string url, StringContent data =  null) {
+            var request = new HttpRequestMessage(method, url);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokenService.Jwt);
+            request.Content = data;
+            var response = await httpClient.SendAsync(request);
+            return response;
+        }
+
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             try
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, "api/employees");
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokenService.Jwt);
-                var response = await httpClient.SendAsync(request);
+                var response = await sendAsync(HttpMethod.Get, "api/employees");
                 var employees = await JsonSerializer.DeserializeAsync<List<Employee>>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
                 return employees;
             }
@@ -39,19 +45,19 @@ namespace RazorClassLibrary31.Services.EmployeeService
 
         public async Task AddEmployee(Employee employee)
         {
-            var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            var response = await httpClient.PostAsync("api/employees", employeeJson);          
+            var data = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json"); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            await sendAsync(HttpMethod.Post, "api/employees", data);
         }
 
         public async Task DeleteEmployee(int employeeId)
         {
-            await httpClient.DeleteAsync($"api/employees?id={employeeId}");
+            await sendAsync(HttpMethod.Delete, $"api/employees?id={employeeId}");
         }
 
         public async Task EditEmployee(Employee employee)
         {
-            var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
-            await httpClient.PutAsync("api/employees", employeeJson);
+            var data = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            await sendAsync(HttpMethod.Put, "api/employees", data);
         }
     }
 }
