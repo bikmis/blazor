@@ -36,6 +36,7 @@ namespace EmployeeWebAPI31.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [Route("employees/{id}")] //{id} is a variable parameter
         [HttpGet]
         public IActionResult GetEmployee(int id)
@@ -60,6 +61,7 @@ namespace EmployeeWebAPI31.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [Route("employees")]
         [HttpPost]
         public IActionResult AddEmployee(EmployeeRequest request)
@@ -79,6 +81,7 @@ namespace EmployeeWebAPI31.Controllers
             return Ok();
         }
 
+        [Authorize]
         [Route("employees")]
         [HttpPut]
         public IActionResult UpdateEmployee(EmployeeRequest request)
@@ -101,6 +104,7 @@ namespace EmployeeWebAPI31.Controllers
             return Ok();
         }
 
+        [Authorize]
         [Route("employees")]
         [HttpDelete]
         public IActionResult DeleteEmployee(int id)
