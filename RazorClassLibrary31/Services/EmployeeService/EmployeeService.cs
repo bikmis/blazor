@@ -1,5 +1,6 @@
 ﻿using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.HttpService;
+using RazorClassLibrary31.Services.SerializerService;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,10 +13,12 @@ namespace RazorClassLibrary31.Services.EmployeeService
     {
         private readonly HttpClient httpClient;
         private readonly IHttpService httpService;
-        public EmployeeService(HttpClient _httpClient, IHttpService _httpService)
+        private readonly ISerializerService serializerService;
+        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService)
         {
             httpClient = _httpClient;
             httpService = _httpService;
+            serializerService = _serializerService;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
@@ -23,7 +26,7 @@ namespace RazorClassLibrary31.Services.EmployeeService
             try
             {
                 var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
-                var employees = await JsonSerializer.DeserializeAsync<List<Employee>>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                var employees = await serializerService.DeserializeToListOfType<Employee>(response);
                 return employees;
             }
             catch (Exception exception)

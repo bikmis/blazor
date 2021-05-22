@@ -8,6 +8,7 @@ using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.LoginService;
+using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
@@ -46,6 +47,7 @@ namespace EmployeeBlazorServer31
             services.AddTransient<IGuidServiceAddTransient, GuidService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IHttpService, HttpService>();
+            services.AddSingleton<ISerializerService, SerializerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
