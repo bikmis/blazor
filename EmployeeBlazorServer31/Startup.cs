@@ -39,7 +39,7 @@ namespace EmployeeBlazorServer31
             });
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            services.AddHttpClient<ILoginService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
+            services.AddHttpClient<ILoginService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));  //jwt server base address
             services.AddHttpClient<IUserService, UserService>(client => client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
