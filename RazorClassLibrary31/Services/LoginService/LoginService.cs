@@ -1,4 +1,6 @@
 ﻿using RazorClassLibrary31.Models;
+using RazorClassLibrary31.Services.HttpService;
+using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using System.Net.Http;
 using System.Text;
@@ -9,25 +11,26 @@ namespace RazorClassLibrary31.Services.LoginService
 {
     public class LoginService : ILoginService
     {
+        private IHttpService httpService;
         private HttpClient httpClient;
         private ITokenService tokenService;
+        private ISerializerService serializerService;
 
-        public LoginService(HttpClient _httpClient, ITokenService _tokenService)
+        public LoginService(IHttpService _httpService, HttpClient _httpClient, ITokenService _tokenService, ISerializerService _serializerService)
         {
+            httpService = _httpService;
             httpClient = _httpClient;
             tokenService = _tokenService;
+            serializerService = _serializerService;
         }
 
         public async Task<bool> LoginUser(Login login)
         {
-            var loginJson = new StringContent(JsonSerializer.Serialize(login), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync("api/login", loginJson);
-            var jwt = response.Content.ReadAsStringAsync().Result;
-            var token = JsonSerializer.Deserialize<Token>(jwt, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login);
+            var token = await serializerService.DeserializeToType<Token>(response); //JsonSerializer.Deserialize<Token>(jwt, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             tokenService.Jwt = token.Jwt;
             return true;
         }
 
     }
-
 }

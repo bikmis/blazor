@@ -8,7 +8,8 @@ namespace RazorClassLibrary31.Services.SerializerService
 {
     public interface ISerializerService
     {
+        StringContent SerializeToString(object data);
         Task<T> DeserializeToType<T>(HttpResponseMessage response);
-        Task<List<T>> DeserializeToListOfType<T>(HttpResponseMessage response);
+        Task<List<T>> DeserializeToListOfType<T>(HttpResponseMessage response);        
     }
 }
