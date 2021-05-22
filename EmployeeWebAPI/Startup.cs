@@ -59,8 +59,6 @@ namespace EmployeeWebAPI31
 
             app.UseAuthorization();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
