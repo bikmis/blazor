@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary31", "Razo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazorServer31", "EmployeeBlazorServer31\EmployeeBlazorServer31.csproj", "{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtServer31", "JwtServer31\JwtServer31.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA6038D0-096A-4292-9634-A1FF7FDA19E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA6038D0-096A-4292-9634-A1FF7FDA19E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA6038D0-096A-4292-9634-A1FF7FDA19E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA6038D0-096A-4292-9634-A1FF7FDA19E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{52E40707-72D2-416D-B4A2-9957268FEF5C} = {1075B439-0722-4F91-A8F1-E0F7D240D0AD}
 		{7B1B22F2-D67D-4A99-9093-C998060031AA} = {1075B439-0722-4F91-A8F1-E0F7D240D0AD}
 		{5D57EC55-468D-453E-8FDF-1A57B0EB02B2} = {1075B439-0722-4F91-A8F1-E0F7D240D0AD}
+		{FA6038D0-096A-4292-9634-A1FF7FDA19E3} = {1075B439-0722-4F91-A8F1-E0F7D240D0AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00F41AF-6DF9-4695-B384-2DA67DB232FF}
