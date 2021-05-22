@@ -27,9 +27,12 @@ namespace RazorClassLibrary31.Services.LoginService
         public async Task<bool> LoginUser(Login login)
         {
             var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login);
-            var token = await serializerService.DeserializeToType<Token>(response); //JsonSerializer.Deserialize<Token>(jwt, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-            tokenService.Jwt = token.Jwt;
-            return true;
+            if (response.IsSuccessStatusCode) {
+                var token = await serializerService.DeserializeToType<Token>(response); //JsonSerializer.Deserialize<Token>(jwt, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                tokenService.Jwt = token.Jwt;
+                return true;
+            }
+            return false;
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.EmployeeService;
+using RazorClassLibrary31.Services.TokenService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,14 +37,23 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         [Parameter]
         public string SaveMessage { get; set; }
 
+        [Inject]
+        private ITokenService tokenService { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
-            var queryString = parseUri();
-            alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
-            var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
-            var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
-            var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
-            await getEmployees();
+            if (tokenService.Jwt != null)
+            {
+                var queryString = parseUri();
+                alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
+                var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
+                var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
+                var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
+                await getEmployees();
+            }
+            else {
+                navigationManager.NavigateTo("/login");
+            }
         }
 
         private Dictionary<string, string> parseUri()
