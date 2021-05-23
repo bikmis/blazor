@@ -52,14 +52,15 @@ namespace JwtServer31.Controllers
 
         [Route("refreshToken")]
         [HttpPost]
-        public IActionResult RefreshToken(RefreshTokenRequest request)
+        public IActionResult RefreshToken()
         {
+            var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1];
             var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(request.RefreshToken);
+            var token = handler.ReadJwtToken(refreshToken);
             var email = token.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
             var securityKey = "Your Refresh Token Security Key Goes Here.";
-            var issuer = token.Claims.ToList().Where(claim => claim.Type == "issuer").FirstOrDefault().Value;
-            var audience = token.Claims.ToList().Where(claim => claim.Type == "audience").FirstOrDefault().Value;
+            var issuer = token.Claims.ToList().Where(claim => claim.Type == "iss").FirstOrDefault().Value;
+            var audience = token.Claims.ToList().Where(claim => claim.Type == "aud").FirstOrDefault().Value;
 
             var accessToken = createJwt(email, "Your Security Key Goes Here.", "domain.com", "domain.com");
             var newRefreshToken = createJwt(email, securityKey, issuer, audience);
