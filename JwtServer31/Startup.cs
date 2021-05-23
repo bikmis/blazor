@@ -58,6 +58,8 @@ namespace JwtServer31
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication(); // you need to add this for jwt to work (services.AddAuthentication(...) in ConfigureServices in this startup file.
+
             app.UseRouting();
 
             app.UseCors(); //cors need to be after routing and before authorization
