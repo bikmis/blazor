@@ -38,9 +38,9 @@ namespace JwtServer31
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
-                    ValidAudience = "TokenServer.com",
+                    ValidAudience = "https://localhost:44382/",  //token server base address
                     ValidateIssuer = true,
-                    ValidIssuer = "TokenServer.com",
+                    ValidIssuer = "https://localhost:44382/", //token server base address
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Refresh Token Security Key Goes Here."))

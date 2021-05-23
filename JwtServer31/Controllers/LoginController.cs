@@ -25,8 +25,8 @@ namespace JwtServer31.Controllers
                 return Unauthorized();
             }
             var securityKey = "Your Security Key Goes Here.";
-            var accessToken = createJwt(request.Email, securityKey, "domain.com", "domain.com");
-            var refreshToken = createJwt(request.Email, "Your Refresh Token Security Key Goes Here.", "TokenServer.com", "TokenServer.com");
+            var accessToken = createJwt(request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/");  //https://localhost:44327/ is the base address of resource (employee) server
+            var refreshToken = createJwt(request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/"); //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
@@ -64,7 +64,7 @@ namespace JwtServer31.Controllers
             var issuer = token.Claims.ToList().Where(claim => claim.Type == "iss").FirstOrDefault().Value;
             var audience = token.Claims.ToList().Where(claim => claim.Type == "aud").FirstOrDefault().Value;
 
-            var accessToken = createJwt(email, "Your Security Key Goes Here.", "domain.com", "domain.com");
+            var accessToken = createJwt(email, "Your Security Key Goes Here.", "https://localhost:44382/", "https://localhost:44327/");
             var newRefreshToken = createJwt(email, securityKey, issuer, audience);
 
             var response = new RefreshTokenResponse()

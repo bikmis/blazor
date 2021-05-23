@@ -31,9 +31,9 @@ namespace EmployeeWebAPI31
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
-                    ValidAudience = "domain.com",
+                    ValidAudience = "https://localhost:44327/",  //base address of resource (employee) server
                     ValidateIssuer = true,
-                    ValidIssuer = "domain.com",
+                    ValidIssuer = "https://localhost:44382/",  //base address of token server
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Security Key Goes Here."))
