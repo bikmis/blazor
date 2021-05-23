@@ -6,8 +6,10 @@ namespace RazorClassLibrary31.Services.TokenService
 {
     public class TokenService : ITokenService
     {
-        private string jwt;
+        private string accessToken;
+        private string refreshToken;
 
-        public string Jwt { get => jwt; set => jwt = value; }
+        public string AccessToken { get => accessToken; set => accessToken = value; }
+        public string RefreshToken { get => refreshToken; set => refreshToken = value; }
     }
 }

@@ -22,7 +22,7 @@ namespace EmployeeBlazorClient31
 
             //AddHttpClient() method will be availble after you install Microsoft.Extensions.Http
             builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            builder.Services.AddHttpClient<ILoginService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44327/")); 
+            builder.Services.AddHttpClient<ILoginService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44382/")); 
             builder.Services.AddHttpClient<IUserService, UserService>(client => client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
             builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             //Difference among AddSingleton, AddScoped and AddTransient

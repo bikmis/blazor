@@ -28,8 +28,9 @@ namespace RazorClassLibrary31.Services.LoginService
         {
             var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login);
             if (response.IsSuccessStatusCode) {
-                var token = await serializerService.DeserializeToType<Token>(response); //JsonSerializer.Deserialize<Token>(jwt, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-                tokenService.Jwt = token.Jwt;
+                var token = await serializerService.DeserializeToType<Token>(response);
+                tokenService.AccessToken = token.AccessToken;
+                tokenService.RefreshToken = token.RefreshToken;
                 return true;
             }
             return false;

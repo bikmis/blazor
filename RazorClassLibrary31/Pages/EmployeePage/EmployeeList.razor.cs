@@ -42,7 +42,7 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         protected async override Task OnInitializedAsync()
         {
-            if (tokenService.Jwt != null)
+            if (tokenService.AccessToken != null)
             {
                 var queryString = parseUri();
                 alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
