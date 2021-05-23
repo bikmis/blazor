@@ -1,5 +1,6 @@
 ﻿using JwtServer31.Models.Login;
 using JwtServer31.Models.RefreshToken;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -50,11 +51,12 @@ namespace JwtServer31.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        [Authorize]
         [Route("refreshToken")]
         [HttpPost]
         public IActionResult RefreshToken()
         {
-            var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1];
+            var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1]; 
             var handler = new JwtSecurityTokenHandler();
             var token = handler.ReadJwtToken(refreshToken);
             var email = token.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
