@@ -38,12 +38,12 @@ namespace JwtServer31
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
-                    ValidAudience = "domain.com",
+                    ValidAudience = "TokenServer.com",
                     ValidateIssuer = true,
-                    ValidIssuer = "domain.com",
+                    ValidIssuer = "TokenServer.com",
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Security Key Goes Here."))
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Refresh Token Security Key Goes Here."))
                 };
             });
         }

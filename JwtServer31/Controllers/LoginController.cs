@@ -1,8 +1,10 @@
 ﻿using JwtServer31.Models.Login;
+using JwtServer31.Models.RefreshToken;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -12,7 +14,6 @@ namespace JwtServer31.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-
         [Route("login")]
         [HttpPost]
         public IActionResult Login(LoginRequest request)
@@ -22,16 +23,21 @@ namespace JwtServer31.Controllers
             {
                 return Unauthorized();
             }
-
-            var jwt = createJwt(request.Email);
-            var response = new LoginResponse() { Jwt = jwt };
+            var securityKey = "Your Security Key Goes Here.";
+            var accessToken = createJwt(request.Email, securityKey, "domain.com", "domain.com");
+            var refreshToken = createJwt(request.Email, "Your Refresh Token Security Key Goes Here.", "TokenServer.com", "TokenServer.com");
+            var response = new LoginResponse()
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            };
             return Ok(response);
         }
 
-        private string createJwt(string email)
+        private string createJwt(string email, string securityKey, string issuer, string audience)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Your Security Key Goes Here."));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var symmetircSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
+            var credentials = new SigningCredentials(symmetircSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, email),
@@ -39,9 +45,32 @@ namespace JwtServer31.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var token = new JwtSecurityToken(issuer: "domain.com", audience: "domain.com", claims: claims, notBefore: null, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
+            var token = new JwtSecurityToken(issuer: issuer, audience: audience, claims: claims, notBefore: null, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        [Route("refreshToken")]
+        [HttpPost]
+        public IActionResult RefreshToken(RefreshTokenRequest request)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(request.RefreshToken);
+            var email = token.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
+            var securityKey = "Your Refresh Token Security Key Goes Here.";
+            var issuer = token.Claims.ToList().Where(claim => claim.Type == "issuer").FirstOrDefault().Value;
+            var audience = token.Claims.ToList().Where(claim => claim.Type == "audience").FirstOrDefault().Value;
+
+            var accessToken = createJwt(email, "Your Security Key Goes Here.", "domain.com", "domain.com");
+            var newRefreshToken = createJwt(email, securityKey, issuer, audience);
+
+            var response = new RefreshTokenResponse()
+            {
+                AccessToken = accessToken,
+                RefreshToken = newRefreshToken
+            };
+            return Ok(response);
+        }
     }
+
 }
