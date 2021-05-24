@@ -15,6 +15,7 @@ namespace RazorClassLibrary31.Services.LoginService
         private ITokenService tokenService;
         private ISerializerService serializerService;
         private IJSRuntime jsRuntime { get; set; }
+        public bool IsLoggedIn { get; set; }
 
         public LoginService(IHttpService _httpService, HttpClient _httpClient, ITokenService _tokenService, ISerializerService _serializerService, IJSRuntime _jsRuntime)
         {
@@ -33,7 +34,8 @@ namespace RazorClassLibrary31.Services.LoginService
                 tokenService.AccessToken = token.AccessToken;
                 tokenService.RefreshToken = token.RefreshToken;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
-                return true;
+                IsLoggedIn = true;
+                return IsLoggedIn;
             }
             return false;
         }
