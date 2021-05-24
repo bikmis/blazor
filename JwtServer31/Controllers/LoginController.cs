@@ -46,7 +46,8 @@ namespace JwtServer31.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var token = new JwtSecurityToken(issuer: issuer, audience: audience, claims: claims, notBefore: null, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
+            //Use Utc time. Even if you use local time such as Eastern, the token expiration will convert to Utc.
+            var token = new JwtSecurityToken(issuer: issuer, audience: audience, claims: claims, notBefore: null, expires: DateTime.UtcNow.AddMinutes(60), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
@@ -58,11 +59,11 @@ namespace JwtServer31.Controllers
         {
             var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1]; 
             var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(refreshToken);
-            var email = token.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
+            var readableRefreshtoken = handler.ReadJwtToken(refreshToken);
+            var email = extractClaim(readableRefreshtoken, "email");
             var securityKey = "Your Refresh Token Security Key Goes Here.";
-            var issuer = token.Claims.ToList().Where(claim => claim.Type == "iss").FirstOrDefault().Value;
-            var audience = token.Claims.ToList().Where(claim => claim.Type == "aud").FirstOrDefault().Value;
+            var issuer = extractClaim(readableRefreshtoken, "iss");
+            var audience = extractClaim(readableRefreshtoken, "aud");
 
             var accessToken = createJwt(email, "Your Security Key Goes Here.", "https://localhost:44382/", "https://localhost:44327/");
             var newRefreshToken = createJwt(email, securityKey, issuer, audience);
@@ -73,6 +74,12 @@ namespace JwtServer31.Controllers
                 RefreshToken = newRefreshToken
             };
             return Ok(response);
+        }
+
+        private string extractClaim(JwtSecurityToken token, string claimType) 
+        {
+            var claimValue = token.Claims.ToList().Where(claim => claim.Type == claimType).FirstOrDefault().Value;
+            return claimValue;
         }
     }
 
