@@ -53,36 +53,27 @@ namespace JwtServer31.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        //This endpoint needs a valid refresh token. If refresh token expires, user needs to login to get access and refresh token.
+        //This endpoint is used only when access token has expired or when the page is refreshed and a local variable in a service loses the access token.
         [Authorize]
         [Route("refreshToken")]
         [HttpPost]
         public IActionResult RefreshToken()
-        {
+        {            
             var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1]; 
             var handler = new JwtSecurityTokenHandler();
             var readableRefreshtoken = handler.ReadJwtToken(refreshToken);
-            var email = extractClaim(readableRefreshtoken, "email");
-           // var securityKey = "Your Refresh Token Security Key Goes Here.";
-           // var issuer = extractClaim(readableRefreshtoken, "iss");
-           // var audience = extractClaim(readableRefreshtoken, "aud");
-
+            var email = readableRefreshtoken.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
             var accessToken = createJwt(email, "Your Security Key Goes Here.", "https://localhost:44382/", "https://localhost:44327/", 1);
-           // var newRefreshToken = createJwt(email, securityKey, issuer, audience, 60);
 
-            //sending back the same old refresh token as it has not expired as yet. When refresh token expires, the user needs to login again to get new access and refresh tokens.
+            //Sending back a new access token and but not the old refresh token which has not expired as yet.
             var response = new RefreshTokenResponse()
             {
                 AccessToken = accessToken,
-                RefreshToken = refreshToken
             };
             return Ok(response);
         }
 
-        private string extractClaim(JwtSecurityToken token, string claimType) 
-        {
-            var claimValue = token.Claims.ToList().Where(claim => claim.Type == claimType).FirstOrDefault().Value;
-            return claimValue;
-        }
     }
 
 }
