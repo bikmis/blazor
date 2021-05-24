@@ -43,7 +43,8 @@ namespace JwtServer31
                     ValidIssuer = "https://localhost:44382/", //token server base address
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Refresh Token Security Key Goes Here."))
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Refresh Token Security Key Goes Here.")),
+                    ClockSkew = TimeSpan.Zero  // default is 5 minutes, i.e. the token would be valid up to 5 minutes after expiry. With TimeSpan.Zero, the token will be invalid exactly at expiration.
                 };
             });
         }
