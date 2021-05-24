@@ -8,5 +8,6 @@ namespace RazorClassLibrary31.Services.TokenService
     {
         string AccessToken { get; set; }
         string RefreshToken { get; set; }
+        bool IsLoggedIn { get; set; }
     }
 }

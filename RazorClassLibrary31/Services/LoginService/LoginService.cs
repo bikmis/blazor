@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.LoginService
 {
+
+    //LoginService has been injected for ILoginService using AddHttpClient, which is "scoped" and so any property exposed
+    //by LoginService does not hold value like singleton. That's why IsLoggedIn is exposed from TokenService which is a singleton service.
     public class LoginService : ILoginService
     {
         private IHttpService httpService;
         private HttpClient httpClient;
         private ITokenService tokenService;
         private ISerializerService serializerService;
-        private IJSRuntime jsRuntime { get; set; }
-        public bool IsLoggedIn { get; set; }
+        private IJSRuntime jsRuntime { get; set; }        
 
         public LoginService(IHttpService _httpService, HttpClient _httpClient, ITokenService _tokenService, ISerializerService _serializerService, IJSRuntime _jsRuntime)
         {
@@ -33,9 +35,9 @@ namespace RazorClassLibrary31.Services.LoginService
                 var token = await serializerService.DeserializeToType<Token>(response);
                 tokenService.AccessToken = token.AccessToken;
                 tokenService.RefreshToken = token.RefreshToken;
+                tokenService.IsLoggedIn = true;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
-                IsLoggedIn = true;
-                return IsLoggedIn;
+                return true;
             }
             return false;
         }

@@ -42,18 +42,18 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         protected async override Task OnInitializedAsync()
         {
-            if (tokenService.AccessToken != null)
+            if (!tokenService.IsLoggedIn)
             {
-                var queryString = parseUri();
-                alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
-                var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
-                var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
-                var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
-                await getEmployees();
-            }
-            else {
                 navigationManager.NavigateTo("/login");
+                return;
             }
+
+            var queryString = parseUri();
+            alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
+            var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
+            var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
+            var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
+            await getEmployees();
         }
 
         private Dictionary<string, string> parseUri()
