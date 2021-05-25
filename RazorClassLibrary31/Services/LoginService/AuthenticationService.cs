@@ -9,8 +9,8 @@ namespace RazorClassLibrary31.Services.LoginService
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, "Bikash", ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Email, "bikashmishra.developer@gmail.com", ClaimValueTypes.String)
+                    new Claim("name", "Bikash", ClaimValueTypes.String),
+                    new Claim("email", "bikashmishra.developer@gmail.com", ClaimValueTypes.String)
                 }, "Fake authentication type");
 
             var user = new ClaimsPrincipal(identity);
