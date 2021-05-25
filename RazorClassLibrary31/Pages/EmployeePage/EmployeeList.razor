@@ -41,13 +41,6 @@
 
 <EmployeeEdit @ref="employeeEdit" OnEmployeeEdited="refreshEmployeesAndShowMessage"></EmployeeEdit>
 
-<ul>
-    @foreach (var claim in claims)
-    {
-        <li>@claim.Type: @claim.Value</li>
-    }
-</ul>
-
 @code {
 
 
