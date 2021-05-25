@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.TokenService;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.EmployeePage
@@ -40,8 +42,19 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         [Inject]
         private ITokenService tokenService { get; set; }
 
+        [Inject]
+        private AuthenticationStateProvider authenticationStateProvider { get; set; }
+
+        private IEnumerable<Claim> claims { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
+            var authenticationState = await authenticationStateProvider.GetAuthenticationStateAsync();
+            var isAuthenticated = authenticationState.User.Identity.IsAuthenticated;  //true
+            var authenticationType = authenticationState.User.Identity.AuthenticationType; //Fake authentication type
+            var name = authenticationState.User.Identity.Name;  //"Bikash"
+            claims = authenticationState.User.Claims.ToList();
+
             if (!tokenService.IsLoggedIn)
             {
                 navigationManager.NavigateTo("/login");

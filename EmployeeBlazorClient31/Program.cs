@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using RazorClassLibrary31.Services.EmployeeService;
@@ -33,6 +34,8 @@ namespace EmployeeBlazorClient31
             builder.Services.AddSingleton<ITokenService, TokenService>();
             builder.Services.AddSingleton<IHttpService, HttpService>();
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
+
+            builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
 
             await builder.Build().RunAsync();
         }
