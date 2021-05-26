@@ -37,6 +37,10 @@ namespace EmployeeBlazorClient31
 
             builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
 
+            // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+
             await builder.Build().RunAsync();
         }
     }
