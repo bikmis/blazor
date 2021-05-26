@@ -24,8 +24,8 @@ namespace RazorClassLibrary31.Pages.AuthenticationExamplePage
             var authenticationType = authenticationState.User.Identity.AuthenticationType; //Fake authentication type
 
             claims = authenticationState.User.Claims.ToList();
-            var nameFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Name).FirstOrDefault().Value;
-            var emailFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Email).FirstOrDefault().Value;            
+            var nameFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Name).FirstOrDefault()?.Value;
+            var emailFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Email).FirstOrDefault()?.Value;            
         }
     }
 }
