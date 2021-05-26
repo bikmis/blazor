@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace RazorClassLibrary31.Pages.AuthenticationExamplePage
 {
     partial class AuthenticationExample
-    {        
+    {      /*  
         [Inject]
         private AuthenticationStateProvider authenticationStateProvider { get; set; }
-      
-        private IEnumerable<Claim> claims { get; set; }
+      */
 
         protected override Task OnInitializedAsync()
         {
             return base.OnInitializedAsync();
         }
 
+        /*
         private async Task DoSomethingIfAuthenticated() {
             var authenticationState = await authenticationStateProvider.GetAuthenticationStateAsync();
             var isAuthenticated = authenticationState.User.Identity.IsAuthenticated;
@@ -35,5 +35,7 @@ namespace RazorClassLibrary31.Pages.AuthenticationExamplePage
                 var emailFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Email).FirstOrDefault()?.Value;
             }
         }
+        */
+
     }
 }
