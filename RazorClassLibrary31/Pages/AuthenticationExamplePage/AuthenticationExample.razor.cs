@@ -10,21 +10,22 @@ using System.Threading.Tasks;
 namespace RazorClassLibrary31.Pages.AuthenticationExamplePage
 {
     partial class AuthenticationExample
-    {
-
+    {        
         [Inject]
         private AuthenticationStateProvider authenticationStateProvider { get; set; }
-
+      
         private IEnumerable<Claim> claims { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
             var authenticationState = await authenticationStateProvider.GetAuthenticationStateAsync();
             var isAuthenticated = authenticationState.User.Identity.IsAuthenticated;  //true
+            var name = authenticationState.User.Identity.Name;
             var authenticationType = authenticationState.User.Identity.AuthenticationType; //Fake authentication type
+
             claims = authenticationState.User.Claims.ToList();
-            var name = authenticationState.User.Claims.ToList().Where(claim => claim.Type == "name").FirstOrDefault().Value;
-            var email = authenticationState.User.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
+            var nameFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Name).FirstOrDefault().Value;
+            var emailFromClaim = authenticationState.User.Claims.ToList().Where(claim => claim.Type == ClaimTypes.Email).FirstOrDefault().Value;            
         }
     }
 }

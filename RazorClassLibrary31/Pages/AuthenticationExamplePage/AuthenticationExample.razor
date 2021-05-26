@@ -1,29 +1,48 @@
 ﻿@page "/authentication-test"
 
-<h3>Authentication Example</h3>
-<br />
-<br/>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Claim Type</th>
-            <th>Claim Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var claim in claims)
-        {
+    <h3>Authentication Example</h3>
+    <br />
+    <br />
+
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@claim.Type </td>
-                <td>@claim.Value</td>
+                <th>Claim Type</th>
+                <th>Claim Value</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var claim in claims)
+            {
+                <tr>
+                    <td>@claim.Type </td>
+                    <td>@claim.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
+    <CascadingAuthenticationState>
+        <AuthorizeView>
+            <Authorized>
+                IsAuthenticated: @context.User.Identity.IsAuthenticated
+                <br />
+                Authentication Type: @context.User.Identity.AuthenticationType
+                <br />
+                <ul>
+                    @foreach (var claim in @context.User.Claims)
+                    {
+                        <li>@claim.Type: @claim.Value</li>
+                    }
+                </ul>
+            </Authorized>
+            <NotAuthorized>
+                You are not authorized.
+            </NotAuthorized>
+        </AuthorizeView>
 
+    </CascadingAuthenticationState>
+    @code {
 
-@code {
-
-}
+    }
