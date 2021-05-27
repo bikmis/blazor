@@ -5,6 +5,8 @@ using RazorClassLibrary31.Services.SerializerService;
 using System.Net.Http;
 using System.Threading.Tasks;
 using RazorClassLibrary31.Services.UserService;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace RazorClassLibrary31.Services.LoginService
 {
@@ -32,7 +34,11 @@ namespace RazorClassLibrary31.Services.LoginService
             var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login);
             if (response.IsSuccessStatusCode) {
                 var user = await serializerService.DeserializeToType<User>(response);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jsonToken = tokenHandler.ReadJwtToken(user.AccessToken);
+                var email = jsonToken.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
                 user.IsLoggedIn = true;
+                user.Email = email;
                 userService.User = user;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", user.RefreshToken);
                 return true;
