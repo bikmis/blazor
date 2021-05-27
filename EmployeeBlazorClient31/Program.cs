@@ -6,6 +6,7 @@ using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.LoginService;
 using RazorClassLibrary31.Services.SerializerService;
+using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Net.Http;
@@ -32,6 +33,7 @@ namespace EmployeeBlazorClient31
 
             builder.Services.AddSingleton<IHttpService, HttpService>();
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
+            builder.Services.AddSingleton<ITokenService, TokenService>();
 
             builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
 
