@@ -10,7 +10,6 @@ using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.LoginService;
 using RazorClassLibrary31.Services.SerializerService;
-using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Net.Http;
@@ -41,12 +40,11 @@ namespace EmployeeBlazorServer31
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
             services.AddHttpClient<ILoginService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
-            services.AddHttpClient<IUserService, UserService>(client => client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
+            services.AddSingleton<IUserService, UserService>();
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
             services.AddScoped<IGuidServiceAddScoped, GuidService>();
             services.AddTransient<IGuidServiceAddTransient, GuidService>();
-            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IHttpService, HttpService>();
             services.AddSingleton<ISerializerService, SerializerService>();
             services.AddScoped<AuthenticationStateProvider, AuthenticationService>();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.EmployeeService;
-using RazorClassLibrary31.Services.TokenService;
+using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +38,11 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         public string SaveMessage { get; set; }
 
         [Inject]
-        private ITokenService tokenService { get; set; }
+        private IUserService userService { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
-            if (!tokenService.IsLoggedIn)
+            if (!userService.User.IsLoggedIn)
             {
                 navigationManager.NavigateTo("/login");
                 return;

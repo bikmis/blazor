@@ -9,6 +9,6 @@ namespace RazorClassLibrary31.Services.UserService
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetUsers();
+        User User { get; set; }
     }
 }

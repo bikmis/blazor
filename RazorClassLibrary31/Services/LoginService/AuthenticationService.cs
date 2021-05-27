@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Services.TokenService;
+using RazorClassLibrary31.Services.UserService;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -16,16 +16,16 @@ namespace RazorClassLibrary31.Services.LoginService
 
     public class AuthenticationService : AuthenticationStateProvider
     {
-        private ITokenService tokenService;
+        private IUserService userService;
 
-        public AuthenticationService(ITokenService _tokenService)
+        public AuthenticationService(IUserService _userService)
         {
-            tokenService = _tokenService;
+            userService = _userService;
         }
 
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            if (tokenService.IsLoggedIn) {
+            if (userService.User.IsLoggedIn) {
                 var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, "Bikash", ClaimValueTypes.String),
                     new Claim(ClaimTypes.Email, "bikashmishra.developer@gmail.com", ClaimValueTypes.String)

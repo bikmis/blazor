@@ -6,7 +6,6 @@ using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.LoginService;
 using RazorClassLibrary31.Services.SerializerService;
-using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Net.Http;
@@ -24,14 +23,13 @@ namespace EmployeeBlazorClient31
             //AddHttpClient() method will be availble after you install Microsoft.Extensions.Http
             builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
             builder.Services.AddHttpClient<ILoginService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44382/")); 
-            builder.Services.AddHttpClient<IUserService, UserService>(client => client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
+            builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             //Difference among AddSingleton, AddScoped and AddTransient
             builder.Services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
             builder.Services.AddScoped<IGuidServiceAddScoped, GuidService>();
             builder.Services.AddTransient<IGuidServiceAddTransient, GuidService>();
 
-            builder.Services.AddSingleton<ITokenService, TokenService>();
             builder.Services.AddSingleton<IHttpService, HttpService>();
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
 
