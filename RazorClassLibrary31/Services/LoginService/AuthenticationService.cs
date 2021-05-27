@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
+using RazorClassLibrary31.Services.TokenService;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,16 +16,28 @@ namespace RazorClassLibrary31.Services.LoginService
 
     public class AuthenticationService : AuthenticationStateProvider
     {
+        private ITokenService tokenService;
+
+        public AuthenticationService(ITokenService _tokenService)
+        {
+            tokenService = _tokenService;
+        }
+
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
-        {          
-            var identity = new ClaimsIdentity(new[] {
+        {
+            if (tokenService.IsLoggedIn) {
+                var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, "Bikash", ClaimValueTypes.String),
                     new Claim(ClaimTypes.Email, "bikashmishra.developer@gmail.com", ClaimValueTypes.String)
-                }, "Fake authentication type"); 
+                }, "Fake authentication type");
 
-            // var identity = new ClaimsIdentity(); // Not authorized, to be authorized ClaimsIdentity needs to have claims and/or authenticationType
-            var user = new ClaimsPrincipal(identity);
-            return Task.FromResult(new AuthenticationState(user));
+                var user = new ClaimsPrincipal(identity);
+                return Task.FromResult(new AuthenticationState(user));
+            }
+
+            var identityNotAuthorized = new ClaimsIdentity(); // Not authorized, to be authorized ClaimsIdentity needs to have claims and/or authenticationType
+            var userNotLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
+            return Task.FromResult(new AuthenticationState(userNotLoggedIn));
         }
     }
 }
