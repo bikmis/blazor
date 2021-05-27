@@ -37,14 +37,21 @@ namespace RazorClassLibrary31.Services.LoginService
             var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login);
             if (response.IsSuccessStatusCode) {
                 var token = await serializerService.DeserializeToType<Token>(response);
+                //AccessToken in a service property and RefreshToken is saved in session storage of the browser
                 tokenService.AccessToken = token.AccessToken;
-                var id = int.Parse(readToken(token, "id"));
-                var name = readToken(token, "name");
-                var username = readToken(token, "username");
-                var email = readToken(token, "email");
-                var user = new User() { ID = id, Name = name, Username = username, Email = email, IsLoggedIn = true };
-                userService.User = user;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
+
+                //user is created to hydrate user service property
+                var user = new User()
+                {
+                    ID = int.Parse(readToken(token, "id")),
+                    Name = readToken(token, "name"),
+                    Username = readToken(token, "username"),
+                    Email = readToken(token, "email"),
+                    IsLoggedIn = true
+                };
+                userService.User = user;
+               
                 return true;
             }
             return false;
