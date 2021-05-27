@@ -25,8 +25,8 @@ namespace JwtServer31.Controllers
                 return Unauthorized();
             }
             var securityKey = "Your Security Key Goes Here.";
-            var accessToken = createJwt(request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", 1);  //https://localhost:44327/ is the base address of resource (employee) server
-            var refreshToken = createJwt(request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 60); //https://localhost:44382/ is the base address of token server
+            var accessToken = createJwt("1", "Bikash", "bikash", request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", 1);  //https://localhost:44327/ is the base address of resource (employee) server
+            var refreshToken = createJwt("1", "Bikash", "bikash", request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 60); //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
@@ -35,13 +35,15 @@ namespace JwtServer31.Controllers
             return Ok(response);
         }
 
-        private string createJwt(string email, string securityKey, string issuer, string audience, double expiryInMinutes)
+        private string createJwt(string id, string name, string username, string email, string securityKey, string issuer, string audience, double expiryInMinutes)
         {
             var symmetircSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
             var credentials = new SigningCredentials(symmetircSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim("id", id.ToString()),
+                new Claim("name", name),
+                new Claim("username", username),
                 new Claim(JwtRegisteredClaimNames.Email, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
@@ -60,11 +62,13 @@ namespace JwtServer31.Controllers
         [HttpPost]
         public IActionResult RefreshToken()
         {            
-            var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1]; 
-            var handler = new JwtSecurityTokenHandler();
-            var readableRefreshtoken = handler.ReadJwtToken(refreshToken);
-            var email = readableRefreshtoken.Claims.ToList().Where(claim => claim.Type == "email").FirstOrDefault().Value;
-            var accessToken = createJwt(email, "Your Security Key Goes Here.", "https://localhost:44382/", "https://localhost:44327/", 1);
+            var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1];
+            var email = readToken(refreshToken, "email");
+            var id = readToken(refreshToken, "id");
+            var name = readToken(refreshToken, "name");
+            var username = readToken(refreshToken, "username");
+            var issuer = readToken(refreshToken, "iss");
+            var accessToken = createJwt(id, name, username, email, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", 1);
 
             //Sending back a new access token and but not the old refresh token which has not expired as yet.
             var response = new RefreshTokenResponse()
@@ -72,6 +76,13 @@ namespace JwtServer31.Controllers
                 AccessToken = accessToken,
             };
             return Ok(response);
+        }
+
+        private string readToken(string token, string claimType) {
+            var handler = new JwtSecurityTokenHandler();
+            var readableRefreshtoken = handler.ReadJwtToken(token);
+            var claimValue = readableRefreshtoken.Claims.ToList().Where(claim => claim.Type == claimType).FirstOrDefault().Value;
+            return claimValue;
         }
 
     }
