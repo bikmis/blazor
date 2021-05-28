@@ -46,3 +46,7 @@ function removeFromSessionStorage(key) {
 function clearSessionStorage() {
     sessionStorage.clear();
 }
+
+function writeToConsole(value) {
+    console.log(value);
+}
