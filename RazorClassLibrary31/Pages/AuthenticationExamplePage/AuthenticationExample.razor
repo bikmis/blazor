@@ -1,12 +1,13 @@
 ﻿@page "/authentication-test"
 @using System.Security.Claims;
 
-<h3>Authentication Example</h3>
-<br />
-<br />
+
 <CascadingAuthenticationState>
     <AuthorizeView>
         <Authorized>
+            <h3>Authentication Example</h3>
+            <br />
+            <br />
             Is User Authenticated?: @context.User.Identity.IsAuthenticated
             <br />
             <br />
