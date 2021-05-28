@@ -21,8 +21,11 @@ namespace RazorClassLibrary31.Pages.LoginPage
         private async Task loginUser() {
             var isLoggedIn = await loginService.LoginUser(login);
             if (isLoggedIn) {
+                //to load the home page from login at the home page route, you need to navigate away from the home page and then back in.
+                //So first move to the logout page and the back into the "/" (home page)
+                navigationManager.NavigateTo("/logout");
                 navigationManager.NavigateTo("/");
-            }
+            }            
         }
     }
 }

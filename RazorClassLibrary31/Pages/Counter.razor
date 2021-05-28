@@ -1,10 +1,21 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <h1>Counter</h1>
 
-<p>Current count: @currentCount</p>
+            <p>Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+            <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+        </Authorized>
+        <NotAuthorized>
+            <LoginUser></LoginUser>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+
 
 @code {
     private int currentCount = 0;

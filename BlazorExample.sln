@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary31", "Razo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazorServer31", "EmployeeBlazorServer31\EmployeeBlazorServer31.csproj", "{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtServer31", "JwtServer31\JwtServer31.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtServer31", "JwtServer31\JwtServer31.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
