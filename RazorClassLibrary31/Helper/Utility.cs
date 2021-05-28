@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace RazorClassLibrary31.Helper
 {
-    public static class Utility
+    public class Utility
     {
         public static string ReadToken(string token, string claimType)
         {
