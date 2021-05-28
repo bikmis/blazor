@@ -12,6 +12,7 @@ namespace RazorClassLibrary31.Services.RouteGuardService
     //Add builder.Services.AddOptions(); and builder.Services.AddAuthorizationCore(); in the Program.Main for client side Blazor, but not required for the server side.
     //You can now use <CascadingAuthenticationState></CascadingAuthenticationState> etc and @context etc in a component
     //or [Inject] private AuthenticationStateProvider authenticationStateProvider { get; set; } in the code-behind file of a component
+    //When you navigate to a component with AuthorizeView, this service (GetAuthenticationStateAsync()) will get executed automatically.
 
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
