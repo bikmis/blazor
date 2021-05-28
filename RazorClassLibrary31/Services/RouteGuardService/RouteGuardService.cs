@@ -5,7 +5,7 @@ using RazorClassLibrary31.Services.UserService;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.LoginService
+namespace RazorClassLibrary31.Services.RouteGuardService
 {
     //Create AuthenticationService that implements AuthenticationStateProvider
     //Put the dependency code in Program.Main for client side and in Startup.cs for server side Blazor.
@@ -16,12 +16,12 @@ namespace RazorClassLibrary31.Services.LoginService
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
 
-    public class AuthenticationService : AuthenticationStateProvider
+    public class RouteGuardService : AuthenticationStateProvider
     {
         private IUserService userService;
         private ITokenService tokenService;
 
-        public AuthenticationService(IUserService _userService, ITokenService _tokenService)
+        public RouteGuardService(IUserService _userService, ITokenService _tokenService)
         {
             userService = _userService;
             tokenService = _tokenService;
@@ -37,14 +37,16 @@ namespace RazorClassLibrary31.Services.LoginService
                 }, "Fake authentication type");
 
                 var user = new ClaimsPrincipal(identity);
-                NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
-                return Task.FromResult(new AuthenticationState(user));
+                var authenticationState = Task.FromResult(new AuthenticationState(user));
+               // NotifyAuthenticationStateChanged(authenticationState);
+                return authenticationState;
             }
 
             var identityNotAuthorized = new ClaimsIdentity(); // Not authorized, to be authorized ClaimsIdentity needs to have claims and/or authenticationType
-            var userNotLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
-            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(userNotLoggedIn)));
-            return Task.FromResult(new AuthenticationState(userNotLoggedIn));
+            var principalLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
+            var authenticationStateNotLoggedIn = Task.FromResult(new AuthenticationState(principalLoggedIn));
+            // NotifyAuthenticationStateChanged(authenticationStateNotLoggedIn);
+            return authenticationStateNotLoggedIn;
         }
     }
 }

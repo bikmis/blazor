@@ -5,6 +5,7 @@ using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.LoginService;
+using RazorClassLibrary31.Services.RouteGuardService;
 using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
@@ -35,7 +36,7 @@ namespace EmployeeBlazorClient31
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
             builder.Services.AddSingleton<ITokenService, TokenService>();
 
-            builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, RouteGuardService>();
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();
