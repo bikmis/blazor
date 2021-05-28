@@ -37,17 +37,9 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         [Parameter]
         public string SaveMessage { get; set; }
 
-        [Inject]
-        private IUserService userService { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
-            if (!userService.User.IsLoggedIn)
-            {
-                navigationManager.NavigateTo("/login");
-                return;
-            }
-
             var queryString = parseUri();
             alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
             var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
