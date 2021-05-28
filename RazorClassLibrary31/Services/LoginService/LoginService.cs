@@ -8,6 +8,7 @@ using RazorClassLibrary31.Services.UserService;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using RazorClassLibrary31.Services.TokenService;
+using RazorClassLibrary31.Helper;
 
 namespace RazorClassLibrary31.Services.LoginService
 {
@@ -40,14 +41,14 @@ namespace RazorClassLibrary31.Services.LoginService
                 //AccessToken in a service property and RefreshToken is saved in session storage of the browser
                 tokenService.AccessToken = token.AccessToken;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
-
+                
                 //user is created to hydrate user service property
                 var user = new User()
                 {
-                    ID = int.Parse(readToken(token, "id")),
-                    Name = readToken(token, "name"),
-                    Username = readToken(token, "username"),
-                    Email = readToken(token, "email"),
+                    ID = int.Parse(Utility.ReadToken(token.AccessToken, "id")),
+                    Name = Utility.ReadToken(token.AccessToken, "name"),
+                    Username = Utility.ReadToken(token.AccessToken, "username"),
+                    Email = Utility.ReadToken(token.AccessToken, "email"),
                     IsLoggedIn = true
                 };
                 userService.User = user;
@@ -56,15 +57,6 @@ namespace RazorClassLibrary31.Services.LoginService
             }
             return false;
         }
-
-        private string readToken(Token token, string claimType) {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var jsonToken = tokenHandler.ReadJwtToken(token.AccessToken);
-            var claimValue = jsonToken.Claims.ToList().Where(claim => claim.Type == claimType).FirstOrDefault()?.Value;
-            return claimValue;
-        }
-
-
 
     }
 }
