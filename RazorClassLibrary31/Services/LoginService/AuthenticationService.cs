@@ -32,11 +32,13 @@ namespace RazorClassLibrary31.Services.LoginService
                 }, "Fake authentication type");
 
                 var user = new ClaimsPrincipal(identity);
+                NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
                 return Task.FromResult(new AuthenticationState(user));
             }
 
             var identityNotAuthorized = new ClaimsIdentity(); // Not authorized, to be authorized ClaimsIdentity needs to have claims and/or authenticationType
             var userNotLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(userNotLoggedIn)));
             return Task.FromResult(new AuthenticationState(userNotLoggedIn));
         }
     }
