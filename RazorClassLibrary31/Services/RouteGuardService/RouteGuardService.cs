@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.RouteGuardService
 {
-    //Create AuthenticationService that implements AuthenticationStateProvider
+    //Create RouteGuardService that implements AuthenticationStateProvider
     //Put the dependency code in Program.Main for client side and in Startup.cs for server side Blazor.
     //Add builder.Services.AddOptions(); and builder.Services.AddAuthorizationCore(); in the Program.Main for client side Blazor, but not required for the server side.
     //You can now use <CascadingAuthenticationState></CascadingAuthenticationState> etc and @context etc in a component
