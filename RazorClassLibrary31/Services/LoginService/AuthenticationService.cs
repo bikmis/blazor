@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
+using RazorClassLibrary31.Helper;
+using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,18 +19,21 @@ namespace RazorClassLibrary31.Services.LoginService
     public class AuthenticationService : AuthenticationStateProvider
     {
         private IUserService userService;
+        private ITokenService tokenService;
 
-        public AuthenticationService(IUserService _userService)
+        public AuthenticationService(IUserService _userService, ITokenService _tokenService)
         {
             userService = _userService;
+            tokenService = _tokenService;
         }
 
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            if (userService.User.IsLoggedIn) {
+            if (userService.User.IsLoggedIn)
+            {
                 var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, "Bikash", ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Email, "bikashmishra.developer@gmail.com", ClaimValueTypes.String)
+                    new Claim(ClaimTypes.Name, Utility.ReadToken(tokenService.AccessToken, "name"), ClaimValueTypes.String),
+                    new Claim(ClaimTypes.Email, Utility.ReadToken(tokenService.AccessToken, "email"), ClaimValueTypes.String)
                 }, "Fake authentication type");
 
                 var user = new ClaimsPrincipal(identity);
