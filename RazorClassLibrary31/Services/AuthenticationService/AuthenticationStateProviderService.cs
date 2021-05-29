@@ -17,12 +17,12 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
 
-    public class AuthenticationStateService : AuthenticationStateProvider
+    public class AuthenticationStateProviderService : AuthenticationStateProvider
     {
         private IUserService userService;
         private ITokenService tokenService;
 
-        public AuthenticationStateService(IUserService _userService, ITokenService _tokenService)
+        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService)
         {
             userService = _userService;
             tokenService = _tokenService;

@@ -48,7 +48,7 @@ namespace EmployeeBlazorServer31
             services.AddTransient<IGuidServiceAddTransient, GuidService>();
             services.AddScoped<IHttpService, HttpService>();
             services.AddSingleton<ISerializerService, SerializerService>();
-            services.AddScoped<AuthenticationStateProvider, AuthenticationStateService>();
+            services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
             services.AddSingleton<ITokenService, TokenService>();
         }
 
