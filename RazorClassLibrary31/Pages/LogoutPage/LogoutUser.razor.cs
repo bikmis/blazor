@@ -16,8 +16,7 @@ namespace RazorClassLibrary31.Pages.LogoutPage
         private IUserService userService { get; set; }
 
         private void logout() {
-            authenticationService.LogoutUser(userService.User);
-            navigationManager.NavigateTo("/");
+            authenticationService.LogoutUser();
         }
 
     }
