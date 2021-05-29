@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.LoginService;
+using RazorClassLibrary31.Services.AuthenticationService;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.LoginPage

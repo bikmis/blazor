@@ -9,7 +9,7 @@ using RazorClassLibrary31.Services.UserService;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.LoginService
+namespace RazorClassLibrary31.Services.AuthenticationService
 {
     //LoginService has been injected for ILoginService using AddHttpClient, which is "scoped" and so any property exposed
     //by LoginService does not hold value like singleton. That's why IsLoggedIn is exposed from UserService which is a singleton service.

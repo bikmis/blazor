@@ -1,10 +1,7 @@
 ﻿using RazorClassLibrary31.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.LoginService
+namespace RazorClassLibrary31.Services.AuthenticationService
 {
     public interface ILoginService
     {
