@@ -5,7 +5,7 @@ using RazorClassLibrary31.Services.UserService;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.RouteGuardService
+namespace RazorClassLibrary31.Services.LoginService
 {
     //Create RouteGuardService that implements AuthenticationStateProvider
     //Put the dependency code in Program.Main for client side and in Startup.cs for server side Blazor.

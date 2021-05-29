@@ -55,7 +55,7 @@ namespace RazorClassLibrary31.Services.LoginService
                 };
                 userService.User = user;
 
-                ((RouteGuardService.RouteGuardService)authenticationStateProvider).LogIntoUserInterface();
+                ((RouteGuardService)authenticationStateProvider).LogIntoUserInterface();
                
                 return true;
             }
@@ -64,7 +64,7 @@ namespace RazorClassLibrary31.Services.LoginService
 
         public void LogoutUser(User user)
         {
-            ((RouteGuardService.RouteGuardService)authenticationStateProvider).LogOutOfUserInterface();
+            ((RouteGuardService)authenticationStateProvider).LogOutOfUserInterface();
         }
     }
 }
