@@ -62,8 +62,10 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             return false;
         }
 
-        public void LogoutUser(User user)
+        public void LogoutUser()
         {
+            jsRuntime.InvokeVoidAsync("clearSessionStorage");
+            userService.User.IsLoggedIn = false;
             ((AuthenticationStateProviderService)authenticationStateProvider).LogOutOfUserInterface();
         }
     }
