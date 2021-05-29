@@ -19,7 +19,7 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
         
         private ElementReference questionInput;
         
-        string firstname { get; set; }
+        private string refreshToken { get; set; }
 
         Employee employee = new Employee() { FirstName = "Hello", LastName = "Mishra", Age= 20, MiddleName= "", Position= "CTO", DateOfBirth = DateTime.Now};
 
@@ -54,7 +54,7 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
         }
 
         private async Task getRefreshTokenFromSessionStorage() {
-            var rfreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+            refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
         }
 
     }
