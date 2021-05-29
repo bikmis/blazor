@@ -35,7 +35,7 @@ namespace EmployeeBlazorClient31
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
             builder.Services.AddSingleton<ITokenService, TokenService>();
 
-            builder.Services.AddScoped<AuthenticationStateProvider, RouteGuardService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateService>();
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();
