@@ -14,16 +14,9 @@ namespace RazorClassLibrary31.Pages.LoginPage
 
         private Login login { get; set; } = new Login();
 
-        [Inject]
-        private AuthenticationStateProvider authenticationStateProvider { get; set; }
-
         private async Task loginUser()
         {
-            var isLoggedIn = await loginService.LoginUser(login);
-            if (isLoggedIn)
-            {
-                ((RouteGuardService)authenticationStateProvider).LogIntoUserInterface();
-            }
+            await loginService.LoginUser(login);
         }
     }
 }

@@ -1,14 +1,13 @@
-﻿using Microsoft.JSInterop;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
+using RazorClassLibrary31.Helper;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.SerializerService;
+using RazorClassLibrary31.Services.TokenService;
+using RazorClassLibrary31.Services.UserService;
 using System.Net.Http;
 using System.Threading.Tasks;
-using RazorClassLibrary31.Services.UserService;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using RazorClassLibrary31.Services.TokenService;
-using RazorClassLibrary31.Helper;
 
 namespace RazorClassLibrary31.Services.LoginService
 {
@@ -22,8 +21,10 @@ namespace RazorClassLibrary31.Services.LoginService
         private IJSRuntime jsRuntime { get; set; }       
         private IUserService userService { get; set; }
         private ITokenService tokenService { get; set; }
+        private AuthenticationStateProvider authenticationStateProvider { get; set; }
 
-        public LoginService(IHttpService _httpService, HttpClient _httpClient, ISerializerService _serializerService, IJSRuntime _jsRuntime, IUserService _userService, ITokenService _tokenService)
+        public LoginService(IHttpService _httpService, HttpClient _httpClient, ISerializerService _serializerService, 
+            IJSRuntime _jsRuntime, IUserService _userService, ITokenService _tokenService, AuthenticationStateProvider _authenticationStateProvider)
         {
             httpService = _httpService;
             httpClient = _httpClient;
@@ -31,6 +32,7 @@ namespace RazorClassLibrary31.Services.LoginService
             jsRuntime = _jsRuntime;
             userService = _userService;
             tokenService = _tokenService;
+            authenticationStateProvider = _authenticationStateProvider;
         }
 
         public async Task<bool> LoginUser(Login login)
@@ -52,6 +54,8 @@ namespace RazorClassLibrary31.Services.LoginService
                     IsLoggedIn = true
                 };
                 userService.User = user;
+
+                ((RouteGuardService.RouteGuardService)authenticationStateProvider).LogIntoUserInterface();
                
                 return true;
             }
