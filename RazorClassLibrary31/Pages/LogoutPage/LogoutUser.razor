@@ -1,19 +1,8 @@
 ﻿@page "/logout"
 
-<CascadingAuthenticationState>
-    <AuthorizeView>
-        <Authorized>
-            <h3>Logout User</h3>
+<h3>Logout User</h3>
 
-            <button class="btn btn-primary" @onclick="logout">Logout</button>
-        </Authorized>
-        <NotAuthorized>
-            <LoginUser></LoginUser>
-        </NotAuthorized>
-    </AuthorizeView>
-</CascadingAuthenticationState>
-
-
+<button class="btn btn-primary" @onclick="logout">Logout</button>
 
 @code {
 
