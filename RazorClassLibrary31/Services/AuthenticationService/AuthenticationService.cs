@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.AuthenticationService
 {
-    //LoginService has been injected for ILoginService using AddHttpClient, which is "scoped" and so any property exposed
-    //by LoginService does not hold value like singleton. That's why IsLoggedIn is exposed from UserService which is a singleton service.
-    public class LoginService : IAuthenticationService
+    //AuthenticationService has been injected for IAuthenticationService using AddHttpClient, which is "scoped" and so any property exposed
+    //by AuthenticationService does not hold value like singleton. That's why IsLoggedIn is exposed from UserService which is a singleton service.
+    public class AuthenticationService : IAuthenticationService
     {
         private IHttpService httpService;
         private HttpClient httpClient;
@@ -23,7 +23,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
         private ITokenService tokenService { get; set; }
         private AuthenticationStateProvider authenticationStateProvider { get; set; }
 
-        public LoginService(IHttpService _httpService, HttpClient _httpClient, ISerializerService _serializerService, 
+        public AuthenticationService(IHttpService _httpService, HttpClient _httpClient, ISerializerService _serializerService, 
             IJSRuntime _jsRuntime, IUserService _userService, ITokenService _tokenService, AuthenticationStateProvider _authenticationStateProvider)
         {
             httpService = _httpService;

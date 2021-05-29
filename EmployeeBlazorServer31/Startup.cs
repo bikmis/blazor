@@ -40,7 +40,7 @@ namespace EmployeeBlazorServer31
             });
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            services.AddHttpClient<IAuthenticationService, LoginService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
+            services.AddHttpClient<IAuthenticationService, AuthenticationService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
             services.AddSingleton<IUserService, UserService>();
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
