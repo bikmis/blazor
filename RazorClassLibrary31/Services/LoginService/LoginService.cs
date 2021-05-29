@@ -62,5 +62,9 @@ namespace RazorClassLibrary31.Services.LoginService
             return false;
         }
 
+        public void LogoutUser(User user)
+        {
+            ((RouteGuardService.RouteGuardService)authenticationStateProvider).LogOutOfUserInterface();
+        }
     }
 }

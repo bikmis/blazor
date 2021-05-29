@@ -9,5 +9,6 @@ namespace RazorClassLibrary31.Services.LoginService
     public interface ILoginService
     {
         Task<bool> LoginUser(Login login);
+        void LogoutUser(User user);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Services.RouteGuardService;
+using RazorClassLibrary31.Services.LoginService;
+using RazorClassLibrary31.Services.UserService;
 
 namespace RazorClassLibrary31.Pages.LogoutPage
 {
@@ -10,10 +10,13 @@ namespace RazorClassLibrary31.Pages.LogoutPage
         private NavigationManager navigationManager { get; set; }
 
         [Inject]
-        private AuthenticationStateProvider authenticationStateProvider { get; set; }
+        private ILoginService loginService { get; set; }
+
+        [Inject]
+        private IUserService userService { get; set; }
 
         private void logout() {
-            ((RouteGuardService)authenticationStateProvider).LogOutOfUserInterface();
+            loginService.LogoutUser(userService.User);
             navigationManager.NavigateTo("/");
         }
 
