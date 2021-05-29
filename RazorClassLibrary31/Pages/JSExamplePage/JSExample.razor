@@ -8,16 +8,22 @@
 <br />
 <label>Question: </label>
 <input @ref="questionInput" @bind="question" />
-<button @onclick="() => askQuestion()">Answer Here!</button>
+<button class="btn btn-primary" @onclick="() => askQuestion()">Answer Here!</button>
 <br />
 <span>Answer: @answer</span>
 <br />
-<button @onclick="() => focusOnInputQuestion()">Focus on Question Input</button>
+<button class="btn btn-primary" @onclick="() => focusOnInputQuestion()">Focus on Question Input</button>
 <br />
-<button @onclick="() => setEmployeeToSessionStorage()">Set empoyee to Session Storage </button>
-<button @onclick="() => getEmployeeFromSessionStorage()">Get employee from Session Storage </button>
-
-
+<br />
+<button class="btn btn-primary" @onclick="() => setEmployeeToSessionStorage()">Set empoyee to Session Storage </button>
+<br />
+<br />
+<button class="btn btn-primary" @onclick="() => getEmployeeFromSessionStorage()">Get employee from Session Storage </button>
+<br />
+<br />
+<button class="btn btn-primary" @onclick="() => getRefreshTokenFromSessionStorage()">Get refresh_token from Session Storage </button>
+<br />
+<br />
 
 
 @code {

@@ -53,5 +53,9 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
             var emp = JsonSerializer.Deserialize<Employee>(employeeJson, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
+        private async Task getRefreshTokenFromSessionStorage() {
+            var rfreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+        }
+
     }
 }
