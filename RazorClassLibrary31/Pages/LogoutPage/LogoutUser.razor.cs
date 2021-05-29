@@ -17,6 +17,8 @@ namespace RazorClassLibrary31.Pages.LogoutPage
 
         private void logout() {
             authenticationService.LogoutUser();
+            //Change the url "logout" back to home "/"
+            navigationManager.NavigateTo("/");
         }
 
     }
