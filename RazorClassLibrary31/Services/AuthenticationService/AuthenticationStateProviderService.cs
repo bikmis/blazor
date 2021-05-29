@@ -12,7 +12,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     //Add builder.Services.AddOptions(); and builder.Services.AddAuthorizationCore(); in the Program.Main for client side Blazor, but not required for the server side.
     //You can now use <CascadingAuthenticationState></CascadingAuthenticationState> etc and @context etc in a component
     //or [Inject] private AuthenticationStateProvider authenticationStateProvider { get; set; } in the code-behind file of a component
-    
+
 
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
@@ -35,19 +35,15 @@ namespace RazorClassLibrary31.Services.AuthenticationService
                 return createLoggedInState();
             }
             return createLoggedOutState();
-        }       
+        }
 
         public void LogIntoUserInterface()
         {
-            if (userService.User.IsLoggedIn)
-            {
-                NotifyAuthenticationStateChanged(createLoggedInState());
-            }
+            NotifyAuthenticationStateChanged(createLoggedInState());
         }
 
         public void LogOutOfUserInterface()
         {
-            userService.User.IsLoggedIn = false;
             NotifyAuthenticationStateChanged(createLoggedOutState());
         }
 
