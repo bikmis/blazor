@@ -6,6 +6,6 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     public interface IAuthenticationService
     {
         Task<bool> LoginUser(Login login);
-        void LogoutUser(User user);
+        void LogoutUser();
     }
 }
