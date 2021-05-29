@@ -32,22 +32,43 @@ namespace RazorClassLibrary31.Services.RouteGuardService
         {
             if (userService.User.IsLoggedIn)
             {
-                var identity = new ClaimsIdentity(new[] {
+                return createLoggedInState();
+            }
+            return createLoggedOutState();
+        }       
+
+        public void LogIntoUserInterface()
+        {
+            if (userService.User.IsLoggedIn)
+            {
+                NotifyAuthenticationStateChanged(createLoggedInState());
+            }
+        }
+
+        public void LogOutOfUserInterface()
+        {
+            userService.User.IsLoggedIn = false;
+            NotifyAuthenticationStateChanged(createLoggedOutState());
+        }
+
+        private Task<AuthenticationState> createLoggedInState()
+        {
+            var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, Utility.ReadToken(tokenService.AccessToken, "name"), ClaimValueTypes.String),
                     new Claim(ClaimTypes.Email, Utility.ReadToken(tokenService.AccessToken, "email"), ClaimValueTypes.String)
                 }, "Fake authentication type");
 
-                var user = new ClaimsPrincipal(identity);
-                var authenticationState = Task.FromResult(new AuthenticationState(user));
-               // NotifyAuthenticationStateChanged(authenticationState);
-                return authenticationState;
-            }
+            var user = new ClaimsPrincipal(identity);
+            var loggedInState = Task.FromResult(new AuthenticationState(user));
+            return loggedInState;
+        }
 
+        private Task<AuthenticationState> createLoggedOutState()
+        {
             var identityNotAuthorized = new ClaimsIdentity(); // Not authorized, to be authorized ClaimsIdentity needs to have claims and/or authenticationType
             var principalLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
-            var authenticationStateNotLoggedIn = Task.FromResult(new AuthenticationState(principalLoggedIn));
-            // NotifyAuthenticationStateChanged(authenticationStateNotLoggedIn);
-            return authenticationStateNotLoggedIn;
+            var loggedOutState = Task.FromResult(new AuthenticationState(principalLoggedIn));
+            return loggedOutState;
         }
     }
 }
