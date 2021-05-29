@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.AuthenticationService
 {
-    public interface ILoginService
+    public interface IAuthenticationService
     {
         Task<bool> LoginUser(Login login);
         void LogoutUser(User user);

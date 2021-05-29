@@ -8,13 +8,13 @@ namespace RazorClassLibrary31.Pages.LoginPage
     public partial class LoginUser
     {
         [Inject]
-        private ILoginService loginService { get; set; }
+        private IAuthenticationService authenticationService { get; set; }
 
         private Login login { get; set; } = new Login();
 
         private async Task loginUser()
         {
-            await loginService.LoginUser(login);
+            await authenticationService.LoginUser(login);
         }
     }
 }

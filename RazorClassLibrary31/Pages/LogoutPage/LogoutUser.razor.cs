@@ -10,13 +10,13 @@ namespace RazorClassLibrary31.Pages.LogoutPage
         private NavigationManager navigationManager { get; set; }
 
         [Inject]
-        private ILoginService loginService { get; set; }
+        private IAuthenticationService authenticationService { get; set; }
 
         [Inject]
         private IUserService userService { get; set; }
 
         private void logout() {
-            loginService.LogoutUser(userService.User);
+            authenticationService.LogoutUser(userService.User);
             navigationManager.NavigateTo("/");
         }
 
