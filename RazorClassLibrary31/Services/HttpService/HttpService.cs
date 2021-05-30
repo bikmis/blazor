@@ -18,12 +18,12 @@ namespace RazorClassLibrary31.Services.HttpService
             serializerService = _serializerService;
         }
 
-        public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data)
+        public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
         {
             var request = new HttpRequestMessage(method, url);
-            if (tokenService.AccessToken != null)
+            if (token != null)
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokenService.AccessToken);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
             request.Content = serializerService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
             var response = await httpClient.SendAsync(request);
