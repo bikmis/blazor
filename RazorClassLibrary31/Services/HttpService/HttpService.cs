@@ -9,12 +9,10 @@ namespace RazorClassLibrary31.Services.HttpService
 {
     public class HttpService : IHttpService
     {
-        private ITokenService tokenService;
         private ISerializerService serializerService;
 
-        public HttpService(ITokenService _tokenService, ISerializerService _serializerService)
+        public HttpService(ISerializerService _serializerService)
         {
-            tokenService = _tokenService;
             serializerService = _serializerService;
         }
 
