@@ -33,23 +33,30 @@ namespace EmployeeBlazorServer31
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            //scoped services
+            //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
+            //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
+            //Make a change to the weather.json in the server and revisit the /fetchdata page to see the new content. In the server side blazor,
+            //the browser does not hold data in the cache but in the client side one clear browser cache, refresh the browser to view the changed content.
             services.AddScoped(s =>
             {
                 var navigationManager = s.GetRequiredService<NavigationManager>();
                 return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
             });
-
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
             services.AddHttpClient<IAuthenticationService, AuthenticationService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
+            services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
+
+            //singlton services
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<ISerializerService, SerializerService>();
+            services.AddSingleton<ITokenService, TokenService>();
+            services.AddSingleton<IHttpService, HttpService>();
+
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
             services.AddScoped<IGuidServiceAddScoped, GuidService>();
             services.AddTransient<IGuidServiceAddTransient, GuidService>();
-            services.AddScoped<IHttpService, HttpService>();
-            services.AddSingleton<ISerializerService, SerializerService>();
-            services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
-            services.AddSingleton<ITokenService, TokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
