@@ -49,7 +49,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
         //The first time the application loads, this runs and returns createLoggedOutState(), with that Authorization fails and Login screen <LoginUser /> appears from 
         //<NotAuthorized> section of MainLayout.razor. Once you enter your username and password and click Login, AuthenticationService.LoginUser runs and among other things
         //which will run LoginIntoUserInterface that will notify with createLoggedInState, which then lets the user in past the <Authorized> section of MainLayout.razor
-        //Every time you navigate to a page, Authorization runs automatically and checks createLoggedOutState() or createLoggedInState().
+        //Every time you navigate to a page, Authorization runs automatically and is successful or fails based on createLoggedOutState() or createLoggedInState().
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
@@ -63,17 +63,17 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             else if (refreshToken != null)
             {
                 var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/refreshToken", null, refreshToken);
+                //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
                     var token = await serializerService.DeserializeToType<Token>(response);
                     tokenService.AccessToken = token.AccessToken;
                     return await createLoggedInState(tokenService.AccessToken);
                 }
-
-                await jsRuntime.InvokeVoidAsync("clearSessionStorage");
-                userService.User.IsLoggedIn = false;
-                return await createLoggedOutState();
             }
 
+            //if response fails, that means refreshToken has expired, then the user is back on the login page.
+            await jsRuntime.InvokeVoidAsync("clearSessionStorage"); //removes everything from session storage including refresh_token
+            userService.User.IsLoggedIn = false;
             return await createLoggedOutState();
         }
 
