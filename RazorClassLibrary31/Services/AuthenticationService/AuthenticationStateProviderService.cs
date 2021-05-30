@@ -45,6 +45,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
         }
 
         //When a page is refreshed or the application loads for the first time, the following method runs.
+        //Authorization requires a cascading parameter of type Task<AuthenticationState>.Consider using CascadingAuthenticationState to supply this.
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
