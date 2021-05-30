@@ -56,12 +56,16 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             await jsRuntime.InvokeVoidAsync("writeToConsole", httpClient.BaseAddress.AbsoluteUri);
             await jsRuntime.InvokeVoidAsync("writeToConsole", refreshToken);
 
+            //For Blazor Server side, userService.User.IsLoggedIn is true and goes to the first "if" condition if a page is refreshed,
+            //but for client side, it is false and goes to the next "else if" condition if a page is refreshed.
             if (userService.User.IsLoggedIn)
             {
+                await jsRuntime.InvokeVoidAsync("writeToConsole", "inside IsLoggedIn in GetAuthenticationStateAsync");
                 return await createLoggedInState(tokenService.AccessToken);
             }
             else if (refreshToken != null)
             {
+                await jsRuntime.InvokeVoidAsync("writeToConsole", "inside refreshToken in GetAuthenticationStateAsync");
                 var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/refreshToken", null, refreshToken);
                 //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
@@ -71,6 +75,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
                 }
             }
 
+            await jsRuntime.InvokeVoidAsync("writeToConsole", "logging out section in GetAuthenticationStateAsync");
             //if response fails, that means refreshToken has expired, then the user is back on the login page.
             await jsRuntime.InvokeVoidAsync("clearSessionStorage"); //removes everything from session storage including refresh_token
             userService.User.IsLoggedIn = false;
