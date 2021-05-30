@@ -37,7 +37,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
 
         public async Task<bool> LoginUser(Login login)
         {
-            var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login);
+            var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
             if (response.IsSuccessStatusCode) {
                 var token = await serializerService.DeserializeToType<Token>(response);
                 //AccessToken in a service property and RefreshToken is saved in session storage of the browser
