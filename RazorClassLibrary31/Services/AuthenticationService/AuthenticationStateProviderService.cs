@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using RazorClassLibrary31.Helper;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
@@ -21,25 +22,35 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     {
         private IUserService userService;
         private ITokenService tokenService;
+        private IJSRuntime jsRuntime;
 
-        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService)
+
+        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime)
         {
             userService = _userService;
             tokenService = _tokenService;
+            jsRuntime = _jsRuntime;
         }
 
-        public override Task<AuthenticationState> GetAuthenticationStateAsync()
+        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
+            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+            await jsRuntime.InvokeVoidAsync("writeToConsole", refreshToken);
+
             if (userService.User.IsLoggedIn)
             {
-                return createLoggedInState();
+                return await createLoggedInState(tokenService.AccessToken);
+            } else if (refreshToken != null)
+            {
+                return await createLoggedInState(refreshToken);
             }
-            return createLoggedOutState();
+
+            return await createLoggedOutState();
         }
 
-        public void LogIntoUserInterface()
+        public void LogIntoUserInterface(string token)
         {
-            NotifyAuthenticationStateChanged(createLoggedInState());
+            NotifyAuthenticationStateChanged(createLoggedInState(token));
         }
 
         public void LogOutOfUserInterface()
@@ -47,23 +58,22 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             NotifyAuthenticationStateChanged(createLoggedOutState());
         }
 
-        private Task<AuthenticationState> createLoggedInState()
+        private async Task<AuthenticationState> createLoggedInState(string token)
         {
             var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, Utility.ReadToken(tokenService.AccessToken, "name"), ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Email, Utility.ReadToken(tokenService.AccessToken, "email"), ClaimValueTypes.String)
+                    new Claim(ClaimTypes.Name, Utility.ReadToken(token, "name"), ClaimValueTypes.String),
+                    new Claim(ClaimTypes.Email, Utility.ReadToken(token, "email"), ClaimValueTypes.String)
                 }, "Fake authentication type");
-
             var user = new ClaimsPrincipal(identity);
             var loggedInState = Task.FromResult(new AuthenticationState(user));
-            return loggedInState;
+            return await loggedInState;
         }
 
-        private Task<AuthenticationState> createLoggedOutState()
+        private async Task<AuthenticationState> createLoggedOutState()
         {
             var identityNotAuthorized = new ClaimsIdentity(); // Not authorized, to be authorized ClaimsIdentity needs to have claims and/or authenticationType
             var principalLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
-            var loggedOutState = Task.FromResult(new AuthenticationState(principalLoggedIn));
+            var loggedOutState = await Task.FromResult(new AuthenticationState(principalLoggedIn));
             return loggedOutState;
         }
     }

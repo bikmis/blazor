@@ -55,7 +55,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
                 };
                 userService.User = user;
 
-                ((AuthenticationStateProviderService)authenticationStateProvider).LogIntoUserInterface();
+                ((AuthenticationStateProviderService)authenticationStateProvider).LogIntoUserInterface(token.AccessToken);
                
                 return true;
             }
