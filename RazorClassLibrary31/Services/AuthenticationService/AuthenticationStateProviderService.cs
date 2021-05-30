@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using RazorClassLibrary31.Helper;
+using RazorClassLibrary31.Models;
+using RazorClassLibrary31.Services.HttpService;
+using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
+using System;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.AuthenticationService
@@ -18,31 +24,46 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
 
-    public class AuthenticationStateProviderService : AuthenticationStateProvider
+     public class AuthenticationStateProviderService : AuthenticationStateProvider
     {
         private IUserService userService;
         private ITokenService tokenService;
         private IJSRuntime jsRuntime;
+        private HttpClient httpClient;
+        private IHttpService httpService;
+        private ISerializerService serializerService;
+        
 
-
-        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime)
+        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, IHttpService _httpService, ISerializerService _serializerService)
         {
             userService = _userService;
             tokenService = _tokenService;
             jsRuntime = _jsRuntime;
+            httpClient = new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") };
+            httpService = _httpService;
+            serializerService = _serializerService;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-            await jsRuntime.InvokeVoidAsync("writeToConsole", refreshToken);
 
             if (userService.User.IsLoggedIn)
             {
                 return await createLoggedInState(tokenService.AccessToken);
-            } else if (refreshToken != null)
+            }
+            else if (refreshToken != null)
             {
-                return await createLoggedInState(refreshToken);
+                var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/refreshToken", null, refreshToken);
+                if (response.IsSuccessStatusCode) {
+                    var token = await serializerService.DeserializeToType<Token>(response);
+                    tokenService.AccessToken = token.AccessToken;
+                    return await createLoggedInState(tokenService.AccessToken);
+                }
+
+                await jsRuntime.InvokeVoidAsync("clearSessionStorage");
+                userService.User.IsLoggedIn = false;
+                return await createLoggedOutState();
             }
 
             return await createLoggedOutState();
