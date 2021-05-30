@@ -44,8 +44,12 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             serializerService = _serializerService;
         }
 
-        //When a page is refreshed or the application loads for the first time, the following method runs.
-        //Authorization requires a cascading parameter of type Task<AuthenticationState>.Consider using CascadingAuthenticationState to supply this.
+        //When a page is refreshed or the application loads for the first time, the following method (GetAuthenticationStateAsync) runs.
+        //Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.
+        //The first time the application loads, this runs and returns createLoggedOutState(), with that Authorization fails and Login screen <LoginUser /> appears from 
+        //<NotAuthorized> section of MainLayout.razor. Once you enter your username and password and click Login, AuthenticationService.LoginUser runs and among other things
+        //which will run LoginIntoUserInterface that will notify with createLoggedInState, which then lets the user in past the <Authorized> section of MainLayout.razor
+        //Every time you navigate to a page, Authorization runs automatically and checks createLoggedOutState() or createLoggedInState().
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
