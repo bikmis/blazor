@@ -1,6 +1,7 @@
 ﻿using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.SerializerService;
+using RazorClassLibrary31.Services.TokenService;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -14,18 +15,20 @@ namespace RazorClassLibrary31.Services.EmployeeService
         private readonly HttpClient httpClient;
         private readonly IHttpService httpService;
         private readonly ISerializerService serializerService;
-        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService)
+        private readonly ITokenService tokenService;
+        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService, ITokenService _tokenService)
         {
             httpClient = _httpClient;
             httpService = _httpService;
             serializerService = _serializerService;
+            tokenService = _tokenService;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             try
             {
-                var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
+                var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null, tokenService.AccessToken);
                 var employees = await serializerService.DeserializeToListOfType<Employee>(response);
                 return employees;
             }
@@ -37,17 +40,17 @@ namespace RazorClassLibrary31.Services.EmployeeService
 
         public async Task AddEmployee(Employee employee)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Post, "api/employees", employee);
+            await httpService.SendAsync(httpClient, HttpMethod.Post, "api/employees", employee, tokenService.AccessToken);
         }
 
         public async Task DeleteEmployee(int employeeId)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Delete, $"api/employees?id={employeeId}", null);
+            await httpService.SendAsync(httpClient, HttpMethod.Delete, $"api/employees?id={employeeId}", null, tokenService.AccessToken);
         }
 
         public async Task EditEmployee(Employee employee)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Put, "api/employees", employee);
+            await httpService.SendAsync(httpClient, HttpMethod.Put, "api/employees", employee, tokenService.AccessToken);
         }
     }
 }
