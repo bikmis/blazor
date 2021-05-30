@@ -23,14 +23,14 @@ namespace EmployeeBlazorClient31
 
             //AddHttpClient() method will be availble after you install Microsoft.Extensions.Http
             //AddHttpClient is the same as AddScoped
-            //scoped services
+            //Scoped services
             builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
             builder.Services.AddHttpClient<IAuthenticationService, AuthenticationService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
             builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
             // With the following, everything works except that Authorization fails for unknown reason, and so HttpClient is not injected from here, rather HttpClient is created inside AuthenticationStateProviderService.
             // builder.Services.AddHttpClient<AuthenticationStateProvider, AuthenticationStateProviderService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
 
-            //singleton services
+            //Singleton services
             builder.Services.AddSingleton<IUserService, UserService>();
             //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
             //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
