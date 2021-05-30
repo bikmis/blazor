@@ -44,9 +44,12 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             serializerService = _serializerService;
         }
 
+        //When a page is refreshed, the following method runs.
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+            await jsRuntime.InvokeVoidAsync("writeToConsole", httpClient.BaseAddress.AbsoluteUri);
+            await jsRuntime.InvokeVoidAsync("writeToConsole", refreshToken);
 
             if (userService.User.IsLoggedIn)
             {
