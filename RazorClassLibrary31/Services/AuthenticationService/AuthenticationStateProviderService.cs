@@ -44,7 +44,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             serializerService = _serializerService;
         }
 
-        //When a page is refreshed, the following method runs.
+        //When a page is refreshed or the application loads for the first time, the following method runs.
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
