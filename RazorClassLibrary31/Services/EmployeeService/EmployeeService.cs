@@ -5,7 +5,6 @@ using RazorClassLibrary31.Services.TokenService;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.EmployeeService
@@ -15,13 +14,12 @@ namespace RazorClassLibrary31.Services.EmployeeService
         private readonly HttpClient httpClient;
         private readonly IHttpService httpService;
         private readonly ISerializerService serializerService;
-        private readonly ITokenService tokenService;
+
         public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService, ITokenService _tokenService)
         {
             httpClient = _httpClient;
             httpService = _httpService;
             serializerService = _serializerService;
-            tokenService = _tokenService;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
