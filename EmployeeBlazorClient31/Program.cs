@@ -29,6 +29,7 @@ namespace EmployeeBlazorClient31
             builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
             // With the following, everything works except that Authorization fails for unknown reason, and so HttpClient is not injected from here, rather HttpClient is created inside AuthenticationStateProviderService.
             // builder.Services.AddHttpClient<AuthenticationStateProvider, AuthenticationStateProviderService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
+            builder.Services.AddScoped<IHttpService, HttpService>(); //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
 
             //Singleton services
             builder.Services.AddSingleton<IUserService, UserService>();
@@ -37,7 +38,6 @@ namespace EmployeeBlazorClient31
             //Make a change to the weather.json in the server and revisit the /fetchdata page to see the new content. In the server side blazor,
             //the browser does not hold data in the cache but in the client side one clear browser cache, refresh the browser to view the changed content.
             builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddSingleton<IHttpService, HttpService>();
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
             builder.Services.AddSingleton<ITokenService, TokenService>();
 
