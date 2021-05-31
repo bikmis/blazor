@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using RazorClassLibrary31.Helper;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.AuthenticationService;
@@ -17,9 +18,9 @@ namespace RazorClassLibrary31.Services.HttpService
         private ISerializerService serializerService;
         private ITokenService tokenService;
         private IJSRuntime jsRuntime { get; set; }
-        private IAuthenticationService authenticationService { get; set; }
+        private AuthenticationStateProvider authenticationService { get; set; }
 
-        public HttpService(ISerializerService _serializerService, ITokenService _tokenService, IAuthenticationService _authenticationService, IJSRuntime _jsRuntime)
+        public HttpService(ISerializerService _serializerService, ITokenService _tokenService, AuthenticationStateProvider _authenticationService, IJSRuntime _jsRuntime)
         {
             serializerService = _serializerService;
             tokenService = _tokenService;
@@ -29,9 +30,7 @@ namespace RazorClassLibrary31.Services.HttpService
 
         public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data)
         {
-            HttpResponseMessage response;
-
-            response = await sendAsync(httpClient, method, url, data, tokenService.AccessToken);
+            var response = await ((AuthenticationStateProviderService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
             if (response.IsSuccessStatusCode)
             {
                 return response;
@@ -39,30 +38,19 @@ namespace RazorClassLibrary31.Services.HttpService
             else if (response.StatusCode == HttpStatusCode.Unauthorized)  //if access token is expired, response is unauthorized.
             {
                 var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-                response = await sendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/accessToken", null, refreshToken);
+                response = await ((AuthenticationStateProviderService)authenticationService).SendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 if (response.IsSuccessStatusCode) //if refresh token is expired, resonse is unauthorized
                 {
                     var token = await serializerService.DeserializeToType<Token>(response);
                     tokenService.AccessToken = token.AccessToken;
-                    response = await sendAsync(httpClient, method, url, data, tokenService.AccessToken);
+                    response = await ((AuthenticationStateProviderService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
                     return response;
                 }
             }
 
             //if access token is expired and refresh token is expired/unavailable(deleted from session storage), then user is logged out.
-            authenticationService.LogoutUser();
-            response = new HttpResponseMessage() { StatusCode = HttpStatusCode.Unauthorized, ReasonPhrase = "Access token is expired as well as refresh token is either expired or deleted from session storage." };
+            ((AuthenticationStateProviderService)authenticationService).LogoutUser();
             return response;
         }
-
-        private async Task<HttpResponseMessage> sendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
-        {
-            var request = new HttpRequestMessage(method, url);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            request.Content = serializerService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            var response = await httpClient.SendAsync(request);
-            return response;
-        }
-
     }
 }

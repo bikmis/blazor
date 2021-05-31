@@ -25,7 +25,6 @@ namespace EmployeeBlazorClient31
             //AddHttpClient is the same as AddScoped
             //Scoped services
             builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            builder.Services.AddHttpClient<IAuthenticationService, AuthenticationService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
             builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
             // With the following, everything works except that Authorization fails for unknown reason, and so HttpClient is not injected from here, rather HttpClient is created inside AuthenticationStateProviderService.
             // builder.Services.AddHttpClient<AuthenticationStateProvider, AuthenticationStateProviderService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));

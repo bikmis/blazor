@@ -79,14 +79,50 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             return await createLoggedOutState();
         }
 
-        public void LogIntoUserInterface(string token)
+        public async Task<bool> LoginUser(Login login)
         {
-            NotifyAuthenticationStateChanged(createLoggedInState(token));
+            var response = await SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
+            if (response.IsSuccessStatusCode)
+            {
+                var token = await serializerService.DeserializeToType<Token>(response);
+                //AccessToken in a service property and RefreshToken is saved in session storage of the browser
+                tokenService.AccessToken = token.AccessToken;
+                await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
+
+                //user is created to hydrate user service property
+                var user = new User()
+                {
+                    ID = int.Parse(Utility.ReadToken(token.AccessToken, "id")),
+                    Name = Utility.ReadToken(token.AccessToken, "name"),
+                    Username = Utility.ReadToken(token.AccessToken, "username"),
+                    Email = Utility.ReadToken(token.AccessToken, "email"),
+                    IsLoggedIn = true
+                };
+                userService.User = user;
+
+                NotifyAuthenticationStateChanged(createLoggedInState(token.AccessToken));
+                return true;
+            }
+            return false;
         }
 
-        public void LogOutOfUserInterface()
+        public void LogoutUser()
         {
+            jsRuntime.InvokeVoidAsync("clearSessionStorage");
+            userService.User.IsLoggedIn = false;
             NotifyAuthenticationStateChanged(createLoggedOutState());
+        }
+
+        public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
+        {
+            var request = new HttpRequestMessage(method, url);
+            if (token != null)
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
+            request.Content = serializerService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            var response = await httpClient.SendAsync(request);
+            return response;
         }
 
         private async Task<AuthenticationState> createLoggedInState(string token)
@@ -106,18 +142,6 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             var principalLoggedIn = new ClaimsPrincipal(identityNotAuthorized);
             var loggedOutState = await Task.FromResult(new AuthenticationState(principalLoggedIn));
             return loggedOutState;
-        }
-
-        public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
-        {
-            var request = new HttpRequestMessage(method, url);
-            if (token != null)
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-            request.Content = serializerService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            var response = await httpClient.SendAsync(request);
-            return response;
         }
 
     }
