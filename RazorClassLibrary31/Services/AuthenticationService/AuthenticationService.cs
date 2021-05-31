@@ -15,7 +15,6 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     //by AuthenticationService does not hold value like singleton. That's why IsLoggedIn is exposed from UserService which is a singleton service.
     public class AuthenticationService : IAuthenticationService
     {
-        private IHttpService httpService;
         private HttpClient httpClient;
         private ISerializerService serializerService;
         private IJSRuntime jsRuntime { get; set; }       
@@ -23,10 +22,9 @@ namespace RazorClassLibrary31.Services.AuthenticationService
         private ITokenService tokenService { get; set; }
         private AuthenticationStateProvider authenticationStateProvider { get; set; }
 
-        public AuthenticationService(IHttpService _httpService, HttpClient _httpClient, ISerializerService _serializerService, 
+        public AuthenticationService(HttpClient _httpClient, ISerializerService _serializerService, 
             IJSRuntime _jsRuntime, IUserService _userService, ITokenService _tokenService, AuthenticationStateProvider _authenticationStateProvider)
         {
-            httpService = _httpService;
             httpClient = _httpClient;
             serializerService = _serializerService;
             jsRuntime = _jsRuntime;
@@ -37,7 +35,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
 
         public async Task<bool> LoginUser(Login login)
         {
-            var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
+            var response = await ((AuthenticationStateProviderService)authenticationStateProvider).SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
             if (response.IsSuccessStatusCode) {
                 var token = await serializerService.DeserializeToType<Token>(response);
                 //AccessToken in a service property and RefreshToken is saved in session storage of the browser

@@ -8,6 +8,7 @@ using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,17 +31,15 @@ namespace RazorClassLibrary31.Services.AuthenticationService
         private ITokenService tokenService;
         private IJSRuntime jsRuntime;
         private HttpClient httpClient;
-        private IHttpService httpService;
         private ISerializerService serializerService;
         
 
-        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, IHttpService _httpService, ISerializerService _serializerService)
+        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, ISerializerService _serializerService)
         {
             userService = _userService;
             tokenService = _tokenService;
             jsRuntime = _jsRuntime;
             httpClient = new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") };
-            httpService = _httpService;
             serializerService = _serializerService;
         }
 
@@ -66,7 +65,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             else if (refreshToken != null)
             {
                 await jsRuntime.InvokeVoidAsync("writeToConsole", "inside refreshToken in GetAuthenticationStateAsync");
-                var response = await httpService.SendAsync(httpClient, HttpMethod.Post, "api/refreshToken", null, refreshToken);
+                var response = await SendAsync(httpClient, HttpMethod.Post, "api/refreshToken", null, refreshToken);
                 //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
                     var token = await serializerService.DeserializeToType<Token>(response);
@@ -110,5 +109,18 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             var loggedOutState = await Task.FromResult(new AuthenticationState(principalLoggedIn));
             return loggedOutState;
         }
+
+        public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
+        {
+            var request = new HttpRequestMessage(method, url);
+            if (token != null)
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
+            request.Content = serializerService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            var response = await httpClient.SendAsync(request);
+            return response;
+        }
+
     }
 }
