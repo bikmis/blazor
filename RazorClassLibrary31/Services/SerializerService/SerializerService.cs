@@ -11,11 +11,19 @@ namespace RazorClassLibrary31.Services.SerializerService
     {
         public async Task<T> DeserializeToType<T>(HttpResponseMessage response)
         {
+            if (!response.IsSuccessStatusCode)
+            {
+                return default(T);
+            }
             return await JsonSerializer.DeserializeAsync<T>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task<List<T>> DeserializeToListOfType<T>(HttpResponseMessage response)
         {
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
             return await JsonSerializer.DeserializeAsync<List<T>>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
