@@ -36,7 +36,7 @@ namespace RazorClassLibrary31.Services.Authentication_Service
             userService = _userService;
             tokenService = _tokenService;
             jsRuntime = _jsRuntime;
-            httpClient = new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") };
+            httpClient = new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }; //If we inject BaseAddress with AddHttpClient instead of AddScoped and HttpClient with base address being here, the application does not work properly. Unknown reason.
             serializerService = _serializerService;
         }
 
