@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.HttpService
+namespace RazorClassLibrary31.Services.Http_Service
 {
     public interface IHttpService
     {

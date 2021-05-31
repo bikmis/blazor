@@ -1,7 +1,7 @@
 ﻿using RazorClassLibrary31.Models;
 
 
-namespace RazorClassLibrary31.Services.UserService
+namespace RazorClassLibrary31.Services.User_Service
 {
     public class UserService : IUserService
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.EmployeeService;
+using RazorClassLibrary31.Services.Employee_Service;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.EmployeePage

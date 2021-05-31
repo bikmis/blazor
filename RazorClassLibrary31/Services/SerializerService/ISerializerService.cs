@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.SerializerService
+namespace RazorClassLibrary31.Services.Serializer_Service
 {
     public interface ISerializerService
     {

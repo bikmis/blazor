@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Auth;
-using RazorClassLibrary31.Services.SerializerService;
-using RazorClassLibrary31.Services.TokenService;
+using RazorClassLibrary31.Services.Authentication_Service;
+using RazorClassLibrary31.Services.Serializer_Service;
+using RazorClassLibrary31.Services.Token_Service;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.HttpService
+namespace RazorClassLibrary31.Services.Http_Service
 {
     public class HttpService : IHttpService
     {

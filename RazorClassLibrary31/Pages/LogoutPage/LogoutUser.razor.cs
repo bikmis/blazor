@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Services.Auth;
-using RazorClassLibrary31.Services.UserService;
+using RazorClassLibrary31.Services.Authentication_Service;
+using RazorClassLibrary31.Services.User_Service;
 
 namespace RazorClassLibrary31.Pages.LogoutPage
 {
