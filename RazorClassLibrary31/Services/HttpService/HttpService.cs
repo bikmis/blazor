@@ -4,7 +4,6 @@ using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.AuthenticationService;
 using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
-using RazorClassLibrary31.Services.UserService;
 using System;
 using System.Net;
 using System.Net.Http;
