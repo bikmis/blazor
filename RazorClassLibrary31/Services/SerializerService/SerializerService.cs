@@ -13,7 +13,7 @@ namespace RazorClassLibrary31.Services.SerializerService
         {
             if (!response.IsSuccessStatusCode)
             {
-                return default(T);
+                return default(T); //return default value of generic type.
             }
             return await JsonSerializer.DeserializeAsync<T>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
