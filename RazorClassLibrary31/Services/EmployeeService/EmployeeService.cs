@@ -28,7 +28,7 @@ namespace RazorClassLibrary31.Services.EmployeeService
         {
             try
             {
-                var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null, tokenService.AccessToken);
+                var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
                 var employees = await serializerService.DeserializeToListOfType<Employee>(response);
                 return employees;
             }
@@ -40,17 +40,17 @@ namespace RazorClassLibrary31.Services.EmployeeService
 
         public async Task AddEmployee(Employee employee)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Post, "api/employees", employee, tokenService.AccessToken);
+            await httpService.SendAsync(httpClient, HttpMethod.Post, "api/employees", employee);
         }
 
         public async Task DeleteEmployee(int employeeId)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Delete, $"api/employees?id={employeeId}", null, tokenService.AccessToken);
+            await httpService.SendAsync(httpClient, HttpMethod.Delete, $"api/employees?id={employeeId}", null);
         }
 
         public async Task EditEmployee(Employee employee)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Put, "api/employees", employee, tokenService.AccessToken);
+            await httpService.SendAsync(httpClient, HttpMethod.Put, "api/employees", employee);
         }
     }
 }
