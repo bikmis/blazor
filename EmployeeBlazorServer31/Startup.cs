@@ -46,12 +46,12 @@ namespace EmployeeBlazorServer31
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
             services.AddHttpClient<IAuthenticationService, AuthenticationService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
             services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
+            services.AddScoped<IHttpService, HttpService>(); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
 
             //Singleton services
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<ISerializerService, SerializerService>();
-            services.AddSingleton<ITokenService, TokenService>();
-            services.AddSingleton<IHttpService, HttpService>();
+            services.AddSingleton<ITokenService, TokenService>();            
 
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
