@@ -39,7 +39,7 @@ namespace RazorClassLibrary31.Services.HttpService
             else if (response.StatusCode == HttpStatusCode.Unauthorized)  //if access token is expired, response is unauthorized.
             {
                 var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-                response = await sendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/refreshToken", null, refreshToken);
+                response = await sendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 if (response.IsSuccessStatusCode) //if refresh token is expired, resonse is unauthorized
                 {
                     var token = await serializerService.DeserializeToType<Token>(response);

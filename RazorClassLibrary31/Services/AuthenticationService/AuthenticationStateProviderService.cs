@@ -2,7 +2,6 @@
 using Microsoft.JSInterop;
 using RazorClassLibrary31.Helper;
 using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.HttpService;
 using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
@@ -10,7 +9,6 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.AuthenticationService
@@ -25,7 +23,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
 
-     public class AuthenticationStateProviderService : AuthenticationStateProvider
+    public class AuthenticationStateProviderService : AuthenticationStateProvider
     {
         private IUserService userService;
         private ITokenService tokenService;
@@ -65,7 +63,7 @@ namespace RazorClassLibrary31.Services.AuthenticationService
             else if (refreshToken != null)
             {
                 await jsRuntime.InvokeVoidAsync("writeToConsole", "inside refreshToken in GetAuthenticationStateAsync");
-                var response = await SendAsync(httpClient, HttpMethod.Post, "api/refreshToken", null, refreshToken);
+                var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
                     var token = await serializerService.DeserializeToType<Token>(response);
