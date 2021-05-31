@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
-using RazorClassLibrary31.Services.AuthenticationService;
+using RazorClassLibrary31.Services.Auth;
 using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
@@ -25,7 +25,7 @@ namespace EmployeeBlazorClient31
             //AddHttpClient is the same as AddScoped
             //Scoped services
             builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
             // With the following, everything works except that Authorization fails for unknown reason, and so HttpClient is not injected from here, rather HttpClient is created inside AuthenticationStateProviderService.
             // builder.Services.AddHttpClient<AuthenticationStateProvider, AuthenticationStateProviderService>(client => client.BaseAddress = new Uri("https://localhost:44382/"));
             builder.Services.AddScoped<IHttpService, HttpService>(); //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.

@@ -11,7 +11,7 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.AuthenticationService
+namespace RazorClassLibrary31.Services.Auth
 {
     //Create AuthenticationStateService that implements AuthenticationStateProvider
     //Put the dependency code in Program.Main for client side and in Startup.cs for server side Blazor.
@@ -23,16 +23,15 @@ namespace RazorClassLibrary31.Services.AuthenticationService
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
 
-    public class AuthenticationStateProviderService : AuthenticationStateProvider
+    public class AuthenticationService : AuthenticationStateProvider
     {
         private IUserService userService;
         private ITokenService tokenService;
         private IJSRuntime jsRuntime;
         private HttpClient httpClient;
         private ISerializerService serializerService;
-        
 
-        public AuthenticationStateProviderService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, ISerializerService _serializerService)
+        public AuthenticationService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, ISerializerService _serializerService)
         {
             userService = _userService;
             tokenService = _tokenService;

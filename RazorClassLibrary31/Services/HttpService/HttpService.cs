@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using RazorClassLibrary31.Helper;
 using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.AuthenticationService;
+using RazorClassLibrary31.Services.Auth;
 using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Services.HttpService
@@ -30,7 +28,7 @@ namespace RazorClassLibrary31.Services.HttpService
 
         public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data)
         {
-            var response = await ((AuthenticationStateProviderService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
+            var response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
             if (response.IsSuccessStatusCode)
             {
                 return response;
@@ -38,18 +36,18 @@ namespace RazorClassLibrary31.Services.HttpService
             else if (response.StatusCode == HttpStatusCode.Unauthorized)  //if access token is expired, response is unauthorized.
             {
                 var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-                response = await ((AuthenticationStateProviderService)authenticationService).SendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/accessToken", null, refreshToken);
+                response = await ((AuthenticationService)authenticationService).SendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 if (response.IsSuccessStatusCode) //if refresh token is expired, resonse is unauthorized
                 {
                     var token = await serializerService.DeserializeToType<Token>(response);
                     tokenService.AccessToken = token.AccessToken;
-                    response = await ((AuthenticationStateProviderService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
+                    response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
                     return response;
                 }
             }
 
             //if access token is expired and refresh token is expired/unavailable(deleted from session storage), then user is logged out.
-            ((AuthenticationStateProviderService)authenticationService).LogoutUser();
+            ((AuthenticationService)authenticationService).LogoutUser();
             return response;
         }
     }

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using RazorClassLibrary31.Services.EmployeeService;
 using RazorClassLibrary31.Services.GuidService;
 using RazorClassLibrary31.Services.HttpService;
-using RazorClassLibrary31.Services.AuthenticationService;
+using RazorClassLibrary31.Services.Auth;
 using RazorClassLibrary31.Services.SerializerService;
 using RazorClassLibrary31.Services.TokenService;
 using RazorClassLibrary31.Services.UserService;
@@ -44,7 +44,7 @@ namespace EmployeeBlazorServer31
                 return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
             });
             services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
+            services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
             services.AddScoped<IHttpService, HttpService>(); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
 
             //Singleton services

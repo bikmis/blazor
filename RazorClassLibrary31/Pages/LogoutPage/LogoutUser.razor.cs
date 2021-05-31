@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Services.AuthenticationService;
+using RazorClassLibrary31.Services.Auth;
 using RazorClassLibrary31.Services.UserService;
 
 namespace RazorClassLibrary31.Pages.LogoutPage
@@ -17,7 +17,7 @@ namespace RazorClassLibrary31.Pages.LogoutPage
         private IUserService userService { get; set; }
 
         private void logout() {
-            ((AuthenticationStateProviderService)authenticationService).LogoutUser();
+            ((AuthenticationService)authenticationService).LogoutUser();
             //Change the url "logout" back to home "/"
             navigationManager.NavigateTo("/");
         }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.AuthenticationService;
+using RazorClassLibrary31.Services.Auth;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.LoginPage
@@ -15,7 +15,7 @@ namespace RazorClassLibrary31.Pages.LoginPage
 
         private async Task loginUser()
         {
-            await ((AuthenticationStateProviderService)authenticationService).LoginUser(login);
+            await ((AuthenticationService)authenticationService).LoginUser(login);
         }
     }
 }
