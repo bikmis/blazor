@@ -1,5 +1,5 @@
 ﻿using JwtServer31.Models.Login;
-using JwtServer31.Models.RefreshToken;
+using JwtServer31.Models.AccessToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -58,9 +58,9 @@ namespace JwtServer31.Controllers
         //This endpoint needs a valid refresh token. If refresh token expires, user needs to login to get access and refresh token.
         //This endpoint is used only when access token has expired or when the page is refreshed and a local variable in a service loses the access token.
         [Authorize]
-        [Route("refreshToken")]
+        [Route("accessToken")]
         [HttpPost]
-        public IActionResult RefreshToken()
+        public IActionResult AccessToken()
         {            
             var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1];
             var email = readToken(refreshToken, "email");
@@ -71,7 +71,7 @@ namespace JwtServer31.Controllers
             var accessToken = createJwt(id, name, username, email, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", 1);
 
             //Sending back a new access token and but not the old refresh token which has not expired as yet.
-            var response = new RefreshTokenResponse()
+            var response = new AccessTokenResponse()
             {
                 AccessToken = accessToken,
             };
