@@ -5,7 +5,7 @@ using RazorClassLibrary31.Services.Authentication_Service;
 
 namespace RazorClassLibrary31.Pages.HomePage
 {
-    public partial class Index : ComponentBase
+    public partial class Index
     {
         [Inject]
         private IJSRuntime jsRuntime { get; set; }

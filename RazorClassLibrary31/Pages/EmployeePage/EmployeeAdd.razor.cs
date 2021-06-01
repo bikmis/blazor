@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.EmployeePage
 {
-    public partial class EmployeeAdd : ComponentBase
+    public partial class EmployeeAdd
     {
         [Inject]
         private NavigationManager navigationManager { get; set; }

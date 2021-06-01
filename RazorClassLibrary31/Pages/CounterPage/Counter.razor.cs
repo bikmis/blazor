@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.CounterPage
 {
-    public partial class Counter : ComponentBase
+    public partial class Counter
     {
         private int currentCount = 0;
 

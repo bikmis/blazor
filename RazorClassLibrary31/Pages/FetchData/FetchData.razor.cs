@@ -2,16 +2,13 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.Authentication_Service;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.FetchData
 {
-    public partial class FetchData : ComponentBase
+    public partial class FetchData
     {
         private WeatherForecast[] forecasts { get; set; }
 

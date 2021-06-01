@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace RazorClassLibrary31.Pages.EmployeePage
 {
     //This is a code-behind file for EmployeeList.razor. It should be a partial class with the same name as the razor page.
-    public partial class EmployeeList : ComponentBase
+    public partial class EmployeeList
     {
         [Inject]
         private IEmployeeService employeeService { get; set; }

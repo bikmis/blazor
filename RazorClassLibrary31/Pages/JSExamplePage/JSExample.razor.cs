@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.JSExamplePage
 {
-    public partial class JSExample : ComponentBase
+    public partial class JSExample
     {
         [Inject]
         private IJSRuntime jsRuntime { get; set; }
