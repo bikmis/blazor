@@ -18,6 +18,7 @@ app {
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* 1vh is 1% of viewport height */
 }
 
 .top-row {
@@ -137,7 +138,10 @@ app {
     }
 
 .center {
-    margin: 100px auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @media (max-width: 767.98px) {
