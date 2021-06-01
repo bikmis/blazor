@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Components.Authorization;
 using RazorClassLibrary31.Services.Authentication_Service;
 using RazorClassLibrary31.Services.Guid_Service;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.GuidExamplePage
