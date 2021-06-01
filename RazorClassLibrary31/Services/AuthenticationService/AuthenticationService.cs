@@ -41,7 +41,7 @@ namespace RazorClassLibrary31.Services.Authentication_Service
         }
 
         //When a page is refreshed or the application loads for the first time, the following method (GetAuthenticationStateAsync) runs.
-        //Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.
+        //Authorization requires a cascading parameter of type Task<AuthenticationState>. Use CascadingAuthenticationState to supply this.
         //The first time the application loads, this runs and returns createLoggedOutState(), with that Authorization fails and Login screen <LoginUser /> appears from 
         //<NotAuthorized> section of MainLayout.razor. Once you enter your username and password and click Login, AuthenticationService.LoginUser runs and among other things
         //which will run LoginIntoUserInterface that will notify with createLoggedInState, which then lets the user in past the <Authorized> section of MainLayout.razor
@@ -122,6 +122,21 @@ namespace RazorClassLibrary31.Services.Authentication_Service
             request.Content = serializerService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
             var response = await httpClient.SendAsync(request);
             return response;
+        }
+
+        public async Task GuardRoute() {
+            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+
+            if (Utility.IsTokenExpired(tokenService.AccessToken)) {
+                if (refreshToken == null || Utility.IsTokenExpired(refreshToken)) {
+                    LogoutUser();
+                    return;
+                }
+
+                var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
+                var token = await serializerService.DeserializeToType<Token>(response);
+                tokenService.AccessToken = token.AccessToken;
+            }            
         }
 
         private async Task<AuthenticationState> createLoggedInState(string token)

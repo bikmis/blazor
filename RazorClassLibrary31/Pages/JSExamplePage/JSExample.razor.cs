@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using RazorClassLibrary31.Models;
+using RazorClassLibrary31.Services.Authentication_Service;
 using System;
-using System.Threading.Tasks;
 using System.Text.Json;
-
+using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.JSExamplePage
 {
@@ -22,6 +23,15 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
         private string refreshToken { get; set; }
 
         Employee employee = new Employee() { FirstName = "Hello", LastName = "Mishra", Age= 20, MiddleName= "", Position= "CTO", DateOfBirth = DateTime.Now};
+
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
+        protected async override Task OnInitializedAsync()
+        {
+            await ((AuthenticationService)authenticationService).GuardRoute();
+
+        }
 
         protected override Task OnAfterRenderAsync(bool firstRender)
         {

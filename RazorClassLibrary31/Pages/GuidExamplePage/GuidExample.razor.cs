@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using RazorClassLibrary31.Services.Authentication_Service;
 using RazorClassLibrary31.Services.Guid_Service;
 using System;
 using System.Collections.Generic;
@@ -30,12 +32,15 @@ namespace RazorClassLibrary31.Pages.GuidExamplePage
 
         private int counterAddTransient { get; set; }
 
-        protected override Task OnInitializedAsync()
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
+        protected async override Task OnInitializedAsync()
         {
+            await ((AuthenticationService)authenticationService).GuardRoute();
             addSingleton();
             addScoped();
             addTransient();
-            return base.OnInitializedAsync();
         }
 
         private void addSingleton()

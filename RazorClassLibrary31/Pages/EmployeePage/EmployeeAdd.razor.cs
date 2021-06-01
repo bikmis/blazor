@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using RazorClassLibrary31.Models;
+using RazorClassLibrary31.Services.Authentication_Service;
 using RazorClassLibrary31.Services.Employee_Service;
 using System.Threading.Tasks;
 
@@ -16,9 +18,12 @@ namespace RazorClassLibrary31.Pages.EmployeePage
 
         private Employee employee { get; set; } = new Employee();
 
-        protected override Task OnInitializedAsync()
-        {            
-            return base.OnInitializedAsync();
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
+        protected async override Task OnInitializedAsync()
+        {
+            await ((AuthenticationService)authenticationService).GuardRoute();
         }
 
         private async void addEmployee(EditContext editContext, Employee employee)

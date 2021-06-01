@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using RazorClassLibrary31.Services.Authentication_Service;
 using RazorClassLibrary31.Services.User_Service;
+using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Pages.LogoutPage
 {
@@ -15,6 +16,11 @@ namespace RazorClassLibrary31.Pages.LogoutPage
 
         [Inject]
         private IUserService userService { get; set; }
+
+        protected async override Task OnInitializedAsync()
+        {
+            await ((AuthenticationService)authenticationService).GuardRoute();
+        }
 
         private void logout() {
             ((AuthenticationService)authenticationService).LogoutUser();

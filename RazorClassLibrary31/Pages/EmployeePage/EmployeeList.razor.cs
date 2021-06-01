@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using RazorClassLibrary31.Models;
+using RazorClassLibrary31.Services.Authentication_Service;
 using RazorClassLibrary31.Services.Employee_Service;
 using System;
 using System.Collections.Generic;
@@ -36,9 +38,13 @@ namespace RazorClassLibrary31.Pages.EmployeePage
         [Parameter]
         public string SaveMessage { get; set; }
 
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+            await ((AuthenticationService)authenticationService).GuardRoute();
+
             var queryString = parseUri();
             alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
             var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
