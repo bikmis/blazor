@@ -26,7 +26,7 @@ namespace JwtServer31.Controllers
             }
             var securityKey = "Your Security Key Goes Here.";
             var accessToken = createJwt("1", "Bikash", "bikash", request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", 1);  //https://localhost:44327/ is the base address of resource (employee) server
-            var refreshToken = createJwt("1", "Bikash", "bikash", request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 2); //https://localhost:44382/ is the base address of token server
+            var refreshToken = createJwt("1", "Bikash", "bikash", request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 10); //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
