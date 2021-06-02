@@ -1,6 +1,9 @@
 ﻿@page "/authentication-test"
 @using System.Security.Claims;
 
+@layout MainLayout
+
+@attribute [Authorize]
 
 
 <AuthorizeView>

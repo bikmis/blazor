@@ -14,16 +14,9 @@ namespace RazorClassLibrary31.Pages.LoginPage
 
         private Login login { get; set; } = new Login();
 
-        [Parameter]
-        public EventCallback<User> OnLoggedIn { get; set; }
-
-        [Inject]
-        private IUserService userService { get; set; }
-
         private async Task loginUser()
         {
             await ((AuthenticationService)authenticationService).LoginUser(login);
-            await OnLoggedIn.InvokeAsync(userService.User);
         }
     }
 }

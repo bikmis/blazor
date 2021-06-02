@@ -1,18 +1,26 @@
 ﻿@page "/login"
 
-    <div class="center border-lightgray border-radius-10">
-        <EditForm Model="login" OnValidSubmit="loginUser">
-            <div class="form-group">
-                <label for="inputEmail">Email address</label>
-                <InputText type="email" @bind-Value="login.Email" class="form-control" id="inputEmail" aria-describedby="emailHelp" />
-            </div>
-            <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <InputText type="password" @bind-Value="login.Password" class="form-control" id="inputPassword" />
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </EditForm>
-    </div>
-    @code {
+@*This is optional. If you don't mention any layout here, this page will be automatically displayed at the "@Body" of the MasterLayout, the one mentioned at the App.razor *@
+@layout MasterLayout
 
-    }
+@*The following is optional. This page is accessible without authorization without the following attribute as well.*@
+@attribute [AllowAnonymous]
+
+
+<div class="center border-lightgray border-radius-10">
+    <EditForm Model="login" OnValidSubmit="loginUser">
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <InputText type="email" @bind-Value="login.Email" class="form-control" id="inputEmail" aria-describedby="emailHelp" />
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <InputText type="password" @bind-Value="login.Password" class="form-control" id="inputPassword" />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </EditForm>
+</div>
+
+@code {
+
+}

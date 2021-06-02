@@ -12,14 +12,13 @@ namespace RazorClassLibrary31.Shared
     {
         private string emailAddress { get; set; }
 
+        [Inject]
+        private IUserService userService { get; set; }
+
         protected override Task OnInitializedAsync()
         {
+            emailAddress = userService.User.Email;
             return base.OnInitializedAsync();
-        }
-
-        private void onLoggedIn(User user)
-        {
-            emailAddress = user.Email;
         }
     }
 }

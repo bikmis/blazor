@@ -1,5 +1,9 @@
 ﻿@page "/logout"
 
+@layout MainLayout
+@attribute [Authorize]
+
+
 <h3>Logout User</h3>
 
 <button class="btn btn-primary" @onclick="logout">Logout</button>

@@ -1,25 +1,18 @@
 ﻿@inherits LayoutComponentBase
+@layout MasterLayout
 
-<CascadingAuthenticationState>
-    <AuthorizeView>
-        <Authorized>
-            <div class="sidebar">
-                <NavMenu />
-            </div>
 
-            <div class="main">
-                <div class="top-row px-4">
-                    @emailAddress
-                </div>
 
-                <div class="content px-4">
-                    @Body
-                </div>
-            </div>
-        </Authorized>
-        <NotAuthorized>
-            <LoginUser OnLoggedIn="onLoggedIn"></LoginUser>
-        </NotAuthorized>
-    </AuthorizeView>
-</CascadingAuthenticationState>
+<div class="sidebar">
+    <NavMenu />
+</div>
 
+<div class="main">
+    <div class="top-row px-4">
+        @emailAddress
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
