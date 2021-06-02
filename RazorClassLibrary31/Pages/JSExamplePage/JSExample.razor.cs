@@ -68,9 +68,8 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
             refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
         }
 
-        private async ValueTask<string> showPrompt() {
-            var result = await ExampleJsInterop.Prompt(jsRuntime, "What is your name?");
-            return result;
+        private async Task showPrompt() {
+            await ExampleJsInterop.Prompt(jsRuntime, "What is your name?");            
         }
 
     }
