@@ -49,29 +49,25 @@ namespace RazorClassLibrary31.Services.Authentication_Service
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-            await jsRuntime.InvokeVoidAsync("writeToConsole", httpClient.BaseAddress.AbsoluteUri);
-            await jsRuntime.InvokeVoidAsync("writeToConsole", refreshToken);
 
             //For Blazor Server side, userService.User.IsLoggedIn is true and goes to the first "if" condition if a page is refreshed,
             //but for client side, it is false and goes to the next "else if" condition if a page is refreshed.
             if (userService.User.IsLoggedIn)
             {
-                await jsRuntime.InvokeVoidAsync("writeToConsole", "inside IsLoggedIn in GetAuthenticationStateAsync");
                 return await createLoggedInState(tokenService.AccessToken);
             }
             else if (refreshToken != null)
             {
-                await jsRuntime.InvokeVoidAsync("writeToConsole", "inside refreshToken in GetAuthenticationStateAsync");
                 var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
                     var token = await serializerService.DeserializeToType<Token>(response);
+                    userService.User = createUserFromToken(token);
                     tokenService.AccessToken = token.AccessToken;
                     return await createLoggedInState(tokenService.AccessToken);
                 }
             }
 
-            await jsRuntime.InvokeVoidAsync("writeToConsole", "logging out section in GetAuthenticationStateAsync");
             //if response fails, that means refreshToken has expired, then the user is back on the login page.
             await jsRuntime.InvokeVoidAsync("clearSessionStorage"); //removes everything from session storage including refresh_token
             userService.User.IsLoggedIn = false;
@@ -89,15 +85,7 @@ namespace RazorClassLibrary31.Services.Authentication_Service
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
 
                 //user is created to hydrate user service property
-                var user = new User()
-                {
-                    ID = int.Parse(Utility.ReadToken(token.AccessToken, "id")),
-                    Name = Utility.ReadToken(token.AccessToken, "name"),
-                    Username = Utility.ReadToken(token.AccessToken, "username"),
-                    Email = Utility.ReadToken(token.AccessToken, "email"),
-                    IsLoggedIn = true
-                };
-                userService.User = user;
+                userService.User = createUserFromToken(token);
 
                 NotifyAuthenticationStateChanged(createLoggedInState(token.AccessToken));
                 return true;
@@ -108,8 +96,20 @@ namespace RazorClassLibrary31.Services.Authentication_Service
         public void LogoutUser()
         {
             jsRuntime.InvokeVoidAsync("clearSessionStorage");
-            userService.User.IsLoggedIn = false;
+            userService.User = new User();
             NotifyAuthenticationStateChanged(createLoggedOutState());
+        }
+
+        private User createUserFromToken(Token token) {
+            var user = new User()
+            {
+                ID = int.Parse(Utility.ReadToken(token.AccessToken, "id")),
+                Name = Utility.ReadToken(token.AccessToken, "name"),
+                Username = Utility.ReadToken(token.AccessToken, "username"),
+                Email = Utility.ReadToken(token.AccessToken, "email"),
+                IsLoggedIn = true
+            };
+            return user;
         }
 
         public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
@@ -132,7 +132,7 @@ namespace RazorClassLibrary31.Services.Authentication_Service
                     LogoutUser();
                     return;
                 }
-
+                //if access token has expired, but not refresh token, then do the following, then get a new acces token.
                 var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 var token = await serializerService.DeserializeToType<Token>(response);
                 tokenService.AccessToken = token.AccessToken;
