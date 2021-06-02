@@ -1,7 +1,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31
+namespace RazorClassLibrary31.Helper
 {
     public class ExampleJsInterop
     {
