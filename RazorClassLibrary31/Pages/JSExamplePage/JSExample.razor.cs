@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using RazorClassLibrary31.Helper;
 using RazorClassLibrary31.Models;
 using RazorClassLibrary31.Services.Authentication_Service;
 using System;
@@ -65,6 +66,11 @@ namespace RazorClassLibrary31.Pages.JSExamplePage
 
         private async Task getRefreshTokenFromSessionStorage() {
             refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+        }
+
+        private async ValueTask<string> showPrompt() {
+            var result = await ExampleJsInterop.Prompt(jsRuntime, "What is your name?");
+            return result;
         }
 
     }
