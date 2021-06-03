@@ -1,7 +1,7 @@
-﻿using Intel.Personnel.RazorClassLibrary.Models;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 
 
-namespace Intel.Personnel.RazorClassLibrary.Services.User_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.User_Service
 {
     public class UserService : IUserService
     {

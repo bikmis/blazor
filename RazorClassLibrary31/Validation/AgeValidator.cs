@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Intel.Personnel.RazorClassLibrary.Validation
+namespace Intel.EmployeeManagement.RazorClassLibrary.Validation
 {
     public class AgeValidator : ValidationAttribute
     {

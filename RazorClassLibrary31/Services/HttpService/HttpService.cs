@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Intel.Personnel.RazorClassLibrary.Models;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Serializer_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Token_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Services.Http_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
 {
     public class HttpService : IHttpService
     {

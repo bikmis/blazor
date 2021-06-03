@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Intel.Personnel.RazorClassLibrary.Services.Employee_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Guid_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Http_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Serializer_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Token_Service;
-using Intel.Personnel.RazorClassLibrary.Services.User_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.User_Service;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.BlazorClient
+namespace Intel.EmployeeManagement.BlazorClient
 {
     public class Program
     {

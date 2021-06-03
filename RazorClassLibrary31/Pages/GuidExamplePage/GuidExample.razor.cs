@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
 using System;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Pages.GuidExamplePage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.GuidExamplePage
 {
     public partial class GuidExample
     {

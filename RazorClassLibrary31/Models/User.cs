@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Intel.Personnel.RazorClassLibrary.Models
+namespace Intel.EmployeeManagement.RazorClassLibrary.Models
 {
     public class User
     {

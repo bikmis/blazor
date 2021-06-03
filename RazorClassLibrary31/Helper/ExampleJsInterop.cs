@@ -1,7 +1,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Helper
+namespace Intel.EmployeeManagement.RazorClassLibrary.Helper
 {
     public class ExampleJsInterop
     {

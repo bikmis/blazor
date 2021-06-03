@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Intel.Personnel.RazorClassLibrary.Helper;
-using Intel.Personnel.RazorClassLibrary.Models;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Helper;
+using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Pages.JSExamplePage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
 {
     public partial class JSExample
     {

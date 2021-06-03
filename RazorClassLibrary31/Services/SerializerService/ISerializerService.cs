@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Services.Serializer_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service
 {
     public interface ISerializerService
     {

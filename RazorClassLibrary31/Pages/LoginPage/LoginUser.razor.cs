@@ -1,10 +1,10 @@
-﻿using Intel.Personnel.RazorClassLibrary.Models;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Pages.LoginPage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
 {
     public partial class LoginUser
     {

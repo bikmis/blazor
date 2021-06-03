@@ -2,7 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
-namespace Intel.Personnel.RazorClassLibrary.Helper
+namespace Intel.EmployeeManagement.RazorClassLibrary.Helper
 {
     public class Utility
     {

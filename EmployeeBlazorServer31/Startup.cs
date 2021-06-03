@@ -5,17 +5,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Intel.Personnel.RazorClassLibrary.Services.Employee_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Guid_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Http_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Serializer_Service;
-using Intel.Personnel.RazorClassLibrary.Services.Token_Service;
-using Intel.Personnel.RazorClassLibrary.Services.User_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.User_Service;
 using System;
 using System.Net.Http;
 
-namespace Intel.Personnel.BlazorServer
+namespace Intel.EmployeeManagement.BlazorServer
 {
     public class Startup
     {

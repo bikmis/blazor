@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Shared
+namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
 {
     public partial class Alert
     {

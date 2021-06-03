@@ -1,8 +1,8 @@
-﻿using Intel.Personnel.RazorClassLibrary.Validation;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Intel.Personnel.RazorClassLibrary.Models
+namespace Intel.EmployeeManagement.RazorClassLibrary.Models
 {
     public class Employee
     {

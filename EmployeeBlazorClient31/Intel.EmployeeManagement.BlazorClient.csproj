@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RazorClassLibrary31\Intel.Personnel.RazorClassLibrary.csproj" />
+    <ProjectReference Include="..\RazorClassLibrary31\Intel.EmployeeManagement.RazorClassLibrary.csproj" />
   </ItemGroup>
 
 </Project>

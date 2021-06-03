@@ -1,4 +1,4 @@
-﻿namespace Intel.Personnel.RazorClassLibrary.Services.Token_Service
+﻿namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service
 {
     public interface ITokenService
     {

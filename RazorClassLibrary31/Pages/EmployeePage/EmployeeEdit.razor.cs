@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Intel.Personnel.RazorClassLibrary.Models;
-using Intel.Personnel.RazorClassLibrary.Services.Employee_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Pages.EmployeePage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
     public partial class EmployeeEdit
     {

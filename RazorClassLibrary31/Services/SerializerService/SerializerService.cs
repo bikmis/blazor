@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Services.Serializer_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service
 {
     public class SerializerService : ISerializerService
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.RazorClassLibrary.Pages.CounterPage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.CounterPage
 {
     public partial class Counter
     {
