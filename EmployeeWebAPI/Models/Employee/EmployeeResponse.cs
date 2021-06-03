@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace EmployeeWebAPI31.Models.Employee
+namespace Intel.Personnel.WebAPI.Models.Employee
 {
     public class EmployeeResponse
     {

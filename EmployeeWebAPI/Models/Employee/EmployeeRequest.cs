@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EmployeeWebAPI31.Models.Employee
+namespace Intel.Personnel.WebAPI.Models.Employee
 {
     public class EmployeeRequest
     {

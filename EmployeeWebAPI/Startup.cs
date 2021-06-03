@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 
-namespace EmployeeWebAPI31
+namespace Intel.Personnel.WebAPI
 {
     public class Startup
     {

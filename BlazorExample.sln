@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.Data", "DataLayer\Intel.Personnel.Data.csproj", "{5A6C96EE-7D5D-4C02-9DFD-28B1B882F479}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebAPI31", "EmployeeWebAPI\EmployeeWebAPI31.csproj", "{8B4E1B36-ECBA-477B-9FB4-D833BD23C544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.WebAPI", "EmployeeWebAPI\Intel.Personnel.WebAPI.csproj", "{8B4E1B36-ECBA-477B-9FB4-D833BD23C544}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazorClient31", "EmployeeBlazorClient31\EmployeeBlazorClient31.csproj", "{52E40707-72D2-416D-B4A2-9957268FEF5C}"
 EndProject

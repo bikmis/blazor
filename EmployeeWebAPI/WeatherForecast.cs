@@ -1,6 +1,6 @@
 using System;
 
-namespace EmployeeWebAPI31
+namespace Intel.Personnel.WebAPI
 {
     public class WeatherForecast
     {
