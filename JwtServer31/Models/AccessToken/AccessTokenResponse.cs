@@ -1,4 +1,4 @@
-﻿namespace Intel.Personnel.IdentityProvider.Models.AccessToken
+﻿namespace Intel.EmployeeManagement.IdentityProvider.Models.AccessToken
 {
     public class AccessTokenResponse
     {

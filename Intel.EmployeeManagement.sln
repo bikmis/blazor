@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.RazorClassL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.BlazorServer", "EmployeeBlazorServer31\Intel.Personnel.BlazorServer.csproj", "{5D57EC55-468D-453E-8FDF-1A57B0EB02B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.IdentityProvider", "JwtServer31\Intel.Personnel.IdentityProvider.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider", "JwtServer31\Intel.EmployeeManagement.IdentityProvider.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

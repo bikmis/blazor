@@ -1,4 +1,4 @@
-﻿namespace Intel.Personnel.IdentityProvider.Models.Login
+﻿namespace Intel.EmployeeManagement.IdentityProvider.Models.Login
 {
     public class LoginRequest
     {

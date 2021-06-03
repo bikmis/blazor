@@ -1,5 +1,5 @@
-﻿using Intel.Personnel.IdentityProvider.Models.Login;
-using Intel.Personnel.IdentityProvider.Models.AccessToken;
+﻿using Intel.EmployeeManagement.IdentityProvider.Models.Login;
+using Intel.EmployeeManagement.IdentityProvider.Models.AccessToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Intel.Personnel.IdentityProvider.Controllers
+namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 {
     [Route("api")]
     [ApiController]

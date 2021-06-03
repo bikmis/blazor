@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.IdentityProvider
+namespace Intel.EmployeeManagement.IdentityProvider
 {
     public class Startup
     {

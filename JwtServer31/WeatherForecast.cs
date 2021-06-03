@@ -1,6 +1,6 @@
 using System;
 
-namespace Intel.Personnel.IdentityProvider
+namespace Intel.EmployeeManagement.IdentityProvider
 {
     public class WeatherForecast
     {

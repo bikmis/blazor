@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Intel.Personnel.IdentityProvider.Controllers
+namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 {
     [ApiController]
     [Route("[controller]")]
