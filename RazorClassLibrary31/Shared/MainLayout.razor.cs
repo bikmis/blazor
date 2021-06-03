@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using RazorClassLibrary31.Models;
+using Microsoft.AspNetCore.Components.Authorization;
+using RazorClassLibrary31.Services.Authentication_Service;
 using RazorClassLibrary31.Services.User_Service;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RazorClassLibrary31.Shared
@@ -15,10 +13,21 @@ namespace RazorClassLibrary31.Shared
         [Inject]
         private IUserService userService { get; set; }
 
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
+        [Inject]
+        private NavigationManager navigationManager { get; set; }
+
         protected override Task OnInitializedAsync()
         {
             emailAddress = userService.User.Email;
             return base.OnInitializedAsync();
+        }
+
+        private void logout() {
+            ((AuthenticationService)authenticationService).LogoutUser();
+            navigationManager.NavigateTo("/");
         }
     }
 }
