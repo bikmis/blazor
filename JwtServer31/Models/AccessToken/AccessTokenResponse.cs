@@ -1,4 +1,4 @@
-﻿namespace JwtServer31.Models.AccessToken
+﻿namespace Intel.Personnel.IdentityProvider.Models.AccessToken
 {
     public class AccessTokenResponse
     {

@@ -1,5 +1,5 @@
-﻿using JwtServer31.Models.Login;
-using JwtServer31.Models.AccessToken;
+﻿using Intel.Personnel.IdentityProvider.Models.Login;
+using Intel.Personnel.IdentityProvider.Models.AccessToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace JwtServer31.Controllers
+namespace Intel.Personnel.IdentityProvider.Controllers
 {
     [Route("api")]
     [ApiController]

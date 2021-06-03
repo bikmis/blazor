@@ -1,6 +1,6 @@
 using System;
 
-namespace JwtServer31
+namespace Intel.Personnel.IdentityProvider
 {
     public class WeatherForecast
     {

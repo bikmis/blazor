@@ -1,4 +1,4 @@
-﻿namespace JwtServer31.Models.Login
+﻿namespace Intel.Personnel.IdentityProvider.Models.Login
 {
     public class LoginResponse
     {
