@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DataLayer31.Entities
+namespace Intel.Personnel.Data.Entities
 {
     public class Employee
     {

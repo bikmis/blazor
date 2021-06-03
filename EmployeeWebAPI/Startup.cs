@@ -1,4 +1,4 @@
-using DataLayer31;
+using Intel.Personnel.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

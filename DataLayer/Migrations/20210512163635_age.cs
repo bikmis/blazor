@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DataLayer31.Migrations
+namespace Intel.Personnel.Data.Migrations
 {
     public partial class age : Migration
     {

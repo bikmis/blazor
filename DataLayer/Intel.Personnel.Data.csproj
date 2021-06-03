@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>DataLayer31</AssemblyName>
+    <AssemblyName>Intel.Personnel.Data</AssemblyName>
+    <RootNamespace>Intel.Personnel.Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,5 +1,5 @@
-﻿using DataLayer31;
-using DataLayer31.Entities;
+﻿using Intel.Personnel.Data;
+using Intel.Personnel.Data.Entities;
 using EmployeeWebAPI31.Models.Employee;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
