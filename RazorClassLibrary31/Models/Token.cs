@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Intel.Personnel.RazorClassLibrary.Models
+﻿namespace Intel.Personnel.RazorClassLibrary.Models
 {
     public class Token
     {

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Intel.Personnel.RazorClassLibrary.Validation;
+using System;
 using System.ComponentModel.DataAnnotations;
-using Intel.Personnel.RazorClassLibrary.Validation;
 
 namespace Intel.Personnel.RazorClassLibrary.Models
 {
