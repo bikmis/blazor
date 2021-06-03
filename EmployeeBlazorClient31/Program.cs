@@ -12,7 +12,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace EmployeeBlazorClient31
+namespace Intel.Personnel.BlazorClient
 {
     public class Program
     {

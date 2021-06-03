@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.Data", "Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.WebAPI", "EmployeeWebAPI\Intel.Personnel.WebAPI.csproj", "{8B4E1B36-ECBA-477B-9FB4-D833BD23C544}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeBlazorClient31", "EmployeeBlazorClient31\EmployeeBlazorClient31.csproj", "{52E40707-72D2-416D-B4A2-9957268FEF5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.Personnel.BlazorClient", "EmployeeBlazorClient31\Intel.Personnel.BlazorClient.csproj", "{52E40707-72D2-416D-B4A2-9957268FEF5C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary31", "RazorClassLibrary31\RazorClassLibrary31.csproj", "{7B1B22F2-D67D-4A99-9093-C998060031AA}"
 EndProject
