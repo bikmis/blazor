@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\Intel.Personnel.Data.csproj" />
+    <ProjectReference Include="..\DataLayer\Intel.EmployeeManagement.Data.csproj" />
   </ItemGroup>
 
 

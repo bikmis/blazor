@@ -1,11 +1,11 @@
-﻿using Intel.Personnel.Data;
-using Intel.Personnel.Data.Entities;
-using Intel.Personnel.WebAPI.Models.Employee;
+﻿using Intel.EmployeeManagement.Data;
+using Intel.EmployeeManagement.Data.Entities;
+using Intel.EmployeeManagement.WebAPI.Models.Employee;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-namespace Intel.Personnel.WebAPI.Controllers
+namespace Intel.EmployeeManagement.WebAPI.Controllers
 {
     [Route("api")]
     [ApiController]

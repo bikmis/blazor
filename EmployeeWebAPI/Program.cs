@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Intel.Personnel.WebAPI
+namespace Intel.EmployeeManagement.WebAPI
 {
     public class Program
     {

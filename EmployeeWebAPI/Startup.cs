@@ -1,4 +1,4 @@
-using Intel.Personnel.Data;
+using Intel.EmployeeManagement.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 
-namespace Intel.Personnel.WebAPI
+namespace Intel.EmployeeManagement.WebAPI
 {
     public class Startup
     {

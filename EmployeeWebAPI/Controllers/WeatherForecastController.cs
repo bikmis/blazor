@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Intel.Personnel.WebAPI.Controllers
+namespace Intel.EmployeeManagement.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

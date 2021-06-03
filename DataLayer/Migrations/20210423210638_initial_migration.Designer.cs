@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Intel.Personnel.Data.Migrations
+namespace Intel.EmployeeManagement.Data.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
     [Migration("20210423210638_initial_migration")]

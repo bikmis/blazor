@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Intel.Personnel.WebAPI.Models.Employee
+namespace Intel.EmployeeManagement.WebAPI.Models.Employee
 {
     public class EmployeeResponse
     {

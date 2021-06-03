@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 
-namespace Intel.Personnel.Data.Migrations
+namespace Intel.EmployeeManagement.Data.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
     partial class EmployeeDbContextModelSnapshot : ModelSnapshot

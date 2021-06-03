@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>Intel.Personnel.Data</AssemblyName>
-    <RootNamespace>Intel.Personnel.Data</RootNamespace>
+    <AssemblyName>Intel.EmployeeManagement.Data</AssemblyName>
+    <RootNamespace>Intel.EmployeeManagement.Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

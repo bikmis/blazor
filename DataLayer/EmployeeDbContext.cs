@@ -1,10 +1,10 @@
-﻿using Intel.Personnel.Data.Entities;
+﻿using Intel.EmployeeManagement.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 
-namespace Intel.Personnel.Data
+namespace Intel.EmployeeManagement.Data
 {
     public class EmployeeDbContext : DbContext
     {
