@@ -15,7 +15,7 @@ using RazorClassLibrary31.Services.User_Service;
 using System;
 using System.Net.Http;
 
-namespace EmployeeBlazorServer31
+namespace Intel.Personnel.BlazorServer
 {
     public class Startup
     {
