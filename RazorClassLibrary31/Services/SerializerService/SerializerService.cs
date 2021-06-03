@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.Serializer_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Serializer_Service
 {
     public class SerializerService : ISerializerService
     {

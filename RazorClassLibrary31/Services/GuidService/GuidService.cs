@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RazorClassLibrary31.Services.Guid_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Guid_Service
 {
     public class GuidService : IGuidServiceAddScoped, IGuidServiceAddSingleton, IGuidServiceAddTransient
     {

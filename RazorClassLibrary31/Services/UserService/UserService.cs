@@ -1,7 +1,7 @@
-﻿using RazorClassLibrary31.Models;
+﻿using Intel.Personnel.RazorClassLibrary.Models;
 
 
-namespace RazorClassLibrary31.Services.User_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.User_Service
 {
     public class UserService : IUserService
     {

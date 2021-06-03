@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace RazorClassLibrary31.Validation
+namespace Intel.Personnel.RazorClassLibrary.Validation
 {
     public class AgeValidator : ValidationAttribute
     {

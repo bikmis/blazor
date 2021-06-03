@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Services.Authentication_Service;
-using RazorClassLibrary31.Services.User_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Services.User_Service;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Shared
+namespace Intel.Personnel.RazorClassLibrary.Shared
 {
     public partial class MainLayout
     {

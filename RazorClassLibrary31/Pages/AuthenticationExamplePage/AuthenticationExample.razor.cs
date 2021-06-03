@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Pages.AuthenticationExamplePage
+namespace Intel.Personnel.RazorClassLibrary.Pages.AuthenticationExamplePage
 {
     partial class AuthenticationExample
     {   

@@ -1,13 +1,13 @@
-﻿using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Http_Service;
-using RazorClassLibrary31.Services.Serializer_Service;
-using RazorClassLibrary31.Services.Token_Service;
+﻿using Intel.Personnel.RazorClassLibrary.Models;
+using Intel.Personnel.RazorClassLibrary.Services.Http_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Serializer_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Token_Service;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.Employee_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Employee_Service
 {
     public class EmployeeService : IEmployeeService
     {

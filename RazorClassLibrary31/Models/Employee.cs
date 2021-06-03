@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using RazorClassLibrary31.Validation;
+using Intel.Personnel.RazorClassLibrary.Validation;
 
-namespace RazorClassLibrary31.Models
+namespace Intel.Personnel.RazorClassLibrary.Models
 {
     public class Employee
     {

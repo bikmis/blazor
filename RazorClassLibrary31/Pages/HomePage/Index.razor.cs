@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using RazorClassLibrary31.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
 
-namespace RazorClassLibrary31.Pages.HomePage
+namespace Intel.Personnel.RazorClassLibrary.Pages.HomePage
 {
     public partial class Index
     {

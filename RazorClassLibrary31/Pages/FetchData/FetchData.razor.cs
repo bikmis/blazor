@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Models;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Pages.FetchData
+namespace Intel.Personnel.RazorClassLibrary.Pages.FetchData
 {
     public partial class FetchData
     {
@@ -21,7 +21,7 @@ namespace RazorClassLibrary31.Pages.FetchData
         protected override async Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
-            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("_content/RazorClassLibrary31/sample-data/weather.json");
+            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("_content/Intel.Personnel.RazorClassLibrary/sample-data/weather.json");
         }
     }
 }

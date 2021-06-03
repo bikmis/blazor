@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RazorClassLibrary31.Models
+namespace Intel.Personnel.RazorClassLibrary.Models
 {
     public class WeatherForecast
     {

@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Authentication_Service;
-using RazorClassLibrary31.Services.Employee_Service;
+using Intel.Personnel.RazorClassLibrary.Models;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Employee_Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Pages.EmployeePage
+namespace Intel.Personnel.RazorClassLibrary.Pages.EmployeePage
 {
     //This is a code-behind file for EmployeeList.razor. It should be a partial class with the same name as the razor page.
     public partial class EmployeeList

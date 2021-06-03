@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
-using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Authentication_Service;
-using RazorClassLibrary31.Services.Employee_Service;
+using Intel.Personnel.RazorClassLibrary.Models;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Pages.EmployeePage
+namespace Intel.Personnel.RazorClassLibrary.Pages.EmployeePage
 {
     public partial class EmployeeAdd
     {

@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using RazorClassLibrary31.Helper;
-using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Serializer_Service;
-using RazorClassLibrary31.Services.Token_Service;
-using RazorClassLibrary31.Services.User_Service;
+using Intel.Personnel.RazorClassLibrary.Helper;
+using Intel.Personnel.RazorClassLibrary.Models;
+using Intel.Personnel.RazorClassLibrary.Services.Serializer_Service;
+using Intel.Personnel.RazorClassLibrary.Services.Token_Service;
+using Intel.Personnel.RazorClassLibrary.Services.User_Service;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.Authentication_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Authentication_Service
 {
     //Create AuthenticationStateService that implements AuthenticationStateProvider
     //Put the dependency code in Program.Main for client side and in Startup.cs for server side Blazor.

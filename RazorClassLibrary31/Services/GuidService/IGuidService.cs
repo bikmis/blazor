@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RazorClassLibrary31.Services.Guid_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Guid_Service
 {
     public interface IGuidService
     {

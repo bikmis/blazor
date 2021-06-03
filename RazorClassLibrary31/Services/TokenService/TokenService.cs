@@ -1,4 +1,4 @@
-﻿namespace RazorClassLibrary31.Services.Token_Service
+﻿namespace Intel.Personnel.RazorClassLibrary.Services.Token_Service
 {
     public class TokenService : ITokenService
     {

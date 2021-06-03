@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RazorClassLibrary31.Models
+namespace Intel.Personnel.RazorClassLibrary.Models
 {
     public class Token
     {

@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.Http_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Http_Service
 {
     public interface IHttpService
     {

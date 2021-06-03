@@ -1,8 +1,8 @@
-﻿using RazorClassLibrary31.Models;
+﻿using Intel.Personnel.RazorClassLibrary.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Services.Employee_Service
+namespace Intel.Personnel.RazorClassLibrary.Services.Employee_Service
 {
     public interface IEmployeeService
     {

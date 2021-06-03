@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using RazorClassLibrary31.Helper;
-using RazorClassLibrary31.Models;
-using RazorClassLibrary31.Services.Authentication_Service;
+using Intel.Personnel.RazorClassLibrary.Helper;
+using Intel.Personnel.RazorClassLibrary.Models;
+using Intel.Personnel.RazorClassLibrary.Services.Authentication_Service;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace RazorClassLibrary31.Pages.JSExamplePage
+namespace Intel.Personnel.RazorClassLibrary.Pages.JSExamplePage
 {
     public partial class JSExample
     {
