@@ -21,11 +21,14 @@ namespace Intel.EmployeeManagement.BlazorClient
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            var employeeBaseAddress = builder.Configuration["EmployeeBaseAddress"];
+            var identityProviderBaseAddress = builder.Configuration["IdentityProviderBaseAddress"];
+
             //AddHttpClient() method will be availble after you install Microsoft.Extensions.Http
             //AddHttpClient is the same as AddScoped except that you can set its BaseAdress.
             //Scoped services
-            builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri("https://localhost:44327/"));
-            builder.Services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri("https://localhost:44382/"));
+            builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri(employeeBaseAddress));
+            builder.Services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress));
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             builder.Services.AddScoped<IHttpService, HttpService>(); //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
 

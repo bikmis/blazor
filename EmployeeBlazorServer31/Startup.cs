@@ -33,6 +33,9 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            var employeeBaseAddress = Configuration["EmployeeBaseAddress"];
+            var identityProviderBaseAddress = Configuration["IdentityProviderBaseAddress"];
+
             //Scoped services
             //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
             //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
@@ -43,8 +46,8 @@ namespace Intel.EmployeeManagement.BlazorServer
                 var navigationManager = s.GetRequiredService<NavigationManager>();
                 return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
             });
-            services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri("https://localhost:44327/"));
-            services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri("https://localhost:44382/")); ;
+            services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri(employeeBaseAddress));
+            services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress)); ;
             services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             services.AddScoped<IHttpService, HttpService>(); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
 
