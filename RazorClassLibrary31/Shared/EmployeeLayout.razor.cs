@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
 {
-    public partial class MainLayout
+    public partial class EmployeeLayout
     {
         private string emailAddress { get; set; }
 
