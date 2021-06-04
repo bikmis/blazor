@@ -31,12 +31,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
         private HttpClient httpClient;
         private ISerializerService serializerService;
 
-        public AuthenticationService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, ISerializerService _serializerService)
+        public AuthenticationService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, ISerializerService _serializerService, HttpClient _httpClient)
         {
             userService = _userService;
             tokenService = _tokenService;
             jsRuntime = _jsRuntime;
-            httpClient = new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }; //If we inject BaseAddress with AddHttpClient instead of AddScoped and HttpClient with base address being here, the application does not work properly. Unknown reason.
+            httpClient = _httpClient;
             serializerService = _serializerService;
         }
 
@@ -68,9 +68,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 }
             }
 
-            //if response fails, that means refreshToken has expired, then the user is back on the login page.
+            //if response fails, that means refreshToken has expired, then the user is logged out and back on the login page.
             await jsRuntime.InvokeVoidAsync("clearSessionStorage"); //removes everything from session storage including refresh_token
-            userService.User.IsLoggedIn = false;
+            userService.User = new User();
             return await createLoggedOutState();
         }
 

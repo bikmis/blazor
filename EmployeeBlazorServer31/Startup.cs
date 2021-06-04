@@ -43,8 +43,9 @@ namespace Intel.EmployeeManagement.BlazorServer
                 var navigationManager = s.GetRequiredService<NavigationManager>();
                 return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
             });
-            services.AddHttpClient<IEmployeeService, EmployeeService>(client => client.BaseAddress = new Uri("https://localhost:44327/"));
-            services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
+            services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri("https://localhost:44327/"));
+            services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri("https://localhost:44382/")); ;
+            services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             services.AddScoped<IHttpService, HttpService>(); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
 
             //Singleton services
