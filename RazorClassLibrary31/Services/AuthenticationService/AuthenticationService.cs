@@ -74,7 +74,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             return await createLoggedOutState();
         }
 
-        public async Task<bool> LoginUser(Login login)
+        public async Task LoginUser(Login login)
         {
             var response = await SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
             if (response.IsSuccessStatusCode)
@@ -88,9 +88,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 userService.User = createUserFromToken(token);
 
                 NotifyAuthenticationStateChanged(createLoggedInState(token.AccessToken));
-                return true;
             }
-            return false;
         }
 
         public void LogoutUser()
