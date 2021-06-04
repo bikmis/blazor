@@ -14,16 +14,16 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
     {
         [Inject]
         private IJSRuntime jsRuntime { get; set; }
-        
+
         private string question { get; set; } = string.Empty;
-        
+
         private string answer { get; set; } = string.Empty;
-        
+
         private ElementReference questionInput;
-        
+
         private string refreshToken { get; set; }
 
-        Employee employee = new Employee() { FirstName = "Hello", LastName = "Mishra", Age= 20, MiddleName= "", Position= "CTO", DateOfBirth = DateTime.Now};
+        private Employee employee { get; set; } = new Employee();
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
@@ -31,7 +31,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
         protected async override Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
-
         }
 
         protected override Task OnAfterRenderAsync(bool firstRender)
@@ -55,13 +54,21 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
         }
 
         private async Task setEmployeeToSessionStorage() {
-            var employeeJson = JsonSerializer.Serialize(employee);
+            var newEmployee = new Employee() {ID = 1, FirstName = "Jack", LastName = "Smith", Age = 25, MiddleName = "", Position = "Software Engineer", DateOfBirth = DateTime.Now };
+            var employeeJson = JsonSerializer.Serialize(newEmployee);
             await jsRuntime.InvokeVoidAsync("setToSessionStorage", "employee", employeeJson); 
         }
 
-        private async Task getEmployeeFromSessionStorage() {
+        private async Task getEmployeeFromSessionStorage()
+        {
             var employeeJson = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "employee");
-            var emp = JsonSerializer.Deserialize<Employee>(employeeJson, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            if (employeeJson != null)
+            {
+                employee = JsonSerializer.Deserialize<Employee>(employeeJson, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            }
+            else {
+                employee = new Employee();
+            }
         }
 
         private async Task getRefreshTokenFromSessionStorage() {
@@ -70,6 +77,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
 
         private async Task showPrompt() {
             await ExampleJsInterop.Prompt(jsRuntime, "What is your name?");            
+        }
+
+        private async Task clear() {
+            employee = new Employee();
+            await jsRuntime.InvokeVoidAsync("removeFromSessionStorage", "employee");
         }
 
     }
