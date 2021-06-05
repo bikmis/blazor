@@ -26,7 +26,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
         private IJSRuntime jsRuntime;
         private HttpClient httpClient;
 
-        public AuthenticationService(IAppService _appService, IJSRuntime _jsRuntime,  HttpClient _httpClient)
+        public AuthenticationService(IAppService _appService, IJSRuntime _jsRuntime, HttpClient _httpClient)
         {
             appService = _appService;
             jsRuntime = _jsRuntime;
@@ -51,9 +51,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             }
             else if (refreshToken != null)
             {
-                var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
+                var response = await GetAccessToken();
                 //if response comes back ok with access token, then user stays logged in.
-                if (response.IsSuccessStatusCode) {
+                if (response.IsSuccessStatusCode)
+                {
                     var token = await appService.Deserialize<Token>(response);
                     appService.User = createUserFromToken(token);
                     appService.AccessToken = token.AccessToken;
@@ -69,7 +70,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
 
         public async Task LoginUser(Login login)
         {
-            var response = await SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
+            var response = await loginUser(login);
             if (response.IsSuccessStatusCode)
             {
                 var token = await appService.Deserialize<Token>(response);
@@ -91,7 +92,49 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             NotifyAuthenticationStateChanged(createLoggedOutState());
         }
 
-        private User createUserFromToken(Token token) {
+        private async Task<HttpResponseMessage> loginUser(object data)
+        {
+            return await sendAsync("api/login", data);
+        }
+
+        public async Task<HttpResponseMessage> GetAccessToken()
+        {
+            return await sendAsync("api/accessToken", null);
+        }
+
+        private async Task<HttpResponseMessage> sendAsync(string url, object data)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, url);
+            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+            if (refreshToken != null)
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshToken);
+            }
+            request.Content = appService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            var response = await httpClient.SendAsync(request);
+            return response;
+        }
+
+        public async Task GuardRoute()
+        {
+            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+
+            if (Utility.IsTokenExpired(appService.AccessToken))
+            {
+                if (refreshToken == null || Utility.IsTokenExpired(refreshToken))
+                {
+                    LogoutUser();
+                    return;
+                }
+                //if access token has expired, but not refresh token, then do the following, then get a new acces token.
+                var response = await GetAccessToken();
+                var token = await appService.Deserialize<Token>(response);
+                appService.AccessToken = token.AccessToken;
+            }
+        }
+
+        private User createUserFromToken(Token token)
+        {
             var user = new User()
             {
                 ID = int.Parse(Utility.ReadToken(token.AccessToken, "id")),
@@ -103,39 +146,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             return user;
         }
 
-        public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data, string token)
-        {
-            var request = new HttpRequestMessage(method, url);
-            if (token != null)
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-            request.Content = appService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            var response = await httpClient.SendAsync(request);
-            return response;
-        }
-
-        public async Task GuardRoute() {
-            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-
-            if (Utility.IsTokenExpired(appService.AccessToken)){
-                if (refreshToken == null || Utility.IsTokenExpired(refreshToken)) {
-                    LogoutUser();
-                    return;
-                }
-                //if access token has expired, but not refresh token, then do the following, then get a new acces token.
-                var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
-                var token = await appService.Deserialize<Token>(response);
-                appService.AccessToken = token.AccessToken;
-            }            
-        }
-
         private async Task<AuthenticationState> createLoggedInState(string token)
         {
             var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, Utility.ReadToken(token, "name"), ClaimValueTypes.String),
                     new Claim(ClaimTypes.Email, Utility.ReadToken(token, "email"), ClaimValueTypes.String)
-                }, "Fake authentication type");
+                }, "UiAuthenticationType");
             var user = new ClaimsPrincipal(identity);
             var loggedInState = Task.FromResult(new AuthenticationState(user));
             return await loggedInState;

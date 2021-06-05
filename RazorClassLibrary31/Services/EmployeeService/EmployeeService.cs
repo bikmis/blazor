@@ -10,13 +10,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly HttpClient httpClient;
         private readonly IHttpService httpService;
         private readonly IAppService appService;
 
-        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, IAppService _appService)
+        public EmployeeService(IHttpService _httpService, IAppService _appService)
         {
-            httpClient = _httpClient;
             httpService = _httpService;
             appService = _appService;
         }
@@ -25,7 +23,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
         {
             try
             {
-                var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
+                var response = await httpService.SendAsync(HttpMethod.Get, "api/employees", null);
                 var employees = await appService.DeserializeToList<Employee>(response);
                 return employees;
             }
@@ -37,17 +35,17 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
 
         public async Task AddEmployee(Employee employee)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Post, "api/employees", employee);
+            await httpService.SendAsync(HttpMethod.Post, "api/employees", employee);
         }
 
         public async Task DeleteEmployee(int employeeId)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Delete, $"api/employees?id={employeeId}", null);
+            await httpService.SendAsync(HttpMethod.Delete, $"api/employees?id={employeeId}", null);
         }
 
         public async Task EditEmployee(Employee employee)
         {
-            await httpService.SendAsync(httpClient, HttpMethod.Put, "api/employees", employee);
+            await httpService.SendAsync(HttpMethod.Put, "api/employees", employee);
         }
     }
 }
