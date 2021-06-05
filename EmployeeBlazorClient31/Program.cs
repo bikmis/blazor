@@ -29,14 +29,15 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress));
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
-
-            //Singleton services
-            builder.Services.AddSingleton<IAppService, AppService>();
             //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
             //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
             //Make a change to the weather.json in the server and revisit the /fetchdata page to see the new content. In the server side blazor,
             //the browser does not hold data in the cache but in the client side one clear browser cache, refresh the browser to view the changed content.
-            builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            //It is recommended that HttpClient should be scoped rather than singleton because a singleton HttpClient doesn't respect DNS changes.
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            //Singleton services
+            builder.Services.AddSingleton<IAppService, AppService>();            
 
             //Difference among AddSingleton, AddScoped and AddTransient
             builder.Services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
