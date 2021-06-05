@@ -19,16 +19,16 @@ namespace Intel.EmployeeManagement.BlazorClient
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            var employeeBaseAddress = builder.Configuration["EmployeeBaseAddress"];
+            var resourceBaseAddress = builder.Configuration["ResourceBaseAddress"];
             var identityProviderBaseAddress = builder.Configuration["IdentityProviderBaseAddress"];
 
             //AddHttpClient() method will be availble after you install Microsoft.Extensions.Http
             //AddHttpClient is the same as AddScoped except that you can set its BaseAdress.
             //Scoped services
-            builder.Services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri(employeeBaseAddress));
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress));
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
-            builder.Services.AddScoped<IHttpService, HttpService>(); //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
+            builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
 
             //Singleton services
             builder.Services.AddSingleton<IAppService, AppService>();
@@ -42,7 +42,6 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
             builder.Services.AddScoped<IGuidServiceAddScoped, GuidService>();
             builder.Services.AddTransient<IGuidServiceAddTransient, GuidService>();
-
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();

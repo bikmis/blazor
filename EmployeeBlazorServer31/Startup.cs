@@ -31,7 +31,7 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            var employeeBaseAddress = Configuration["EmployeeBaseAddress"];
+            var resourceBaseAddress = Configuration["ResourceBaseAddress"];
             var identityProviderBaseAddress = Configuration["IdentityProviderBaseAddress"];
 
             //Scoped services
@@ -44,10 +44,10 @@ namespace Intel.EmployeeManagement.BlazorServer
                 var navigationManager = s.GetRequiredService<NavigationManager>();
                 return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
             });
-            services.AddHttpClient<IEmployeeService, EmployeeService>(httpClient => httpClient.BaseAddress = new Uri(employeeBaseAddress));
+            services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress)); ;
             services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
-            services.AddScoped<IHttpService, HttpService>(); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
+            services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
 
             //Singleton services
             services.AddSingleton<IAppService, AppService>();
