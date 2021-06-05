@@ -2,7 +2,7 @@
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service
 {
-    public class GuidService : IGuidServiceAddScoped, IGuidServiceAddSingleton, IGuidServiceAddTransient
+    public class GuidService : IGuidServiceScoped, IGuidServiceSingleton, IGuidServiceTransient
     {
         private int counter { get; set; }
         private Guid guid { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service
 {
-    public interface IGuidServiceAddScoped : IGuidService
+    public interface IGuidServiceSingleton : IGuidService
     {
 
     }

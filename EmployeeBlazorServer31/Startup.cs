@@ -55,9 +55,9 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddSingleton<IAppService, AppService>();
 
             //Difference among AddSingleton, AddScoped and AddTransient
-            services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
-            services.AddScoped<IGuidServiceAddScoped, GuidService>();
-            services.AddTransient<IGuidServiceAddTransient, GuidService>();
+            services.AddSingleton<IGuidServiceSingleton, GuidService>();
+            services.AddScoped<IGuidServiceScoped, GuidService>();
+            services.AddTransient<IGuidServiceTransient, GuidService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

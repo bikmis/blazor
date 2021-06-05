@@ -35,9 +35,9 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddSingleton<IAppService, AppService>();            
 
             //Difference among AddSingleton, AddScoped and AddTransient
-            builder.Services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
-            builder.Services.AddScoped<IGuidServiceAddScoped, GuidService>();
-            builder.Services.AddTransient<IGuidServiceAddTransient, GuidService>();
+            builder.Services.AddSingleton<IGuidServiceSingleton, GuidService>();
+            builder.Services.AddScoped<IGuidServiceScoped, GuidService>();
+            builder.Services.AddTransient<IGuidServiceTransient, GuidService>();
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();

@@ -10,25 +10,25 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.GuidExamplePage
     public partial class GuidExample
     {
         [Inject]
-        private IGuidServiceAddSingleton guidServiceAddSingleton { get; set; }
+        private IGuidServiceSingleton guidServiceSingleton { get; set; }
 
         [Inject]
-        private IGuidServiceAddScoped guidServiceAddScoped { get; set; }
+        private IGuidServiceScoped guidServiceScoped { get; set; }
 
         [Inject]
-        private IGuidServiceAddTransient guidServiceAddTransient { get; set; }
+        private IGuidServiceTransient guidServiceTransient { get; set; }
 
-        private Guid guidAddSingleton { get; set; }
+        private Guid guidSingleton { get; set; }
 
-        private int counterAddSingleton { get; set; }
+        private int counterSingleton { get; set; }
 
-        private Guid guidAddScoped { get; set; }
+        private Guid guidScoped { get; set; }
 
-        private int counterAddScoped { get; set; }
+        private int counterScoped { get; set; }
 
-        private Guid guidAddTransient { get; set; }
+        private Guid guidTransient { get; set; }
 
-        private int counterAddTransient { get; set; }
+        private int counterTransient { get; set; }
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
@@ -36,29 +36,29 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.GuidExamplePage
         protected async override Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
-            addSingleton();
-            addScoped();
-            addTransient();
+            createSingleton();
+            createScoped();
+            createTransient();
         }
 
-        private void addSingleton()
+        private void createSingleton()
         {
-            guidAddSingleton = guidServiceAddSingleton.CreateGuid();
-            counterAddSingleton = guidServiceAddSingleton.Increment();
+            guidSingleton = guidServiceSingleton.CreateGuid();
+            counterSingleton = guidServiceSingleton.Increment();
             StateHasChanged();
         }
 
-        private void addScoped()
+        private void createScoped()
         {
-            guidAddScoped = guidServiceAddScoped.CreateGuid();
-            counterAddScoped = guidServiceAddScoped.Increment();
+            guidScoped = guidServiceScoped.CreateGuid();
+            counterScoped = guidServiceScoped.Increment();
             StateHasChanged();
         }
 
-        private void addTransient()
+        private void createTransient()
         {
-            guidAddTransient = guidServiceAddTransient.CreateGuid();
-            counterAddTransient = guidServiceAddTransient.Increment();
+            guidTransient = guidServiceTransient.CreateGuid();
+            counterTransient = guidServiceTransient.Increment();
             StateHasChanged();
         }
 
