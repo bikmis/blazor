@@ -1,4 +1,4 @@
-﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -11,7 +11,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
         private string emailAddress { get; set; }
 
         [Inject]
-        private IAppStoreService appStoreService { get; set; }
+        private IAppService appService { get; set; }
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
@@ -21,7 +21,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
 
         protected override Task OnInitializedAsync()
         {
-            emailAddress = appStoreService.User.Email;
+            emailAddress = appService.User.Email;
             return base.OnInitializedAsync();
         }
 

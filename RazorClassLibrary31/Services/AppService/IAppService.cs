@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
 {
-    public interface IAppStoreService
+    public interface IAppService
     {
         User User { get; set; }
         string AccessToken { get; set; }

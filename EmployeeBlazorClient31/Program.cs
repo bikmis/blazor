@@ -1,4 +1,4 @@
-using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
@@ -31,7 +31,7 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddScoped<IHttpService, HttpService>(); //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
 
             //Singleton services
-            builder.Services.AddSingleton<IAppStoreService, AppStoreService>();
+            builder.Services.AddSingleton<IAppService, AppService>();
             //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
             //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
             //Make a change to the weather.json in the server and revisit the /fetchdata page to see the new content. In the server side blazor,

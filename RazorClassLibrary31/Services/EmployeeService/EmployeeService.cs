@@ -1,5 +1,5 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using System;
 using System.Collections.Generic;
@@ -12,13 +12,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
     {
         private readonly HttpClient httpClient;
         private readonly IHttpService httpService;
-        private readonly IAppStoreService appStoreService;
+        private readonly IAppService appService;
 
-        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, IAppStoreService _appStoreService)
+        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, IAppService _appService)
         {
             httpClient = _httpClient;
             httpService = _httpService;
-            appStoreService = _appStoreService;
+            appService = _appService;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
@@ -26,7 +26,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             try
             {
                 var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
-                var employees = await appStoreService.DeserializeToListOfType<Employee>(response);
+                var employees = await appService.DeserializeToListOfType<Employee>(response);
                 return employees;
             }
             catch (Exception exception)

@@ -1,14 +1,13 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
 {
-    public class AppStoreService : IAppStoreService
+    public class AppService : IAppService
     {
         private User _user = new User();
         private string _accessToken;
