@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.JSInterop;
-using Intel.EmployeeManagement.RazorClassLibrary.Helper;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Helper;
 using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.User_Service;
-using System;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -25,16 +23,14 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
 
     public class AuthenticationService : AuthenticationStateProvider
     {
-        private IUserService userService;
-        private ITokenService tokenService;
+        private IAppStoreService appStoreService;
         private IJSRuntime jsRuntime;
         private HttpClient httpClient;
         private ISerializerService serializerService;
 
-        public AuthenticationService(IUserService _userService, ITokenService _tokenService, IJSRuntime _jsRuntime, ISerializerService _serializerService, HttpClient _httpClient)
+        public AuthenticationService(IAppStoreService _appStoreService, IJSRuntime _jsRuntime, ISerializerService _serializerService, HttpClient _httpClient)
         {
-            userService = _userService;
-            tokenService = _tokenService;
+            appStoreService = _appStoreService;
             jsRuntime = _jsRuntime;
             httpClient = _httpClient;
             serializerService = _serializerService;
@@ -52,9 +48,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
 
             //For Blazor Server side, userService.User.IsLoggedIn is true and goes to the first "if" condition if a page is refreshed,
             //but for client side, it is false and goes to the next "else if" condition if a page is refreshed.
-            if (userService.User.IsLoggedIn)
+            if (appStoreService.User.IsLoggedIn)
             {
-                return await createLoggedInState(tokenService.AccessToken);
+                return await createLoggedInState(appStoreService.AccessToken);
             }
             else if (refreshToken != null)
             {
@@ -62,15 +58,15 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
                     var token = await serializerService.DeserializeToType<Token>(response);
-                    userService.User = createUserFromToken(token);
-                    tokenService.AccessToken = token.AccessToken;
-                    return await createLoggedInState(tokenService.AccessToken);
+                    appStoreService.User = createUserFromToken(token);
+                    appStoreService.AccessToken = token.AccessToken;
+                    return await createLoggedInState(appStoreService.AccessToken);
                 }
             }
 
             //if response fails, that means refreshToken has expired, then the user is logged out and back on the login page.
-            await jsRuntime.InvokeVoidAsync("clearSessionStorage"); //removes everything from session storage including refresh_token
-            userService.User = new User();
+            await jsRuntime.InvokeVoidAsync("clearSessionStorage");
+            appStoreService.User = new User();
             return await createLoggedOutState();
         }
 
@@ -81,11 +77,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             {
                 var token = await serializerService.DeserializeToType<Token>(response);
                 //AccessToken in a service property and RefreshToken is saved in session storage of the browser
-                tokenService.AccessToken = token.AccessToken;
+                appStoreService.AccessToken = token.AccessToken;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
 
                 //user is created to hydrate user service property
-                userService.User = createUserFromToken(token);
+                appStoreService.User = createUserFromToken(token);
 
                 NotifyAuthenticationStateChanged(createLoggedInState(token.AccessToken));
             }
@@ -94,7 +90,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
         public void LogoutUser()
         {
             jsRuntime.InvokeVoidAsync("clearSessionStorage");
-            userService.User = new User();
+            appStoreService.User = new User();
             NotifyAuthenticationStateChanged(createLoggedOutState());
         }
 
@@ -125,7 +121,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
         public async Task GuardRoute() {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
 
-            if (Utility.IsTokenExpired(tokenService.AccessToken)) {
+            if (Utility.IsTokenExpired(appStoreService.AccessToken)){
                 if (refreshToken == null || Utility.IsTokenExpired(refreshToken)) {
                     LogoutUser();
                     return;
@@ -133,7 +129,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 //if access token has expired, but not refresh token, then do the following, then get a new acces token.
                 var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 var token = await serializerService.DeserializeToType<Token>(response);
-                tokenService.AccessToken = token.AccessToken;
+                appStoreService.AccessToken = token.AccessToken;
             }            
         }
 

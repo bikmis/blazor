@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.JSInterop;
-using Intel.EmployeeManagement.RazorClassLibrary.Models;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -14,21 +14,21 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
     public class HttpService : IHttpService
     {
         private ISerializerService serializerService;
-        private ITokenService tokenService;
+        private IAppStoreService appStoreService;
         private IJSRuntime jsRuntime { get; set; }
         private AuthenticationStateProvider authenticationService { get; set; }
 
-        public HttpService(ISerializerService _serializerService, ITokenService _tokenService, AuthenticationStateProvider _authenticationService, IJSRuntime _jsRuntime)
+        public HttpService(ISerializerService _serializerService, IAppStoreService _appStoreService, AuthenticationStateProvider _authenticationService, IJSRuntime _jsRuntime)
         {
             serializerService = _serializerService;
-            tokenService = _tokenService;
+            appStoreService = _appStoreService;
             authenticationService = _authenticationService;
             jsRuntime = _jsRuntime;
         }
 
         public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpMethod method, string url, object data)
         {
-            var response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
+            var response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, appStoreService.AccessToken);
             if (response.IsSuccessStatusCode)
             {
                 return response;
@@ -40,8 +40,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                 if (response.IsSuccessStatusCode) //if refresh token is expired, resonse is unauthorized
                 {
                     var token = await serializerService.DeserializeToType<Token>(response);
-                    tokenService.AccessToken = token.AccessToken;
-                    response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, tokenService.AccessToken);
+                    appStoreService.AccessToken = token.AccessToken;
+                    response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, appStoreService.AccessToken);
                     return response;
                 }
             }

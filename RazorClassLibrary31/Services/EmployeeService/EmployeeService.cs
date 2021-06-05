@@ -1,7 +1,6 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -15,7 +14,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
         private readonly IHttpService httpService;
         private readonly ISerializerService serializerService;
 
-        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService, ITokenService _tokenService)
+        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService)
         {
             httpClient = _httpClient;
             httpService = _httpService;

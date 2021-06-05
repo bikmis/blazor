@@ -1,13 +1,12 @@
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.User_Service;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -33,14 +32,14 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddScoped<IHttpService, HttpService>(); //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
 
             //Singleton services
-            builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddSingleton<IAppStoreService, AppStoreService>();
             //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
             //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
             //Make a change to the weather.json in the server and revisit the /fetchdata page to see the new content. In the server side blazor,
             //the browser does not hold data in the cache but in the client side one clear browser cache, refresh the browser to view the changed content.
             builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddSingleton<ISerializerService, SerializerService>();
-            builder.Services.AddSingleton<ITokenService, TokenService>();
+            
 
             //Difference among AddSingleton, AddScoped and AddTransient
             builder.Services.AddSingleton<IGuidServiceAddSingleton, GuidService>();

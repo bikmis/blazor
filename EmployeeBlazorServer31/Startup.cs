@@ -1,3 +1,9 @@
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -5,13 +11,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Token_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.User_Service;
 using System;
 using System.Net.Http;
 
@@ -52,9 +51,8 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddScoped<IHttpService, HttpService>(); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
 
             //Singleton services
-            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IAppStoreService, AppStoreService>();
             services.AddSingleton<ISerializerService, SerializerService>();
-            services.AddSingleton<ITokenService, TokenService>();            
 
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
