@@ -2,9 +2,9 @@
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service
 {
-    public interface IGuidService
+    public interface ITransientGuidService
     {
-        Guid CreateGuid();
-        int Increment();
+        Guid GuidId { get; set; }
     }
 }
+ 

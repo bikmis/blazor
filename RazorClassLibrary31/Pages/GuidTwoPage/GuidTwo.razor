@@ -1,9 +1,9 @@
-﻿@page "/guid"
+﻿@page "/guid-two"
 @layout EmployeeLayout
 @attribute [Authorize]
 
 
-<h3>AddSingleton vs AddScoped vs AddTransient</h3>
+<h3>Singleton vs Scoped vs Transient Service</h3>
 <br />
 <br />
 <table class="table table-striped">
@@ -11,24 +11,20 @@
         <tr>
             <th>Actions</th>
             <th>Value</th>
-            <th>Counter</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><button class="btn btn-primary" @onclick="createSingleton">AddSingleton</button></td>
-            <td>@guidSingleton</td>
-            <td>@counterSingleton</td>
+            <td><button class="btn btn-primary" @onclick="createSingletonGuid">Singleton Guid Service</button></td>
+            <td>@singletonGuidId</td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="createScoped">AddScoped</button></td>
-            <td>@guidScoped</td>
-            <td>@counterScoped</td>
+            <td><button class="btn btn-primary" @onclick="createScopedGuid">Scoped Guid Service</button></td>
+            <td>@scopedGuidId</td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="createTransient">AddTransient</button></td>
-            <td>@guidTransient</td>
-            <td>@counterTransient</td>
+            <td><button class="btn btn-primary" @onclick="createTransientGuid">Transient Guid Service</button></td>
+            <td>@transientGuidId</td>
         </tr>
     </tbody>
 </table>
