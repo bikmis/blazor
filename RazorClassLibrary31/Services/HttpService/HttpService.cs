@@ -36,7 +36,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                 response = await ((AuthenticationService)authenticationService).SendAsync(new HttpClient() { BaseAddress = new Uri("https://localhost:44382/") }, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 if (response.IsSuccessStatusCode) //if refresh token is expired, resonse is unauthorized
                 {
-                    var token = await appService.DeserializeToType<Token>(response);
+                    var token = await appService.Deserialize<Token>(response);
                     appService.AccessToken = token.AccessToken;
                     response = await ((AuthenticationService)authenticationService).SendAsync(httpClient, method, url, data, appService.AccessToken);
                     return response;

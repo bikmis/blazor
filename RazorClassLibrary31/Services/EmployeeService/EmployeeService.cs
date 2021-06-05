@@ -26,7 +26,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             try
             {
                 var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
-                var employees = await appService.DeserializeToListOfType<Employee>(response);
+                var employees = await appService.DeserializeToList<Employee>(response);
                 return employees;
             }
             catch (Exception exception)

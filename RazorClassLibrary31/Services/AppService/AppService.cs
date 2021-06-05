@@ -16,7 +16,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
 
         public string AccessToken { get => _accessToken; set => _accessToken = value; }
 
-        public async Task<T> DeserializeToType<T>(HttpResponseMessage response)
+        public async Task<T> Deserialize<T>(HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode)
             {
@@ -25,7 +25,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
             return await JsonSerializer.DeserializeAsync<T>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<List<T>> DeserializeToListOfType<T>(HttpResponseMessage response)
+        public async Task<List<T>> DeserializeToList<T>(HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode)
             {
@@ -34,9 +34,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
             return await JsonSerializer.DeserializeAsync<List<T>>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public StringContent SerializeToString(object data)
+        public HttpContent Serialize(object data)
         {
             //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            //StringContent provides HttpContent based on a string
             var stringContent = data != null ? new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json") : null;
             return stringContent;
         }

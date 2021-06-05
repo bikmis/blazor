@@ -54,7 +54,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
                 //if response comes back ok with access token, then user stays logged in.
                 if (response.IsSuccessStatusCode) {
-                    var token = await appService.DeserializeToType<Token>(response);
+                    var token = await appService.Deserialize<Token>(response);
                     appService.User = createUserFromToken(token);
                     appService.AccessToken = token.AccessToken;
                     return await createLoggedInState(appService.AccessToken);
@@ -72,7 +72,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             var response = await SendAsync(httpClient, HttpMethod.Post, "api/login", login, null);
             if (response.IsSuccessStatusCode)
             {
-                var token = await appService.DeserializeToType<Token>(response);
+                var token = await appService.Deserialize<Token>(response);
                 //AccessToken in a service property and RefreshToken is saved in session storage of the browser
                 appService.AccessToken = token.AccessToken;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
@@ -110,7 +110,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
-            request.Content = appService.SerializeToString(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            request.Content = appService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
             var response = await httpClient.SendAsync(request);
             return response;
         }
@@ -125,7 +125,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 }
                 //if access token has expired, but not refresh token, then do the following, then get a new acces token.
                 var response = await SendAsync(httpClient, HttpMethod.Post, "api/accessToken", null, refreshToken);
-                var token = await appService.DeserializeToType<Token>(response);
+                var token = await appService.Deserialize<Token>(response);
                 appService.AccessToken = token.AccessToken;
             }            
         }

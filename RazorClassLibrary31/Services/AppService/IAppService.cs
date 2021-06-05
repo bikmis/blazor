@@ -9,8 +9,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
     {
         User User { get; set; }
         string AccessToken { get; set; }
-        StringContent SerializeToString(object data);
-        Task<T> DeserializeToType<T>(HttpResponseMessage response);
-        Task<List<T>> DeserializeToListOfType<T>(HttpResponseMessage response);
+        HttpContent Serialize(object data);
+        Task<T> Deserialize<T>(HttpResponseMessage response);
+        Task<List<T>> DeserializeToList<T>(HttpResponseMessage response);
     }
 }
