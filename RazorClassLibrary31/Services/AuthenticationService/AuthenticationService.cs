@@ -36,15 +36,17 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
         //When a page is refreshed or the application loads for the first time, the following method (GetAuthenticationStateAsync) runs.
         //Authorization requires a cascading parameter of type Task<AuthenticationState>. Use CascadingAuthenticationState to supply this.
         //The first time the application loads, this runs and returns createLoggedOutState(), with that Authorization fails and Login screen <LoginUser /> appears from 
-        //<NotAuthorized> section of MainLayout.razor. Once you enter your username and password and click Login, AuthenticationService.LoginUser runs and among other things
-        //which will run LoginIntoUserInterface that will notify with createLoggedInState, which then lets the user in past the <Authorized> section of MainLayout.razor
-        //Every time you navigate to a page, Authorization runs automatically and is successful or fails based on createLoggedOutState() or createLoggedInState().
+        //<NotAuthorized> section of MasterLayout.razor. Once you enter your username and password and click Login, AuthenticationService.LoginUser runs and among other things
+        //which will run LoginUser that will notify with createLoggedInState, which then lets the user in past the <Authorized> section of MasterLayout.razor
+        //Every time you navigate to a page with [Authorize] attribute, Authorization runs and is successful or fails based on createLoggedOutState() or createLoggedInState().
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
 
-            //For Blazor Server side, userService.User.IsLoggedIn is true and goes to the first "if" condition if a page is refreshed,
+            //For Blazor Server side, appService.User.IsLoggedIn is true and goes to the first "if" condition if a page is refreshed,
             //but for client side, it is false and goes to the next "else if" condition if a page is refreshed.
+            //For server side Blazor, service variables don't lose value when the browser is refreshed because of circuit(SignalR connection
+            //which can also tolerate temporary network interruptions.)
             if (appService.User.IsLoggedIn)
             {
                 return await createLoggedInState(appService.AccessToken);
@@ -62,7 +64,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 }
             }
 
-            //if response fails, that means refreshToken has expired, then the user is logged out and back on the login page.
+            //if response fails, that means refreshToken has expired or is not available in the sessionStorage, then the user is logged out and back on the login page.
             await jsRuntime.InvokeVoidAsync("clearSessionStorage");
             appService.User = new User();
             return await createLoggedOutState();
@@ -74,11 +76,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             if (response.IsSuccessStatusCode)
             {
                 var token = await appService.Deserialize<Token>(response);
-                //AccessToken in a service property and RefreshToken is saved in session storage of the browser
+                //AccessToken in a appService property and RefreshToken is saved in session storage of the browser
                 appService.AccessToken = token.AccessToken;
                 await jsRuntime.InvokeVoidAsync("setToSessionStorage", "refresh_token", token.RefreshToken);
 
-                //user is created to hydrate user service property
+                //user is created to hydrate appService property
                 appService.User = createUserFromToken(token);
 
                 NotifyAuthenticationStateChanged(createLoggedInState(token.AccessToken));
@@ -92,14 +94,14 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             NotifyAuthenticationStateChanged(createLoggedOutState());
         }
 
-        private async Task<HttpResponseMessage> loginUser(object data)
-        {
-            return await sendAsync("api/login", data);
-        }
-
         public async Task<HttpResponseMessage> GetAccessToken()
         {
             return await sendAsync("api/accessToken", null);
+        }
+
+        private async Task<HttpResponseMessage> loginUser(object data)
+        {
+            return await sendAsync("api/login", data);
         }
 
         private async Task<HttpResponseMessage> sendAsync(string url, object data)
@@ -126,7 +128,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                     LogoutUser();
                     return;
                 }
-                //if access token has expired, but not refresh token, then do the following, then get a new acces token.
+                //if access token has expired, but not refresh token, then do the following, then get a new access token.
                 var response = await GetAccessToken();
                 var token = await appService.Deserialize<Token>(response);
                 appService.AccessToken = token.AccessToken;
