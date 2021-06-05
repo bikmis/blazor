@@ -1,6 +1,6 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,13 +12,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
     {
         private readonly HttpClient httpClient;
         private readonly IHttpService httpService;
-        private readonly ISerializerService serializerService;
+        private readonly IAppStoreService appStoreService;
 
-        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, ISerializerService _serializerService)
+        public EmployeeService(HttpClient _httpClient, IHttpService _httpService, IAppStoreService _appStoreService)
         {
             httpClient = _httpClient;
             httpService = _httpService;
-            serializerService = _serializerService;
+            appStoreService = _appStoreService;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
@@ -26,7 +26,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             try
             {
                 var response = await httpService.SendAsync(httpClient, HttpMethod.Get, "api/employees", null);
-                var employees = await serializerService.DeserializeToListOfType<Employee>(response);
+                var employees = await appStoreService.DeserializeToListOfType<Employee>(response);
                 return employees;
             }
             catch (Exception exception)

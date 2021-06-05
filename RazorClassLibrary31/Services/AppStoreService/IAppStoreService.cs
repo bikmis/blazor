@@ -1,7 +1,7 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service
 {
@@ -9,5 +9,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppStore_Service
     {
         User User { get; set; }
         string AccessToken { get; set; }
+        StringContent SerializeToString(object data);
+        Task<T> DeserializeToType<T>(HttpResponseMessage response);
+        Task<List<T>> DeserializeToListOfType<T>(HttpResponseMessage response);
     }
 }

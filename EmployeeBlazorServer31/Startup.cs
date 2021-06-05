@@ -3,7 +3,6 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Serializer_Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -52,7 +51,6 @@ namespace Intel.EmployeeManagement.BlazorServer
 
             //Singleton services
             services.AddSingleton<IAppStoreService, AppStoreService>();
-            services.AddSingleton<ISerializerService, SerializerService>();
 
             //Difference among AddSingleton, AddScoped and AddTransient
             services.AddSingleton<IGuidServiceAddSingleton, GuidService>();
