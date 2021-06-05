@@ -3,6 +3,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.WeatherForecast_Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -33,21 +34,22 @@ namespace Intel.EmployeeManagement.BlazorServer
 
             var resourceBaseAddress = Configuration["ResourceBaseAddress"];
             var identityProviderBaseAddress = Configuration["IdentityProviderBaseAddress"];
+            var frontendBaseAddress = Configuration["FrontendBaseAddress"];
 
-            //Scoped services
-            //The following HttpClient is created for Weather Forecast (/fetchdata which gets json data from weather.json file in the server). Check Network in the browser
-            //to find request url https://localhost:44391/_content/RazorClassLibrary31/sample-data/weather.json, which is the blazor server.
-            //Make a change to the weather.json in the server and revisit the /fetchdata page to see the new content. In the server side blazor,
-            //the browser does not hold data in the cache but in the client side one clear browser cache, refresh the browser to view the changed content.
+            /*
             services.AddScoped(s =>
             {
                 var navigationManager = s.GetRequiredService<NavigationManager>();
                 return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
             });
+            */
+
+            //Scoped services
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress)); ;
             services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
+            services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(frontendBaseAddress));
 
             //Singleton services
             services.AddSingleton<IAppService, AppService>();
