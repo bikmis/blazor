@@ -36,7 +36,7 @@ Dependency Injection(DI) is a tehcnique for accessing services configured in a c
     <li>Blazor Server apps: scoped services, singletons and transient services all behave differently.</li>
     <li>Blazor Web Assembly apps: scoped services behave the same way as singletons, but transient services behave differently. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#service-lifetime" target="_blank">Blazor DI</a>.</li>
     <li>An HttpClient is registered as a scoped service, not singleton. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
-    <li>IJSRuntime and Navigation Manager are singletons in a Web Assembly app and scoped in a Blazor Server app. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
+    <li>IJSRuntime and Navigation Manager are singletons in a Web Assembly app, but scoped in a Blazor Server app. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
 </ul>
 <br />
 <table class="table table-striped">
