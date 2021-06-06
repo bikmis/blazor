@@ -3,8 +3,10 @@
 @attribute [Authorize]
 
 
-<h3>Singleton vs Scoped vs Transient Service</h3>
-Dependency Injection(DI) is a tehcnique for accessing services configured in a central location.
+<h3>Singleton vs Scoped vs Transient Service (Time Service - Page One</h3>
+Dependency Injection(DI) is a tehcnique for accessing services configured in a central location. If a dependency object is created inside a dependent object instead of being injected, the code will
+be difficult to unit test, as you cannot mock or stub the dependency. For a dependency created within a dependent object, a different implementation of depedency will modify the dependent, but if injected
+the dependent may not have to be modified.
 <br />
 <br />
 <table class="table table-striped">
@@ -37,6 +39,8 @@ Dependency Injection(DI) is a tehcnique for accessing services configured in a c
     <li>Blazor Web Assembly apps: scoped services behave the same way as singletons, but transient services behave differently. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#service-lifetime" target="_blank">Blazor DI</a>.</li>
     <li>An HttpClient is registered as a scoped service, not singleton. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
     <li>IJSRuntime and Navigation Manager are singletons in a Web Assembly app and scoped in a Blazor Server app. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
+    <li>AddHttpClient is a scoped service. Check <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests" target="_blank">HttClient</a>.</li>
+    <li>A singleton cannot consume a scoped service in a Blazor Web Assembly app.</li>
 </ul>
 <br />
 <table class="table table-striped">
