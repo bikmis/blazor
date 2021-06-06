@@ -1,28 +1,28 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
 using System;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.GuidTwoPage 
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeTwoPage 
 {
-    public partial class GuidTwo
+    public partial class TimeTwo
     {
         [Inject]
-        private ISingletonGuidService singletonGuidService { get; set; }
+        private ISingletonTimeService singletonTimeService { get; set; }
 
         [Inject]
-        private IScopedGuidService scopedGuidService { get; set; }
+        private IScopedTimeService scopedTimeService { get; set; }
 
         [Inject]
-        private ITransientGuidService transientGuidService { get; set; }
+        private ITransientTimeService transientTimeService { get; set; }
 
-        private Guid singletonGuidId { get; set; }
+        private TimeSpan singletonTime { get; set; }
 
-        private Guid scopedGuidId { get; set; }
+        private TimeSpan scopedTime { get; set; }
 
-        private Guid transientGuidId { get; set; }
+        private TimeSpan transientTime { get; set; }
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
@@ -31,25 +31,25 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.GuidTwoPage
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
             createSingletonGuid();
-            createScopedGuid();
+            createScopedTime();
             createTransientGuid();
         }
 
         private void createSingletonGuid()
         {
-            singletonGuidId = singletonGuidService.GuidId;
+            singletonTime = singletonTimeService.Time;
             StateHasChanged();
         }
 
-        private void createScopedGuid()
+        private void createScopedTime()
         {
-            scopedGuidId = scopedGuidService.GuidId;
+            scopedTime = scopedTimeService.Time;
             StateHasChanged();
         }
 
         private void createTransientGuid()
         {
-            transientGuidId = transientGuidService.GuidId;
+            transientTime = transientTimeService.Time;
             StateHasChanged();
         }
 

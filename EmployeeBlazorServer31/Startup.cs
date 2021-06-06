@@ -1,7 +1,7 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.WeatherForecast_Service;
 using Microsoft.AspNetCore.Builder;
@@ -53,9 +53,9 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddSingleton<IAppService, AppService>();
 
             //Difference among Singleton, Scoped and Transient services
-            services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
-            services.AddScoped<IScopedGuidService, ScopedGuidService>();
-            services.AddTransient<ITransientGuidService, TransientGuidService>();
+            services.AddSingleton<ISingletonTimeService, SingletonTimeService>();
+            services.AddScoped<IScopedTimeService, ScopedTimeService>();
+            services.AddTransient<ITransientTimeService, TransientTimeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

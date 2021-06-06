@@ -1,7 +1,7 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Guid_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.WeatherForecast_Service;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -35,9 +35,9 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddSingleton<IAppService, AppService>();            
 
             //Difference among Singleton, Scoped and Transient services
-            builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
-            builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
-            builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
+            builder.Services.AddSingleton<ISingletonTimeService, SingletonTimeService>();
+            builder.Services.AddScoped<IScopedTimeService, ScopedTimeService>();
+            builder.Services.AddTransient<ITransientTimeService, TransientTimeService>();
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();

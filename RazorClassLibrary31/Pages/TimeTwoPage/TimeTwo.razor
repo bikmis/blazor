@@ -1,4 +1,4 @@
-﻿@page "/guid-two"
+﻿@page "/time-two"
 @layout EmployeeLayout
 @attribute [Authorize]
 
@@ -15,16 +15,16 @@
     </thead>
     <tbody>
         <tr>
-            <td><button class="btn btn-primary" @onclick="createSingletonGuid">Singleton Guid Service</button></td>
-            <td>@singletonGuidId</td>
+            <td><button class="btn btn-primary" @onclick="createSingletonGuid">Create Time(Singleton)</button></td>
+            <td>@singletonTime</td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="createScopedGuid">Scoped Guid Service</button></td>
-            <td>@scopedGuidId</td>
+            <td><button class="btn btn-primary" @onclick="createScopedTime">Create Time(Scoped)</button></td>
+            <td>@scopedTime</td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="createTransientGuid">Transient Guid Service</button></td>
-            <td>@transientGuidId</td>
+            <td><button class="btn btn-primary" @onclick="createTransientGuid">Create Time(Transient)</button></td>
+            <td>@transientTime</td>
         </tr>
     </tbody>
 </table>
