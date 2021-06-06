@@ -4,6 +4,7 @@
 
 
 <h3>Singleton vs Scoped vs Transient Service</h3>
+Dependency Injection(DI) is a tehcnique for accessing services configured in a central location.
 <br />
 <br />
 <table class="table table-striped">
@@ -30,6 +31,14 @@
 </table>
 <br />
 <h5>Summery</h5>
+<br />
+<ul>
+    <li>Blazor Server apps: scoped services, singletons and transient services all behave differently.</li>
+    <li>Blazor Web Assembly apps: scoped services behave the same way as singletons, but transient services behave differently. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#service-lifetime" target="_blank">Blazor DI</a>.</li>
+    <li>An HttpClient is registered as a scoped service, not singleton. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
+    <li>IJSRuntime and Navigation Manager are singletons in a Web Assembly app and scoped in a Blazor Server app. Check <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-5.0&pivots=webassembly#default-services" target="_blank">Blazor DI</a>.</li>
+</ul>
+<br />
 <table class="table table-striped">
     <thead>
         <tr>
@@ -45,45 +54,38 @@
             <td>Singleton</td>
             <td>Blazor Server</td>
             <td>
-                The service object is instantiated when a service is required. Once landed on a page, the same object is used within the
-                page for a requirement of the service say from a button click or when the user navigates to another page requiring the same service
-                or when the page is refreshed, when the page is duplicated.
+                same object: page load, button click within the page, another page, page reload, duplicate page
             </td>
             <td>Blazor Web Assembly</td>
             <td>
-                The service object is instantiated when a service is required. Once landed on a page, the same object is used within the
-                page for a requirement of the service say from a button click or when the user navigates to another page where the same service is required.
-                A new object is instantiated when the page is refreshed/reloaded, or when the page is duplicated.
+                same object: page load, button click within the page, another page <br />
+                new object: page reload, duplicate page.
             </td>
         </tr>
         <tr>
             <td>Scoped</td>
             <td>Blazor Server</td>
             <td>
-                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
-                page for a requirement of the service, say from a button click or when the user navigates to another page requiring the same service.
-                A new instance is created when the page is refreshed/reloaded, or when the page is duplicated.
+                same object: page load, button click within the page, another page <br />
+                new object: page reload, duplicate page
             </td>
             <td>Blazor Web Assembly</td>
             <td>
-                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
-                page for a requirement of the service, say from a button click or when the user navigates to another page requiring the same service.
-                A new instance is created when the page is refreshed/reloaded, or when the page is duplicated.
+                same object: page load, button click within the page, another page <br />
+                new object: page reload, duplicate page.
             </td>
         </tr>
         <tr>
             <td>Transient</td>
             <td>Blazor Server</td>
             <td>
-                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
-                page for a requirement of the service, say from a button click. A new instance is created when the user navigates to another page
-                requiring the same service or when the page is refreshed/reloaded, or when the page is duplicateded.
+                same object: page load, button click within the page <br />
+                new object: another page, page reload, duplicate page
             </td>
             <td>Blazor Web Assembly</td>
             <td>
-                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
-                page for a requirement of the service, say from a button click. A new instance is created when the user navigates to another page
-                requiring the same service or when the page is refreshed/reloaded, or when the page is duplicateded.
+                same object: page load, button click within the page <br />
+                new object: another page, page reload, duplicate page
             </td>
         </tr>
     </tbody>

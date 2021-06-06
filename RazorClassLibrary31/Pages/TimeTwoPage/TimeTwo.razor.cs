@@ -30,12 +30,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeTwoPage
         protected async override Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
-            createSingletonGuid();
+            createSingletonTime();
             createScopedTime();
-            createTransientGuid();
+            createTransientTime();
         }
 
-        private void createSingletonGuid()
+        private void createSingletonTime()
         {
             singletonTime = singletonTimeService.Time;
             StateHasChanged();
@@ -47,7 +47,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeTwoPage
             StateHasChanged();
         }
 
-        private void createTransientGuid()
+        private void createTransientTime()
         {
             transientTime = transientTimeService.Time;
             StateHasChanged();
