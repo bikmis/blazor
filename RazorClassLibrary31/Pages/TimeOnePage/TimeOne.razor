@@ -28,123 +28,230 @@
         </tr>
     </tbody>
 </table>
-
-
-<h5>Analysis</h5>
+<br />
+<h5>Summery</h5>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Action</th>
-            <th>Environment</th>
-            <th>Result</th>
-            <th>Environment</th>
-            <th>Result</th>
+            <th>Service Type</th>
+            <th>Hosting Model</th>
+            <th>Description</th>
+            <th>Hosting Model</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
+            <td>Singleton</td>
+            <td>Blazor Server</td>
+            <td>
+                The service object is instantiated when a service is required. Once landed on a page, the same object is used within the
+                page for a requirement of the service say from a button click or when the user navigates to another page requiring the same service
+                or when the page is refreshed, when the page is duplicated.
+            </td>
+            <td>Blazor Web Assembly</td>
+            <td>
+                The service object is instantiated when a service is required. Once landed on a page, the same object is used within the
+                page for a requirement of the service say from a button click or when the user navigates to another page where the same service is required.
+                A new object is instantiated when the page is refreshed/reloaded, or when the page is duplicated.
+            </td>
+        </tr>
+        <tr>
+            <td>Scoped</td>
+            <td>Blazor Server</td>
+            <td>
+                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
+                page for a requirement of the service, say from a button click or when the user navigates to another page requiring the same service.
+                A new instance is created when the page is refreshed/reloaded, or when the page is duplicated.
+            </td>
+            <td>Blazor Web Assembly</td>
+            <td>
+                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
+                page for a requirement of the service, say from a button click or when the user navigates to another page requiring the same service.
+                A new instance is created when the page is refreshed/reloaded, or when the page is duplicated.
+            </td>
+        </tr>
+        <tr>
+            <td>Transient</td>
+            <td>Blazor Server</td>
+            <td>
+                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
+                page for a requirement of the service, say from a button click. A new instance is created when the user navigates to another page
+                requiring the same service or when the page is refreshed/reloaded, or when the page is duplicateded.
+            </td>
+            <td>Blazor Web Assembly</td>
+            <td>
+                The service object is instantiated when a service is required. Once the page is loaded, the same object is used within the
+                page for a requirement of the service, say from a button click. A new instance is created when the user navigates to another page
+                requiring the same service or when the page is refreshed/reloaded, or when the page is duplicateded.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<h5>Analysis</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Service Type</th>
+            <th>Action</th>
+            <th>Hosting Model</th>
+            <th>Time</th>
+            <th>Comment</th>
+            <th>Hosting Model</th>
+            <th>Time</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Singleton <br />
+                Scoped <br />
+                Transient
+            </td>
             <td>Navigate to Time One</td>
             <td>Blazor Server</td>
             <td>
-                Singleton: 07:08:13.6505046 - new object <br />
-                Scoped:    07:08:13.6509394 - new object <br />
-                Transient: 07:08:13.6512970 - new object
+                07:08:13.6505046 <br />
+                07:08:13.6509394 <br />
+                07:08:13.6512970
+            </td>
+            <td>
+                new object <br />
+                new object <br />
+                new object
             </td>
             <td>Blazor Web Assembly</td>
             <td>
-                Singleton: 07:23:08.7180000 - new object <br />
-                Scoped:    07:23:08.8140000 - new object <br />
-                Transient: 07:23:08.8170000 - new object
+                07:23:08.7180000 <br />
+                07:23:08.8140000 <br />
+                07:23:08.8170000
+            </td>
+            <td>
+                new object <br />
+                new object <br />
+                new object
             </td>
         </tr>
         <tr>
-            <td>Click On Singleton Button</td>
+            <td>
+                Singleton <br />
+                Scoped <br />
+                Transient
+            </td>
+            <td>Click on Button</td>
             <td>Blazor Server</td>
             <td>
-                Singleton: 07:08:13.6505046 - same object/singleton <br />
-                Scoped:    07:08:13.6509394 - same object/singleton <br />
-                Transient: 07:08:13.6512970 - same object/singleton
+                07:08:13.6505046 <br />
+                07:08:13.6509394 <br />
+                07:08:13.6512970
+            </td>
+            <td>
+                same object/singleton <br />
+                same object/singleton <br />
+                same object/singleton
             </td>
             <td>Blazor Web Assembly</td>
             <td>
-                Singleton: 07:23:08.7180000 - same object/singleton <br />
-                Scoped:    07:23:08.8140000 - same object/singleton <br />
-                Transient: 07:23:08.8170000 - same object/singleton
+                07:23:08.7180000 <br />
+                07:23:08.8140000 <br />
+                07:23:08.8170000
+            </td>
+            <td>
+                same object/singleton <br />
+                same object/singleton <br />
+                same object/singleton
             </td>
         </tr>
         <tr>
-            <td>Click On Scoped Button</td>
-            <td>Blazor Server</td>
             <td>
-                Singleton: 07:08:13.6505046 - same object/singleton <br />
-                Scoped:    07:08:13.6509394 - same object/singleton <br />
-                Transient: 07:08:13.6512970 - same object/singleton
+                Singleton <br />
+                Scoped <br />
+                Transient
             </td>
-            <td>Blazor Web Assembly</td>
-            <td>
-                Singleton: 07:23:08.7180000 - same object/singleton <br />
-                Scoped:    07:23:08.8140000 - same object/singleton <br />
-                Transient: 07:23:08.8170000 - same object/singleton
-            </td>
-        </tr>
-        <tr>
-            <td>Click On Transient Button</td>
-            <td>Blazor Server</td>
-            <td>
-                Singleton: 07:08:13.6505046 - same object/singleton <br />
-                Scoped:    07:08:13.6509394 - same object/singleton <br />
-                Transient: 07:08:13.6512970 - same object/singleton
-            </td>
-            <td>Blazor Web Assembly</td>
-            <td>
-                Singleton: 07:23:08.7180000 - same object/singleton <br />
-                Scoped:    07:23:08.8140000 - same object/singleton <br />
-                Transient: 07:23:08.8170000 - same object/singleton
-            </td>
-        </tr>
-        <tr>
-            <td>Refresh Browser</td>
-            <td>Blazor Server</td>
-            <td>
-                Singleton: 07:08:13.6505046 - same object/singleton <br />
-                <span style="color: red">Scoped: 07:10:13.8343978 - new object</span><br />
-                <span style="color:red">Transient: 07:10:13.8344646 - new object</span>
-            </td>
-            <td>Blazor Web Assembly</td>
-            <td>
-                <span style="color: red">Singleton: 07:25:07.1700000 - new object<br /></span>
-                <span style="color: red">Scoped: 07:25:07.2160000 - new object</span><br />
-                <span style="color:red">Transient: 07:25:07.2170000 - new object</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Duplicate Tab</td>
-            <td>Blazor Server</td>
-            <td>
-                Singleton: 07:08:13.6505046 - same object/singleton<br />
-                <span style="color: cyan">Scoped: 07:11:49.7334996 - new object </span><br />
-                <span style="color:cyan">Transient: 07:11:49.7337962 - new object </span>
-            </td>
-            <td>Blazor Web Assembly</td>
-            <td>
-                <span style="color: cyan">Singleton: 07:26:51.8750000 - new object<br /></span>
-                <span style="color: cyan">Scoped: 07:26:51.9270000 - new object </span><br />
-                <span style="color:cyan">Transient: 07:26:51.9290000 - new object </span>
-            </td>
-        </tr>
-        <tr>
             <td>Navigate to Time Two</td>
             <td>Blazor Server</td>
             <td>
-                Singleton: 07:08:13.6505046 - same object/singleton<br />
-                <span style="color: cyan">Scoped: 07:11:49.7334996 - same object/singleton</span><br />
-                <span style="color:blue">Transient: 07:13:05.6006513 - new object</span>
+                07:08:13.6505046 <br />
+                07:08:13.6509394 <br />
+                <span style="color:blue">07:13:05.6006513</span>
+            </td>
+            <td>
+                same object/singleton <br />
+                same object/singleton <br />
+                <span style="color: blue">new object</span>
             </td>
             <td>Blazor Web Assembly</td>
             <td>
-                <span style="color: cyan">Singleton: 07:26:51.8750000 - same object/singleton </span><br />
-                <span style="color: cyan">Scoped: 07:26:51.9270000 - same object/singleton</span><br />
-                <span style="color:blue">Transient: 07:28:35.5090000 - new object</span>
+                07:23:08.7180000 <br />
+                07:23:08.8140000 <br />
+                <span style="color:blue">07:28:35.5090000</span>
+            </td>
+            <td>
+                same object/singleton <br />
+                same object/singleton <br />
+                <span style="color: blue">new object</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Singleton <br />
+                Scoped <br />
+                Transient
+            </td>
+            <td>Reload Browser</td>
+            <td>Blazor Server</td>
+            <td>
+                07:08:13.6505046 <br />
+                <span style="color:red">07:10:13.8343978</span> <br />
+                <span style="color:red">07:10:13.8344646</span>
+            </td>
+            <td>
+                same object/singleton <br />
+                <span style="color: red">new object</span> <br />
+                <span style="color: red">new object</span>
+            </td>
+            <td>Blazor Web Assembly</td>
+            <td>
+                <span style="color:red">07:25:07.1700000</span> <br />
+                <span style="color:red">07:25:07.2160000</span> <br />
+                <span style="color:red">07:25:07.2170000</span>
+            </td>
+            <td>
+                <span style="color: red">new object</span> <br />
+                <span style="color: red">new object</span> <br />
+                <span style="color: red">new object</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Singleton <br />
+                Scoped <br />
+                Transient
+            </td>
+            <td>Duplicate Tab</td>
+            <td>Blazor Server</td>
+            <td>
+                07:08:13.6505046 <br />
+                <span style="color:cyan">07:11:49.7334996</span> <br />
+                <span style="color:cyan">07:11:49.7337962</span>
+            </td>
+            <td>
+                same object/singleton <br />
+                <span style="color: cyan">new object</span> <br />
+                <span style="color: cyan">new object</span>
+            </td>
+            <td>Blazor Web Assembly</td>
+            <td>
+                <span style="color:cyan">07:26:51.8750000</span> <br />
+                <span style="color:cyan">07:26:51.9270000</span> <br />
+                <span style="color:cyan">07:26:51.9290000</span>
+            </td>
+            <td>
+                <span style="color: cyan">new object</span> <br />
+                <span style="color: cyan">new object</span> <br />
+                <span style="color: cyan">new object</span>
             </td>
         </tr>
     </tbody>
