@@ -1,0 +1,54 @@
+﻿<h3>Hosting in IIS for Debugging in Visual Studio</h3>
+
+
+<h5>.net Core 3.1 Web API Deployment to IIS</h5>
+<ul>
+    <li>
+        Open IIS. Right click on Sites and Add Website. Site name: EmployeeResource, Application pool: IdentityProvider, Physical path: C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI,
+        PortL 8082, Type: https, SSL Certificate: IIS Express Development Certificate <br /> <br />
+        Note: Physical path is the project folder so that we can debug the application in Visual Studio 2019, protocol is https.
+    </li>
+    <li>
+        Click on the website in IIS, double click on Authentication and Edit Anonymous Authentication by setting Anonymous user identity to Application pool identity.
+    </li>
+    <li>
+        Start EmployeeResource in Application Pools.
+    </li>
+    <li>
+        Provide user "IIS AppPool\EmployeeResource" access to the the website EmployeeResource (project C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI) by right clicking
+        on the website, click on Edit Permissions -> Security -> Edit -> Add -> Enter "IIS AppPool\EmployeeResource" and click on Check Names, then click on OK.
+    </li>
+    <li>
+        Provide user "IIS AppPool\EmployeeResource" access to EmployeeDb via ssms. Expand root level Security -> Logins and create a login "IIS APPPOOL\EmployeeResource" with Server Role "public"
+    </li>
+    <li>
+        Create a User "IIS APPPOOL\EmployeeResource" in Users folder inside Security under EmployeeDb database. This user can have Membership "db_datareader" and "db_datawriter"
+    </li>
+    <li>
+        For "Delete" and "Put" http verbs to work via IIS, delete WebDAVModule from EmployeeResource -> Modules. If you need to restore WebDAVModule or any other module that you have deleted,
+        click on "Revert To Parent". "Delete" and "Put" verbs work in IIS Express though, but not in IIS without deleting WebDAVModule from the website. When you delete WebDAVModule, web.config
+        will change as below:
+        &lt;.webServer>
+        &nbsp;&nbsp;&lt;modules>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;remove name="WebDAVModule" />
+        &nbsp;&nbsp;&lt;/modules>
+        &lt;/system.webServer>
+    </li>
+    <li>
+        Right-click the project Employee Web Api and make following changes: Launch Browser: https://localhost:8082 and APP Url: https://localhost:8082
+    </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+@code {
+
+}
