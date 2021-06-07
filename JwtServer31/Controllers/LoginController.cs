@@ -25,8 +25,8 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
                 return Unauthorized();
             }
             var securityKey = "Your Security Key Goes Here.";
-            var accessToken = createJwt("1", "Bikash", "bikash", request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", 1);  //https://localhost:44327/ is the base address of resource (employee) server
-            var refreshToken = createJwt("1", "Bikash", "bikash", request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 10); //https://localhost:44382/ is the base address of token server
+            var accessToken = createJwt("1", "Bikash", "bikash", request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", 1440);  //https://localhost:44327/ is the base address of resource (employee) server
+            var refreshToken = createJwt("1", "Bikash", "bikash", request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 2880); //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
@@ -68,7 +68,7 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
             var name = readToken(refreshToken, "name");
             var username = readToken(refreshToken, "username");
             var issuer = readToken(refreshToken, "iss");
-            var accessToken = createJwt(id, name, username, email, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", 1);
+            var accessToken = createJwt(id, name, username, email, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", 1440);
 
             //Sending back a new access token and but not the old refresh token which has not expired as yet.
             var response = new AccessTokenResponse()
