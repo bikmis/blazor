@@ -4,10 +4,10 @@
 
 @attribute [Authorize]
 
-<h3>Hosting in IIS for Debugging in Visual Studio</h3>
+<h3>.Net Core 3.1 Web API Deployment to IIS in VS 2019 For Debugging</h3>
 
+During deveopment using IIS is better than IIS Express as IIS is where we deploy our production code. IIS is more like the production server than IIS Express.
 
-<h5>.net Core 3.1 Web API Deployment to IIS</h5>
 <ul>
     <li>
         Open IIS. Right click on Sites and Add Website. Site name: EmployeeResource, Application pool: EmployeeResource, Physical path: C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI,
@@ -22,13 +22,13 @@
     </li>
     <li>
         Provide user "IIS AppPool\EmployeeResource" access to the the website EmployeeResource (project C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI) by right clicking
-        on the website, click on Edit Permissions -> Security -> Edit -> Add -> Enter "IIS AppPool\EmployeeResource" and click on Check Names, then click on OK.
+        on the website, click on Edit Permissions -> Security -> Edit -> Add -> Enter "IIS AppPool\EmployeeResource" and click on Check Names, then click on OK. <br />
+        <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/security_edit.png" />
     </li>
     <li>
-        Provide user "IIS AppPool\EmployeeResource" access to EmployeeDb via ssms. Expand root level Security -> Logins and create a login "IIS APPPOOL\EmployeeResource" with Server Role "public"
-    </li>
-    <li>
-        Create a User "IIS APPPOOL\EmployeeResource" in Users folder inside Security under EmployeeDb database. This user can have Membership "db_datareader" and "db_datawriter"
+        Provide user "IIS AppPool\EmployeeResource" access to EmployeeDb via ssms. Expand root level Security -> Logins and create a login "IIS APPPOOL\EmployeeResource" with Server Role "public".
+        Create a User "IIS APPPOOL\EmployeeResource" in Users folder inside Security under EmployeeDb database. This user can have Membership "db_datareader" and "db_datawriter" <br />
+        <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/apppool_user_in_database.png"/>
     </li>
     <li>
         For "Delete" and "Put" http verbs to work via IIS, delete WebDAVModule from EmployeeResource -> Modules in IIS. If you need to restore WebDAVModule or any other module that you have deleted,
