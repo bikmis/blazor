@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "https://localhost:8081",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:8091",
+      "sslPort": 8081
     },
     "iisExpress": {
       "applicationUrl": "http://localhost:55018",
@@ -30,8 +30,7 @@
     },
     "IIS": {
       "commandName": "IIS",
-      "launchBrowser": true,
-      "launchUrl": "https://localhost:8081"
+      "launchBrowser": true
     }
   }
 }

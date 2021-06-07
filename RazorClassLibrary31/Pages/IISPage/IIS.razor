@@ -5,8 +5,8 @@
 <ul>
     <li>
         Open IIS. Right click on Sites and Add Website. Site name: EmployeeResource, Application pool: IdentityProvider, Physical path: C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI,
-        PortL 8082, Type: https, SSL Certificate: IIS Express Development Certificate <br /> <br />
-        Note: Physical path is the project folder so that we can debug the application in Visual Studio 2019, protocol is https.
+        Port 8082, Type: https, SSL Certificate: IIS Express Development Certificate, Port 8092, Type: http <br /> <br />
+        Note: Physical path is the project folder so that we can debug the application in Visual Studio 2019, both protocols (http and https) are set up.
     </li>
     <li>
         Click on the website in IIS, double click on Authentication and Edit Anonymous Authentication by setting Anonymous user identity to Application pool identity.
@@ -35,7 +35,9 @@
         &lt;/system.webServer>
     </li>
     <li>
-        Right-click the project Employee Web Api and make following changes: Launch Browser: https://localhost:8082 and APP Url: https://localhost:8082
+        Right-click the project Employee Web Api and make following changes: Launch Browser: checked without any value and APP Url: http://localhost:8092 and sslPort in LaunchSettings is 8082. 
+        When the application runs, http://localhost:8092 will automatically change to https://localhost:8082 - this change is caused by browser and IIS. If https is available, then http and its port 
+        change to https and the related port.
     </li>
 </ul>
 
