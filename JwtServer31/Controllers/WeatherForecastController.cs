@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 {
     [ApiController]
-    [Route("")]
+    [Route("weather-forecast")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

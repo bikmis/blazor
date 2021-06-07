@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.WebAPI.Controllers
 {
-    public class TestController : Controller
+    [ApiController]
+    [Route("")]
+    public class HealthCheckController : Controller
     {
         [Route("")]
         public IActionResult Index()
         {
-            return Ok("Employee resource server is running.");
+            return Ok("Employee resource service is running.");
         }
     }
 }
