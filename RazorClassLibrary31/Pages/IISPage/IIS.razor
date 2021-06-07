@@ -10,7 +10,7 @@
 <h5>.net Core 3.1 Web API Deployment to IIS</h5>
 <ul>
     <li>
-        Open IIS. Right click on Sites and Add Website. Site name: EmployeeResource, Application pool: IdentityProvider, Physical path: C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI,
+        Open IIS. Right click on Sites and Add Website. Site name: EmployeeResource, Application pool: EmployeeResource, Physical path: C:\Users\Bikash\source\repos\blazor\EmployeeWebAPI,
         Port 8082, Type: https, SSL Certificate: IIS Express Development Certificate, Port 8092, Type: http <br /> <br />
         Note: Physical path is the project folder so that we can debug the application in Visual Studio 2019, both protocols (http and https) are set up.
     </li>
@@ -31,13 +31,13 @@
         Create a User "IIS APPPOOL\EmployeeResource" in Users folder inside Security under EmployeeDb database. This user can have Membership "db_datareader" and "db_datawriter"
     </li>
     <li>
-        For "Delete" and "Put" http verbs to work via IIS, delete WebDAVModule from EmployeeResource -> Modules. If you need to restore WebDAVModule or any other module that you have deleted,
+        For "Delete" and "Put" http verbs to work via IIS, delete WebDAVModule from EmployeeResource -> Modules in IIS. If you need to restore WebDAVModule or any other module that you have deleted,
         click on "Revert To Parent". "Delete" and "Put" verbs work in IIS Express though, but not in IIS without deleting WebDAVModule from the website. When you delete WebDAVModule, web.config
-        will change as below:
-        &lt;.webServer>
-        &nbsp;&nbsp;&lt;modules>
-        &nbsp;&nbsp;&nbsp;&nbsp;&lt;remove name="WebDAVModule" />
-        &nbsp;&nbsp;&lt;/modules>
+        will change as below: <br />
+        &lt;webServer> <br />
+        &nbsp;&nbsp;&lt;modules> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;remove name="WebDAVModule" /> <br />
+        &nbsp;&nbsp;&lt;/modules> <br />
         &lt;/system.webServer>
     </li>
     <li>
