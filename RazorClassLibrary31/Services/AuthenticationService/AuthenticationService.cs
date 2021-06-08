@@ -3,6 +3,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -143,19 +144,16 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 Name = Utility.ReadToken(token.AccessToken, "name"),
                 Username = Utility.ReadToken(token.AccessToken, "username"),
                 Email = Utility.ReadToken(token.AccessToken, "email"),
-                IsLoggedIn = true
+                IsLoggedIn = true,
+                Roles = Utility.GetRoles(token.AccessToken).ToList()
             };
             return user;
         }
 
         private async Task<AuthenticationState> createLoggedInState(string token)
         {
-            var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, Utility.ReadToken(token, "name"), ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Email, Utility.ReadToken(token, "email"), ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Role, "employee", ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Role, "admin", ClaimValueTypes.String)
-                }, "UiAuthenticationType");
+            var claims = Utility.GetRoles(token).Select(role => new Claim(ClaimTypes.Role, role));
+            var identity = new ClaimsIdentity(claims, "UiAuthenticationType");
             var user = new ClaimsPrincipal(identity);
             var loggedInState = Task.FromResult(new AuthenticationState(user));
             return await loggedInState;
