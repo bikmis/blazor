@@ -45,7 +45,9 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
                 new Claim("name", name),
                 new Claim("username", username),
                 new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("role", "admin"),
+                new Claim("role", "employee"),
             };
 
             //https://docs.microsoft.com/en-us/linkedin/shared/authentication/programmatic-refresh-tokens#:~:text=By%20default%2C%20access%20tokens%20are,application%20when%20refresh%20tokens%20expire.
