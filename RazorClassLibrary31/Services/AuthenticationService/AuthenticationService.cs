@@ -152,7 +152,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
         {
             var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, Utility.ReadToken(token, "name"), ClaimValueTypes.String),
-                    new Claim(ClaimTypes.Email, Utility.ReadToken(token, "email"), ClaimValueTypes.String)
+                    new Claim(ClaimTypes.Email, Utility.ReadToken(token, "email"), ClaimValueTypes.String),
+                    new Claim(ClaimTypes.Role, "employee", ClaimValueTypes.String),
+                    new Claim(ClaimTypes.Role, "admin", ClaimValueTypes.String)
                 }, "UiAuthenticationType");
             var user = new ClaimsPrincipal(identity);
             var loggedInState = Task.FromResult(new AuthenticationState(user));
