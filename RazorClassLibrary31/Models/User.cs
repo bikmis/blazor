@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Models
 {
@@ -10,5 +11,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Models
         [Required]
         public string Email { get; set; }
         public bool IsLoggedIn { get; set; }
+        public List<string> Roles { get; set; }
     }
 }
