@@ -2,7 +2,7 @@
 
 @layout EmployeeLayout
 
-@attribute [Authorize(Roles ="employee")]
+@attribute [Authorize(Roles = "employee")]
 
 
 <h3>.Net Core 3.1 Blazor Client Deplployment to IIS</h3>
@@ -20,7 +20,7 @@
         App URL: http://localhost:8090 (in launchSettings.json add 8080 at sslPort)
     </li>
     <li>
-        Open IIS and create a web site. Point to the Blazor project directory and create the following two bindings: http with 8090 port and https with 8080 port. 
+        Open IIS and create a web site. Point to the Blazor project directory and create the following two bindings: http with 8090 port and https with 8080 port.
         Authentication should be Anonymous Authentication with Anonymous user identity set to Application pool identity. Go to Application Pools and start
         BlazorClientApp. Right-click on the website BlazorClientApp and Edit Permissions - Security - Edit - Add IIS AppPool\BlazorClientApp and click Ok.
     </li>
@@ -54,10 +54,10 @@ During deveopment using IIS is better than IIS Express as IIS is where we deploy
     <li>
         Provide user "IIS AppPool\EmployeeResource" access to EmployeeDb via ssms. Expand root level Security -> Logins and create a login "IIS APPPOOL\EmployeeResource" with Server Role "public".
         Create a User "IIS APPPOOL\EmployeeResource" in Users folder inside Security under EmployeeDb database. This user can have Membership "db_datareader" and "db_datawriter" <br />
-        <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/apppool_user_in_database.png"/>
+        <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/apppool_user_in_database.png" />
     </li>
     <li>
-        For "Delete" and "Put" http verbs to work via IIS, delete WebDAVModule from EmployeeResource -> Modules in IIS or from server name -> modules. 
+        For "Delete" and "Put" http verbs to work via IIS, delete WebDAVModule from EmployeeResource -> Modules in IIS or from server name -> modules.
         <br />
         <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/web_dav_module.png" />
         <br />
@@ -71,14 +71,14 @@ During deveopment using IIS is better than IIS Express as IIS is where we deploy
         &lt;/system.webServer> <br />
         You can also uninstall WebDAVModule from Programs and Features -> Turn Winddows features on or off -> Internet Information Services -> World Wide Services -> Common HTTP Features -> WebDAVPublishing
         <br />
-        <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/web_dav_publishing.png"/>
+        <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/web_dav_publishing.png" />
     </li>
     <li>
         Right-click the project Employee Web Api, open Properties and create a profile IIS at Debug and follow the steps below: <br />
         Launch: IIS <br />
         Launch Browser: check without any value <br />
         APP Url: http://localhost:8092 (and sslPort in LaunchSettings is 8082) <br />
-        When the application runs, http://localhost:8092 will automatically change to https://localhost:8082 - this change is caused by browser 
+        When the application runs, http://localhost:8092 will automatically change to https://localhost:8082 - this change is caused by browser
         and IIS. If https is available, then http and its port change to https and the related port.
     </li>
 </ul>
