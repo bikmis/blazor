@@ -2,7 +2,7 @@
 @page "/employeelist/{SaveMessage}"
 
 @layout EmployeeLayout
-@attribute [Authorize]
+@attribute [Authorize(Roles = "admin")]
 
 <h3>Employee List</h3>
 

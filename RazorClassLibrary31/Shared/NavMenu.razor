@@ -7,54 +7,56 @@
 @*Inside NavLink active class is added when selected. So you need active class defined in your app.css. Click on a NavLink in you browser and check in the Developer Tools for an "active" class.*@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
         <AuthorizeView Roles="admin,hr">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="counter">
                     <span class="oi oi-plus" aria-hidden="true"></span> Counter
                 </NavLink>
             </li>
         </AuthorizeView>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="weather-forecast">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Weather Forecast
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="employeelist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Employee List
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="js-example" Match="NavLinkMatch.All">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> JS Example
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="time-one">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Time One
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="time-two">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Time Two
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="authentication-example" Match="NavLinkMatch.All">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Authentication Example
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="icon-example">
-                <span class="oi oi-list-rich" aria-hidden="true"></span>Icon & Bootstrap
-            </NavLink>
-        </li>
-        <AuthorizeView Roles="hr">
+        <AuthorizeView Roles="admin">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="weather-forecast">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Weather Forecast
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="employeelist">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Employee List
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="js-example" Match="NavLinkMatch.All">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> JS Example
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="time-one">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Time One
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="time-two">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Time Two
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="authentication-example" Match="NavLinkMatch.All">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Authentication Example
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="icon-example">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span>Icon & Bootstrap
+                </NavLink>
+            </li>
+        </AuthorizeView>
+        <AuthorizeView Roles="admin,hr">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="iis">
                     <span class="oi oi-list-rich" aria-hidden="true"></span>IIS

@@ -1,6 +1,6 @@
 ﻿@page "/time-one"
 @layout EmployeeLayout
-@attribute [Authorize]
+@attribute [Authorize(Roles = "admin")]
 
 
 <h3>Singleton vs Scoped vs Transient Service (Time Service - Page One)</h3>

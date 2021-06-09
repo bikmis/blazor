@@ -1,6 +1,6 @@
 ﻿@page "/js-example"
 @layout EmployeeLayout
-@attribute [Authorize]
+@attribute [Authorize(Roles = "admin")]
 
 
 <h3>JavaScript Example (JsInterop)</h3>

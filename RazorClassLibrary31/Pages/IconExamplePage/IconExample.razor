@@ -1,5 +1,7 @@
 ﻿@page "/icon-example"
 @layout EmployeeLayout
+@attribute [Authorize(Roles = "admin")]
+
 
     <h3>Bootstrap</h3>
     The following in the Head section of Index.html/_Host.html will write stackpath cdn code to bring in bootstrap.css

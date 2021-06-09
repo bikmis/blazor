@@ -1,6 +1,6 @@
 ﻿@page "/weather-forecast"
 @layout EmployeeLayout
-@attribute [Authorize]
+@attribute [Authorize(Roles = "admin")]
 
 
 <h1>Weather forecast</h1>
