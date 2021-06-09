@@ -36,9 +36,9 @@ namespace Intel.EmployeeManagement.IdentityProvider
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
-                    ValidAudience = "https://localhost:44382/",  //token server base address
+                    ValidAudience = Configuration["RefreshTokenAudience"],  //token server base address
                     ValidateIssuer = true,
-                    ValidIssuer = "https://localhost:44382/", //token server base address
+                    ValidIssuer = Configuration["TokenIssuer"], //token server base address
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["RefreshTokenSecurityKey"])),

@@ -45,8 +45,8 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 
             var roleNames = databaseService.EmployeeDbContext.Roles.Where(r => r.UserID == user.ID).Select(role => role.RoleName).ToList();
 
-            var accessToken = createJwt(user, roleNames, configuration["AccessTokenSecurityKey"], issuer: "https://localhost:44382/", audience: "https://localhost:44327/", expiryInMinutes: 1440);        //https://localhost:44327/ is the base address of resource (employee) server
-            var refreshToken = createJwt(user, roleNames, configuration["RefreshTokenSecurityKey"], issuer: "https://localhost:44382/", audience: "https://localhost:44382/", expiryInMinutes: 2880);      //https://localhost:44382/ is the base address of token server
+            var accessToken = createJwt(user, roleNames, configuration["AccessTokenSecurityKey"], issuer: configuration["TokenIssuer"], audience: configuration["AccessTokenAudience"], expiryInMinutes: 1440);        //https://localhost:44327/ is the base address of resource (employee) server
+            var refreshToken = createJwt(user, roleNames, configuration["RefreshTokenSecurityKey"], issuer: configuration["TokenIssuer"], audience: configuration["RefreshTokenAudience"], expiryInMinutes: 2880);      //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
@@ -93,7 +93,7 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
             var roles = readToken(refreshToken, "role");
             var issuer = readToken(refreshToken, "iss").FirstOrDefault();
 
-            var accessToken = createJwt(user, roles, configuration["accessTokenSecurityKey"], issuer, audience: "https://localhost:44327/", expiryInMinutes: 1440);
+            var accessToken = createJwt(user, roles, configuration["accessTokenSecurityKey"], issuer, audience: configuration["AccessTokenAudience"], expiryInMinutes: 1440);
 
             //Sending back a new access token and but not the old refresh token which has not expired as yet.
             var response = new AccessTokenResponse()
