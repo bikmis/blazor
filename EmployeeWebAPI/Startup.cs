@@ -37,7 +37,7 @@ namespace Intel.EmployeeManagement.WebAPI
                     ValidIssuer = "https://localhost:44382/",  //base address of token server
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Your Security Key Goes Here.")),
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["AccessTokenSecurityKey"])),
                     ClockSkew = TimeSpan.Zero // The token will be invalid exactly at expiration with TimeSpan.Zero, otherwise ClockSkew is 5 minutes by default i.e. the token will be invalid after 5 minutes from expiry.
                 };
             });
