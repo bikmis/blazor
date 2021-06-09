@@ -1,4 +1,3 @@
-using Intel.EmployeeManagement.Data;
 using Intel.EmployeeManagement.IdentityProvider.Services.Database_Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
