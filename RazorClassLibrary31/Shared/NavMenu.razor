@@ -12,11 +12,13 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
+        <AuthorizeView Roles="admin,hr">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>
+        </AuthorizeView>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="weather-forecast">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Weather Forecast
@@ -52,11 +54,13 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span>Icon & Bootstrap
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="iis">
-                <span class="oi oi-list-rich" aria-hidden="true"></span>IIS
-            </NavLink>
-        </li>
+        <AuthorizeView Roles="hr">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="iis">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span>IIS
+                </NavLink>
+            </li>
+        </AuthorizeView>
     </ul>
 </div>
 
