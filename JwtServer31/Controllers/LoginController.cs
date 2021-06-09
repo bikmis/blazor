@@ -19,6 +19,8 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
     public class LoginController : ControllerBase
     {
         private IDatabaseService databaseService { get; set; }
+        private string accessTokenSecurityKey = "Your Security Key Goes Here.";
+        private string refreshTokenSecurityKey = "Your Refresh Token Security Key Goes Here.";
         public LoginController(IDatabaseService _databaseService)
         {
             databaseService = _databaseService;
@@ -41,9 +43,8 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 
             var roleNames = databaseService.EmployeeDbContext.Roles.Where(r => r.UserID == user.ID).Select(role => role.RoleName).ToList();
 
-            var securityKey = "Your Security Key Goes Here.";
-            var accessToken = createJwt(user, roleNames, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", expiryInMinutes: 1440);        //https://localhost:44327/ is the base address of resource (employee) server
-            var refreshToken = createJwt(user, roleNames, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", expiryInMinutes: 2880);      //https://localhost:44382/ is the base address of token server
+            var accessToken = createJwt(user, roleNames, accessTokenSecurityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", expiryInMinutes: 1440);        //https://localhost:44327/ is the base address of resource (employee) server
+            var refreshToken = createJwt(user, roleNames, refreshTokenSecurityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44382/", expiryInMinutes: 2880);      //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
@@ -90,7 +91,7 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
             var roles = readToken(refreshToken, "role");
             var issuer = readToken(refreshToken, "iss").FirstOrDefault();
 
-            var accessToken = createJwt(user, roles, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", expiryInMinutes: 1440);
+            var accessToken = createJwt(user, roles, accessTokenSecurityKey, issuer, audience: "https://localhost:44327/", expiryInMinutes: 1440);
 
             //Sending back a new access token and but not the old refresh token which has not expired as yet.
             var response = new AccessTokenResponse()
