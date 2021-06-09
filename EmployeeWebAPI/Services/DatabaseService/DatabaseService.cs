@@ -15,6 +15,6 @@ namespace Intel.EmployeeManagement.WebAPI.Services.Database_Service
             _employeeDbContext = new EmployeeDbContext();
         }
 
-        public EmployeeDbContext EmployeeDbContext {  get { return _employeeDbContext; } }
+        public EmployeeDbContext EmployeeDbContext { get => _employeeDbContext; }
     }
 }

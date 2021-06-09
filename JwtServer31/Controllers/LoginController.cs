@@ -8,6 +8,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Intel.EmployeeManagement.IdentityProvider.Services.Database_Service;
+using Intel.EmployeeManagement.Data.Entities;
 
 namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 {
@@ -15,18 +17,30 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private IDatabaseService databaseService { get; set; }
+        public LoginController(IDatabaseService _databaseService)
+        {
+            databaseService = _databaseService;
+        }
+
         [Route("login")]
         [HttpPost]
         public IActionResult Login(LoginRequest request)
         {
-            //check credentials, if credentials are bad, return Unauthorized.
             if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             {
                 return Unauthorized();
             }
+
+            var user = databaseService.EmployeeDbContext.Users.Where(u => u.Email == request.Email && u.Password == request.Password).FirstOrDefault();
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
             var securityKey = "Your Security Key Goes Here.";
-            var accessToken = createJwt("1", "Bikash", "bikash", request.Email, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", 1440);  //https://localhost:44327/ is the base address of resource (employee) server
-            var refreshToken = createJwt("1", "Bikash", "bikash", request.Email, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", 2880); //https://localhost:44382/ is the base address of token server
+            var accessToken = createJwt(user, securityKey, issuer: "https://localhost:44382/", audience: "https://localhost:44327/", expiryInMinutes: 1440);        //https://localhost:44327/ is the base address of resource (employee) server
+            var refreshToken = createJwt(user, "Your Refresh Token Security Key Goes Here.", issuer: "https://localhost:44382/", audience: "https://localhost:44382/", expiryInMinutes: 2880);      //https://localhost:44382/ is the base address of token server
             var response = new LoginResponse()
             {
                 AccessToken = accessToken,
@@ -35,16 +49,15 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
             return Ok(response);
         }
 
-        private string createJwt(string id, string name, string username, string email, string securityKey, string issuer, string audience, double expiryInMinutes)
+        private string createJwt(User user, string securityKey, string issuer, string audience, double expiryInMinutes)
         {
             var symmetircSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
             var credentials = new SigningCredentials(symmetircSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-                new Claim("id", id.ToString()),
-                new Claim("name", name),
-                new Claim("username", username),
-                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim("id", user.ID.ToString()),
+                new Claim("username", user.Username),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("role", "admin"),
                 new Claim("role", "employee"),
@@ -65,12 +78,15 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
         public IActionResult AccessToken()
         {            
             var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1];
-            var email = readToken(refreshToken, "email");
-            var id = readToken(refreshToken, "id");
-            var name = readToken(refreshToken, "name");
-            var username = readToken(refreshToken, "username");
+            User user = new User()
+            {
+                ID = int.Parse(readToken(refreshToken, "id")),
+                Username = readToken(refreshToken, "username"),
+                Email = readToken(refreshToken, "email")
+            };
+
             var issuer = readToken(refreshToken, "iss");
-            var accessToken = createJwt(id, name, username, email, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", 1440);
+            var accessToken = createJwt(user, "Your Security Key Goes Here.", issuer, audience: "https://localhost:44327/", expiryInMinutes: 1440);
 
             //Sending back a new access token and but not the old refresh token which has not expired as yet.
             var response = new AccessTokenResponse()
