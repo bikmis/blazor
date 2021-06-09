@@ -1,6 +1,7 @@
 ﻿using Intel.EmployeeManagement.Data;
 using Intel.EmployeeManagement.Data.Entities;
 using Intel.EmployeeManagement.WebAPI.Models.Employee;
+using Intel.EmployeeManagement.WebAPI.Services.Database_Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -11,11 +12,10 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeDbContext _dbContext;
-
-        public EmployeeController(EmployeeDbContext dbContext)
+        private readonly IDatabaseService databaseService;
+        public EmployeeController(IDatabaseService _databaseService)
         {
-            _dbContext = dbContext;
+            databaseService = _databaseService;
         }
 
         [Authorize]
@@ -23,7 +23,7 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
         [HttpGet]
         public IActionResult GetEmployees()
         {
-            var response = _dbContext.Employees.Select(e => new EmployeeResponse() 
+            var response = databaseService.EmployeeDbContext.Employees.Select(e => new EmployeeResponse() 
             {
                 ID = e.ID,
                 FirstName = e.FirstName,
@@ -41,7 +41,7 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
         [HttpGet]
         public IActionResult GetEmployee(int id)
         {
-            var employee = _dbContext.Employees.Find(id);
+            var employee = databaseService.EmployeeDbContext.Employees.Find(id);
             if (employee == null)
             {
                 return NotFound("Employee not found.");
@@ -76,8 +76,8 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
                 Age = request.Age
             };
 
-            _dbContext.Add(employee);
-            _dbContext.SaveChanges();
+            databaseService.EmployeeDbContext.Add(employee);
+            databaseService.EmployeeDbContext.SaveChanges();
             return Ok();
         }
 
@@ -86,7 +86,7 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
         [HttpPut]
         public IActionResult UpdateEmployee(EmployeeRequest request)
         {
-            var employee = _dbContext.Employees.Find(request.ID);
+            var employee = databaseService.EmployeeDbContext.Employees.Find(request.ID);
             if ( employee == null)
             {
                 return BadRequest("Employee not found.");
@@ -99,8 +99,8 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
             employee.Position = request.Position;
             employee.Age = request.Age;
 
-            _dbContext.Employees.Update(employee);
-            _dbContext.SaveChanges();
+            databaseService.EmployeeDbContext.Employees.Update(employee);
+            databaseService.EmployeeDbContext.SaveChanges();
             return Ok();
         }
 
@@ -109,13 +109,13 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
         [HttpDelete]
         public IActionResult DeleteEmployee(int id)
         {
-            var employee = _dbContext.Employees.Find(id);
+            var employee = databaseService.EmployeeDbContext.Employees.Find(id);
             if (employee == null)
             {
                 return BadRequest("Employee not found.");
             }
-            _dbContext.Employees.Remove(employee);
-            _dbContext.SaveChanges();
+            databaseService.EmployeeDbContext.Employees.Remove(employee);
+            databaseService.EmployeeDbContext.SaveChanges();
             return Ok();
         }
     }

@@ -1,4 +1,4 @@
-using Intel.EmployeeManagement.Data;
+using Intel.EmployeeManagement.WebAPI.Services.Database_Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +23,7 @@ namespace Intel.EmployeeManagement.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<EmployeeDbContext, EmployeeDbContext>();
+            services.AddScoped<IDatabaseService, DatabaseService>();
             services.AddCors(options => options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
                 ));
