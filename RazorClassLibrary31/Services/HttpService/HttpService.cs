@@ -2,6 +2,7 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components.Authorization;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -24,26 +25,42 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
 
         public async Task<HttpResponseMessage> SendAsync(HttpMethod method, string url, object data)
         {
-            var response = await sendAsync(method, url, data);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return response;
-            }
-            else if (response.StatusCode == HttpStatusCode.Unauthorized)  //if access token is expired, response is unauthorized.
-            {
-                response = await ((AuthenticationService)authenticationService).GetAccessToken();
-                if (response.IsSuccessStatusCode) //if refresh token is expired, resonse is unauthorized
+                var response = await sendAsync(method, url, data);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var token = await appService.Deserialize<Token>(response);
-                    appService.AccessToken = token.AccessToken;
-                    response = await sendAsync(method, url, data);
+                    return response;
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)  //if access token is expired, response is unauthorized.
+                {
+                    response = await ((AuthenticationService)authenticationService).GetAccessToken();  //get access token using refresh token
+                    if (response.IsSuccessStatusCode) //if refresh token is available and not expired
+                    {
+                        var token = await appService.Deserialize<Token>(response);
+                        appService.AccessToken = token.AccessToken;
+                        response = await sendAsync(method, url, data);
+                        return response;
+                    }
+                    else
+                    {
+                        //if access token is expired and refresh token is expired/unavailable(deleted from session storage), then user is logged out.
+                        ((AuthenticationService)authenticationService).LogoutUser();
+                        return response;
+                    }
+                }
+                else
+                { 
+                    //if api server returns a status code other than unauthorized i.e. internal server error (say when database is down), the execution comes here.
                     return response;
                 }
             }
-
-            //if access token is expired and refresh token is expired/unavailable(deleted from session storage), then user is logged out.
-            ((AuthenticationService)authenticationService).LogoutUser();
-            return response;
+            catch (Exception)
+            {
+                //if API/resource server is down, exception is cuaght here and rethrown.
+                throw;
+            }
         }
 
         private async Task<HttpResponseMessage> sendAsync(HttpMethod method, string url, object data)

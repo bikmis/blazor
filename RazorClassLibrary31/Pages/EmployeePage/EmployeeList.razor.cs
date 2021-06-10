@@ -25,9 +25,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         private bool isHidden { get; set; } = true;
 
         private string alertColor { get; set; }
-
-        private string errorMessage { get; set; }
-
+      
         private void closeMessage(bool isHidden) {
             this.isHidden = isHidden;
         }
@@ -85,11 +83,30 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private async Task deleteEmployee(int employeeId)
         {
-            message = $"Employee with ID {employeeId} is deleted.";
-            isHidden = false;
-            alertColor = "alert-warning";
-            await employeeService.DeleteEmployee(employeeId);
-            await refreshEmployees();
+            try
+            {
+                var response = await employeeService.DeleteEmployee(employeeId);
+                if (response.IsSuccessStatusCode)
+                {
+                    await refreshEmployees();
+                    message = $"Employee with ID {employeeId} is deleted.";
+                    isHidden = false;
+                    alertColor = "alert-warning";
+                }
+                else {
+                    //if db server is down, execution comes here with internal server errror 500
+                    message = $"{(int)response.StatusCode} {response.ReasonPhrase}";
+                    isHidden = false;
+                    alertColor = "alert-warning";
+                }
+            }
+            catch (Exception e)
+            {
+                //if resource api service is down, execution comes here with exception being thrown from http service and then employee service
+                message = e.Message;
+                isHidden = false;
+                alertColor = "alert-warning";
+            }
         }
 
         private async Task refreshEmployees() {
@@ -109,7 +126,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 employees = (await employeeService.GetEmployees()).ToList();
             }
             catch (Exception e) {
-                errorMessage = e.Message;
+                //if database is down, employees will be null and the execution will come here as null cannot bind to the view.
+                //if api service is down, exception will be caught and rethrown by http service and then by employee service and the execution will come here.
+                message = e.Message;
+                isHidden = false;
+                alertColor = "alert-warning";
             }
         }
 

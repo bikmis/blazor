@@ -21,16 +21,15 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            try
-            {
+            try {
                 var response = await httpService.SendAsync(HttpMethod.Get, "api/employees", null);
-                var employees = await appService.DeserializeToList<Employee>(response);
-                return employees;
+                var employees = await appService.DeserializeToList<Employee>(response); //if database service is down, the execution comes here. employees will be null.
+                return employees;  
             }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
+            catch (Exception) {
+                
+                throw; //if api service is down, the execution comes here and exception is thrown.
+            } 
         }
 
         public async Task AddEmployee(Employee employee)
@@ -38,9 +37,15 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             await httpService.SendAsync(HttpMethod.Post, "api/employees", employee);
         }
 
-        public async Task DeleteEmployee(int employeeId)
+        public async Task<HttpResponseMessage> DeleteEmployee(int employeeId)
         {
-            await httpService.SendAsync(HttpMethod.Delete, $"api/employees?id={employeeId}", null);
+            try {
+                var response = await httpService.SendAsync(HttpMethod.Delete, $"api/employees?id={employeeId}", null);
+                return response;
+            }
+            catch (Exception) {
+                throw;
+            }
         }
 
         public async Task EditEmployee(Employee employee)

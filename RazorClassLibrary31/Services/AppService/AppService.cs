@@ -18,7 +18,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
 
         public async Task<T> Deserialize<T>(HttpResponseMessage response)
         {
-            if (!response.IsSuccessStatusCode)
+            if (response == null || !response.IsSuccessStatusCode)
             {
                 return default(T); //return default value of generic type.
             }
@@ -27,7 +27,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
 
         public async Task<List<T>> DeserializeToList<T>(HttpResponseMessage response)
         {
-            if (!response.IsSuccessStatusCode)
+            if (response == null || !response.IsSuccessStatusCode)
             {
                 return null;
             }
