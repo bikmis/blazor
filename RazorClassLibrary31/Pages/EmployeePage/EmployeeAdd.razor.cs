@@ -5,6 +5,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
+using System;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -28,11 +29,31 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private async void addEmployee(EditContext editContext, Employee employee)
         {
-            await employeeService.AddEmployee(employee);
-            var message = "Employee Added Successfully.";
-            var alertColor = "alert-secondary";
-            //passing values in the url parameter and query string
-            navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}&messageOne=message one&messageTwo=message two&messageThree=message three");
+            string message;
+            string alertColor;
+
+            try
+            {
+                var response = await employeeService.AddEmployee(employee);
+                if (response.IsSuccessStatusCode)
+                {
+                    message = "Employee Added Successfully.";
+                    alertColor = "alert-secondary";
+                }
+                else
+                {
+                    message = "Failed to Add Employee.";
+                    alertColor = "alert-danger";
+                }
+                //passing values in the url parameter and query string
+                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}&messageOne=message one&messageTwo=message two&messageThree=message three");
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+                alertColor = "alert-danger";
+                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}&messageOne=message one&messageTwo=message two&messageThree=message three");
+            }
         }
 
         private void resetForm() {
