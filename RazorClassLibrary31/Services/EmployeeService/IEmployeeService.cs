@@ -10,6 +10,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
         Task<IEnumerable<Employee>> GetEmployees();
         Task AddEmployee(Employee employee);
         Task<HttpResponseMessage> DeleteEmployee(int employeeId);
-        Task EditEmployee(Employee employee);
+        Task<HttpResponseMessage> EditEmployee(Employee employee);
     }
 }

@@ -48,9 +48,16 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             }
         }
 
-        public async Task EditEmployee(Employee employee)
+        public async Task<HttpResponseMessage> EditEmployee(Employee employee)
         {
-            await httpService.SendAsync(HttpMethod.Put, "api/employees", employee);
+            try
+            {
+                var response = await httpService.SendAsync(HttpMethod.Put, "api/employees", employee);
+                return response; //the response will have a status code such as 200, 400, 500 etc. if the db is down, it is 500 (internal server error)
+            }
+            catch (Exception) {
+                throw; //if api service throws an exception or is down.
+            }
         }
     }
 }

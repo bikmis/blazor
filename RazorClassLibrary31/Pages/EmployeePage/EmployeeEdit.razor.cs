@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
+using System;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -26,11 +27,31 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             return base.OnInitializedAsync();
         }
 
-        private async Task editEmployee() {
-            await employeeService.EditEmployee(Employee);
-            await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
-            var editMessage = "Successfully edited.";
-            await OnEmployeeEdited.InvokeAsync(editMessage);
+        private async Task editEmployee()
+        {
+            try
+            {
+                var response = await employeeService.EditEmployee(Employee);
+                await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
+                string editMessage = string.Empty;
+                if (response.IsSuccessStatusCode)
+                {
+                    editMessage = "Successfully edited.";
+                }
+                else
+                {
+                    //if db server is down or api service returns a HttpResponseMessage with a status code outside 200 to 299 such as 500
+                    editMessage = $"{(int)response.StatusCode} {response.StatusCode}";
+                }
+                await OnEmployeeEdited.InvokeAsync(editMessage);
+            }
+            catch (Exception e)
+            {
+                //if api server is down, or throws an exception
+                await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
+                var editMessage = e.Message;
+                await OnEmployeeEdited.InvokeAsync(editMessage);
+            }
         }
 
         private void resetForm() {
