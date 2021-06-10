@@ -33,7 +33,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
                     }
                     else
                     {
-                        error = $"Response status code is { response.StatusCode}";
+                        error = $"Response status code is { (int)response.StatusCode} {response.StatusCode}";
                     }
                 }
             }
