@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Intel.EmployeeManagement.BlazorClient
 {
@@ -38,6 +39,14 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddSingleton<ISingletonTimeService, SingletonTimeService>();
             builder.Services.AddScoped<IScopedTimeService, ScopedTimeService>();
             builder.Services.AddTransient<ITransientTimeService, TransientTimeService>();
+
+            builder.Services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+               // logging.ClearProviders();
+              //  logging.AddProvider(new ApplicationLoggerProvider());
+            });
+
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();

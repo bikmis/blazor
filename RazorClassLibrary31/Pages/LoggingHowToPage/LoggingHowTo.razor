@@ -1,0 +1,28 @@
+﻿@page "/logging"
+@layout EmployeeLayout
+
+
+<h3>Logging</h3>
+
+<button @onclick="log">Log</button>
+
+
+<ul class="spaced-out-li">
+    <li>
+        Add the following code Program.cs in the Blazor web assembly app.
+        builder.Services.AddLogging(logging => <br />
+        {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp; logging.SetMinimumLevel(LogLevel.Trace);<br />
+        }); <br />
+    </li>
+    <li>
+
+    </li>
+</ul>
+
+
+
+
+@code {
+
+}
