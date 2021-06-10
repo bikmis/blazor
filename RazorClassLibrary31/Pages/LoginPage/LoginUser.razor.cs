@@ -2,6 +2,7 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
@@ -13,9 +14,14 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
 
         private Login login { get; set; } = new Login();
 
+        private string error { get; set; }
+
         private async Task loginUser()
         {
-            await ((AuthenticationService)authenticationService).LoginUser(login);
+            var statusCode = await ((AuthenticationService)authenticationService).LoginUser(login);
+            if (statusCode == HttpStatusCode.Unauthorized) {
+                error = "Check your username and password.";
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -71,7 +72,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             return await createLoggedOutState();
         }
 
-        public async Task LoginUser(Login login)
+        public async Task<HttpStatusCode> LoginUser(Login login)
         {
             var response = await loginUser(login);
             if (response.IsSuccessStatusCode)
@@ -86,6 +87,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
 
                 NotifyAuthenticationStateChanged(createLoggedInState(token.AccessToken));
             }
+
+            return response.StatusCode;
         }
 
         public void LogoutUser()
