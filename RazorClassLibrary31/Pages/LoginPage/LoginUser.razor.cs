@@ -39,6 +39,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
             }
             catch (Exception e)
             {
+                error = e.Message;
                 await _jsRuntime.InvokeVoidAsync("writeToConsole", e.Message); //This works with both Blazor web assembly and Blazor server.
                 Console.WriteLine(e.Message);  //writes to the browser console in web assembly only, does not work for Blazor server.
             }
