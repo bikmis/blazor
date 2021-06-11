@@ -32,12 +32,12 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
         [HttpPost]
         public IActionResult Login(LoginRequest request)
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
             {
                 return Unauthorized();
             }
 
-            var user = databaseService.EmployeeDbContext.Users.Where(u => u.Email == request.Email && u.Password == request.Password).FirstOrDefault();
+            var user = databaseService.EmployeeDbContext.Users.Where(u => u.Username == request.Username && u.Password == request.Password).FirstOrDefault();
             if (user == null)
             {
                 return Unauthorized();
