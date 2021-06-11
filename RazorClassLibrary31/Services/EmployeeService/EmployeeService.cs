@@ -23,12 +23,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
         {
             try {
                 var response = await httpService.SendAsync(HttpMethod.Get, "api/employees", null);
-                var employees = await appService.DeserializeToList<Employee>(response); //if database service is down, the execution comes here. employees will be null.
+                var employees = await appService.DeserializeToList<Employee>(response); 
                 return employees;  
             }
             catch (Exception) {
                 
-                throw; //if api service is down, the execution comes here and exception is thrown.
+                throw; //if api service or database is down, code execution comes here and exception is rethrown.
             } 
         }
 

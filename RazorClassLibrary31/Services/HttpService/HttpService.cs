@@ -52,13 +52,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                 }
                 else
                 { 
-                    //if api server returns a status code other than unauthorized i.e. internal server error (say when database is down), the execution comes here.
+                    //if api server returns a status code other than unauthorized i.e. internal server error, the execution comes here. For Blazor Server side, if database is down, http respose with 500 status code is returned.
                     return response;
                 }
             }
             catch (Exception)
             {
-                //if API/resource server is down, exception is cuaght here and rethrown.
+                //if API/resource server is down, exception is caught here and rethrown. For Blazor Web Assembly if database is down, exception is thrown and code executes here.
                 throw;
             }
         }
