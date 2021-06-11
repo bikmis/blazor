@@ -94,7 +94,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                     alertColor = "alert-warning";
                 }
                 else {
-                    //if db server is down, execution comes here with internal server errror 500
                     message = $"{(int)response.StatusCode} {response.ReasonPhrase}";
                     isHidden = false;
                     alertColor = "alert-warning";
@@ -102,7 +101,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             }
             catch (Exception e)
             {
-                //if resource api service is down, execution comes here with exception being thrown from http service and then employee service
                 message = e.Message;
                 isHidden = false;
                 alertColor = "alert-warning";

@@ -51,8 +51,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                     }
                 }
                 else
-                { 
-                    //if api server returns a status code other than unauthorized i.e. internal server error, the execution comes here. For Blazor Server side, if database is down, http respose with 500 status code is returned.
+                {
+                    //if api server returns a status code other than success codes (200 to 299) and unauthorized(401) e.g. 500 internal server error, the execution comes here.
                     return response;
                 }
             }

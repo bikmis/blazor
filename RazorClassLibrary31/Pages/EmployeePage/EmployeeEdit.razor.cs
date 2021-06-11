@@ -40,14 +40,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 }
                 else
                 {
-                    //if db server is down or api service returns a HttpResponseMessage with a status code outside 200 to 299 such as 500
                     editMessage = $"{(int)response.StatusCode} {response.StatusCode}";
                 }
                 await OnEmployeeEdited.InvokeAsync(editMessage);
             }
             catch (Exception e)
             {
-                //if api server is down, or throws an exception
                 await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
                 var editMessage = e.Message;
                 await OnEmployeeEdited.InvokeAsync(editMessage);

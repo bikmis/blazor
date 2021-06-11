@@ -28,7 +28,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             }
             catch (Exception) {
                 
-                throw; //if api service or database is down, code execution comes here and exception is rethrown.
+                throw;
             } 
         }
 
@@ -41,7 +41,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             }
             catch (Exception)
             {
-                throw; //if api service is down or throws an exception, code execution will arrive here.For web assembly downed database server will throw an exception.
+                throw;
             }
         }
 
@@ -61,10 +61,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             try
             {
                 var response = await httpService.SendAsync(HttpMethod.Put, "api/employees", employee);
-                return response; //the response (with a status code such as 200, 400, 500 etc. if the db is down, it is 500 (internal server error))
+                return response;
             }
             catch (Exception) {
-                throw; //if api service throws an exception or is down.
+                throw;
             }
         }
     }
