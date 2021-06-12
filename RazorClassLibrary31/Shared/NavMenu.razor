@@ -7,12 +7,14 @@
 @*Inside NavLink active class is added when selected. So you need active class defined in your app.css. Click on a NavLink in you browser and check in the Developer Tools for an "active" class.*@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <AuthorizeView Roles="admin,hr">
+        <AuthorizeView Roles="admin,hr,data entry">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
             </li>
+        </AuthorizeView>
+        <AuthorizeView Roles="admin,hr">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="counter">
                     <span class="oi oi-plus" aria-hidden="true"></span> Counter
