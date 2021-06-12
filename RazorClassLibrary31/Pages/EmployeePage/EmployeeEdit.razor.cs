@@ -61,7 +61,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 LastName = EmployeeInitialState.LastName,
                 DateOfBirth = EmployeeInitialState.DateOfBirth,
                 Position = EmployeeInitialState.Position,
-                Age = EmployeeInitialState.Age
+                DepartmentNumber = EmployeeInitialState.DepartmentNumber
             };
         }
 

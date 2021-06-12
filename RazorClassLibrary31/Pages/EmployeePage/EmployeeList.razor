@@ -18,7 +18,7 @@
             <th>Last Name</th>
             <th>Date Of Birth</th>
             <th>Position</th>
-            <th>Age</th>
+            <th>Department Number</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -34,7 +34,7 @@
                 <td>@employee.LastName</td>
                 <td>@Convert.ToDateTime(employee.DateOfBirth).ToShortDateString()</td>
                 <td>@employee.Position</td>
-                <td>@employee.Age</td>
+                <td>@employee.DepartmentNumber</td>
                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => passToEditForm(employee)">Edit</button></td>
                 <td><button type="button" class="btn btn-primary" @onclick="() => deleteEmployee(employee.ID)">Delete</button></td>
             </tr>

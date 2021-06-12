@@ -26,11 +26,11 @@ namespace Intel.EmployeeManagement.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DepartmentNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -55,8 +55,8 @@ namespace Intel.EmployeeManagement.Data.Migrations
                         new
                         {
                             ID = 1,
-                            Age = 0,
                             DateOfBirth = new DateTime(1980, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentNumber = 0,
                             FirstName = "John",
                             LastName = "Smith",
                             MiddleName = "",
@@ -65,8 +65,8 @@ namespace Intel.EmployeeManagement.Data.Migrations
                         new
                         {
                             ID = 2,
-                            Age = 0,
                             DateOfBirth = new DateTime(1985, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentNumber = 0,
                             FirstName = "Jack",
                             LastName = "Jackson",
                             MiddleName = "",

@@ -34,9 +34,9 @@
         <ValidationMessage For="()=> employee.Position" />
     </div>
     <div class="mb-3">
-        <label for="age" class="form-label">Age</label>
-        <InputNumber class="form-control" id="age" @bind-Value="@employee.Age" />
-        <ValidationMessage For="()=> employee.Age" />
+        <label for="departmentNumber" class="form-label">Department Number</label>
+        <InputNumber class="form-control" id="departmentNumber" @bind-Value="@employee.DepartmentNumber" />
+        <ValidationMessage For="()=> employee.DepartmentNumber" />
     </div>
 
     <button type="button" class="btn btn-secondary" @onclick="resetForm">Reset</button>

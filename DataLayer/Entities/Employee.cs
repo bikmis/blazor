@@ -16,6 +16,6 @@ namespace Intel.EmployeeManagement.Data.Entities
         public DateTime DateOfBirth { get; set; }
         [Required]
         public string Position { get; set; }
-        public int Age { get; set; }
+        public int DepartmentNumber { get; set; }
     }
 }

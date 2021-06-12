@@ -16,7 +16,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Models
         public DateTime? DateOfBirth { get; set; }
         [Required]
         public string Position { get; set; }
-        [Required] [AgeValidator(MinimumAge = 14)]
-        public int Age { get; set; }
+        [Required] [DepartmentNumberValidator(MinimumDepartmentNumber = 14)]
+        public int DepartmentNumber { get; set; }
     }
 }
