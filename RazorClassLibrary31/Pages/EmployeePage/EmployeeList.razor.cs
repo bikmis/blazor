@@ -141,7 +141,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 LastName = employee.LastName,
                 DateOfBirth = employee.DateOfBirth,
                 Position = employee.Position,
-                DepartmentNumber = employee.DepartmentNumber
+                DepartmentID = employee.DepartmentID
             };
 
             employeeEdit.EmployeeInitialState = new Employee()
@@ -152,7 +152,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 LastName = employee.LastName,
                 DateOfBirth = employee.DateOfBirth,
                 Position = employee.Position,
-                DepartmentNumber = employee.DepartmentNumber
+                DepartmentID = employee.DepartmentID
             };
         }
     }

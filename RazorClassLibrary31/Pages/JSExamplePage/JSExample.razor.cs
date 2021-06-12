@@ -54,7 +54,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
         }
 
         private async Task setEmployeeToSessionStorage() {
-            var newEmployee = new Employee() {ID = 1, FirstName = "Jack", LastName = "Smith", DepartmentNumber = 25, MiddleName = "", Position = "Software Engineer", DateOfBirth = DateTime.Now };
+            var newEmployee = new Employee() {ID = 1, FirstName = "Jack", LastName = "Smith", DepartmentID = 25, MiddleName = "", Position = "Software Engineer", DateOfBirth = DateTime.Now };
             var employeeJson = JsonSerializer.Serialize(newEmployee);
             await jsRuntime.InvokeVoidAsync("setToSessionStorage", "employee", employeeJson); 
         }

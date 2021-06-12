@@ -35,14 +35,14 @@
         <ValidationMessage For="()=> employee.Position" />
     </div>
     <div class="mb-3">
-        <label for="departmentNumber" class="form-label">Department Number</label>
+        <label for="departmentID" class="form-label">Department ID</label>
         @*<InputSelect> only accepts string. That's why we created InputSelectNumber class/element'*@
-        <InputSelectNumber class="form-control" id="departmentNumber" @bind-Value="employee.DepartmentNumber">
+        <InputSelectNumber class="form-control" id="departmentID" @bind-Value="employee.DepartmentID">
             @foreach(var deparment in departments) { 
             <option value="@deparment.Key">@deparment.Key: @deparment.Value</option>
             }
         </InputSelectNumber>
-        <ValidationMessage For="()=> employee.DepartmentNumber" />
+        <ValidationMessage For="()=> employee.DepartmentID" />
     </div>
 
     <button type="button" class="btn btn-secondary" @onclick="resetForm">Reset</button>

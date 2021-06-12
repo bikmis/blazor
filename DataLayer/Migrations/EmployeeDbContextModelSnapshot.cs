@@ -29,7 +29,7 @@ namespace Intel.EmployeeManagement.Data.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentNumber")
+                    b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -56,7 +56,7 @@ namespace Intel.EmployeeManagement.Data.Migrations
                         {
                             ID = 1,
                             DateOfBirth = new DateTime(1980, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentNumber = 0,
+                            DepartmentID = 0,
                             FirstName = "John",
                             LastName = "Smith",
                             MiddleName = "",
@@ -66,7 +66,7 @@ namespace Intel.EmployeeManagement.Data.Migrations
                         {
                             ID = 2,
                             DateOfBirth = new DateTime(1985, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentNumber = 0,
+                            DepartmentID = 0,
                             FirstName = "Jack",
                             LastName = "Jackson",
                             MiddleName = "",

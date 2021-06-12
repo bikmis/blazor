@@ -10,6 +10,6 @@ namespace Intel.EmployeeManagement.WebAPI.Models.Employee
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Position { get; set; }
-        public int DepartmentNumber { get; set; }
+        public int DepartmentID { get; set; }
     }
 }
