@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intel.EmployeeManagement.Data.Entities
 {
@@ -17,5 +18,7 @@ namespace Intel.EmployeeManagement.Data.Entities
         [Required]
         public string Position { get; set; }
         public int DepartmentID { get; set; }
+        [Column(TypeName = "char(1)")]
+        public char Gender { get; set; }
     }
 }
