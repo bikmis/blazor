@@ -1,6 +1,7 @@
 ﻿@page "/employeeadd"
 @layout EmployeeLayout
 @attribute [Authorize (Roles = "admin")]
+@using Intel.EmployeeManagement.RazorClassLibrary.Helper
 
 
 <h3>Add Employee</h3>
@@ -35,7 +36,14 @@
     </div>
     <div class="mb-3">
         <label for="departmentNumber" class="form-label">Department Number</label>
-        <InputNumber class="form-control" id="departmentNumber" @bind-Value="@employee.DepartmentNumber" />
+        @*<InputSelect> only accepts string. That's why we created InputSelectNumber element'*@
+        <InputSelectNumber class="form-control" id="departmentNumber" @bind-Value="employee.DepartmentNumber">
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </InputSelectNumber>
         <ValidationMessage For="()=> employee.DepartmentNumber" />
     </div>
 
@@ -45,5 +53,5 @@
 
 
 @code {
-
+    
 }
