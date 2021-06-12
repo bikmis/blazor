@@ -6,6 +6,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -17,7 +18,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         [Inject]
         private IEmployeeService employeeService { get; set; }
 
-        private Employee employee { get; set; } = new Employee();
+        private Employee employee { get; set; } = new Employee() { DepartmentNumber = 15 };
+
+        private Dictionary<int, string> departments = new Dictionary<int, string>() { { 1, "Marketing" }, { 5, "Operations" }, { 10, "Sales" }, { 15, "Research" }, { 20, "IT" } };
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }

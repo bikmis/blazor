@@ -38,11 +38,9 @@
         <label for="departmentNumber" class="form-label">Department Number</label>
         @*<InputSelect> only accepts string. That's why we created InputSelectNumber class/element'*@
         <InputSelectNumber class="form-control" id="departmentNumber" @bind-Value="employee.DepartmentNumber">
-            <option value="1">1</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
+            @foreach(var deparment in departments) { 
+            <option value="@deparment.Key">@deparment.Key: @deparment.Value</option>
+            }
         </InputSelectNumber>
         <ValidationMessage For="()=> employee.DepartmentNumber" />
     </div>
