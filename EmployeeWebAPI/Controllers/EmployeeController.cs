@@ -31,7 +31,8 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
                 LastName = e.LastName,
                 DateOfBirth = e.DateOfBirth,
                 Position = e.Position,
-                DepartmentID = e.DepartmentID
+                DepartmentID = e.DepartmentID,
+                Gender = e.Gender
             }).ToList();
             return Ok(response);
         }
@@ -55,7 +56,8 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
                 MiddleName = employee.MiddleName,
                 DateOfBirth = employee.DateOfBirth,
                 Position = employee.Position,
-                DepartmentID = employee.DepartmentID
+                DepartmentID = employee.DepartmentID,
+                Gender = employee.Gender
             };
 
             return Ok(response);
@@ -73,7 +75,8 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
                 LastName = request.LastName,
                 Position = request.Position,
                 DateOfBirth = request.DateOfBirth,
-                DepartmentID = request.DepartmentID
+                DepartmentID = request.DepartmentID,
+                Gender = request.Gender
             };
 
             databaseService.EmployeeDbContext.Add(employee);
@@ -98,6 +101,7 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
             employee.DateOfBirth = request.DateOfBirth;
             employee.Position = request.Position;
             employee.DepartmentID = request.DepartmentID;
+            employee.Gender = request.Gender;
 
             databaseService.EmployeeDbContext.Employees.Update(employee);
             databaseService.EmployeeDbContext.SaveChanges();

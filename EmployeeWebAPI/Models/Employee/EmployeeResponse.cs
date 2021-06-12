@@ -11,5 +11,6 @@ namespace Intel.EmployeeManagement.WebAPI.Models.Employee
         public DateTime DateOfBirth { get; set; }
         public string Position { get; set; }
         public int DepartmentID { get; set; }
+        public char Gender { get; set; }
     }
 }

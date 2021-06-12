@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <InputText  class="form-control" id="lastName" @bind-Value="@Employee.LastName" />
+                        <InputText class="form-control" id="lastName" @bind-Value="@Employee.LastName" />
                         <ValidationMessage For="() => Employee.LastName" />
                     </div>
                     <div class="mb-3">
@@ -40,6 +40,11 @@
                         <label for="departmentID" class="form-label">Department ID</label>
                         <InputNumber class="form-control" id="departmentID" @bind-Value="@Employee.DepartmentID" />
                         <ValidationMessage For="() => Employee.DepartmentID" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <InputText class="form-control" id="gender" @bind-Value="@Employee.Gender" />
+                        <ValidationMessage For="() => Employee.Gender" />
                     </div>
                 </div>
                 <div class="modal-footer">

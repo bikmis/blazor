@@ -18,5 +18,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Models
         public string Position { get; set; }
         [Required] [DepartmentIDValidator(MinimumDepartmentID = 15)]
         public int DepartmentID { get; set; }
+        [Required]
+        public string Gender { get; set; }
     }
 }
