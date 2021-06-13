@@ -18,7 +18,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         [Inject]
         private IEmployeeService employeeService { get; set; }
 
-        private Employee employee { get; set; } = new Employee() { DepartmentID = 15 };
+        private Employee employee { get; set; } = new Employee() { DepartmentID = 0 };
 
         private Dictionary<int, string> departments = new Dictionary<int, string>() { { 1, "Marketing" }, { 5, "Operations" }, { 10, "Sales" }, { 15, "Research" }, { 20, "IT" } };
 
