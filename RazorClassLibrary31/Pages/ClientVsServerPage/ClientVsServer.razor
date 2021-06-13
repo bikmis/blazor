@@ -1,0 +1,47 @@
+﻿@page "/client-vs-server"
+@layout EmployeeLayout
+@attribute [Authorize(Roles ="admin")]
+
+<h3>Blazor Client vs Blazor Server</h3>
+<br />
+<br />
+
+<table class="table table-stripe">
+    <thead>
+        <tr>
+            <th>Blazor Client(Web Assembly)</th>
+            <th>Blazor Sever Side</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>All the code is downloaded to the browser. The Blazor app in the browser is completely disconnected from the server.</td>
+            <td>Some code is downloaded to the browser and signaR connection is maintained with the server.</td>
+        </tr>
+        <tr>
+            <td>Service variables lose value when the app is refreshed / reloaded.</td>
+            <td>Servuce variables don't lose value when the app is refreshed / reloaded'</td>
+        </tr>
+        <tr>
+            <td>Console.WriteLine writes to the console of the browser.</td>
+            <td>Console.WriteLine does not write to the console of the browser.</td>
+        </tr>
+        <tr>
+            <td>The default logger writes to the console of the browser.</td>
+            <td>The default logger does not write to the console of the browser.</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/client_download.png"/>
+            </td>
+            <td>
+                <img src="_content/Intel.EmployeeManagement.RazorClassLibrary/images/server_download.png" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@code {
+
+}
