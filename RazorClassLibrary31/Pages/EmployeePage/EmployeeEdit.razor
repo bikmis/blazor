@@ -43,7 +43,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="gender" class="form-label">Gender</label>
-                        <InputText class="form-control" id="gender" @bind-Value="@Employee.Gender" />
+                        <div>
+                            <label class="form-label"><input type="radio" value="M" checked="@(Employee.Gender == "M")" name="gender" @onclick="@(() => Employee.Gender = "M")" />&nbsp;Male</label>
+                            &nbsp;
+                            <label class="form-label"><input type="radio" value="F" checked="@(Employee.Gender == "F")" name="gender" @onclick="@(() => Employee.Gender = "F")" />&nbsp;Female</label>
+                        </div>
                         <ValidationMessage For="() => Employee.Gender" />
                     </div>
                 </div>
