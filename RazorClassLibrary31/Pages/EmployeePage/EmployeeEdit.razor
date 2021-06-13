@@ -1,4 +1,6 @@
-﻿<div id="employeeEditModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+﻿@using Intel.EmployeeManagement.RazorClassLibrary.Helper
+
+<div id="employeeEditModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,7 +40,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="departmentID" class="form-label">Department ID</label>
-                        <InputNumber class="form-control" id="departmentID" @bind-Value="@Employee.DepartmentID" />
+                        <InputSelectNumber class="form-control" @bind-Value="Employee.DepartmentID">
+                            <option value="0">Select Department</option>
+                            @foreach (var department in departments) { 
+                                <option value="@department.Key">@department.Key: @department.Value</option>
+                            }
+                        </InputSelectNumber>
                         <ValidationMessage For="() => Employee.DepartmentID" />
                     </div>
                     <div class="mb-3">

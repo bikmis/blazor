@@ -4,6 +4,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -13,6 +14,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         private IEmployeeService employeeService { get; set; }
 
         public Employee Employee { get; set; } = new Employee(); //Initialized from the Edit button in the parent form
+
+        private Dictionary<int, string> departments = new Dictionary<int, string>() { { 1, "Marketing" }, { 5, "Operations" }, { 10, "Sales" }, { 15, "Research" }, { 20, "IT" } };
 
         public Employee EmployeeInitialState { get; set; }  //Initialized from the Edit button in the parent form
 
