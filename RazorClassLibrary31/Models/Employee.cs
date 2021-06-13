@@ -16,7 +16,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Models
         public DateTime? DateOfBirth { get; set; }
         [Required]
         public string Position { get; set; }
-        [Required] [DepartmentIDValidator(MinimumDepartmentID = 15)]
+        [DepartmentIDValidator(MinimumDepartmentID = 1)]
         public int DepartmentID { get; set; }
         [Required]
         public string Gender { get; set; }
