@@ -47,9 +47,16 @@
     </div>
     <div class="mb-3">
         <label for="gender" class="form-label">Gender</label>
-        <InputText class="form-control" id="gender" @bind-Value="@employee.Gender" />
+        <div>
+            <label><input type="radio" checked=@(employee.Gender=="M") @onclick=@(() => employee.Gender="M") />&nbsp; Male</label>
+            &nbsp;
+            <label><input type="radio" checked=@(employee.Gender=="F") @onclick=@(() => employee.Gender="F") />&nbsp; Female</label>
+        </div>
         <ValidationMessage For="()=> employee.Gender" />
     </div>
+
+
+
     <button type="button" class="btn btn-secondary" @onclick="resetForm">Reset</button>
     <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>
