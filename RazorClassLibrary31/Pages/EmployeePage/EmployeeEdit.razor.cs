@@ -20,7 +20,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         public Employee EmployeeInitialState { get; set; }  //Initialized from the Edit button in the parent form
 
         [Parameter]
-        public EventCallback<string> OnEmployeeEdited { get; set; }
+        public EventCallback<AlertPopUp> OnEmployeeEdited { get; set; }
 
         [Inject]
         private IJSRuntime jsRuntime { get; set; }
@@ -32,26 +32,31 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private async Task editEmployee()
         {
+            AlertPopUp alertPopUp = new AlertPopUp() { IsHidden = false };
+
             try
             {
                 var response = await employeeService.EditEmployee(Employee);
                 await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
-                string editMessage = string.Empty;
+
                 if (response.IsSuccessStatusCode)
                 {
-                    editMessage = "Successfully edited.";
+                    alertPopUp.Message = "Successfully edited.";
+                    alertPopUp.Color = "alert-primary";
                 }
                 else
                 {
-                    editMessage = $"{(int)response.StatusCode} {response.StatusCode}";
+                    alertPopUp.Message = $"{(int)response.StatusCode} {response.StatusCode}";
+                    alertPopUp.Color = "alert-danger";
                 }
-                await OnEmployeeEdited.InvokeAsync(editMessage);
+                await OnEmployeeEdited.InvokeAsync(alertPopUp);
             }
             catch (Exception e)
             {
                 await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
-                var editMessage = e.Message;
-                await OnEmployeeEdited.InvokeAsync(editMessage);
+                alertPopUp.Message = e.Message;
+                alertPopUp.Color = "alert-danger";
+                await OnEmployeeEdited.InvokeAsync(alertPopUp);
             }
         }
 

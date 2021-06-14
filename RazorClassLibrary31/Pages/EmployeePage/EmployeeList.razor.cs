@@ -135,10 +135,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             StateHasChanged();
         }
 
-        private async Task refreshEmployeesAndShowMessage(string message) {
-            this.message = message;
-            isHidden = false;
-            alertColor = "alert-primary";
+        private async Task refreshEmployeesAndShowMessage(AlertPopUp alertPopUp) {
+            message = alertPopUp.Message;
+            isHidden = alertPopUp.IsHidden;
+            alertColor = alertPopUp.Color;
             await refreshEmployees();
         }
 
