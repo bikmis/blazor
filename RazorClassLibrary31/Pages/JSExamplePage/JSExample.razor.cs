@@ -42,7 +42,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
         }
 
         private async Task showAlert() {
-            await jsRuntime.InvokeVoidAsync("showAlert"); //showAlert is the name of a function in js/interop.js file
+            await jsRuntime.InvokeVoidAsync("showAlert"); //showAlert is the name of a function in scripts/app.js file
         }
 
         private async Task askQuestion() {
