@@ -50,3 +50,11 @@ function clearSessionStorage() {
 function writeToConsole(value) {
     console.log(value);
 }
+
+function hideElement(id) {
+    $("#" + id).hide();
+}
+
+function hideValidationSummery(nthChild) {
+    $("ul li:nth-child(" + nthChild + ")").hide()
+}

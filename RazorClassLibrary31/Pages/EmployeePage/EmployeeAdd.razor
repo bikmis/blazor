@@ -1,6 +1,6 @@
 ﻿@page "/employeeadd"
 @layout EmployeeLayout
-@attribute [Authorize (Roles = "admin")]
+@attribute [Authorize(Roles = "admin")]
 @using Intel.EmployeeManagement.RazorClassLibrary.Helper
 
 
@@ -12,27 +12,27 @@
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
         <InputText class="form-control" id="firstName" @bind-Value="@employee.FirstName" />  @* With <input ..> validation fires when form is submitted. With <InputText ...> validation fires immediately when you click outside the element or tab out.*@
-        <ValidationMessage For="()=>employee.FirstName" />
+        <ValidationMessage For="() => employee.FirstName" />
     </div>
     <div class="mb-3">
         <label for="middleName" class="form-label">Middle Name</label>
         <InputText class="form-control" id="middleName" @bind-Value="@employee.MiddleName" />
-        <ValidationMessage For="()=> employee.MiddleName" />
+        <ValidationMessage For="() => employee.MiddleName" />
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
         <InputText class="form-control" id="lastName" @bind-Value="@employee.LastName" />
-        <ValidationMessage For="()=> employee.LastName" />
+        <ValidationMessage For="() => employee.LastName" />
     </div>
     <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date Of Birth</label>
         <InputDate class="form-control" id="dateOfBirth" @bind-Value="@employee.DateOfBirth" />
-        <ValidationMessage For="()=> employee.DateOfBirth" />
+        <ValidationMessage For="() => employee.DateOfBirth" />
     </div>
     <div class="mb-3">
         <label for="position" class="form-label">Position</label>
         <InputText class="form-control" id="position" @bind-Value="@employee.Position" />
-        <ValidationMessage For="()=> employee.Position" />
+        <ValidationMessage For="() => employee.Position" />
     </div>
     <div class="mb-3">
         <label for="departmentID" class="form-label">Department ID</label>
@@ -44,16 +44,16 @@
                 <option value="@deparment.Key">@deparment.Key: @deparment.Value</option>
             }
         </InputSelectNumber>
-        <ValidationMessage For="()=> employee.DepartmentID" />
+        <ValidationMessage For="() => employee.DepartmentID" />
     </div>
     <div class="mb-3">
         <label for="gender" class="form-label">Gender</label>
         <div>
-            <label><input type="radio" checked=@(employee.Gender=="M") @onclick=@(() => employee.Gender="M") />&nbsp; Male</label>
+            <label><input type="radio" checked=@(employee.Gender == "M") @onclick=@(() => { employee.Gender = "M"; resetGenderValidation(); }) />&nbsp; Male</label>
             &nbsp;
-            <label><input type="radio" checked=@(employee.Gender=="F") @onclick=@(() => employee.Gender="F") />&nbsp; Female</label>
+            <label><input type="radio" checked=@(employee.Gender == "F") @onclick=@(() => { employee.Gender = "F"; resetGenderValidation(); }) />&nbsp; Female</label>
         </div>
-        <ValidationMessage For="()=> employee.Gender" />
+        <ValidationMessage id="genderValidation" For="()=> employee.Gender" />
     </div>
     <button type="button" class="btn btn-secondary" @onclick="resetForm">Reset</button>
     <button type="submit" class="btn btn-primary">Save</button>
@@ -61,5 +61,6 @@
 
 
 @code {
-    
+
+
 }

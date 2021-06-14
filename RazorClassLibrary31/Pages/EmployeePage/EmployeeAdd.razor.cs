@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Forms;
-using Intel.EmployeeManagement.RazorClassLibrary.Models;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -24,6 +25,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
+
+        [Inject]
+        private IJSRuntime jsRuntime { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
@@ -62,5 +66,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         private void resetForm() {
             employee = new Employee();
         }
+
+        private async Task resetGenderValidation()
+        {
+            await jsRuntime.InvokeVoidAsync("hideElement", "genderValidation");
+            await jsRuntime.InvokeVoidAsync("hideValidationSummery", "6");
+        }
+
     }
 }
