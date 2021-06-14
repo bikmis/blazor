@@ -16,7 +16,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
     {
         [Inject]
         private IEmployeeService employeeService { get; set; }
-        private List<Employee> employees { get; set; } = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
+        private List<Employee> employees { get; set; }// = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
+
+        private List<Employee> initialCollectionOfEmployees { get; set; }
+
+        private string searchTerm { get; set; }
 
         private EmployeeEdit employeeEdit;
 
@@ -79,6 +83,25 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 isHidden = false;
             }
             return base.OnParametersSetAsync();
+        }
+
+        private void search() {
+            if (initialCollectionOfEmployees == null) {
+                initialCollectionOfEmployees = new List<Employee>();
+                employees.ForEach(e => initialCollectionOfEmployees.Add(e));
+            }
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                employees = initialCollectionOfEmployees.Where(e => (e.ID + e.FirstName + e.MiddleName + e.LastName + Convert.ToDateTime(e.DateOfBirth).ToShortDateString() + e.Position + +e.DepartmentID + e.Gender).ToLower().Contains(searchTerm.ToLower())).ToList();
+                if (employees.Count == 0) {
+                    employees = new List<Employee>();
+                }
+            }
+            else {
+                employees = new List<Employee>();
+                initialCollectionOfEmployees.ForEach(e => employees.Add(e));
+            }
         }
 
         private async Task deleteEmployee(int employeeId)

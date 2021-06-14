@@ -4,7 +4,7 @@
 @layout EmployeeLayout
 @attribute [Authorize(Roles = "admin")]
 
-@if (employees.Count == 0)
+@if (employees == null)
 {
     <div class="center fa-3x">
         <i class="fas fa-spinner fa-pulse"></i>
@@ -17,11 +17,14 @@ else
     <NavLink class="mb-4 mt-3 btn btn-primary" href="employeeadd">Add Employee</NavLink>
     <Alert IsHidden="@isHidden" CloseButtonEvent="closeMessage" AlertColor="@alertColor" Message="@message" />
     <br />
+
+    <input class="form-control" type="search" @bind-value="searchTerm" @bind-value:event="oninput" @onkeyup="search" placeholder="Search by any text" />
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>
                 <th>Date Of Birth</th>
