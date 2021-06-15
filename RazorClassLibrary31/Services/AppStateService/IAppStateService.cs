@@ -1,4 +1,5 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
 {
     public interface IAppStateService
     {
+        event Action OnChange;
         User User { get; set; }
         string AccessToken { get; set; }
         HttpContent Serialize(object data);

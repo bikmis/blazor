@@ -1,4 +1,5 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -9,12 +10,29 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
 {
     public class AppStateService : IAppStateService
     {
-        private User _user = new User();
-        private string _accessToken;
+        private User user = new User();
+        private string accessToken;
 
-        public User User { get => _user; set => _user = value; }
+        public User User
+        {
+            get => user;
+            set
+            {
+                user = value;
+                notifyStateChanged();
+            }
+        }
 
-        public string AccessToken { get => _accessToken; set => _accessToken = value; }
+        public string AccessToken
+        {
+            get => accessToken;
+            set { 
+                accessToken = value;
+                notifyStateChanged();
+            }
+        }
+
+        public event Action OnChange;
 
         public async Task<T> Deserialize<T>(HttpResponseMessage response)
         {
@@ -41,5 +59,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
             var stringContent = data != null ? new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json") : null;
             return stringContent;
         }
+
+        private void notifyStateChanged() {
+            OnChange?.Invoke();
+        }
+
     }
 }
