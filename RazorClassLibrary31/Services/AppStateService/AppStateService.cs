@@ -12,6 +12,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
     {
         private User user = new User();
         private string accessToken;
+        private DateTime? time = null;
 
         public User User
         {
@@ -33,6 +34,16 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
         }
 
         public event Action OnChange;
+
+        public DateTime? Time
+        {
+            get => time;
+            set
+            {
+                time = value;
+                notifyStateChanged();
+            }
+        }
 
         public async Task<T> Deserialize<T>(HttpResponseMessage response)
         {

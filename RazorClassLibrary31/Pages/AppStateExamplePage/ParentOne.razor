@@ -2,10 +2,19 @@
 @layout EmployeeLayout
 @attribute [Authorize(Roles = "admin")]
 
-<h3>Parent One</h3>
+<h3>State Management Example</h3>
 
-<div style="border:1px solid black; height:400px; width:400px;">
+<div style="border:1px solid black; height:800px; width:800px;" class="p-3">
+    <h3>Parent One</h3>
 
+    <button class="btn btn-primary" @onclick="setTime">Set Time</button>
+    <div>Date & Time: @appStateService.Time</div>
+    <br />
+    <br />
+    <ChildOne />
+    <br />
+    <br />
+    <ChildTwo />
 </div>
 
 
