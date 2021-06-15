@@ -1,5 +1,5 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
@@ -12,13 +12,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
 {
     public class HttpService : IHttpService
     {
-        private IAppService appService;
+        private IAppStateService appStateService;
         private AuthenticationStateProvider authenticationService { get; set; }
         private HttpClient httpClient { get; set; }
 
-        public HttpService(IAppService _appService, AuthenticationStateProvider _authenticationService, HttpClient _httpClient)
+        public HttpService(IAppStateService _appStateService, AuthenticationStateProvider _authenticationService, HttpClient _httpClient)
         {
-            appService = _appService;
+            appStateService = _appStateService;
             authenticationService = _authenticationService;
             httpClient = _httpClient;
         }
@@ -38,8 +38,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                     response = await ((AuthenticationService)authenticationService).GetAccessToken();  //get access token using refresh token
                     if (response.IsSuccessStatusCode) //if refresh token is available and not expired
                     {
-                        var token = await appService.Deserialize<Token>(response);
-                        appService.AccessToken = token.AccessToken;
+                        var token = await appStateService.Deserialize<Token>(response);
+                        appStateService.AccessToken = token.AccessToken;
                         response = await sendAsync(method, url, data);
                         return response;
                     }
@@ -66,11 +66,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
         private async Task<HttpResponseMessage> sendAsync(HttpMethod method, string url, object data)
         {
             var request = new HttpRequestMessage(method, url);
-            if (appService.AccessToken != null)
+            if (appStateService.AccessToken != null)
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", appService.AccessToken);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", appStateService.AccessToken);
             }
-            request.Content = appService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            request.Content = appStateService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
             var response = await httpClient.SendAsync(request);
             return response;
         }

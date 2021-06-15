@@ -1,4 +1,4 @@
-using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
@@ -50,7 +50,7 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(frontendBaseAddress));
 
             //Singleton services
-            services.AddSingleton<IAppService, AppService>();
+            services.AddSingleton<IAppStateService, AppStateService>();
 
             //Difference among Singleton, Scoped and Transient services
             services.AddSingleton<ISingletonTimeService, SingletonTimeService>();

@@ -1,5 +1,5 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using System;
 using System.Collections.Generic;
@@ -11,19 +11,19 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
     public class EmployeeService : IEmployeeService
     {
         private readonly IHttpService httpService;
-        private readonly IAppService appService;
+        private readonly IAppStateService appStateService;
 
-        public EmployeeService(IHttpService _httpService, IAppService _appService)
+        public EmployeeService(IHttpService _httpService, IAppStateService _appStateService)
         {
             httpService = _httpService;
-            appService = _appService;
+            appStateService = _appStateService;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             try {
                 var response = await httpService.SendAsync(HttpMethod.Get, "api/employees", null);
-                var employees = await appService.DeserializeToList<Employee>(response); 
+                var employees = await appStateService.DeserializeToList<Employee>(response); 
                 return employees;  
             }
             catch (Exception) {

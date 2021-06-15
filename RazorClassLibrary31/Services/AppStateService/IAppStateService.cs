@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
 {
-    public interface IAppService
+    public interface IAppStateService
     {
         User User { get; set; }
         string AccessToken { get; set; }

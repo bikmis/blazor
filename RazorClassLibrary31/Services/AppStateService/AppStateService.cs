@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Services.App_Service
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
 {
-    public class AppService : IAppService
+    public class AppStateService : IAppStateService
     {
         private User _user = new User();
         private string _accessToken;
