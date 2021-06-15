@@ -51,9 +51,9 @@
                     <div class="mb-3">
                         <label for="gender" class="form-label">Gender</label>
                         <div>
-                            <label class="form-label"><input type="radio" checked="@(Employee.Gender == "M")" @onclick="@(() => Employee.Gender = "M")" />&nbsp;Male</label>
+                            <label class="form-label"><InputRadio name="gender" SelectedValue="male" @bind-Value="Employee.Gender"/>&nbsp;Male</label>
                             &nbsp;
-                            <label class="form-label"><input type="radio" checked="@(Employee.Gender == "F")" @onclick="@(() => Employee.Gender = "F")" />&nbsp;Female</label>
+                            <label class="form-label"><InputRadio name="gender" SelectedValue="female" @bind-Value="Employee.Gender" />&nbsp;Female</label>
                         </div>
                         <ValidationMessage For="() => Employee.Gender" />
                     </div>

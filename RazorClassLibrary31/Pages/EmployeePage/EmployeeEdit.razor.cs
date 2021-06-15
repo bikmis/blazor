@@ -10,6 +10,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
     public partial class EmployeeEdit
     {
+        private string male = "M";
+
+        private string female = "F";
+
         [Inject]
         private IEmployeeService employeeService { get; set; }
 
