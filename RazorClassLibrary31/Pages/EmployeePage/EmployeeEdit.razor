@@ -15,12 +15,12 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="firstName" class="form-label my-class">First Name</label>
-                        <InputText class="form-control" id="firstName" @bind-Value="@Employee.FirstName" /> <!--With <input ..> validation fires when form is submitted. With <InputText ...> validation fires immediately when you click outside the element-->
+                        <InputText class="form-control" id="firstName" @bind-Value="@Employee.FirstName" />
                         <ValidationMessage For="() => Employee.FirstName" />
                     </div>
                     <div class="mb-3">
                         <label for="middleName" class="form-label">Middle Name</label>
-                        <InputText class="form-control" id="middleName" @bind-Value="@Employee.MiddleName" /> <!-- @bind="" is an override of @bind-value="" with event set to "onchange" @bind-value:event:"onchange" -->
+                        <InputText class="form-control" id="middleName" @bind-Value="@Employee.MiddleName" />
                         <ValidationMessage For="() => Employee.MiddleName" />
                     </div>
                     <div class="mb-3">
