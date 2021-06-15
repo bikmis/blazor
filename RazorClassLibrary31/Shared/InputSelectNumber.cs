@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Helper
+namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
 {
     public class InputSelectNumber<T> : InputSelect<T>
     {

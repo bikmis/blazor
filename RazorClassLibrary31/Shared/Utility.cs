@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Helper
+namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
 {
     public class Utility
     {

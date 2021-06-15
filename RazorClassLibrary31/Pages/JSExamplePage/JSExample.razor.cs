@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Intel.EmployeeManagement.RazorClassLibrary.Helper;
+using Intel.EmployeeManagement.RazorClassLibrary.Shared;
 using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using System;
