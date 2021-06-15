@@ -70,7 +70,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         private async Task resetGenderValidation()
         {
             await jsRuntime.InvokeVoidAsync("hideElement", "genderValidation");
-            await jsRuntime.InvokeVoidAsync("hideValidationSummery", "6");
+            await jsRuntime.InvokeVoidAsync("hideFromValidationSummery", "The Gender field is required.");
         }
 
     }
