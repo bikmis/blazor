@@ -55,10 +55,3 @@ function hideElement(id) {
     $("#" + id).hide();
 }
 
-function hideFromValidationSummery(validationMessage) {
-//    $("ul li:contains(" + "'" + validationMessage + "'" + ")").hide();
-
-    $("input").change(function(){
-        $("ul li:contains(" + "'" + validationMessage + "'" + ")").hide();
-    })
-}
