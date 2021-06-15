@@ -13,11 +13,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         private IAppStateService appStateService { get; set; }
 
 
-
         protected override Task OnInitializedAsync()
         {
             appStateService.OnChange += StateHasChanged;
-
             return base.OnInitializedAsync();
         }
 
