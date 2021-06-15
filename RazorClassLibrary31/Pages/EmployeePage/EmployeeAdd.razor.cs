@@ -29,6 +29,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         [Inject]
         private IJSRuntime jsRuntime { get; set; }
 
+        private string male = "M";
+
+        private string female = "F";
+
         protected async override Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
@@ -67,11 +71,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             employee = new Employee();
         }
 
-        private async Task resetGenderValidation()
-        {
-            await jsRuntime.InvokeVoidAsync("hideElement", "genderValidation");
-            await jsRuntime.InvokeVoidAsync("hideFromValidationSummery", "The Gender field is required.");
-        }
 
     }
 }
