@@ -1,0 +1,114 @@
+﻿@page "/communication"
+
+@layout EmployeeLayout
+@attribute [Authorize(Roles = "admin")]
+
+<h3>Communication among Components and Pages</h3>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>S.N.</th>
+            <th>From and To</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>
+                From parent component to child component <br />
+                ([parameter] attribute)
+            </td>
+            <td>
+                Child component will expose a property with [parameter] attribute. <br />
+                child component: <br />
+                <code style="color: red">
+                    [parameter] <br />
+                    public string Name {get;set;}
+                </code>
+                <br />
+                <br />
+                parent component: <br />
+                <code style="color:red">
+                    private string name {get; set;} <br />
+                    &lt;child Name="@@name"/>
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>
+                From child component to parent component <br />
+                (EventCallback)
+            </td>
+            <td>
+                Child component will expose a property with EventCallback. <br />
+                child component: <br />
+                <code style="color:red">
+                    public EventCallback&lt;string> OnSaved {get; set;} <br />
+                    &lt;button @@onclick="@@OnSaved.InvokeAsync("The record is saved.")">Save&lt;/button>
+                </code>
+                <br />
+                <br />
+                parent component: <br />
+                <code style="color:red">
+                    private string message {get; set;} <br />
+                    private void save(string msg){ <br />
+                    &emsp; message = msg; <br />
+                    } <br />
+                    &lt;child OnSaved="save" />
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>
+                From one page to another page <br />
+                (path parameter: /users/{id})
+            </td>
+            <td>
+                Get the value of id at "OnParametersSetAsync" lifecycle stage. <br />
+                <code style="color:red">
+                    protected override Task OnParametersSetAsync() <br />
+                    { <br />
+                        &emsp; //Do something with id. It has a value now coming from the URL <br />
+                    }
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>
+                From one page to another page <br />
+                (query parameter(string): /users?role=admin&position=manager)
+            </td>
+            <td>
+                You can parse the url and get values of role and position any time (during the initialization (OnInitializedAsync) or afterwards)
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>
+                From child to parent component <br />
+                From parent to child component <br />
+                From one sibling to another sibling component <br />
+                From one page to another page <br />
+                (app state (state container) service)
+            </td>
+            <td>
+                Create a app state service and inject it wherever you need it.
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+
+
+
+@code {
+
+}
