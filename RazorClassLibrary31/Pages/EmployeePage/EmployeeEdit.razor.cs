@@ -5,11 +5,15 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
     public partial class EmployeeEdit
     {
+        [Inject]
+        private IAppStateService appStateService { get; set; }
+
         private string male = "M";
 
         private string female = "F";
@@ -24,7 +28,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         public Employee EmployeeInitialState { get; set; }  //Initialized from the Edit button in the parent form
 
         [Parameter]
-        public EventCallback<AlertPopUp> OnEmployeeEdited { get; set; }
+        public EventCallback<bool> OnEmployeeEdited { get; set; }
 
         [Inject]
         private IJSRuntime jsRuntime { get; set; }
@@ -36,8 +40,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private async Task editEmployee()
         {
-            AlertPopUp alertPopUp = new AlertPopUp() { IsHidden = false };
-
+            bool editCompleted = true;
             try
             {
                 var response = await employeeService.EditEmployee(Employee);
@@ -45,22 +48,19 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    alertPopUp.Message = "Successfully edited.";
-                    alertPopUp.Color = "alert-primary";
+                    appStateService.AlertPopUp = new AlertPopUp { Message = "Successfully edited.", IsHidden = false, Color = "alert-success" };
                 }
                 else
                 {
-                    alertPopUp.Message = $"{(int)response.StatusCode} {response.StatusCode}";
-                    alertPopUp.Color = "alert-danger";
+                    appStateService.AlertPopUp = new AlertPopUp { Message = $"{(int)response.StatusCode} {response.StatusCode}", IsHidden = false, Color = "alert-danger" };
                 }
-                await OnEmployeeEdited.InvokeAsync(alertPopUp);
+                await OnEmployeeEdited.InvokeAsync(editCompleted);
             }
             catch (Exception e)
             {
                 await jsRuntime.InvokeVoidAsync("closeEmployeeEditModal");
-                alertPopUp.Message = e.Message;
-                alertPopUp.Color = "alert-danger";
-                await OnEmployeeEdited.InvokeAsync(alertPopUp);
+                appStateService.AlertPopUp = new AlertPopUp { Message = e.Message, IsHidden = false, Color = "alert-danger" };
+                await OnEmployeeEdited.InvokeAsync(editCompleted);
             }
         }
 

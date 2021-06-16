@@ -13,6 +13,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
         private User user = new User();
         private string accessToken;
         private DateTime? time = null;
+        private AlertPopUp alertPopUp = new AlertPopUp();
 
         public User User
         {
@@ -27,7 +28,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
         public string AccessToken
         {
             get => accessToken;
-            set { 
+            set {
                 accessToken = value;
                 notifyStateChanged();
             }
@@ -41,6 +42,16 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
             set
             {
                 time = value;
+                notifyStateChanged();
+            }
+        }
+
+        public AlertPopUp AlertPopUp
+        {
+            get => alertPopUp; 
+            set
+            {
+                alertPopUp = value;
                 notifyStateChanged();
             }
         }

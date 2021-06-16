@@ -1,25 +1,31 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
+using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
 {
-    public partial class Alert
+    public partial class Alert : IDisposable
     {
-        [Parameter]
-        public bool IsHidden { get; set; }
+        [Inject]
+        private IAppStateService appStateService { get; set; }
 
-        [Parameter]
-        public EventCallback<bool> CloseButtonEvent { get; set; }
-
-        [Parameter]
-        public string AlertColor { get; set; }
-
-        [Parameter]
-        public string Message { get; set; }
-
-        private async Task closeMessage()
+        public void Dispose()
         {
-            await CloseButtonEvent.InvokeAsync(true);
+            appStateService.OnChange -= StateHasChanged;
         }
+
+        protected override Task OnInitializedAsync()
+        {
+            appStateService.OnChange += StateHasChanged;
+            return base.OnInitializedAsync();
+        }
+
+        private void closeMessage()
+        {
+            appStateService.AlertPopUp = new AlertPopUp() { IsHidden = true };
+        }
+
     }
 }

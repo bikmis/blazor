@@ -1,10 +1,8 @@
-﻿<div hidden="@IsHidden">
-    <div class="alert @AlertColor alert-dismissible fade show" role="alert">
-        <strong>@Message</strong>
-        <button type="button" class="close" aria-label="Close" @onclick="closeMessage">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+﻿<div hidden="@appStateService.AlertPopUp.IsHidden" class="alert @appStateService.AlertPopUp.Color alert-dismissible fade show" role="alert">
+    <strong>@appStateService.AlertPopUp.Message</strong>
+    <button type="button" class="close" aria-label="Close" @onclick="closeMessage">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 
 

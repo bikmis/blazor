@@ -21,5 +21,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
         Task<List<T>> DeserializeToList<T>(HttpResponseMessage response);
 
         DateTime? Time { get; set; }
+
+        AlertPopUp AlertPopUp { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -15,7 +16,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
     public partial class EmployeeList
     {
         [Inject]
+        private IAppStateService appStateService { get; set; }
+
+        [Inject]
         private IEmployeeService employeeService { get; set; }
+
         private List<Employee> employees { get; set; }// = new List<Employee>(); //Assign an empty object or check null in the razor to avoid an exception.
 
         private List<Employee> initialCollectionOfEmployees { get; set; }
@@ -24,16 +29,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private EmployeeEdit employeeEdit;
 
-        private string message { get; set; }
-
-        private bool isHidden { get; set; } = true;
-
-        private string alertColor { get; set; }
-      
-        private void closeMessage(bool isHidden) {
-            this.isHidden = isHidden;
-        }
-      
         [Inject]
         private NavigationManager navigationManager { get; set; }
 
@@ -46,12 +41,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         protected async override Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
-
-            var queryString = parseUri();
-            alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
-            var messageOne = queryString.Where(x => x.Key == "messageOne").FirstOrDefault().Value;
-            var messageTwo = queryString.Where(x => x.Key == "messageTwo").FirstOrDefault().Value;
-            var messageThree = queryString.Where(x => x.Key == "messageThree").FirstOrDefault().Value;
+            appStateService.AlertPopUp = new AlertPopUp() { IsHidden = true }; //when user lands on this page, the alert will be hidden.
             await getEmployees();
         }
 
@@ -77,16 +67,24 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         protected override Task OnParametersSetAsync()
         {
+            //This page has two URLs, one with SaveMessage parameter. This is captured inside OnParametersSetAsync()
+            //@page "/employeelist"
+            //@page "/employeelist/{SaveMessage}"
+
             if (SaveMessage != null)
             {
-                message = SaveMessage;
-                isHidden = false;
+                var queryString = parseUri();
+                var alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
+
+                appStateService.AlertPopUp = new AlertPopUp() { Message = SaveMessage, IsHidden = false, Color = alertColor };
             }
             return base.OnParametersSetAsync();
         }
 
-        private void search() {
-            if (initialCollectionOfEmployees == null) {
+        private void search()
+        {
+            if (initialCollectionOfEmployees == null)
+            {
                 initialCollectionOfEmployees = new List<Employee>();
                 employees.ForEach(e => initialCollectionOfEmployees.Add(e));
             }
@@ -94,11 +92,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 employees = initialCollectionOfEmployees.Where(e => (e.ID + e.FirstName + e.MiddleName + e.LastName + Convert.ToDateTime(e.DateOfBirth).ToShortDateString() + e.Position + +e.DepartmentID + e.Gender).ToLower().Contains(searchTerm.ToLower())).ToList();
-                if (employees.Count == 0) {
+                if (employees.Count == 0)
+                {
                     employees = new List<Employee>();
                 }
             }
-            else {
+            else
+            {
                 employees = new List<Employee>();
                 initialCollectionOfEmployees.ForEach(e => employees.Add(e));
             }
@@ -111,51 +111,43 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 var response = await employeeService.DeleteEmployee(employeeId);
                 if (response.IsSuccessStatusCode)
                 {
-                    await refreshEmployees();
-                    message = $"Employee with ID {employeeId} is deleted.";
-                    isHidden = false;
-                    alertColor = "alert-warning";
+                    await reloadEmployees(true);
+
+                    appStateService.AlertPopUp = new AlertPopUp() { Message = $"Employee with ID {employeeId} is deleted.", IsHidden = false, Color = "alert-success" };
                 }
-                else {
-                    message = $"{(int)response.StatusCode} {response.ReasonPhrase}";
-                    isHidden = false;
-                    alertColor = "alert-warning";
+                else
+                {
+                    appStateService.AlertPopUp = new AlertPopUp() { Message = $"{(int)response.StatusCode} {response.ReasonPhrase}", IsHidden = false, Color = "alert-danger" };
                 }
             }
             catch (Exception e)
             {
-                message = e.Message;
-                isHidden = false;
-                alertColor = "alert-warning";
+                appStateService.AlertPopUp = new AlertPopUp() { Message = e.Message, IsHidden = false, Color = "alert-danger" };
             }
         }
 
-        private async Task refreshEmployees() {
-            await getEmployees();        
-            StateHasChanged();
+        private async Task reloadEmployees(bool isOperationCompleted)
+        {
+            if (isOperationCompleted) {
+                await getEmployees();
+                StateHasChanged();
+            }
         }
 
-        private async Task refreshEmployeesAndShowMessage(AlertPopUp alertPopUp) {
-            message = alertPopUp.Message;
-            isHidden = alertPopUp.IsHidden;
-            alertColor = alertPopUp.Color;
-            await refreshEmployees();
-        }
-
-        private async Task getEmployees() {
-            try {
+        private async Task getEmployees()
+        {
+            try
+            {
                 employees = (await employeeService.GetEmployees()).ToList();
             }
-            catch (Exception e) {
-                //if database is down, employees will be null and the execution will come here as null cannot bind to the view.
-                //if api service is down, exception will be caught and rethrown by http service and then by employee service and the execution will come here.
-                message = e.Message;
-                isHidden = false;
-                alertColor = "alert-warning";
+            catch (Exception e)
+            {
+                appStateService.AlertPopUp = new AlertPopUp() { Message = e.Message, IsHidden = false, Color = "alert-danger" };
             }
         }
 
-        private void passToEditForm(Employee employee) {
+        private void passToEditForm(Employee employee)
+        {
             employeeEdit.Employee = new Employee()
             {
                 ID = employee.ID,

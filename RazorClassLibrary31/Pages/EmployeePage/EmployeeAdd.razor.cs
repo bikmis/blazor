@@ -49,7 +49,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 if (response.IsSuccessStatusCode)
                 {
                     message = "Employee Added Successfully.";
-                    alertColor = "alert-secondary";
+                    alertColor = "alert-success";
                 }
                 else
                 {
@@ -57,13 +57,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                     alertColor = "alert-danger";
                 }
                 //passing values in the url parameter and query string
-                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}&messageOne=message one&messageTwo=message two&messageThree=message three");
+                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}");
             }
             catch (Exception e)
             {
                 message = e.Message;
                 alertColor = "alert-danger";
-                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}&messageOne=message one&messageTwo=message two&messageThree=message three");
+                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}");
             }
         }
 
