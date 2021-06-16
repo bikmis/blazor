@@ -73,7 +73,7 @@
                 <code style="color:red">
                     protected override Task OnParametersSetAsync() <br />
                     { <br />
-                        &emsp; //Do something with id. It has a value now coming from the URL <br />
+                    &emsp; //Do something with id. It has a value now coming from the URL <br />
                     }
                 </code>
             </td>
@@ -101,9 +101,30 @@
                 Create a app state service and inject it wherever you need it.
             </td>
         </tr>
-
+        <tr>
+            <td>6</td>
+            <td>
+                From child to parent component <br />
+                From parent to child component <br />
+                From one sibling to another sibling component <br />
+                From one page to another page <br />
+                (cascading app state component)
+            </td>
+            <td>
+                Create a CascadingAppState razor component using CascadingValue component and wrap App.razor with &lt;CascadingAppState>&lt;/CascadingAppState> <br />
+                <code style="color:red">
+                    &lt;CascadingAppState> <br />
+                    &emsp; &lt;Router> <br />
+                    &emsp;&emsp; .... <br />
+                    &emsp; &lt;/Router> <br />
+                    &lt;/CascadingAppState>
+                </code>
+                <br />
+                Wherever you need properties from CascadingAppState, do the following: <br />
+                <code style="color:red">[CascadingParameter] public CascadingAppState AppState {get; set;}</code>
+            </td>
+        </tr>
     </tbody>
-
 </table>
 
 
