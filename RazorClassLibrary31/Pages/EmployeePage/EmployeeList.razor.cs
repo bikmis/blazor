@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Shared;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -42,39 +43,23 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
             appStateService.AlertPopUp = new AlertPopUp() { IsHidden = true }; //when user lands on this page, the alert will be hidden.
+            displaySaveMessage(); //When user lands on this page after adding an employee, save message is displayed.
+            await getEmployees();
+        }
 
+        private void displaySaveMessage()
+        {
             //This page has two URLs, one with SaveMessage parameter.
             //@page "/employeelist"
             //@page "/employeelist/{SaveMessage}"            
             if (SaveMessage != null)
             {
-                var queryString = parseUri();
-                var alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
+                var uri = navigationManager.Uri;
+                var keyValueDictionary = Utility.parseUri(uri);
+                var alertColor = keyValueDictionary.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
 
                 appStateService.AlertPopUp = new AlertPopUp() { Message = SaveMessage, IsHidden = false, Color = alertColor };
             }
-
-            await getEmployees();
-        }
-
-        private Dictionary<string, string> parseUri()
-        {
-            Dictionary<string, string> queryStringDictionary = new Dictionary<string, string>();
-            var uri = navigationManager.Uri;
-            var uriSplit = uri.Split('?');
-            if (uriSplit.Length == 2)
-            {
-                var queryString = uriSplit[1];
-                var decodedQueryString = WebUtility.UrlDecode(queryString);
-                var decodedQueryStringSplit = decodedQueryString.Split('&').ToList();
-                decodedQueryStringSplit.ForEach(x =>
-                {
-                    var xSplit = x.Split('=');
-                    queryStringDictionary.Add(xSplit[0], xSplit[1]);
-                });
-            }
-
-            return queryStringDictionary;
         }
 
         private void search()
