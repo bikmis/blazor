@@ -45,8 +45,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
             //This page has two URLs, one with SaveMessage parameter.
             //@page "/employeelist"
-            //@page "/employeelist/{SaveMessage}"
-            
+            //@page "/employeelist/{SaveMessage}"            
             if (SaveMessage != null)
             {
                 var queryString = parseUri();
