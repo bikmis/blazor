@@ -69,12 +69,11 @@
                 (path parameter: /users/{id})
             </td>
             <td>
-                Get the value of id at "OnParametersSetAsync" lifecycle stage. <br />
+                public parameter Id is automatically assigned to the value coming frm Url path parameter. <br />
                 <code style="color:red">
-                    protected override Task OnParametersSetAsync() <br />
-                    { <br />
-                    &emsp; //Do something with id. It has a value now coming from the URL <br />
-                    }
+                    [Parameter] <br />
+                    public string Id {get; set;} <br/>
+                    &lt;div>@@Id&lt;/div>
                 </code>
             </td>
         </tr>

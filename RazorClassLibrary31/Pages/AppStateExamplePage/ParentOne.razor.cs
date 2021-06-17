@@ -1,8 +1,6 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
@@ -11,6 +9,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
     {
         [Inject]
         private IAppStateService appStateService { get; set; }
+
+        [Parameter]
+        public string Id { get; set; }
 
         public void Dispose()
         {
