@@ -6,7 +6,7 @@
 
 <h3>State Management Example / Communication</h3>
 
-<div style="border:1px solid black; height:800px; width:800px;" class="p-3">
+<div style="border:1px solid black; height:900px; width:800px;" class="p-3">
     <h3>Parent One</h3>
 
     <button class="btn btn-primary" @onclick="setTime">Set Time</button>
@@ -23,7 +23,10 @@
         <div>Name is @name</div>
     }
     <br />
-    <ChildOne Name="@parentToChild"/>
+    <div>Use of @@ref: @somethingDone</div>
+    <br />
+    <br />
+    <ChildOne @ref="childOne" Name="@parentToChild" />
     <br />
     <br />
     <ChildTwo />

@@ -18,6 +18,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
 
         private string name { get; set; }
 
+        private ChildOne childOne;
+
+        private string somethingDone { get; set; }
+
         [Parameter]
         public string Id { get; set; }
 
@@ -33,6 +37,15 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
             keyValues.TryGetValue("name", out string value);
             name = value;
             return base.OnInitializedAsync();
+        }
+
+        protected override Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender) {
+                somethingDone = childOne.DoSomething(); // this is available only after ChildOne componenet is initialized / rendered. For it to run once only, we need to put it inside when firstRender is true, otherwise it'll go into a loop.
+                StateHasChanged();
+            }
+            return base.OnAfterRenderAsync(firstRender);
         }
 
         private void setTime() {

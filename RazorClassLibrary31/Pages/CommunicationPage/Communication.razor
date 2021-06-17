@@ -48,14 +48,15 @@
                 Child component will expose properties with public access modifier. <br />
                 child component: <br />
                 <code style="color: red">
-                    public void DoSomething() {}
+                    public string DoSomething() <br />
+                    { return "did something." }
                 </code>
                 <br />
                 <br />
                 parent component: <br />
                 <code style="color:red">
-                    private ChildOne childOne {get; set;} <br />
-                    childOne.doSomething(); <br />
+                    private ChildOne childOne; <br />
+                    &lt;button @@onclick="() => childOne.doSomething()">Do Something&lt;/button> <br />
                     &lt;ChildOne @@ref="childOne"/>
                 </code>
             </td>

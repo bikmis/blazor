@@ -15,6 +15,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         [Parameter]
         public string Name { get; set; }
 
+        public string DoSomething() {
+            return "Did something";
+        }
+
         public void Dispose()
         {
             appStateService.OnChange -= StateHasChanged;
