@@ -12,6 +12,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         [Inject]
         private IAppStateService appStateService { get; set; }
 
+        [Parameter]
+        public string Name { get; set; }
+
         public void Dispose()
         {
             appStateService.OnChange -= StateHasChanged;

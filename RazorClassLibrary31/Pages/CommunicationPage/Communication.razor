@@ -27,6 +27,7 @@
                 <code style="color: red">
                     [parameter] <br />
                     public string Name {get;set;}
+                    @@Name (in the razor view)
                 </code>
                 <br />
                 <br />
@@ -39,6 +40,28 @@
         </tr>
         <tr>
             <td>2</td>
+            <td>
+                From parent component to child component <br />
+                (@@ref)
+            </td>
+            <td>
+                Child component will expose properties with public access modifier. <br />
+                child component: <br />
+                <code style="color: red">
+                    public void DoSomething() {}
+                </code>
+                <br />
+                <br />
+                parent component: <br />
+                <code style="color:red">
+                    private EmployeeEdit employeeEdit {get; set;} <br />
+                    employeeEdit.doSomething(); <br />
+                    &lt;EmployeeEdit @@ref="employeeEdit"/>
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
             <td>
                 From child component to parent component <br />
                 (EventCallback)
@@ -63,7 +86,7 @@
             </td>
         </tr>
         <tr>
-            <td>3</td>
+            <td>4</td>
             <td>
                 From one page to another page <br />
                 (path parameter: /users/{id})
@@ -72,13 +95,13 @@
                 public parameter Id is automatically assigned to the value coming frm Url path parameter. <br />
                 <code style="color:red">
                     [Parameter] <br />
-                    public string Id {get; set;} <br/>
+                    public string Id {get; set;} <br />
                     &lt;div>@@Id&lt;/div>
                 </code>
             </td>
         </tr>
         <tr>
-            <td>4</td>
+            <td>5</td>
             <td>
                 From one page to another page <br />
                 (query parameter(string): /users?role=admin&position=manager)
@@ -88,7 +111,7 @@
             </td>
         </tr>
         <tr>
-            <td>5</td>
+            <td>6</td>
             <td>
                 From child to parent component <br />
                 From parent to child component <br />
@@ -101,7 +124,7 @@
             </td>
         </tr>
         <tr>
-            <td>6</td>
+            <td>7</td>
             <td>
                 From child to parent component <br />
                 From parent to child component <br />

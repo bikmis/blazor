@@ -14,6 +14,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         [Inject]
         private NavigationManager navigationManager { get; set; }
 
+        private string parentToChild { get; set; } = "John";
+
         private string name { get; set; }
 
         [Parameter]
