@@ -84,7 +84,7 @@
                 (query parameter(string): /users?role=admin&position=manager)
             </td>
             <td>
-                You can parse the url and get values of role and position any time (during the initialization (OnInitializedAsync) or afterwards)
+                You can parse the url and get values of role and position any time (during the component initialization (OnInitializedAsync) or afterwards)
             </td>
         </tr>
         <tr>
@@ -97,7 +97,7 @@
                 (app state (state container) service)
             </td>
             <td>
-                Create a app state service and inject it wherever you need it.
+                Create an app state service and inject it wherever you need it.
             </td>
         </tr>
         <tr>
@@ -110,7 +110,7 @@
                 (cascading app state component)
             </td>
             <td>
-                Create a CascadingAppState razor component using CascadingValue component and wrap App.razor with &lt;CascadingAppState>&lt;/CascadingAppState> <br />
+                Create a cascading app state razor component (such as CascadingAppState) using CascadingValue component and wrap App.razor with &lt;CascadingAppState>&lt;/CascadingAppState> <br />
                 <code style="color:red">
                     &lt;CascadingAppState> <br />
                     &emsp; &lt;Router> <br />
@@ -119,7 +119,7 @@
                     &lt;/CascadingAppState>
                 </code>
                 <br />
-                Wherever you need properties from CascadingAppState, do the following: <br />
+                Wherever you need properties from CascadingAppState, do the following with cascading parameter attribute: <br />
                 <code style="color:red">[CascadingParameter] public CascadingAppState AppState {get; set;}</code>
             </td>
         </tr>
