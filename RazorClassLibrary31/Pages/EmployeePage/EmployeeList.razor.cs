@@ -55,7 +55,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             if (SaveMessage != null)
             {
                 var uri = navigationManager.Uri;
-                var keyValueDictionary = Utility.parseUri(uri);
+                var keyValueDictionary = Utility.ParseUri(uri);
                 var alertColor = keyValueDictionary.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
 
                 appStateService.AlertPopUp = new AlertPopUp() { Message = SaveMessage, IsHidden = false, Color = alertColor };

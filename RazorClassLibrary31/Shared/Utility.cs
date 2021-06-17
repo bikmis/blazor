@@ -32,7 +32,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Shared
             return isExpired;
         }
 
-        public static Dictionary<string, string> parseUri(string uri)
+        public static Dictionary<string, string> ParseUri(string uri)
         {
             Dictionary<string, string> keyValueDictionary = new Dictionary<string, string>();
             var uriArray = uri.Split('?');
