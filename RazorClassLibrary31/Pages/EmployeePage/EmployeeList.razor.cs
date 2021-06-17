@@ -42,6 +42,19 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
             appStateService.AlertPopUp = new AlertPopUp() { IsHidden = true }; //when user lands on this page, the alert will be hidden.
+
+            //This page has two URLs, one with SaveMessage parameter.
+            //@page "/employeelist"
+            //@page "/employeelist/{SaveMessage}"
+            
+            if (SaveMessage != null)
+            {
+                var queryString = parseUri();
+                var alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
+
+                appStateService.AlertPopUp = new AlertPopUp() { Message = SaveMessage, IsHidden = false, Color = alertColor };
+            }
+
             await getEmployees();
         }
 
@@ -63,22 +76,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
             }
 
             return queryStringDictionary;
-        }
-
-        protected override Task OnParametersSetAsync()
-        {
-            //This page has two URLs, one with SaveMessage parameter. This is captured inside OnParametersSetAsync()
-            //@page "/employeelist"
-            //@page "/employeelist/{SaveMessage}"
-
-            if (SaveMessage != null)
-            {
-                var queryString = parseUri();
-                var alertColor = queryString.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
-
-                appStateService.AlertPopUp = new AlertPopUp() { Message = SaveMessage, IsHidden = false, Color = alertColor };
-            }
-            return base.OnParametersSetAsync();
         }
 
         private void search()
