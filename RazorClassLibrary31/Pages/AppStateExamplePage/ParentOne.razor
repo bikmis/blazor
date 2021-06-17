@@ -11,11 +11,17 @@
 
     <button class="btn btn-primary" @onclick="setTime">Set Time</button>
     <div>Date & Time: @appStateService.Time</div>
+    <br />
     @if (Id != null)
     {
+        <div>Example of path parameter:</div>
         <div>Id is @Id.</div>
     }
-    <br />
+    @if (name != null)
+    {
+        <div>Example of query parameter:</div>
+        <div>Name is @name</div>
+    }
     <br />
     <ChildOne />
     <br />
