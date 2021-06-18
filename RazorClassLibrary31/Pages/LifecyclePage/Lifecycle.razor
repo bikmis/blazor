@@ -3,9 +3,29 @@
 
 @attribute [Authorize(Roles = "admin")]
 
-<h3>Lifecycle</h3>
+<div style="border: 2px dotted blue">
+    <h3>Lifecycle</h3>
 
-
+    <ul class="spaced-out-li">
+        <li>
+            OnInitialziedAsync, OnParametersSetAsync, OnAfterRenderAsync (with firstrender as true) runs once in the same order as mentioned here.
+        </li>
+        <li>
+            If there is any event or a property is changed, then OnAfterRenderAsync runs with firstrender as false. Don't put any api calls that hit a database here.
+            This is the right place to manipulate view's elements.
+            <button class="btn btn-primary" @onclick="() => { }">Fire Click Event</button>
+            <br />
+            <br />
+            <input class="form-control" type="text" @bind-value="name" @bind-value:event="onchange" placeholder="Enter a value and click outside" />
+        </li>
+        <li>
+            When a child component receives a parameter from parent component, then parent's OnAfterRenderAsync runs and child's OnParametersSetAsync and OnAfterRenderAsync run.
+            <input class="form-control" type="text" @bind-value="greeting" @bind-value:event="onchange" placeholder="Enter a greeting and click outside" />
+            <br />
+            <LifecycleChild Greeting="@greeting" />
+        </li>
+    </ul>
+</div>
 
 
 @code {

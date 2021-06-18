@@ -1,0 +1,14 @@
+﻿<div style="border: 2px dashed red">
+    <h3>Lifecycle Child</h3>
+
+    <div>Greeting: @Greeting</div>
+    <br />
+    <button class="btn btn-primary" @onclick="() => { }">Fire Event</button>
+    <br />
+    <br />
+    <input class="form-control" type="text" @bind-value="Greeting" @bind-value:event="onchange" placeholder="Enter a greeting and click outside" />
+</div>
+
+@code {
+
+}
