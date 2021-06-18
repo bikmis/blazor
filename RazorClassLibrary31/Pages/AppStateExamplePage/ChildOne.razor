@@ -1,8 +1,8 @@
 ﻿<div style="border:1px solid black; height:400px; width:700px;" class="p-3">
     <h3>Child One</h3>
     <button class="btn btn-primary" @onclick="setTime">Set Time</button>
-    <div>Date & Time: @appStateService.Time</div>
-    <div>Name: @Name</div>
+    <div>6 - App State Service: Date & Time: @appStateService.Time</div>
+    <div style="color:brown">Name(1 - Parameter property): @Name</div>
     <br />
     <button class="btn btn-primary" @onclick="@(()=> OnSaved.InvokeAsync("The record is saved."))">Save (EventCallback Example)</button>
     <br />

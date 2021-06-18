@@ -10,26 +10,28 @@
     <h3>Parent One</h3>
 
     <button class="btn btn-primary" @onclick="setTime">Set Time</button>
-    <div>Date & Time: @appStateService.Time</div>
+    <div>6 - App State Service: Date & Time: @appStateService.Time</div>
     <br />
     @if (Id != null)
     {
-        <div>Example of path parameter:</div>
-        <div>Id is @Id.</div>
+        <div style="color:red">4 - Example of path parameter:</div>
+        <div style="color:red">Id is @Id.</div>
     }
     @if (name != null)
     {
-        <div>Example of query parameter:</div>
-        <div>Name is @name</div>
+        <div style="color:red">5 - Example of query parameter:</div>
+        <div style="color:red">Name is @name</div>
     }
     <br />
-    <div>Use of @@ref: @somethingDone</div>
+    <div style="color:blue">Use of @@ref (2 - Referencing element): @somethingDone</div>
     <br />
-    <span>Message on save (EventCallback): @messageOnSaved</span>
+
     @if (@messageOnSaved != null)
     {
+        <span style="color:purple">Message on save (3 - EventCallback): @messageOnSaved</span>
         <button class="btn btn-primary" @onclick="@(() => messageOnSaved = null)">&times;</button>
     }
+
     <br />
     <ChildOne @ref="childOne" OnSaved="@((m) => messageOnSaved = m)" Name="@parentToChild" />
     <br />
