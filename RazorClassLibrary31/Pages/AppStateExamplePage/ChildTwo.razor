@@ -1,7 +1,10 @@
-﻿<div style="border:1px solid black; height:150px; width:700px;" class="p-3">
+﻿<div style="border:2px dashed blue; height:175px; width:700px;" class="p-3">
     <h3>Child Two</h3>
-    <button class="btn btn-primary" @onclick="setTime">Set Time</button>
-    <div>6 - App State Service: Date & Time: @appStateService.Time</div>
+    <button class="btn btn-primary" @onclick="setTime">6 - App State Service: Set Date & Time</button>
+    <span>@appStateService.Time</span>
+    <br />
+    <input class="form-control" @bind-value="cascadingAppState.Message" @bind-value:event="oninput" placeholder="7 - CascadingAppState: Enter value here" />
+
 </div>
 
 @code {

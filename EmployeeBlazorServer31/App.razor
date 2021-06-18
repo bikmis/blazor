@@ -1,16 +1,18 @@
-﻿<CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage.EmployeeList).Assembly}">
-        <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MasterLayout)">
-                <NotAuthorized>
-                    <LoginUser></LoginUser>
-                </NotAuthorized>
-            </AuthorizeRouteView>
-        </Found>
-        <NotFound>
-            <LayoutView Layout="@typeof(MasterLayout)">
-                <p>Sorry, there's nothing at this address.</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
-</CascadingAuthenticationState>
+﻿<CascadingAppState>
+    <CascadingAuthenticationState>
+        <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage.EmployeeList).Assembly}">
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MasterLayout)">
+                    <NotAuthorized>
+                        <LoginUser></LoginUser>
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(MasterLayout)">
+                    <p>Sorry, there's nothing at this address.</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
+</CascadingAppState>

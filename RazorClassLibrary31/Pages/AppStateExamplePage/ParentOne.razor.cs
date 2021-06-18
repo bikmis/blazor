@@ -24,6 +24,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
 
         private string messageOnSaved { get; set; }
 
+        [CascadingParameter]
+        private CascadingAppState cascadingAppState { get; set; }
+
         [Parameter]
         public string Id { get; set; }
 

@@ -1,11 +1,12 @@
-﻿<div style="border:1px solid black; height:400px; width:700px;" class="p-3">
+﻿<div style="border:2px solid red; height:450px; width:700px;" class="p-3">
     <h3>Child One</h3>
-    <button class="btn btn-primary" @onclick="setTime">Set Time</button>
-    <div>6 - App State Service: Date & Time: @appStateService.Time</div>
-    <div style="color:brown">Name(1 - Parameter property): @Name</div>
+    <div style="color:brown">1 - Parameter Property (Name): @Name</div>
+    <button class="btn btn-primary" @onclick="@(()=> OnSaved.InvokeAsync($"The record is saved at {DateTime.Now}."))">3 - EventCallback Example: Save</button>
     <br />
-    <button class="btn btn-primary" @onclick="@(()=> OnSaved.InvokeAsync("The record is saved."))">Save (EventCallback Example)</button>
     <br />
+    <button class="btn btn-primary" @onclick="setTime">6 - App State Service: Set Date & Time</button>
+    <span>@appStateService.Time</span>
+    <input class="form-control" @bind-value="cascadingAppState.Message" @bind-value:event="oninput" placeholder="7 - CascadingAppState: Enter value here" />
     <br />
     <Grandchild />
 </div>

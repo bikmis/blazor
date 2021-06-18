@@ -6,35 +6,19 @@
 
 <h3>State Management Example / Communication</h3>
 
-<div style="border:1px solid black; height:900px; width:800px;" class="p-3">
+<div style="border:2px dotted black; height:925px; width:800px;" class="p-3">
     <h3>Parent One</h3>
 
-    <button class="btn btn-primary" @onclick="setTime">Set Time</button>
-    <div>6 - App State Service: Date & Time: @appStateService.Time</div>
+    <div style="color:blue">2 - Referencing element (Use of @@ref): @somethingDone</div>
+    <div style="color:purple">3 - EventCallback (Message on save): @messageOnSaved</div>
+    <div style="color:red">4 - Example of path parameter (Id): @Id</div>
+    <div style="color:saddlebrown">5 - Example of query parameter (Name): @name</div>
+    <button class="btn btn-primary" @onclick="setTime">6 - App State Service: Set Date & Time</button>
+    <span>@appStateService.Time</span>
     <br />
-    @if (Id != null)
-    {
-        <div style="color:red">4 - Example of path parameter:</div>
-        <div style="color:red">Id is @Id.</div>
-    }
-    @if (name != null)
-    {
-        <div style="color:red">5 - Example of query parameter:</div>
-        <div style="color:red">Name is @name</div>
-    }
-    <br />
-    <div style="color:blue">Use of @@ref (2 - Referencing element): @somethingDone</div>
-    <br />
-
-    @if (@messageOnSaved != null)
-    {
-        <span style="color:purple">Message on save (3 - EventCallback): @messageOnSaved</span>
-        <button class="btn btn-primary" @onclick="@(() => messageOnSaved = null)">&times;</button>
-    }
-
+    <input class="form-control" @bind-value="cascadingAppState.Message" @bind-value:event="oninput" placeholder="7 - CascadingAppState: Enter value here" />
     <br />
     <ChildOne @ref="childOne" OnSaved="@((m) => messageOnSaved = m)" Name="@parentToChild" />
-    <br />
     <br />
     <ChildTwo />
 </div>
