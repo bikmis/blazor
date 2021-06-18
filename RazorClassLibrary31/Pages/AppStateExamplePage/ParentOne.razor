@@ -25,8 +25,13 @@
     <br />
     <div>Use of @@ref: @somethingDone</div>
     <br />
+    <span>Message on save (EventCallback): @messageOnSaved</span>
+    @if (@messageOnSaved != null)
+    {
+        <button class="btn btn-primary" @onclick="@(() => messageOnSaved = null)">&times;</button>
+    }
     <br />
-    <ChildOne @ref="childOne" Name="@parentToChild" />
+    <ChildOne @ref="childOne" OnSaved="@((m) => messageOnSaved = m)" Name="@parentToChild" />
     <br />
     <br />
     <ChildTwo />
@@ -35,4 +40,6 @@
 
 @code {
 
+
 }
+

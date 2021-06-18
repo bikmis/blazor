@@ -22,6 +22,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
 
         private string somethingDone { get; set; }
 
+        private string messageOnSaved { get; set; }
+
         [Parameter]
         public string Id { get; set; }
 

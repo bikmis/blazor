@@ -72,7 +72,7 @@
                 child component: <br />
                 <code style="color:red">
                     public EventCallback&lt;string> OnSaved {get; set;} <br />
-                    &lt;button @@onclick="@@OnSaved.InvokeAsync("The record is saved.")">Save&lt;/button>
+                    &lt;button @@onclick="@@(()=> OnSaved.InvokeAsync("The record is saved."))">Save&lt;/button>
                 </code>
                 <br />
                 <br />
