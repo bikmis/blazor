@@ -6,16 +6,16 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Logging
 {
     public class ApplicationLoggerProvider : ILoggerProvider
     {     
-        private HttpClient httpClient { get; set; }
+        private IHttpService httpService { get; set; }
 
-        public ApplicationLoggerProvider(HttpClient _httpClient)
+        public ApplicationLoggerProvider(IHttpService _httpService)
         {
-            httpClient = _httpClient;
+            httpService = _httpService;
         }    
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new Logger(httpClient);
+            return new Logger(httpService);
         }
 
         public void Dispose()

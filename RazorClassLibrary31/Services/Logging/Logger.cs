@@ -11,12 +11,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Logging
 {
     public class Logger : ILogger
     {
+        IHttpService httpService { get; set; }
 
-        HttpClient httpClient { get; set; }
-
-        public Logger(HttpClient _httpClient)
+        public Logger(IHttpService _httpService)
         {
-            httpClient = _httpClient;
+            httpService = _httpService;
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -41,8 +40,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Logging
                 CreateDate = DateTime.UtcNow
             };
 
-            var stringContent = new StringContent(JsonSerializer.Serialize(log), Encoding.UTF8, "application/json");
-            httpClient.PostAsync("api/log", stringContent);
+            httpService.SendAsync(HttpMethod.Post, "api/log", log);
         }
     }
 }
