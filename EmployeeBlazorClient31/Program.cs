@@ -11,6 +11,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Logging;
 
 namespace Intel.EmployeeManagement.BlazorClient
 {
@@ -31,6 +32,8 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
             builder.Services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+           // builder.Services.AddSingleton<ILogger, Logger>();
+          //  builder.Services.AddSingleton<ILoggerProvider, ApplicationLoggerProvider>();
 
             //Singleton services
             builder.Services.AddSingleton<IAppStateService, AppStateService>();            
@@ -42,11 +45,13 @@ namespace Intel.EmployeeManagement.BlazorClient
 
             builder.Services.AddLogging(loggingBuilder =>
             {
+                var httpClient = builder.Services.BuildServiceProvider().GetRequiredService<HttpClient>();
                 loggingBuilder.SetMinimumLevel(LogLevel.Trace);
-               // logging.ClearProviders();
-              //  logging.AddProvider(new ApplicationLoggerProvider());
+                loggingBuilder.ClearProviders();
+                //var loggerProvider = builder.Services.BuildServiceProvider().GetRequiredService<ApplicationLoggerProvider>();
+                loggingBuilder.AddProvider(new ApplicationLoggerProvider(httpClient));
             });
-
+          
 
             // You need to add the following two methods for Authorization to work in the web assembly blazor. In the server sice, you don't need them, they are already built in.
             builder.Services.AddOptions();
