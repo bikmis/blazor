@@ -46,6 +46,7 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddLogging(loggingBuilder =>
             {
                 var httpClient = builder.Services.BuildServiceProvider().GetRequiredService<HttpClient>();
+                httpClient.BaseAddress = new Uri(resourceBaseAddress);
                 loggingBuilder.SetMinimumLevel(LogLevel.Trace);
                 loggingBuilder.ClearProviders();
                 //var loggerProvider = builder.Services.BuildServiceProvider().GetRequiredService<ApplicationLoggerProvider>();

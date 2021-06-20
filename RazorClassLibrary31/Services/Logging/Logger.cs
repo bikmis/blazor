@@ -11,7 +11,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Logging
 {
     public class Logger : ILogger
     {
-        
+
         HttpClient httpClient { get; set; }
 
         public Logger(HttpClient _httpClient)
@@ -41,7 +41,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Logging
                 CreateDate = DateTime.UtcNow
             };
 
-            HttpClient httpClient = new HttpClient() { BaseAddress = new Uri("https://localhost:44327/") };
             var stringContent = new StringContent(JsonSerializer.Serialize(log), Encoding.UTF8, "application/json");
             httpClient.PostAsync("api/log", stringContent);
         }
