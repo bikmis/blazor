@@ -1,8 +1,9 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Logging;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.WeatherForecast_Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace Intel.EmployeeManagement.BlazorServer
@@ -59,8 +61,12 @@ namespace Intel.EmployeeManagement.BlazorServer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        {         
+            var serviceProvider = app.ApplicationServices.CreateScope().ServiceProvider;
+            var httpService = serviceProvider.GetRequiredService<IHttpService>();
+            loggerFactory.AddProvider(new ApplicationLoggerProvider(httpService));
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
