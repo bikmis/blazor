@@ -2,6 +2,7 @@
 using Intel.EmployeeManagement.WebAPI.Models.Logging;
 using Intel.EmployeeManagement.WebAPI.Services.Database_Service;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Intel.EmployeeManagement.WebAPI.Controllers
 {
@@ -37,8 +38,14 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
         [HttpGet]
         [Route("dividebyzero")]
         public IActionResult DivideByZero() {
-            var zero = 0;
-            return Ok(1/zero);
+            try
+            {
+                var zero = 0;
+                return Ok(1 / zero);
+            }
+            catch (Exception e) { 
+                throw;
+            }
         }
     }
 }

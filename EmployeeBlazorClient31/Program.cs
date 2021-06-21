@@ -1,5 +1,6 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.DivideByZeroService;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Logging;
@@ -31,6 +32,7 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
             builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
             builder.Services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+            builder.Services.AddScoped<IDivideByZeroService, DivideByZeroService>();
 
             //Singleton services
             builder.Services.AddSingleton<IAppStateService, AppStateService>();            

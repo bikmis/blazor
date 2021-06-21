@@ -1,0 +1,14 @@
+﻿@page "/exception-handling"
+@layout EmployeeLayout
+@attribute [Authorize(Roles = "admin")]
+
+
+<h3>Exception Handling</h3>
+
+<Alert />
+
+<button class="btn btn-primary" @onclick="divideByZero">Divide By Zero</button>
+
+@code {
+
+}
