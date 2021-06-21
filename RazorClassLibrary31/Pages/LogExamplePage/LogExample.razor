@@ -1,0 +1,24 @@
+﻿@page "/log-example"
+@layout EmployeeLayout
+@attribute [Authorize(Roles = "admin")]
+
+
+<h3>Log Example</h3>
+<br />
+
+How to have this log written to the database in the Logs table.
+<ul>
+    <li>
+        Comment out the [Inject] key word from IEmployeeService.
+    </li>
+    <li>
+        Click on the Log Example button below and check in the Logs table in the database. You will find a record with Critical LogLevel.
+    </li>
+</ul>
+
+<button class="btn btn-primary" @onclick="getEmployees">Log Example</button>
+
+
+@code {
+
+}
