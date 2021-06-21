@@ -43,7 +43,7 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddLogging(loggingBuilder =>
             {
                 var httpService = builder.Services.BuildServiceProvider().GetRequiredService<IHttpService>();
-                loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+                loggingBuilder.SetMinimumLevel(LogLevel.Warning);
                 loggingBuilder.ClearProviders();
                 loggingBuilder.AddProvider(new ApplicationLoggerProvider(httpService));
             });

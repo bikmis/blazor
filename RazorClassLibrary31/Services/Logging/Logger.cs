@@ -40,7 +40,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Logging
                 CreateDate = DateTime.UtcNow
             };
 
-            httpService.SendAsync(HttpMethod.Post, "api/log", log);
+            Task.Run(async () => {
+                await httpService.SendAsync(HttpMethod.Post, "api/log", log);
+            });
         }
     }
 }
