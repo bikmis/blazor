@@ -1,6 +1,6 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.DivideByZeroService;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Logging;
@@ -45,7 +45,7 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddLogging(loggingBuilder =>
             {
                 var httpService = builder.Services.BuildServiceProvider().GetRequiredService<IHttpService>();
-                loggingBuilder.SetMinimumLevel(LogLevel.Warning);
+                loggingBuilder.SetMinimumLevel(LogLevel.Error);
                 loggingBuilder.ClearProviders();
                 loggingBuilder.AddProvider(new ApplicationLoggerProvider(httpService));
             });
