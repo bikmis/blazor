@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Services.DivideByZeroService
+namespace Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService
 {
     public class DivideByZeroService : IDivideByZeroService
     {

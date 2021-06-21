@@ -1,6 +1,6 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.DivideByZeroService;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
