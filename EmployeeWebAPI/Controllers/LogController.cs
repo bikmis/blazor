@@ -33,5 +33,12 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
             databaseService.EmployeeDbContext.SaveChanges();
             return Ok();
         }
+
+        [HttpGet]
+        [Route("dividebyzero")]
+        public IActionResult DivideByZero() {
+            var zero = 0;
+            return Ok(1/zero);
+        }
     }
 }
