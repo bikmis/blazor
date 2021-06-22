@@ -19,7 +19,6 @@ namespace Intel.EmployeeManagement.WebAPI
                     logging.AddConfiguration(context.Configuration.GetSection("Logging"));
                     logging.AddDebug();
                     logging.AddConsole(); // EventSource, EventLog, TraceSource, AzureAppServicesFile, AzureAppserviceBlob, ApplicationInsights
-                    logging.SetMinimumLevel(LogLevel.Trace);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
