@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -14,6 +17,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LifecyclePage
         private string name { get; set; }
 
         private string greeting { get; set; }
+
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
+
         protected override Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -34,10 +42,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LifecyclePage
             return base.OnParametersSetAsync();
         }
 
-        protected override Task OnInitializedAsync()
+        protected async override Task OnInitializedAsync()
         {
-            Debug.WriteLine("1. Parent OnInitializedAsync");
-            return base.OnInitializedAsync();
+            await((AuthenticationService)authenticationService).GuardRoute();
+            Debug.WriteLine("1. Parent OnInitializedAsync");            
         }
 
     }

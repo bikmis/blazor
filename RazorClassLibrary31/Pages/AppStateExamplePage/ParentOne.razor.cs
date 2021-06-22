@@ -1,6 +1,8 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Shared;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Threading.Tasks;
 
@@ -27,6 +29,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         [CascadingParameter]
         private CascadingAppState cascadingAppState { get; set; }
 
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
         [Parameter]
         public string Id { get; set; }
 
@@ -35,8 +40,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
             appStateService.OnChange -= StateHasChanged;
         }
 
-        protected override Task OnInitializedAsync()
+        protected async override Task OnInitializedAsync()
         {
+            await ((AuthenticationService)authenticationService).GuardRoute();
+
             appStateService.OnChange += StateHasChanged;
             var keyValues = Utility.ParseUri(navigationManager.Uri);
             keyValues.TryGetValue("name", out string value);

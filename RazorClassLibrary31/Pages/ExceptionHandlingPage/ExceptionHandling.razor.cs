@@ -1,7 +1,9 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Threading.Tasks;
 
@@ -15,9 +17,13 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.ExceptionHandlingPage
         [Inject]
         private IAppStateService appStateService { get; set; }
 
-        protected override Task OnInitializedAsync()
+        [Inject]
+        private AuthenticationStateProvider authenticationService { get; set; }
+
+
+        protected async override Task OnInitializedAsync()
         {
-            return base.OnInitializedAsync();
+            await((AuthenticationService)authenticationService).GuardRoute();
         }
 
         private async Task divideByZero()
