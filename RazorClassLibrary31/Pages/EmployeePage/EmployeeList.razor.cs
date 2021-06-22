@@ -92,7 +92,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 if (response.IsSuccessStatusCode)
                 {
                     await reloadEmployees(true);
-
                     appStateService.AlertPopUp = new AlertPopUp() { Message = $"Employee with ID {employeeId} is deleted.", IsHidden = false, Color = "alert-success" };
                 }
                 else
@@ -118,7 +117,14 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         {
             try
             {
-                employees = (await employeeService.GetEmployees()).ToList();
+                var response = await employeeService.GetEmployees();
+                if (response.IsSuccessStatusCode)
+                {
+                    employees = (await appStateService.DeserializeToList<Employee>(response)).ToList();
+                }
+                else {
+                    appStateService.AlertPopUp = new AlertPopUp() { Message = $"{(int)response.StatusCode} {response.ReasonPhrase}", IsHidden = false, Color = "alert-danger" };
+                }
             }
             catch (Exception e)
             {

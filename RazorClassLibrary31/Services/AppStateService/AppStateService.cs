@@ -58,19 +58,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
 
         public async Task<T> Deserialize<T>(HttpResponseMessage response)
         {
-            if (response == null || !response.IsSuccessStatusCode)
-            {
-                return default(T); //return default value of generic type.
-            }
             return await JsonSerializer.DeserializeAsync<T>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task<List<T>> DeserializeToList<T>(HttpResponseMessage response)
         {
-            if (response == null || !response.IsSuccessStatusCode)
-            {
-                return null;
-            }
             return await JsonSerializer.DeserializeAsync<List<T>>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 

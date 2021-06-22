@@ -134,8 +134,15 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                 }
                 //if access token has expired, but not refresh token, then do the following, then get a new access token.
                 var response = await GetAccessToken();
-                var token = await appStateService.Deserialize<Token>(response);
-                appStateService.AccessToken = token.AccessToken;
+                if (response.IsSuccessStatusCode)
+                {
+                    var token = await appStateService.Deserialize<Token>(response);
+                    appStateService.AccessToken = token.AccessToken;
+                }
+                else {
+                    LogoutUser();
+                    return;
+                }               
             }
         }
 

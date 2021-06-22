@@ -19,25 +19,23 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
             appStateService = _appStateService;
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<HttpResponseMessage> GetEmployees()
         {
-            try {
-                var response = await httpService.SendAsync(HttpMethod.Get, "api/employees", null);
-                var employees = await appStateService.DeserializeToList<Employee>(response); 
-                return employees;  
+            try
+            {
+                return await httpService.SendAsync(HttpMethod.Get, "api/employees", null);
             }
-            catch (Exception) {
-                
+            catch (Exception)
+            {
                 throw;
-            } 
+            }
         }
 
         public async Task<HttpResponseMessage> AddEmployee(Employee employee)
         {
             try
             {
-                var response = await httpService.SendAsync(HttpMethod.Post, "api/employees", employee);
-                return response; //if api service returns a response with any status code. For Blazor Server, api will return http response with 500 when the database is downed.
+                return await httpService.SendAsync(HttpMethod.Post, "api/employees", employee);
             }
             catch (Exception)
             {
@@ -47,11 +45,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
 
         public async Task<HttpResponseMessage> DeleteEmployee(int employeeId)
         {
-            try {
-                var response = await httpService.SendAsync(HttpMethod.Delete, $"api/employees?id={employeeId}", null);
-                return response;
+            try
+            {
+                return await httpService.SendAsync(HttpMethod.Delete, $"api/employees?id={employeeId}", null);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
         }
@@ -60,10 +59,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
         {
             try
             {
-                var response = await httpService.SendAsync(HttpMethod.Put, "api/employees", employee);
-                return response;
+                return await httpService.SendAsync(HttpMethod.Put, "api/employees", employee);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
         }

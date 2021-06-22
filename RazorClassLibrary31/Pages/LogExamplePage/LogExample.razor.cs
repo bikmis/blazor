@@ -13,7 +13,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LogExamplePage
         private IEmployeeService employeeService { get; set; }         
 
         private async Task getEmployees() {
-            var empoyees = (await employeeService.GetEmployees()).ToList();
+            var empoyees = await employeeService.GetEmployees();
         }
 
 

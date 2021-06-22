@@ -7,7 +7,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service
 {
     public interface IEmployeeService
     {
-        Task<IEnumerable<Employee>> GetEmployees();
+        Task<HttpResponseMessage> GetEmployees();
         Task<HttpResponseMessage> AddEmployee(Employee employee);
         Task<HttpResponseMessage> DeleteEmployee(int employeeId);
         Task<HttpResponseMessage> EditEmployee(Employee employee);

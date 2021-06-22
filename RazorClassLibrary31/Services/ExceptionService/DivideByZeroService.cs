@@ -19,8 +19,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService
         public async Task<HttpResponseMessage> DivideByZero()
         {
             try {
-                var response = await httpService.SendAsync(HttpMethod.Get, "api/dividebyzero", null);
-                return response;
+                return await httpService.SendAsync(HttpMethod.Get, "api/dividebyzero", null);
             }
             catch (Exception) {
                 throw;
