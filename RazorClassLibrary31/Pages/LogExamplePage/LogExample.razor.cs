@@ -2,7 +2,6 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LogExamplePage
@@ -21,8 +20,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LogExamplePage
             await ((AuthenticationService)authenticationService).GuardRoute();
             var empoyees = await employeeService.GetEmployees();
         }
-
-
-
     }
 }

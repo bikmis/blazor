@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Shared;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Intel.EmployeeManagement.RazorClassLibrary.Shared;
-using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -83,6 +83,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
             employee = new Employee();
             await jsRuntime.InvokeVoidAsync("removeFromSessionStorage", "employee");
         }
-
     }
 }

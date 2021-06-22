@@ -1,14 +1,10 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.IconExamplePage
 {
-
     public partial class IconExample
     {
         [Inject]
@@ -18,6 +14,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.IconExamplePage
         {
             await((AuthenticationService)authenticationService).GuardRoute();
         }
-
     }
 }

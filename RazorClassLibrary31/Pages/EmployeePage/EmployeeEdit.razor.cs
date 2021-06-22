@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using Intel.EmployeeManagement.RazorClassLibrary.Models;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
+using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
@@ -77,6 +77,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 Gender = EmployeeInitialState.Gender
             };
         }
-
     }
 }

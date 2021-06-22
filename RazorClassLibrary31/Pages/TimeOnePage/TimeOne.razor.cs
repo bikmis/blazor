@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeOnePage 
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeOnePage
 {
     public partial class TimeOne
     {
@@ -52,6 +52,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeOnePage
             transientTime = transientTimeService.Time;
             StateHasChanged();
         }
-
     }
 }

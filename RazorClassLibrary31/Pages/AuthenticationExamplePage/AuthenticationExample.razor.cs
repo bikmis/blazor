@@ -7,15 +7,12 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AuthenticationExample
 {
     partial class AuthenticationExample
     {   
-
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
       
-
         protected async override Task OnInitializedAsync()
         {
             await ((AuthenticationService)authenticationService).GuardRoute();
         }
-
     }
 }

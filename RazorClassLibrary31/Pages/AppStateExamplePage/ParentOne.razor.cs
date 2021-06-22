@@ -61,6 +61,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         private void setTime() {
             appStateService.Time = DateTime.Now;
         }
-
     }
 }

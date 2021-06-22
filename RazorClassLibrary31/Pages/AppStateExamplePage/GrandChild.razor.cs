@@ -2,8 +2,6 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Shared;
 using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
@@ -30,7 +28,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         private void setTime() {
             appStateService.Time = DateTime.Now;
         }
-
-
     }
 }

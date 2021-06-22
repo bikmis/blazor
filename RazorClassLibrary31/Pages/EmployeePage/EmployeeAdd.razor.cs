@@ -4,7 +4,6 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -25,9 +24,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
-
-        [Inject]
-        private IJSRuntime jsRuntime { get; set; }
 
         private string male = "M";
 
@@ -70,7 +66,5 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         private void resetForm() {
             employee = new Employee();
         }
-
-
     }
 }

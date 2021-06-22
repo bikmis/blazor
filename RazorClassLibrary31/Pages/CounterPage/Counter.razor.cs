@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.CounterPage

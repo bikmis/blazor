@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.HomePage
 {
@@ -12,7 +12,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.HomePage
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
-
 
         protected async override void OnInitialized()
         {
