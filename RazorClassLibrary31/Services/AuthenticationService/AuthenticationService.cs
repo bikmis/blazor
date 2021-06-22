@@ -162,7 +162,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
 
         private async Task<AuthenticationState> createLoggedInState(string token)
         {
-            var claims = Utility.GetRoles(token).Select(role => new Claim(ClaimTypes.Role, role));
+            var claims = Utility.GetRoles(token).Select(role => new Claim(ClaimTypes.Role, role)).ToList();            
+            var emailClaim = new Claim(ClaimTypes.Email, Utility.ReadToken(token, "email"));
+            var nameClaim = new Claim(ClaimTypes.Name, Utility.ReadToken(token, "username"));
+            claims.Add(emailClaim);
+            claims.Add(nameClaim);
             var identity = new ClaimsIdentity(claims, "UiAuthenticationType");
             var user = new ClaimsPrincipal(identity);
             var loggedInState = Task.FromResult(new AuthenticationState(user));
