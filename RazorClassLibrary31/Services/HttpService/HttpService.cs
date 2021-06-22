@@ -58,7 +58,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
             }
             catch (Exception)
             {
-                //if API/resource server is down, exception is caught here and rethrown. For Blazor Web Assembly if database is down, exception is thrown and code executes here.
                 throw;
             }
         }
