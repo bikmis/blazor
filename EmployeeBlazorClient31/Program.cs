@@ -28,11 +28,9 @@ namespace Intel.EmployeeManagement.BlazorClient
             //AddHttpClient is the same as AddScoped.
             //Scoped services
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-
             builder.Services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress));
             builder.Services.AddScoped<IAuthenticationService>(provider => provider.GetRequiredService<AuthenticationService>());
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
-
             builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
             builder.Services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
             builder.Services.AddScoped<IDivideByZeroService, DivideByZeroService>();
