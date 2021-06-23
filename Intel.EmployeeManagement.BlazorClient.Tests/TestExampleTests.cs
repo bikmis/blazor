@@ -1,10 +1,8 @@
 ﻿using Bunit;
 using Intel.EmployeeManagement.BlazorClient.Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage;
-using Microsoft.Extensions.Configuration;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
-using System.Threading;
 using Xunit;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests
@@ -14,18 +12,21 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
     public class TestExampleTests : TestContext
     {
         [Fact]
-        public void NumberOfPhotosIs5000()
+        public void NumberOfPhotosIs3()
         {
-            var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
-            var httpClientService = new ServiceDescriptor(typeof(HttpClient), new MockHttpClient().HttpClient);
-            Services.Add(configurationService);
-            Services.Add(httpClientService);
+            // var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
+            // var httpClientService = new ServiceDescriptor(typeof(HttpClient), new MockHttpClient().HttpClient);
+            // Services.Add(configurationService);
+            // Services.Add(httpClientService);
+
+            var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
+            Services.Add(photoService);
 
             var cut = RenderComponent<TestExample>();
 
-            Thread.Sleep(5000);
+           // Thread.Sleep(5000);
 
-            cut.Find("div").MarkupMatches("<div>Count of photos: 5000</div>");
+            cut.Find("#countOfPhoto").MarkupMatches("<div id=countOfPhoto>Count of photos: 3</div>");
         }
     }
 }
