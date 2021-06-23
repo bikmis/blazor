@@ -20,8 +20,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             //Arrange: render the Counter.razor component (cut means component under test)
             var cut = RenderComponent<Counter>();
 
-            //Act: find and the click the <button> element to increment
-            //the counter the <p> element
+            //Act: find and click the <button> element to increment
+            //the counter in the <p> element
             cut.Find("button").Click();
 
             //Assert: first find the <p> element, then verify its content
