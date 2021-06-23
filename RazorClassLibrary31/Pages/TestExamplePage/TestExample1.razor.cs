@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
 {
-    public partial class TestExample
+    public partial class TestExample1
     {
         [Inject]
         HttpClient httpClient { get; set; }

@@ -24,7 +24,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Services.Add(httpClientService);
             Services.Add(photoService);
 
-            var cut = RenderComponent<TestExample>();
+            var cut = RenderComponent<TestExample1>();
             cut.Find("#getPhotos_1").Click();
             cut.Find("#countOfPhoto").MarkupMatches("<div id=countOfPhoto>Count of photos: 3</div>");
         }
@@ -39,7 +39,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Services.Add(httpClientService);
             Services.Add(photoService);
 
-            var cut = RenderComponent<TestExample>();
+            var cut = RenderComponent<TestExample1>();
             cut.Find("#getPhotos_2").Click();
             Thread.Sleep(5000);
             cut.Find("#countOfPhoto").MarkupMatches("<div id=countOfPhoto>Count of photos: 5000</div>");
