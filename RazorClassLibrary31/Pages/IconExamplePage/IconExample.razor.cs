@@ -12,7 +12,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.IconExamplePage
 
         protected async override Task OnInitializedAsync()
         {
-            await((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
         }
     }
 }

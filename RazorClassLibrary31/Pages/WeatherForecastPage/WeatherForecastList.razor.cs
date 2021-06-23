@@ -19,7 +19,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.WeatherForecastPage
 
         protected override async Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             forecasts = await weatherForecastService.ListWeatherForecast(); //await httpClient.GetFromJsonAsync<WeatherForecast[]>("_content/Intel.EmployeeManagement.RazorClassLibrary/sample-data/weather.json");
         }
     }

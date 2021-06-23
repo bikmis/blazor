@@ -29,7 +29,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeTwoPage
 
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             createSingletonTime();
             createScopedTime();
             createTransientTime();

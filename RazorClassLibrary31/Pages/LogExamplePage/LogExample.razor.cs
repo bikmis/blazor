@@ -17,7 +17,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LogExamplePage
         private AuthenticationStateProvider authenticationService { get; set; }
 
         private async Task getEmployees() {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             var empoyees = await employeeService.GetEmployees();
         }
     }

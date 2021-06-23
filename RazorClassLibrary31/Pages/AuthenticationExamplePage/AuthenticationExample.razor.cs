@@ -9,10 +9,10 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AuthenticationExample
     {   
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
-      
+
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
         }
     }
 }

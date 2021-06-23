@@ -39,7 +39,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LifecyclePage
 
         protected async override Task OnInitializedAsync()
         {
-            await((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             Debug.WriteLine("1. Parent OnInitializedAsync");            
         }
     }

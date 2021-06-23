@@ -22,7 +22,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.ExceptionHandlingPage
 
         protected async override Task OnInitializedAsync()
         {
-            await((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
         }
 
         private async Task divideByZero()

@@ -22,7 +22,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
     //https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.iidentity.authenticationtype?view=net-5.0
     //Basic authentication, NTLM, Kerberos, and Passport are examples of authentication types.
 
-    public class AuthenticationService : AuthenticationStateProvider
+    public class AuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {
         private IAppStateService appStateService;
         private IJSRuntime jsRuntime;
@@ -103,24 +103,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
             return await sendAsync("api/accessToken", null);
         }
 
-        private async Task<HttpResponseMessage> loginUser(object data)
-        {
-            return await sendAsync("api/login", data);
-        }
-
-        private async Task<HttpResponseMessage> sendAsync(string url, object data)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
-            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
-            if (refreshToken != null)
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshToken);
-            }
-            request.Content = appStateService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
-            var response = await httpClient.SendAsync(request);
-            return response;
-        }
-
         public async Task GuardRoute()
         {
             var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
@@ -139,12 +121,31 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Ser
                     var token = await appStateService.Deserialize<Token>(response);
                     appStateService.AccessToken = token.AccessToken;
                 }
-                else {
+                else
+                {
                     LogoutUser();
                     return;
-                }               
+                }
             }
         }
+
+        private async Task<HttpResponseMessage> loginUser(object data)
+        {
+            return await sendAsync("api/login", data);
+        }
+
+        private async Task<HttpResponseMessage> sendAsync(string url, object data)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, url);
+            var refreshToken = await jsRuntime.InvokeAsync<string>("getFromSessionStorage", "refresh_token");
+            if (refreshToken != null)
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshToken);
+            }
+            request.Content = appStateService.Serialize(data); //enable cors (AllowAnyOrigin & AllowAnyHeader) in web api project to accept any request URL & Content-Type "application/json"
+            var response = await httpClient.SendAsync(request);
+            return response;
+        }        
 
         private User createUserFromToken(Token token)
         {

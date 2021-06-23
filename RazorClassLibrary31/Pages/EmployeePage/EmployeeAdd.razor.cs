@@ -31,7 +31,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
         }
 
         private async void addEmployee(EditContext editContext, Employee employee)

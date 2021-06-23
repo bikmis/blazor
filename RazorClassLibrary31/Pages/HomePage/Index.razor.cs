@@ -15,7 +15,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.HomePage
 
         protected async override void OnInitialized()
         {
-            await((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             await jsRuntime.InvokeVoidAsync("writeToConsole", "You have landed on the home page.");
             base.OnInitialized();
         }

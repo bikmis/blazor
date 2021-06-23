@@ -21,7 +21,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
 
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             appStateService.OnChange += StateHasChanged;
         }
 

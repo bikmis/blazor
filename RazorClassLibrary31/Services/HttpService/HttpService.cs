@@ -35,7 +35,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)  //if access token is expired, response is unauthorized.
                 {
-                    response = await ((AuthenticationService)authenticationService).GetAccessToken();  //get access token using refresh token
+                    response = await ((IAuthenticationService)authenticationService).GetAccessToken();  //get access token using refresh token
                     if (response.IsSuccessStatusCode) //if refresh token is available and not expired
                     {
                         var token = await appStateService.Deserialize<Token>(response);
@@ -46,7 +46,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service
                     else
                     {
                         //if access token is expired and refresh token is expired/unavailable(deleted from session storage), then user is logged out.
-                        ((AuthenticationService)authenticationService).LogoutUser();
+                        ((IAuthenticationService)authenticationService).LogoutUser();
                         return response;
                     }
                 }

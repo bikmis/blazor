@@ -30,7 +30,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.JSExamplePage
 
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
         }
 
         protected override Task OnAfterRenderAsync(bool firstRender)

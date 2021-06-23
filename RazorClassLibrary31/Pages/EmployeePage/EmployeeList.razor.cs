@@ -40,7 +40,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             appStateService.AlertPopUp = new AlertPopUp() { IsHidden = true }; //when user lands on this page, the alert will be hidden.
             displaySaveMessage(); //When user lands on this page after adding an employee, save message is displayed.
             await getEmployees();

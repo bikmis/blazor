@@ -42,7 +42,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
 
         protected async override Task OnInitializedAsync()
         {
-            await ((AuthenticationService)authenticationService).GuardRoute();
+            await ((IAuthenticationService)authenticationService).GuardRoute();
             appStateService.OnChange += StateHasChanged;
             var keyValues = Utility.ParseUri(navigationManager.Uri);
             keyValues.TryGetValue("name", out string value);

@@ -34,7 +34,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
             try
             {
                 isLoginInProgress = true;
-                var response = await ((AuthenticationService)authenticationService).LoginUser(login);
+                var response = await ((IAuthenticationService)authenticationService).LoginUser(login);
                 if (!response.IsSuccessStatusCode) {
                     isLoginInProgress = false;
                     if (response.StatusCode == HttpStatusCode.Unauthorized)
