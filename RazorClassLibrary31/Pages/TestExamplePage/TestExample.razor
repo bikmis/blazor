@@ -3,8 +3,43 @@
 @attribute [AllowAnonymous]
 
 <h3>Test Example</h3>
+<br />
 
+@if (photos == null)
+{
+    <div class="center fa-3x">
+        <i class="fas fa-spinner fa-pulse"></i>
+    </div>  
+}
+else
+{
+    <div>Count of photos: @photos.Count()</div>
+    <br />
 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Album ID</th>
+                <th>Title</th>
+                <th>Big Photo</th>
+                <th>Small Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var photo in photos.Take(5))
+            {
+                <tr>
+                    <td>@photo.ID</td>
+                    <td>@photo.AlbumId</td>
+                    <td>@photo.Title</td>
+                    <td><img src="@photo.URL" /> </td>
+                    <td><img src="@photo.ThumbnailUrl" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 
 @code {
