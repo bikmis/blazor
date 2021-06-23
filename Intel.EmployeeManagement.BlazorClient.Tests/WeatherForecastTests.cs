@@ -1,5 +1,4 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using System;
 using Xunit;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests

@@ -1,9 +1,8 @@
 ﻿using Bunit;
+using Intel.EmployeeManagement.BlazorClient.Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Primitives;
-using System.Collections.Generic;
 using System.Threading;
 using Xunit;
 
@@ -16,7 +15,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         [Fact]
         public void NumberOfPhotosIs5000()
         {
-            var configurationService = new ServiceDescriptor(typeof(IConfiguration), new ConfigurationService());
+            var configurationService = new ServiceDescriptor(typeof(IConfiguration), new FakeConfigurationService());
             Services.Add(configurationService);
 
             var cut = RenderComponent<TestExample>();
@@ -24,28 +23,6 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Thread.Sleep(5000);
 
             cut.Find("div").MarkupMatches("<div>Count of photos: 5000</div>");
-        }
-    }
-
-    public class ConfigurationService : IConfiguration
-    {
-        private string photoServiceBaseAddress = "https://jsonplaceholder.typicode.com/";
-
-        public string this[string key] { get => photoServiceBaseAddress; set => photoServiceBaseAddress = value; }
-
-        public IEnumerable<IConfigurationSection> GetChildren()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IChangeToken GetReloadToken()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IConfigurationSection GetSection(string key)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

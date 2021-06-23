@@ -1,4 +1,5 @@
 ﻿using Bunit;
+using Intel.EmployeeManagement.BlazorClient.Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.CounterPage;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -12,8 +13,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         [Fact]
         public void CounterShouldIncrementWhenClicked()
         {
-            var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new MockAuthenticationService());
-            var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new MockAuthenticationService());
+            var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new FakeAuthenticationService());
+            var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new FakeAuthenticationService());
             Services.Add(authenticationStateProviderService);
             Services.Add(authenticationService);
 

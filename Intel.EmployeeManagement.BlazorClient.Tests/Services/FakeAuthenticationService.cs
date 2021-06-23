@@ -1,18 +1,13 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests
+namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 {
-    public class MockAuthenticationService : AuthenticationStateProvider, IAuthenticationService
+    public class FakeAuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
