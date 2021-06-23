@@ -26,7 +26,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 
             var cut = RenderComponent<TestExample1>();
             cut.Find("#getPhotos_1").Click();
-            cut.Find("#countOfPhoto").MarkupMatches("<div id=countOfPhoto>Count of photos: 3</div>");
+            var text = cut.Find("#countOfPhoto").TextContent;
+            text.MarkupMatches("Count of photos: 3");
         }
 
         [Fact]
@@ -42,7 +43,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             var cut = RenderComponent<TestExample1>();
             cut.Find("#getPhotos_2").Click();
             Thread.Sleep(5000);
-            cut.Find("#countOfPhoto").MarkupMatches("<div id=countOfPhoto>Count of photos: 5000</div>");
+            var text = cut.Find("#countOfPhoto").TextContent;
+            text.MarkupMatches("Count of photos: 5000");
         }
     }
 }
