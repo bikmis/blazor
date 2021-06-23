@@ -14,12 +14,17 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 {
     public class MockAuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {
-        public Task<HttpResponseMessage> GetAccessToken()
+        public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             throw new NotImplementedException();
         }
 
-        public override Task<AuthenticationState> GetAuthenticationStateAsync()
+        public Task<HttpResponseMessage> LoginUser(Login login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LogoutUser()
         {
             throw new NotImplementedException();
         }
@@ -29,12 +34,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             return Task.CompletedTask;
         }
 
-        public Task<HttpResponseMessage> LoginUser(Login login)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void LogoutUser()
+        public Task<HttpResponseMessage> GetAccessToken()
         {
             throw new NotImplementedException();
         }
