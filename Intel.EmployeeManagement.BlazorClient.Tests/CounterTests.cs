@@ -13,8 +13,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         [Fact]
         public void CounterShouldIncrementWhenClicked()
         {
-            var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new FakeAuthenticationService());
-            var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new FakeAuthenticationService());
+            var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new MockAuthenticationService());
+            var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new MockAuthenticationService());
             Services.Add(authenticationStateProviderService);
             Services.Add(authenticationService);
 

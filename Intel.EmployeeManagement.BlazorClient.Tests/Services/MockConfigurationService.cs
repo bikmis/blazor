@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 {
-    public class FakeConfigurationService : IConfiguration
+    public class MockConfigurationService : IConfiguration
     {
         private string photoServiceBaseAddress = "https://jsonplaceholder.typicode.com/";
 

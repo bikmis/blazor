@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 {
-    public class FakeAuthenticationService : AuthenticationStateProvider, IAuthenticationService
+    public class MockAuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {

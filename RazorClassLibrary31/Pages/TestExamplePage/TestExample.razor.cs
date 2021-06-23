@@ -15,7 +15,8 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
 {
     public partial class TestExample
     {
-        HttpClient httpClient = new HttpClient();
+        [Inject]
+        HttpClient httpClient { get; set; }
 
         [Inject]
         private IConfiguration configuration { get; set; }

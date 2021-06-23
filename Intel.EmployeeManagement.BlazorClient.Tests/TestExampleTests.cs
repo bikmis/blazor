@@ -3,6 +3,7 @@ using Intel.EmployeeManagement.BlazorClient.Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
 using System.Threading;
 using Xunit;
 
@@ -15,8 +16,10 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         [Fact]
         public void NumberOfPhotosIs5000()
         {
-            var configurationService = new ServiceDescriptor(typeof(IConfiguration), new FakeConfigurationService());
+            var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
+            var httpClientService = new ServiceDescriptor(typeof(HttpClient), new MockHttpClient().HttpClient);
             Services.Add(configurationService);
+            Services.Add(httpClientService);
 
             var cut = RenderComponent<TestExample>();
 
