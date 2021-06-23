@@ -17,33 +17,41 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         [Fact]
         public void NumberOfPhotosIs3()
         {
+            //Arrange
             var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
             var httpClientService = new ServiceDescriptor(typeof(HttpClient), new HttpClient());
             var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
             Services.Add(configurationService);
             Services.Add(httpClientService);
             Services.Add(photoService);
-
             var cut = RenderComponent<TestExample1>();
+
+            //Act
             cut.Find("#getPhotos_1").Click();
             var text = cut.Find("#countOfPhoto").TextContent;
+
+            //Assert
             text.MarkupMatches("Count of photos: 3");
         }
 
         [Fact]
         public void NumberOfPhotosIs5000()
         {
+            //Arrange
             var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
             var httpClientService = new ServiceDescriptor(typeof(HttpClient), new HttpClient());
             var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
             Services.Add(configurationService);
             Services.Add(httpClientService);
             Services.Add(photoService);
-
             var cut = RenderComponent<TestExample1>();
+
+            //Act
             cut.Find("#getPhotos_2").Click();
             Thread.Sleep(5000);
             var text = cut.Find("#countOfPhoto").TextContent;
+
+            //Assert
             text.MarkupMatches("Count of photos: 5000");
         }
     }
