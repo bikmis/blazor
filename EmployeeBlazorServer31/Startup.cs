@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
+using System.Net.Http;
 
 namespace Intel.EmployeeManagement.BlazorServer
 {
@@ -56,6 +57,7 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(frontendBaseAddress));
             services.AddScoped<IDivideByZeroService, DivideByZeroService>();
             services.AddHttpClient<IPhotoService, PhotoService>(httpClient => httpClient.BaseAddress = new Uri(photoServiceBaseAddress));
+            services.AddScoped<HttpClient>(); // required for blazor server for test example razor component
 
             //Singleton services
             services.AddSingleton<IAppStateService, AppStateService>();
