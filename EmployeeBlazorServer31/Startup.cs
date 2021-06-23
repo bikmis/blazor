@@ -1,9 +1,10 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.ExceptionService;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Logging;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Time_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.WeatherForecast_Service;
 using Microsoft.AspNetCore.Builder;
@@ -14,7 +15,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 using System.Net.Http;
 
 namespace Intel.EmployeeManagement.BlazorServer
