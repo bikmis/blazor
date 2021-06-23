@@ -10,16 +10,22 @@ using System.Text.Json;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Configuration;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
 {
     public partial class TestExample
     {
+        /*
         [Inject]
         HttpClient httpClient { get; set; }
 
         [Inject]
         private IConfiguration configuration { get; set; }
+        */
+
+        [Inject]
+        private IPhotoService photoService { get; set; }
 
         public IEnumerable<Photo> photos { get; set; }
 
@@ -29,8 +35,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
         }
 
         private async Task getPhotos() {
-            photos = (await httpClient.GetFromJsonAsync<List<Photo>>(configuration["PhotoServiceBaseAddress"] + "photos",
-                new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }));
+            // photos = (await httpClient.GetFromJsonAsync<List<Photo>>(configuration["PhotoServiceBaseAddress"] + "photos",
+            // new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }));
+            photos = await photoService.GetPhotos();
         }
     }
 

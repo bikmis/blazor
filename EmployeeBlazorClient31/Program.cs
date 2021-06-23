@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 
 namespace Intel.EmployeeManagement.BlazorClient
 {
@@ -24,6 +25,7 @@ namespace Intel.EmployeeManagement.BlazorClient
 
             var resourceBaseAddress = builder.Configuration["ResourceBaseAddress"];
             var identityProviderBaseAddress = builder.Configuration["IdentityProviderBaseAddress"];
+            var photoServiceBaseAddress = builder.Configuration["PhotoServiceBaseAddress"];
 
             //AddHttpClient is the same as AddScoped.
             //Scoped services
@@ -34,6 +36,7 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
             builder.Services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
             builder.Services.AddScoped<IDivideByZeroService, DivideByZeroService>();
+            builder.Services.AddHttpClient<IPhotoService, PhotoService>(httpClient => httpClient.BaseAddress = new Uri(photoServiceBaseAddress));
 
             //Singleton services
             builder.Services.AddSingleton<IAppStateService, AppStateService>();            

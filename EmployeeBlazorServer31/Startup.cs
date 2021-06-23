@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 
 namespace Intel.EmployeeManagement.BlazorServer
 {
@@ -36,6 +37,7 @@ namespace Intel.EmployeeManagement.BlazorServer
             var resourceBaseAddress = Configuration["ResourceBaseAddress"];
             var identityProviderBaseAddress = Configuration["IdentityProviderBaseAddress"];
             var frontendBaseAddress = Configuration["FrontendBaseAddress"];
+            var photoServiceBaseAddress = Configuration["PhotoServiceBaseAddress"];
 
             /*
             services.AddScoped(s =>
@@ -53,6 +55,7 @@ namespace Intel.EmployeeManagement.BlazorServer
             services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
             services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(frontendBaseAddress));
             services.AddScoped<IDivideByZeroService, DivideByZeroService>();
+            services.AddHttpClient<IPhotoService, PhotoService>(httpClient => httpClient.BaseAddress = new Uri(photoServiceBaseAddress));
 
             //Singleton services
             services.AddSingleton<IAppStateService, AppStateService>();
