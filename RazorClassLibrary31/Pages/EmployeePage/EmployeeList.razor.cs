@@ -27,7 +27,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private string searchTerm { get; set; }
 
-        private EmployeeEdit employeeEdit;
+        private EmployeeEdit employeeEditComponent;
 
         [Inject]
         private NavigationManager navigationManager { get; set; }
@@ -133,7 +133,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private void passToEditForm(Employee employee)
         {
-            employeeEdit.Employee = new Employee()
+            employeeEditComponent.Employee = new Employee()
             {
                 ID = employee.ID,
                 FirstName = employee.FirstName,
@@ -145,7 +145,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 Gender = employee.Gender
             };
 
-            employeeEdit.EmployeeInitialState = new Employee()
+            employeeEditComponent.EmployeeInitialState = new Employee()
             {
                 ID = employee.ID,
                 FirstName = employee.FirstName,
