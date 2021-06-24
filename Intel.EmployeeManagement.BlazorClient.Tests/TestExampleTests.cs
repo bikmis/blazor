@@ -14,6 +14,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 
     public class TestExampleTests : TestContext
     {
+        //clean unit test with high reliability
         [Fact]
         public void NumberOfPhotosIs3()
         {
@@ -30,6 +31,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             text.MarkupMatches("Count of photos: 3");
         }
 
+        //rough test (dependent on api and its database) with less reliability
         [Fact]
         public void NumberOfPhotosIs5000()
         {
