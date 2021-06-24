@@ -24,6 +24,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         //2. Database server is down or table is modified.
         //3. API server is down or API is modified.
         //4. The base address of the API is changed.
+
+        //Level of difficulty - low as it is easy to implement a non-microsoft interface such as IPhotoService
         [Fact]
         public void Number_of_photos_is_3_when_you_click_on_get_photos_button_in_testexample1_component()
         {
@@ -48,6 +50,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         //3. Database server is down or table is modified. The test will never pass until the database is back on.
         //4. API server is down. The test will never pass untill the API server is up and running.
         //5. The base address of the API is changed in the configuration file. Then you need to modify this test for it to pass.
+
+        //Level of difficulty - high as it is not straightforward to implement Microsoft interface such as IConfiguration
         [Fact]
         public void Number_of_photos_is_5000_when_you_click_on_get_photos_button_in_testexample2_component()
         {
