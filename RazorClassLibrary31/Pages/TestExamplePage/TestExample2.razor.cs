@@ -8,7 +8,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExample2Page
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
 {
     public partial class TestExample2
     {

@@ -1,6 +1,6 @@
 ﻿using Bunit;
 using Intel.EmployeeManagement.BlazorClient.Tests.Services;
-using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExample2Page;
+using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
