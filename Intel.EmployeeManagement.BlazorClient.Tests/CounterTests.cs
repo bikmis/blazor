@@ -22,7 +22,6 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             var cut = RenderComponent<Counter>();
 
             //Act: find and click the <button> element to increment
-            //the counter in the <p> element
             cut.Find("button").Click();
 
             //Assert: first find the <p> element, then verify its content
