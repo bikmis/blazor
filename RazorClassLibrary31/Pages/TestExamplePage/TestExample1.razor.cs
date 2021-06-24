@@ -17,7 +17,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
 
         private bool takingLong { get; set; }
 
-        public IEnumerable<Photo> photos { get; set; } = new List<Photo>();
+        private IEnumerable<Photo> photos { get; set; } = new List<Photo>();
 
         protected override Task OnInitializedAsync()
         {
