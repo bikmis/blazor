@@ -14,9 +14,9 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 
     public class TestExampleTests : TestContext
     {
-        //clean unit test with high reliability
+        //Reliable unit test of "#countOfPhotos" element in testexample1 component (without depending on api and database)
         [Fact]
-        public void NumberOfPhotosIs3()
+        public void Number_of_photos_is_3_when_you_click_on_get_photos_button_in_testexample1_component()
         {
             //Arrange
             var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
@@ -31,9 +31,9 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             text.MarkupMatches("Count of photos: 3");
         }
 
-        //rough test (dependent on api and its database) with less reliability
+        //Unreliable unit test of "#countOfPhotos" element in testexample2 component (depending on api and database)
         [Fact]
-        public void NumberOfPhotosIs5000()
+        public void Number_of_photos_is_5000_when_you_click_on_get_photos_button_in_testexample2_component()
         {
             //Arrange
             var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
@@ -44,15 +44,11 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 
             //Act
             cut.Find("#getPhotos").Click();
-            Thread.Sleep(5000);
+            Thread.Sleep(5000); //After we click the button, we need to wait for a while to get photos over an http call
             var text = cut.Find("#countOfPhoto").TextContent;
 
             //Assert
             text.MarkupMatches("Count of photos: 5000");
         }
-
-
-
-
     }
 }
