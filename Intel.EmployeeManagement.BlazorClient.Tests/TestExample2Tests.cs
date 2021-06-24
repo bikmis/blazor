@@ -24,15 +24,21 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         //5. The base address of the API is changed in the configuration file. Then you need to modify this test for it to pass.
 
         //Level of difficulty - high as it is not straightforward to implement Microsoft interface such as IConfiguration
-        [Fact]
-        public void Number_of_photos_is_5000_when_you_click_on_get_photos_button_in_testexample2_component()
-        {
-            //Arrange
+
+        private IRenderedComponent<TestExample2> createTestExample2Component() {
             var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
             var httpClientService = new ServiceDescriptor(typeof(HttpClient), new HttpClient());
             Services.Add(configurationService);
             Services.Add(httpClientService);
             var cut = RenderComponent<TestExample2>();
+            return cut;
+        }
+
+        [Fact]
+        public void Number_of_photos_is_5000_when_you_click_on_get_photos_button()
+        {
+            //Arrange
+            var cut = createTestExample2Component();
 
             //Act
             cut.Find("#getPhotos").Click();
@@ -41,6 +47,30 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 
             //Assert
             text.MarkupMatches("Count of photos: 5000");
+        }
+
+        [Fact]
+        public void Count_of_photos_does_not_exist_when_you_click_clear_button_after_you_click_get_photos_button()
+        {
+            //Arrange
+            var cut = createTestExample2Component();
+
+            //Act
+            cut.Find("#getPhotos").Click();
+            Thread.Sleep(5000); //After we click the button, we need to wait for a while to get photos over an http call
+            var markup = cut.Markup;
+            var countOfPhotosExists = markup.Contains("Count of photos");
+
+            //Assert
+            Assert.True(countOfPhotosExists == true);
+
+            //Act
+            cut.Find("#clearPhotos").Click();
+            markup = cut.Markup;
+            countOfPhotosExists = markup.Contains("Count of photos");
+
+            //Assert
+            Assert.True(countOfPhotosExists == false);
         }
     }
 }

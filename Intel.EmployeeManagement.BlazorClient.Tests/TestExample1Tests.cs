@@ -23,13 +23,19 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         //4. The base address of the API is changed.
 
         //Level of difficulty - low as it is easy to implement a non-microsoft interface such as IPhotoService
+
+        private IRenderedComponent<TestExample1> createTestExample1Component() {
+            var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
+            Services.Add(photoService);
+            var cut = RenderComponent<TestExample1>();
+            return cut;
+        }
+
         [Fact]
         public void Number_of_photos_is_3_when_you_click_on_get_photos_button()
         {
             //Arrange
-            var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
-            Services.Add(photoService);
-            var cut = RenderComponent<TestExample1>();
+            var cut = createTestExample1Component();
 
             //Act
             cut.Find("#getPhotos").Click();
@@ -42,9 +48,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         [Fact]
         public void Count_of_photos_does_not_exist_when_you_click_clear_button_after_you_click_get_photos_button() {
             //Arrange
-            var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
-            Services.Add(photoService);
-            var cut = RenderComponent<TestExample1>();
+            var cut = createTestExample1Component();
 
             //Act
             cut.Find("#getPhotos").Click();
