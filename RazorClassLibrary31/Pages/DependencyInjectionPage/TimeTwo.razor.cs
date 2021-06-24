@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TimeTwoPage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.DependencyInjectionPage
 {
     public partial class TimeTwo
     {
