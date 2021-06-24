@@ -1,7 +1,6 @@
 ﻿using Bunit;
 using Intel.EmployeeManagement.BlazorClient.Tests.Services;
-using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
+using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExample2Page;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
