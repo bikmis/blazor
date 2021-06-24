@@ -18,9 +18,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
         [Inject]
         private IConfiguration configuration { get; set; }
 
-        [Inject]
-        private IPhotoService photoService { get; set; }
-
         private bool takingLong { get; set; }
 
         public IEnumerable<Photo> photos { get; set; } = new List<Photo>();
@@ -30,14 +27,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
             return base.OnInitializedAsync();
         }
 
-        private async Task getPhotos_1()
-        {
-            takingLong = true;
-            photos = await photoService.GetPhotos();
-            takingLong = false;
-        }
-
-        private async Task getPhotos_2()
+        private async Task getPhotos()
         {
             takingLong = true;
             photos = await httpClient.GetFromJsonAsync<List<Photo>>(configuration["PhotoServiceBaseAddress"] + "photos",

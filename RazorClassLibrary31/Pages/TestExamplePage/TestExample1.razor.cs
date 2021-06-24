@@ -13,12 +13,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
     public partial class TestExample1
     {
         [Inject]
-        HttpClient httpClient { get; set; }
-
-        [Inject]
-        private IConfiguration configuration { get; set; }
-
-        [Inject]
         private IPhotoService photoService { get; set; }
 
         private bool takingLong { get; set; }
@@ -30,21 +24,15 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage
             return base.OnInitializedAsync();
         }
 
-        private async Task getPhotos_1() {
+        private async Task getPhotos()
+        {
             takingLong = true;
             photos = await photoService.GetPhotos();
             takingLong = false;
         }
 
-        private async Task getPhotos_2()
+        private void clearPhotos()
         {
-            takingLong = true;
-            photos = await httpClient.GetFromJsonAsync<List<Photo>>(configuration["PhotoServiceBaseAddress"] + "photos",
-                     new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-            takingLong = false;
-        }
-
-        private void clearPhotos() {
             photos = new List<Photo>();
         }
     }
