@@ -13,7 +13,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service
         private User user = new User();
         private string accessToken;
         private DateTime? time = null;
-        private AlertPopUp alertPopUp = new AlertPopUp();
+        private AlertPopUp alertPopUp = new AlertPopUp() { Message = null, IsHidden = true, Color = null };
 
         public User User
         {

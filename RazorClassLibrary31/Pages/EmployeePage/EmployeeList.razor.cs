@@ -41,23 +41,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
         protected async override Task OnInitializedAsync()
         {
             await ((IAuthenticationService)authenticationService).GuardRoute();
-            appStateService.AlertPopUp = new AlertPopUp() { IsHidden = true }; //when user lands on this page, the alert will be hidden.
-            displaySaveMessage(); //When user lands on this page after adding an employee, save message is displayed.
             await getEmployees();
-        }
-
-        private void displaySaveMessage()
-        {
-            //This page has two URLs, one with SaveMessage parameter.
-            //@page "/employeelist"
-            //@page "/employeelist/{SaveMessage}"            
-            if (SaveMessage != null)
-            {
-                var keyValueDictionary = Utility.ParseUri(navigationManager.Uri);
-                var alertColor = keyValueDictionary.Where(x => x.Key == "alertColor").FirstOrDefault().Value;
-
-                appStateService.AlertPopUp = new AlertPopUp() { Message = SaveMessage, IsHidden = false, Color = alertColor };
-            }
         }
 
         private void search()

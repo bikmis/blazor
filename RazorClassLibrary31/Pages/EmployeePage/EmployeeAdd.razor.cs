@@ -1,4 +1,5 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Microsoft.AspNetCore.Components;
@@ -29,6 +30,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private string female = "F";
 
+        [Inject]
+        private IAppStateService appStateService { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
             await ((IAuthenticationService)authenticationService).GuardRoute();
@@ -44,22 +48,18 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 var response = await employeeService.AddEmployee(employee);
                 if (response.IsSuccessStatusCode)
                 {
-                    message = "Employee Added Successfully.";
-                    alertColor = "alert-success";
+                    appStateService.AlertPopUp = new AlertPopUp() { Message = "Employee Added Successfully.", IsHidden = false, Color = "alert-success" };
                 }
                 else
                 {
-                    message = "Failed to Add Employee.";
-                    alertColor = "alert-danger";
+                    appStateService.AlertPopUp = new AlertPopUp() { Message = "Failed to Add Employee.", IsHidden = false, Color = "alert-danger" };
                 }
-                //passing values in the url parameter and query string
-                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}");
+                navigationManager.NavigateTo("/employeelist");
             }
             catch (Exception e)
             {
-                message = e.Message;
-                alertColor = "alert-danger";
-                navigationManager.NavigateTo($"/employeelist/{message}?alertColor={alertColor}");
+                appStateService.AlertPopUp = new AlertPopUp() { Message = e.Message, IsHidden = false, Color = "alert-danger" };
+                navigationManager.NavigateTo("/employeelist");
             }
         }
 
