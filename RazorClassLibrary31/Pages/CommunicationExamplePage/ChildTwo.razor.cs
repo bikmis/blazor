@@ -4,25 +4,15 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.CommunicationExamplePage
 {
-    public partial class ChildOne : IDisposable
+    public partial class ChildTwo : IDisposable
     {
         [Inject]
         private IAppStateService appStateService { get; set; }
 
         [CascadingParameter]
         private CascadingAppState cascadingAppState { get; set; }
-
-        [Parameter]
-        public string Name { get; set; }
-
-        public string DoSomething() {
-            return "Did something";
-        }
-
-        [Parameter]
-        public EventCallback<string> OnSaved { get; set; }
 
         public void Dispose()
         {
@@ -36,7 +26,7 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         }
 
         private void setTime() {
-            appStateService.Time = DateTime.Now;
+            appStateService.Time = DateTime.Now;                
         }
 
     }

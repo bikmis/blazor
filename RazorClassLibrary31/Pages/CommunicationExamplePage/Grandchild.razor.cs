@@ -1,14 +1,12 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Shared;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.CommunicationExamplePage
 {
-    public partial class ParentTwo
+    public partial class Grandchild : IDisposable
     {
         [Inject]
         private IAppStateService appStateService { get; set; }
@@ -16,17 +14,18 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
         [CascadingParameter]
         private CascadingAppState cascadingAppState { get; set; }
 
-        [Inject]
-        private AuthenticationStateProvider authenticationService { get; set; }
-
-        protected async override Task OnInitializedAsync()
+        public void Dispose()
         {
-            await ((IAuthenticationService)authenticationService).GuardRoute();
-            appStateService.OnChange += StateHasChanged;
+            appStateService.OnChange -= StateHasChanged;
         }
 
-        private void setTime()
+        protected override Task OnInitializedAsync()
         {
+            appStateService.OnChange += StateHasChanged;
+            return base.OnInitializedAsync();
+        }
+
+        private void setTime() {
             appStateService.Time = DateTime.Now;
         }
     }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.AppStateExamplePage
+namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.CommunicationExamplePage
 {
     public partial class Communication
     {
