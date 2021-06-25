@@ -29,9 +29,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private EmployeeEdit employeeEditComponent;
 
-        [Inject]
-        private NavigationManager navigationManager { get; set; }
-
         [Parameter]
         public string SaveMessage { get; set; }
 
