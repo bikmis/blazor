@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 {
     //This is a code-behind file for EmployeeList.razor. It should be a partial class with the same name as the razor page.
-    public partial class EmployeeList
+    public partial class EmployeeList : IDisposable
     {
         [Inject]
         private IAppStateService appStateService { get; set; }
@@ -140,6 +140,11 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
                 DepartmentID = employee.DepartmentID,
                 Gender = employee.Gender
             };
+        }
+
+        public void Dispose()
+        {   //Resetting AlertPopUp when you navigate away. This will hide an alert message if you fail to click x to close the message.
+            appStateService.AlertPopUp = new AlertPopUp() { Message = null, IsHidden = true, Color = null };
         }
     }
 }
