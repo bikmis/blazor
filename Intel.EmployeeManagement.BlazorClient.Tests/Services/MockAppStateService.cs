@@ -16,13 +16,21 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
         public User User { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string AccessToken { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public DateTime? Time { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public AlertPopUp AlertPopUp { get => alertPopUp; set => alertPopUp = value; }
+        public AlertPopUp AlertPopUp
+        {
+            get => alertPopUp;
+            set
+            {
+                alertPopUp = value;
+                notifyStateChanged();
+            }
+        }
 
         public event Action OnChange;
 
-        public Task<T> Deserialize<T>(HttpResponseMessage response)
+        public async Task<T> Deserialize<T>(HttpResponseMessage response)
         {
-            throw new NotImplementedException();
+            return await JsonSerializer.DeserializeAsync<T>(response.Content.ReadAsStreamAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task<List<T>> DeserializeToList<T>(HttpResponseMessage response)
@@ -32,7 +40,13 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 
         public HttpContent Serialize(object data)
         {
-            throw new NotImplementedException();
+            var stringContent = data != null ? new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json") : null;
+            return stringContent;
+        }
+
+        private void notifyStateChanged()
+        {
+            OnChange?.Invoke();
         }
     }
 }

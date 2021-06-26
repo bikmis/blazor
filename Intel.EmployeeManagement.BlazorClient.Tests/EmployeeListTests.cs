@@ -108,18 +108,23 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             //Act before delete button is clicked
             var markup = cut.Markup;
             var JackIsDisplayed = markup.Contains("Jack");
+            var alertPopup = cut.Find("#alert-popup");
+            var isAlertHidden = alertPopup.HasAttribute("hidden");
 
             //Assert
             Assert.True(JackIsDisplayed);
+            Assert.True(isAlertHidden);
 
             //Act afer delete button is clicked
             var deleteButton = cut.Find("#delete-1");
             deleteButton.Click();
             markup = cut.Markup;
             JackIsDisplayed = markup.Contains("Jack");
+            isAlertHidden = alertPopup.HasAttribute("hidden");
 
             //Assert
             Assert.False(JackIsDisplayed);
+            Assert.False(isAlertHidden);
         }
 
     }
