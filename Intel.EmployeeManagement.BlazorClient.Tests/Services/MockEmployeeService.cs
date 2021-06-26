@@ -13,9 +13,9 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
     public class MockEmployeeService : IEmployeeService
     {
         List<Employee> employees = new List<Employee>() {
-            new Employee() { ID = 1, FirstName = "Jack", MiddleName="", LastName="Smith", DepartmentID = 2, Gender="M", Position="Sales Rep", DateOfBirth=DateTime.Now},
-            new Employee() { ID = 1, FirstName = "Mike", MiddleName="", LastName="Johnson", DepartmentID = 2, Gender="M", Position="CEO", DateOfBirth=DateTime.Now},
-            new Employee() { ID = 1, FirstName = "Sophia", MiddleName="Rose", LastName="Miller", DepartmentID = 2, Gender="F", Position="Programmer", DateOfBirth=DateTime.Now}
+            new Employee() { ID = 1, FirstName = "Jack", MiddleName="", LastName="Smith", DepartmentID = 1, Gender="M", Position="Sales Rep", DateOfBirth=DateTime.Now},
+            new Employee() { ID = 2, FirstName = "Mike", MiddleName="", LastName="Johnson", DepartmentID =5, Gender="M", Position="CEO", DateOfBirth=DateTime.Now},
+            new Employee() { ID = 3, FirstName = "Sophia", MiddleName="Rose", LastName="Miller", DepartmentID =10, Gender="F", Position="Programmer", DateOfBirth=DateTime.Now }
         };
 
         public Task<HttpResponseMessage> AddEmployee(Employee employee)
