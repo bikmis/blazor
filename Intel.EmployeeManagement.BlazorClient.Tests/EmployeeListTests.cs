@@ -42,12 +42,13 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.True(mikeExists);
             Assert.True(sophiaExists);
         }
-/*
+
         [Fact]
-        public void Only_mike_is_searched() {
+        public void When_Mike_is_searched_only_Mike_is_found() {
             //Arrange
             var cut = createEmployeeListComponent();
 
+            //No search
             //Act
             var markup = cut.Markup;
             var jackExists = markup.Contains("Jack");
@@ -59,10 +60,11 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.True(mikeExists);
             Assert.True(sophiaExists);
 
+            //Search begins
             //Act
             var searchElement = cut.Find("#search");
-           // searchElement.TextContent = "Mike";
-            searchElement.KeyUp("Mike".ToString());
+            searchElement.Input("Mike");
+            searchElement.KeyUp(Key.Up);
             markup = cut.Markup;
             jackExists = markup.Contains("Jack");
             mikeExists = markup.Contains("Mike");
@@ -73,6 +75,6 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.True(mikeExists);
             Assert.False(sophiaExists);
         }
-*/
+        
     }
 }
