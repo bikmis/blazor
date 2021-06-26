@@ -105,7 +105,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             //Arrange
             var cut = createEmployeeListComponent();
 
-            //Act before delete button is clicked
+            //Act - before delete button is clicked
             var markup = cut.Markup;
             var JackIsDisplayed = markup.Contains("Jack");
             var alertPopup = cut.Find("#alert-popup");
@@ -115,7 +115,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.True(JackIsDisplayed);
             Assert.True(isAlertHidden);
 
-            //Act afer delete button is clicked
+            //Act - afer delete button is clicked
             var deleteButton = cut.Find("#delete-1");
             deleteButton.Click();
             markup = cut.Markup;
