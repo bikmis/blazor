@@ -53,8 +53,8 @@
                     <td>@employee.Position</td>
                     <td>@employee.DepartmentID</td>
                     <td>@employee.Gender</td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => passToEditForm(employee)">Edit</button></td>
-                    <td><button type="button" class="btn btn-primary" @onclick="() => deleteEmployee(employee.ID)">Delete</button></td>
+                    <td><button id="edit-@employee.ID" type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeEditModal" @onclick="() => passToEditForm(employee)">Edit</button></td>
+                    <td><button id="delete-@employee.ID" type="button" class="btn btn-primary" @onclick="() => deleteEmployee(employee.ID)">Delete</button></td>
                 </tr>
             }
         </tbody>

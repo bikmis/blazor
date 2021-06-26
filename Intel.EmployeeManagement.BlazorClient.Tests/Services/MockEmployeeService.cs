@@ -25,7 +25,12 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 
         public Task<HttpResponseMessage> DeleteEmployee(int employeeId)
         {
-            throw new NotImplementedException();
+            var employee = employees.Find(x => x.ID == employeeId);
+            var index = employees.IndexOf(employee);
+            employees.RemoveAt(index);
+            HttpContent content = new StringContent(JsonSerializer.Serialize(employees), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = new HttpResponseMessage() { Content = content, StatusCode = HttpStatusCode.OK };
+            return Task.FromResult(response);
         }
 
         public Task<HttpResponseMessage> EditEmployee(Employee employee)

@@ -75,6 +75,52 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.True(mikeExists);
             Assert.False(sophiaExists);
         }
-        
+
+        /*
+        [Fact]
+        public void When_edit_is_clicked_modal_is_displayed() {
+            //Arrange
+            var cut = createEmployeeListComponent();
+            var employeeEditComponent = RenderComponent<EmployeeEdit>();
+
+            //Act - before edit button is clicked
+            var markup = employeeEditComponent.Markup;
+            var modalIsDisplayed = markup.Contains("display: block;");
+
+            Assert.False(modalIsDisplayed);
+
+            //Act - edit button is clicked
+            var editButton = cut.Find("#edit-1");
+            editButton.Click();
+            markup = employeeEditComponent.Markup;
+            modalIsDisplayed = markup.Contains("display: block;");
+
+            //Assert
+            Assert.True(modalIsDisplayed);
+        }
+        */
+
+        [Fact]
+        public void When_delete_is_clicked_Jack_is_removed_and_message_shows_up() {
+            //Arrange
+            var cut = createEmployeeListComponent();
+
+            //Act before delete button is clicked
+            var markup = cut.Markup;
+            var JackIsDisplayed = markup.Contains("Jack");
+
+            //Assert
+            Assert.True(JackIsDisplayed);
+
+            //Act afer delete button is clicked
+            var deleteButton = cut.Find("#delete-1");
+            deleteButton.Click();
+            markup = cut.Markup;
+            JackIsDisplayed = markup.Contains("Jack");
+
+            //Assert
+            Assert.False(JackIsDisplayed);
+        }
+
     }
 }
