@@ -17,13 +17,13 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         {
             //Arrange
             var appStateService = new ServiceDescriptor(typeof(IAppStateService), new MockAppStateService());
-            var employeeService = new ServiceDescriptor(typeof(IEmployeeService), new MockEmployeeService());
-            var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new MockAuthenticationService());
-            var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new MockAuthenticationService());
-            Services.Add(authenticationStateProviderService);
-            Services.Add(authenticationService);
             Services.Add(appStateService);
+            var employeeService = new ServiceDescriptor(typeof(IEmployeeService), new MockEmployeeService());
             Services.Add(employeeService);
+            var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new MockAuthenticationService());
+            Services.Add(authenticationStateProviderService);
+            var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new MockAuthenticationService());
+            Services.Add(authenticationService);
             var cut = RenderComponent<EmployeeList>();
 
             //Act
