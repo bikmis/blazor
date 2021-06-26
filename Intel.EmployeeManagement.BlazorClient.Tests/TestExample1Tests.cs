@@ -22,8 +22,6 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         //3. API server is down or API is modified.
         //4. The base address of the API is changed.
 
-        //Level of difficulty - low as it is easy to implement a non-microsoft interface such as IPhotoService
-
         private IRenderedComponent<TestExample1> createTestExample1Component() {
             var photoService = new ServiceDescriptor(typeof(IPhotoService), new MockPhotoService());
             Services.Add(photoService);

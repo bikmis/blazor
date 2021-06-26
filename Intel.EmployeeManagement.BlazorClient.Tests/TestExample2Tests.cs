@@ -22,8 +22,6 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
         //4. API server is down. The test will never pass untill the API server is up and running.
         //5. The base address of the API is changed in the configuration file. Then you need to modify this test for it to pass.
 
-        //Level of difficulty - high as it is not straightforward to implement Microsoft interface such as IConfiguration
-
         private IRenderedComponent<TestExample2> createTestExample2Component() {
             var configurationService = new ServiceDescriptor(typeof(IConfiguration), new MockConfigurationService());
             var httpClientService = new ServiceDescriptor(typeof(HttpClient), new HttpClient());
