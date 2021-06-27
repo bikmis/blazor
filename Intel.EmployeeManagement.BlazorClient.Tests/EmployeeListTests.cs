@@ -77,30 +77,27 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.False(sophiaExists);
         }
 
-        /*
         [Fact]
-        public void When_edit_is_clicked_modal_is_displayed() {
+        public void When_edit_is_clicked_form_is_populated_with_data()
+        {
             //Arrange
             var cut = createEmployeeListComponent();
-            var employeeEditComponent = RenderComponent<EmployeeEdit>();
 
             //Act - before edit button is clicked
-            var markup = employeeEditComponent.Markup;
-            var modalIsDisplayed = markup.Contains("display: block;");
+            var firstName = cut.Find("#firstName");
 
-            Assert.False(modalIsDisplayed);
+            //Assert
+            firstName.MarkupMatches("<input id='firstName' class='form-control valid' />");
 
             //Act - edit button is clicked
             var editButton = cut.Find("#edit-1");
             editButton.Click();
-            markup = employeeEditComponent.Markup;
-            modalIsDisplayed = markup.Contains("display: block;");
+            firstName = cut.Find("#firstName");
 
             //Assert
-            Assert.True(modalIsDisplayed);
+            firstName.MarkupMatches("<input id='firstName' class='form-control valid' value='Jack' />");
         }
-        */
-
+        
         [Fact]
         public void When_delete_is_clicked_Jack_is_removed_and_message_shows_up() {
             //Arrange
@@ -128,8 +125,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.False(isAlertHidden);
         }
         
-        [Fact]
-        public void When_save_is_clicked_in_edit_form_message_shows_up() {
+        [Fact(DisplayName = "When Save button is clicked on edit form, save alert pop up shows up")]
+        public void SubmitEditForm() {
             //Arrange
             var cut = createEmployeeListComponent();
             JSInterop.SetupVoid("closeEmployeeEditModal").SetVoidResult();
