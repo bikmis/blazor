@@ -127,33 +127,30 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.False(JackIsDisplayed);
             Assert.False(isAlertHidden);
         }
-
-        /*
+        
         [Fact]
-        public void When_save_is_clicked_in_edit_form_Jack_will_have_middle_name_and_message_shows_up() {
+        public void When_save_is_clicked_in_edit_form_message_shows_up() {
             //Arrange
             var cut = createEmployeeListComponent();
-            JSInterop.SetupVoid("closeEmployeeEditModal");       
+            JSInterop.SetupVoid("closeEmployeeEditModal").SetVoidResult();
 
             //Act - before form submit
             var editButton = cut.Find("#edit-1");
             editButton.Click();
-            var middleNameElement = cut.Find("#middleName");
-            var content = middleNameElement.TextContent;
-            var xIsDisplayed = content.Contains("x");
+            var alertPopup = cut.Find("#alert-popup");
+            var isAlertHidden = alertPopup.HasAttribute("hidden");
 
             //Assert
-            Assert.False(xIsDisplayed);
+            Assert.True(isAlertHidden);
 
             //Act
             var editForm = cut.Find("#edit-form");
             editForm.Submit();
-            content = middleNameElement.TextContent;
-            xIsDisplayed = content.Contains("x");
+            isAlertHidden = alertPopup.HasAttribute("hidden");
 
             //Assert
-            Assert.True(xIsDisplayed);
+            Assert.False(isAlertHidden);
         }
-        */
+        
     }
 }
