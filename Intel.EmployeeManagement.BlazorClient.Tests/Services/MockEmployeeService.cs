@@ -1,13 +1,11 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
-using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
@@ -37,7 +35,11 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 
         public Task<HttpResponseMessage> EditEmployee(Employee employee)
         {
-            employee.MiddleName = "x";
+            var emp = employees.Find(x => x.ID == employee.ID);
+            var index = employees.IndexOf(emp);
+            employees.RemoveAt(index);
+            employee.MiddleName = "Thomas";
+            employees.Add(employee);
             HttpContent content = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
             HttpResponseMessage response = new HttpResponseMessage() { Content = content, StatusCode = HttpStatusCode.OK };
             return Task.FromResult(response);

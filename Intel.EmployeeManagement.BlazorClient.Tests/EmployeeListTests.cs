@@ -98,7 +98,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             firstName.MarkupMatches("<input id='firstName' class='form-control valid' value='Jack' />");
         }
         
-        [Fact(DisplayName = "When delete button is clicked, an alert message shows up")]
+        [Fact(DisplayName = "When delete button is clicked, Jack's record is deleted and an alert message shows up")]
         public void TestDeleteButton() {
             //Arrange
             var cut = createEmployeeListComponent();
@@ -125,7 +125,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.False(isAlertHidden);
         }
         
-        [Fact(DisplayName = "When Save button is clicked on edit form, an alert pop up shows up")]
+        [Fact(DisplayName = "When Save button is clicked on edit form, middle name Thomas is added and an alert pop up shows up")]
         public void SubmitEditForm() {
             //Arrange
             var cut = createEmployeeListComponent();
@@ -136,17 +136,23 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             editButton.Click();
             var alertPopup = cut.Find("#alert-popup");
             var isAlertHidden = alertPopup.HasAttribute("hidden");
+            var markup = cut.Markup;
+            var middleNameExists = markup.Contains("<td>Thomas</td>");
 
             //Assert
             Assert.True(isAlertHidden);
+            Assert.False(middleNameExists);
 
             //Act
             var editForm = cut.Find("#edit-form");
             editForm.Submit();
             isAlertHidden = alertPopup.HasAttribute("hidden");
+            markup = cut.Markup;
+            middleNameExists = markup.Contains("<td>Thomas</td>");
 
             //Assert
             Assert.False(isAlertHidden);
+            Assert.True(middleNameExists);
         }
         
     }
