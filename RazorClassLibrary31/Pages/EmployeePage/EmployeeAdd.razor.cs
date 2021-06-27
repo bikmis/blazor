@@ -40,9 +40,6 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage
 
         private async void addEmployee(EditContext editContext, Employee employee)
         {
-            string message;
-            string alertColor;
-
             try
             {
                 var response = await employeeService.AddEmployee(employee);
