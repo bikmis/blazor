@@ -5,7 +5,7 @@
 
 <h3>Add Employee</h3>
 
-<EditForm Model="@employee" OnValidSubmit="(e) => addEmployee(e, employee)">
+<EditForm id="employee-add-form" Model="@employee" OnValidSubmit="(e) => addEmployee(e, employee)">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="mb-3">
@@ -49,11 +49,11 @@
         <label for="gender" class="form-label">Gender</label>
         <div>
             <label>
-                <InputRadio name="gender" SelectedValue="male" @bind-Value="employee.Gender" />&nbsp;Male
+                <InputRadio id="male-gender" name="gender" SelectedValue="male" @bind-Value="employee.Gender" />&nbsp;Male
             </label>
             &nbsp;
             <label>
-                <InputRadio name="gender" SelectedValue="female" @bind-Value="employee.Gender" />&nbsp;Female
+                <InputRadio id="female-gender" name="gender" SelectedValue="female" @bind-Value="employee.Gender" />&nbsp;Female
             </label>
         </div>
         <ValidationMessage id="genderValidation" For="()=> employee.Gender" />

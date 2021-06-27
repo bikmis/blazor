@@ -20,7 +20,11 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 
         public Task<HttpResponseMessage> AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            employee.ID = 4;
+            employees.Add(employee);
+            HttpContent content = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = new HttpResponseMessage() { Content = content, StatusCode = HttpStatusCode.OK };
+            return Task.FromResult(response);
         }
 
         public Task<HttpResponseMessage> DeleteEmployee(int employeeId)
