@@ -1,11 +1,13 @@
 ﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
@@ -35,7 +37,10 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
 
         public Task<HttpResponseMessage> EditEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            employee.MiddleName = "x";
+            HttpContent content = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = new HttpResponseMessage() { Content = content, StatusCode = HttpStatusCode.OK };
+            return Task.FromResult(response);
         }
 
         public Task<HttpResponseMessage> GetEmployees()
