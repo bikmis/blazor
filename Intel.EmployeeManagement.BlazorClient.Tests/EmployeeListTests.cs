@@ -6,7 +6,6 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.JSInterop;
 using Xunit;
 
 namespace Intel.EmployeeManagement.BlazorClient.Tests
@@ -26,8 +25,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             return cut;
         }
 
-        [Fact]
-        public void Three_employees_are_displayed_when_you_land_on_this_page()
+        [Fact(DisplayName = "Jack, Mike and Sophia are displayed when you land on the page")]
+        public void TestComponentCreation()
         {
             //Arrange
             var cut = createEmployeeListComponent();
@@ -44,8 +43,9 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.True(sophiaExists);
         }
 
-        [Fact]
-        public void When_Mike_is_searched_only_Mike_is_found() {
+        [Fact(DisplayName = "When Mike is searched, only Mike is found")]
+        public void TestSearchTextBox()
+        {
             //Arrange
             var cut = createEmployeeListComponent();
 
@@ -77,8 +77,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.False(sophiaExists);
         }
 
-        [Fact]
-        public void When_edit_is_clicked_form_is_populated_with_data()
+        [Fact(DisplayName = "Edit form is populated with data when edit button is clicked")]
+        public void TestEditButton()
         {
             //Arrange
             var cut = createEmployeeListComponent();
@@ -98,8 +98,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             firstName.MarkupMatches("<input id='firstName' class='form-control valid' value='Jack' />");
         }
         
-        [Fact]
-        public void When_delete_is_clicked_Jack_is_removed_and_message_shows_up() {
+        [Fact(DisplayName = "When delete button is clicked, an alert message shows up")]
+        public void TestDeleteButton() {
             //Arrange
             var cut = createEmployeeListComponent();
 
@@ -125,7 +125,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             Assert.False(isAlertHidden);
         }
         
-        [Fact(DisplayName = "When Save button is clicked on edit form, save alert pop up shows up")]
+        [Fact(DisplayName = "When Save button is clicked on edit form, an alert pop up shows up")]
         public void SubmitEditForm() {
             //Arrange
             var cut = createEmployeeListComponent();
