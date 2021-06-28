@@ -15,7 +15,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.e2e_Tests
             var options = new ChromeOptions();
             options.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
             IWebDriver driver = new ChromeDriver(@"C:\Users\Bikash\source\repos\blazor\Intel.EmployeeManagement.BlazorClient.Tests\e2e Tests\ChromeDriver", options);
-            driver.Navigate().GoToUrl("https://www.google.com/");            
+            driver.Navigate().GoToUrl("https://localhost:8076");            
         }
     }
 }
