@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
+namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services
 {
     public class MockEmployeeService : IEmployeeService
     {

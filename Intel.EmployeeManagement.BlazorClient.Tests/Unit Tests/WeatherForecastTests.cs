@@ -1,7 +1,7 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests
+namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
 {
     public class WeatherForecastTests
     {

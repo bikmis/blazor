@@ -1,5 +1,5 @@
 ﻿using Bunit;
-using Intel.EmployeeManagement.BlazorClient.Tests.Services;
+using Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests
+namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
 {
     public class EmployeeListTests : TestContext
     {

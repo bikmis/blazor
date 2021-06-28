@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Services
+namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services
 {
     public class MockConfigurationService : IConfiguration
     {

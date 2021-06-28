@@ -1,11 +1,11 @@
 ﻿using Bunit;
-using Intel.EmployeeManagement.BlazorClient.Tests.Services;
+using Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.TestExamplePage;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests
+namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
 {
     //https://docs.microsoft.com/en-us/aspnet/core/blazor/test?view=aspnetcore-5.0
 
