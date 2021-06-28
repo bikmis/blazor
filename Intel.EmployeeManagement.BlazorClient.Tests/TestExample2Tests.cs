@@ -31,8 +31,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             return cut;
         }
 
-        [Fact]
-        public void Number_of_photos_is_5000_when_you_click_on_get_photos_button()
+        [Fact(DisplayName = "5000 photos when you click on 'get photos' button")]
+        public void TestGetPhotosButton()
         {
             //Arrange
             var cut = createTestExample2Component();
@@ -46,8 +46,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             text.MarkupMatches("Count of photos: 5000");
         }
 
-        [Fact]
-        public void Count_of_photos_does_not_exist_when_you_click_clear_button_after_you_click_get_photos_button()
+        [Fact(DisplayName ="Clear button clears photos")]
+        public void TestClearButton()
         {
             //Arrange
             var cut = createTestExample2Component();

@@ -10,8 +10,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 {
     public class CounterTests : TestContext
     {
-        [Fact]
-        public void CounterShouldIncrementWhenClicked()
+        [Fact(DisplayName = "Counter will increment when you click on the button")]
+        public void TestIncrementCounter()
         {
             var authenticationStateProviderService = new ServiceDescriptor(typeof(AuthenticationStateProvider), new MockAuthenticationService());
             var authenticationService = new ServiceDescriptor(typeof(IAuthenticationService), new MockAuthenticationService());
@@ -27,6 +27,5 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
             //Assert: first find the <p> element, then verify its content
             cut.Find("p").MarkupMatches("<p>Current count: 1</p>");
         }
-
     }
 }

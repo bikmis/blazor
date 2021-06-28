@@ -5,22 +5,23 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests
 {
     public class WeatherForecastTests
     {
-        [Fact]
-        public void WeatherForecastZeroCShouldBe32F()
+        [Fact(DisplayName = "Zero Celsius equals 32 Fahrenheit")]
+        public void TestCelsiusToFahrenheitConversion()
         {
             var forecast = new WeatherForecast();
             forecast.TemperatureC = 0;
             Assert.Equal(32, forecast.TemperatureF);
         }
 
-        [Theory]
+        [Theory(DisplayName = "Below 0 Celsius will be below 32 Fahrenheit")]
         [InlineData(-3)]
         [InlineData(-8)]
         [InlineData(-50)]
-        public void WeatherForecastBelowZeroC_ShouldBeBelow32F(int value) {
+        public void TestBelowZeroCelsius(int value)
+        {
             var weatherForecast = new WeatherForecast();
             weatherForecast.TemperatureC = value;
-            Assert.True(weatherForecast.TemperatureF < 32);        
+            Assert.True(weatherForecast.TemperatureF < 32);
         }
     }
 }
