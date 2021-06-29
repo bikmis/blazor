@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Intel.EmployeeManagement.BlazorClient
 {
@@ -59,6 +60,13 @@ namespace Intel.EmployeeManagement.BlazorClient
             builder.Services.AddAuthorizationCore();
 
             await builder.Build().RunAsync();
+
+            //https://stackoverflow.com/questions/66521906/error-when-attempting-to-decode-json-web-token-returned-from-own-backend-api
+            //If we don't put the following code, we get the following error when published to a file system to run in IIS
+            //IDX12729: Unable to decode the header 'System.String' as Base64Url encoded string. jwtEncodedString: 'System.String'.
+            //But the above error does not come up with IIS Express.
+             _ = new JwtHeader();
+             _ = new JwtPayload();
         }
     }
 }
