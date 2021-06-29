@@ -14,7 +14,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services
         private AlertPopUp alertPopUp { get; set; } = new AlertPopUp() { Message = null, IsHidden = true, Color = null };
 
         public User User { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string AccessToken { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string AccessToken { get => null; set => value = null; }
         public DateTime? Time { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public AlertPopUp AlertPopUp
         {
