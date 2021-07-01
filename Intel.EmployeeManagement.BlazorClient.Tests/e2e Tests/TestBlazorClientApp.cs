@@ -10,8 +10,8 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.e2e_Tests
 {
     public class TestBlazorClientApp
     {       
-        [Fact]
-        public void TestAppInChrome()
+        [Fact(DisplayName = "Test login page validation")]
+        public void TestLoginPageValidation()
         {
             //Arrange
             var options = new ChromeOptions();
