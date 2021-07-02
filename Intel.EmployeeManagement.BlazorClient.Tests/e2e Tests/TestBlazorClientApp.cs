@@ -27,7 +27,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.e2e_Tests
             var driver = createChromeDriver();
 
             //Act
-            driver.Navigate().GoToUrl("http://localhost:8075");
+            driver.Navigate().GoToUrl("http://localhost:8090");
             Thread.Sleep(3000); //wait for 3 seconds 
             var logingBtn = driver.FindElement(By.Id("login"));
             logingBtn.Click();
