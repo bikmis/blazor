@@ -17,13 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClient.Tests", "Intel.EmployeeManagement.BlazorClient.Tests\Intel.EmployeeManagement.BlazorClient.Tests.csproj", "{65344585-304E-4B02-80DA-3933181A0AD1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{4B9B3897-FEBC-4386-B596-462596F8881E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Blazor", "3. Blazor", "{4B9B3897-FEBC-4386-B596-462596F8881E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{307C4351-F678-4FEA-98CD-67C5A09ED024}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. APIs", "2. APIs", "{307C4351-F678-4FEA-98CD-67C5A09ED024}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1E5B8394-62D5-4557-BBEE-FB8E01588237}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tests", "4. Tests", "{1E5B8394-62D5-4557-BBEE-FB8E01588237}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{66930D3C-82EF-4A8C-86B8-5D614A7FD129}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data", "1. Data", "{66930D3C-82EF-4A8C-86B8-5D614A7FD129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
