@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services
 {
     public class MockAppStateService : IAppStateService
     {

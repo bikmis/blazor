@@ -1,17 +1,10 @@
-﻿using Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services;
-using Intel.EmployeeManagement.RazorClassLibrary.Models;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
-using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
+using Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services;
 using System.Net.Http;
-using System.Text;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
 {
     public class HttpServiceTests
     {

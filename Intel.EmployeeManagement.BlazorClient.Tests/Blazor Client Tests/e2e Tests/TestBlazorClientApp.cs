@@ -1,21 +1,17 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.e2e_Tests
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.e2e_Tests
 {
     public class TestBlazorClientApp
     {       
         private IWebDriver createChromeDriver() {
             var options = new ChromeOptions();
             options.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            var chromeDriverPath = Path.GetFullPath(@"e2e Tests\ChromeDriver");
+            var chromeDriverPath = Path.GetFullPath(@"Blazor Client Tests\e2e Tests\ChromeDriver");
             IWebDriver driver = new ChromeDriver(chromeDriverPath, options);
             return driver;
         }

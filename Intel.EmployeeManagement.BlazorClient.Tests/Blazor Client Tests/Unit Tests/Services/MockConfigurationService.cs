@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services
 {
     public class MockConfigurationService : IConfiguration
     {

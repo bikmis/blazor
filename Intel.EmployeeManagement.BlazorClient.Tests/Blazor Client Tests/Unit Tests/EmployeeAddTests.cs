@@ -1,17 +1,15 @@
 ﻿using Bunit;
-using Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.EmployeePage;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.AppState_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Employee_Service;
+using Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
 {
     public class EmployeeAddTests : TestContext
     {
@@ -60,8 +58,7 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
             var isAlertPopupVisible = !alertPopup.HasAttribute("hidden");  //when visible, hidden does not exist on the element
 
             //Assert
-            Assert.True(isAlertPopupVisible);
-            
+            Assert.True(isAlertPopupVisible);           
         }
 
     }

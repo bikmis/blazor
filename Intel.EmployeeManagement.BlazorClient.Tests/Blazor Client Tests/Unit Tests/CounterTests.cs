@@ -1,12 +1,12 @@
 ﻿using Bunit;
-using Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services;
 using Intel.EmployeeManagement.RazorClassLibrary.Pages.CounterPage;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
+using Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
 {
     public class CounterTests : TestContext
     {

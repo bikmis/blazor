@@ -3,7 +3,7 @@ using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.BlazorClient.Tests.Unit_Tests.Services
+namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services
 {
     public class MockPhotoService : IPhotoService
     {

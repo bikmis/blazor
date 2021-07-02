@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider", "JwtServer31\Intel.EmployeeManagement.IdentityProvider.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClient.Tests", "Intel.EmployeeManagement.BlazorClient.Tests\Intel.EmployeeManagement.BlazorClient.Tests.csproj", "{65344585-304E-4B02-80DA-3933181A0AD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Tests", "Intel.EmployeeManagement.BlazorClient.Tests\Intel.EmployeeManagement.Tests.csproj", "{65344585-304E-4B02-80DA-3933181A0AD1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Blazor", "3. Blazor", "{4B9B3897-FEBC-4386-B596-462596F8881E}"
 EndProject
