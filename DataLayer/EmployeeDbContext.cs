@@ -12,12 +12,11 @@ namespace Intel.EmployeeManagement.Data
         public EmployeeDbContext()
         {
             //To read configuration string from appsettings.json, add the NuGet package "Microsoft.Extensions.Configuration.Json".
-            //This constructor runs when you set this as Startup project and run migration commands (PM>add-migration ...migration..name, PM>update-database)
-            //as we are using the appsettings.json from this project. The appsettings.json file is used with DataLayer project to run migration commands
-            //independently of other projects. This appsettings.json is not used in production and it is only used during development and is replaced by
-            //another appsettings.json from web api project (or mvc or blazor etc). That's why appsettings.json of this project will have the value "Do not copy"
-            //for "Copy to Output Directory" property. To access this property, right-click on appsettings.json and the appsettings.json file with a connection
-            //string from web api (or mvc or blazor etc) will have the property "Copy to Output Directory" set to "Copy if newer".
+
+            //1. This constructor runs when you set Default project to this project and run migration commands
+            //(PM>add-migration ...migration..name, PM>update-database), then the appsettings.json from this project will be used.
+            //2. This project is referenced by IdentityProvider project, and when a call is made to this from there, appsettings.json of IdentityProvider is used.
+            //3. This project is referenced by WebApi project, and when a call is made to this from there, appsettings.json of WebApi is used.
             IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
             _connectionString = configuration.GetConnectionString("EmployeeDb");
         }
