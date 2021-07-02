@@ -29,4 +29,10 @@
     <Folder Include="e2e Tests\ChromeDriver\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="e2e Tests\ChromeDriver\chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

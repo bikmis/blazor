@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using Xunit;
@@ -10,14 +12,20 @@ namespace Intel.EmployeeManagement.BlazorClient.Tests.e2e_Tests
 {
     public class TestBlazorClientApp
     {       
+        private IWebDriver createChromeDriver() {
+            var options = new ChromeOptions();
+            options.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+            var chromeDriverPath = Path.GetFullPath(@"e2e Tests\ChromeDriver");
+            IWebDriver driver = new ChromeDriver(chromeDriverPath, options);
+            return driver;
+        }
+
         [Fact(DisplayName = "Test login page validation")]
         public void TestLoginPageValidation()
         {
             //Arrange
-            var options = new ChromeOptions();
-            options.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            IWebDriver driver = new ChromeDriver(@"C:\Users\Bikash\source\repos\blazor\Intel.EmployeeManagement.BlazorClient.Tests\e2e Tests\ChromeDriver", options);
-            
+            var driver = createChromeDriver();
+
             //Act
             driver.Navigate().GoToUrl("http://localhost:8075");
             Thread.Sleep(3000); //wait for 3 seconds 
