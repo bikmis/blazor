@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmployeeBlazorClient31\Intel.EmployeeManagement.BlazorClient.csproj" />
+    <ProjectReference Include="..\IntelEmployeeManagementBlazorClientApp\Intel.EmployeeManagement.BlazorClientApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
