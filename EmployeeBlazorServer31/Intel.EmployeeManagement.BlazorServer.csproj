@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RazorClassLibrary31\Intel.EmployeeManagement.RazorClassLibrary.csproj" />
+    <ProjectReference Include="..\IntelEmployeeManagementRazorClassLibrary\Intel.EmployeeManagement.RazorClassLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
