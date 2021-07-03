@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Photo_Service;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace Intel.EmployeeManagement.BlazorClient
+namespace Intel.EmployeeManagement.BlazorClientApp
 {
     public class Program
     {

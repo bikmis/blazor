@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Intel.EmployeeManagement.BlazorServer
+namespace Intel.EmployeeManagement.BlazorServerApp
 {
     public class Program
     {

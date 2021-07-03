@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 
-namespace Intel.EmployeeManagement.BlazorServer
+namespace Intel.EmployeeManagement.BlazorServerApp
 {
     public class Startup
     {
