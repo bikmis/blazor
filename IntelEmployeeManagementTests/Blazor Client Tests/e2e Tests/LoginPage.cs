@@ -6,12 +6,12 @@ using Xunit;
 
 namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.e2e_Tests
 {
-    public class TestBlazorClientApp
+    public class LoginPage
     {       
         private IWebDriver createChromeDriver() {
             var options = new ChromeOptions();
             options.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            var chromeDriverPath = Path.GetFullPath(@"Blazor Client Tests\e2e Tests\ChromeDriver");
+            var chromeDriverPath = Path.GetFullPath(@"Blazor Client Tests\e2e Tests\Drivers");
             IWebDriver driver = new ChromeDriver(chromeDriverPath, options);
             return driver;
         }

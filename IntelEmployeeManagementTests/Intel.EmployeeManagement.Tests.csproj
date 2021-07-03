@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Blazor Client Tests\e2e Tests\ChromeDriver\chromedriver.exe">
+    <None Update="Blazor Client Tests\e2e Tests\Drivers\chromedriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
