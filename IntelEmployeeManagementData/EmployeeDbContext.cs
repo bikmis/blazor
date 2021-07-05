@@ -50,7 +50,7 @@ namespace Intel.EmployeeManagement.Data
              {
                  ID = 3,
                  FirstName = "Jane",
-                 MiddleName = "Williams",
+                 MiddleName = "Willa",
                  LastName = "Ferguson",
                  DateOfBirth = new DateTime(1987, 06, 12),
                  Position = "Operations Manager",
