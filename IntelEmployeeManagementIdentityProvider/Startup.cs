@@ -1,7 +1,8 @@
-using Intel.EmployeeManagement.IdentityProvider.Services.Database_Service;
+using Intel.EmployeeManagement.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,7 @@ namespace Intel.EmployeeManagement.IdentityProvider
         {
             services.AddControllers();
 
-            services.AddScoped<IDatabaseService, DatabaseService>();
+            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:EmployeeDb"]));
 
             services.AddCors(options => options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()

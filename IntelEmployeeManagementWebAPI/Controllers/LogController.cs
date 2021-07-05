@@ -1,8 +1,7 @@
-﻿using Intel.EmployeeManagement.Data.Entities;
+﻿using Intel.EmployeeManagement.Data;
+using Intel.EmployeeManagement.Data.Entities;
 using Intel.EmployeeManagement.WebAPI.Models.Logging;
-using Intel.EmployeeManagement.WebAPI.Services.Database_Service;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace Intel.EmployeeManagement.WebAPI.Controllers
 {
@@ -10,11 +9,11 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
     [Route("api")]
     public class LogController : Controller
     {
-        private IDatabaseService databaseService { get; set; }
+        private EmployeeDbContext employeeDbContext { get; set; }
 
-        public LogController(IDatabaseService _databaseService)
+        public LogController(EmployeeDbContext _employeeDbContext)
         {
-            databaseService = _databaseService;
+            employeeDbContext = _employeeDbContext;
         }
 
         [HttpPost]
@@ -30,8 +29,8 @@ namespace Intel.EmployeeManagement.WebAPI.Controllers
                 StackTrace = request.StackTrace
             };
 
-            databaseService.EmployeeDbContext.Logs.Add(log);
-            databaseService.EmployeeDbContext.SaveChanges();
+            employeeDbContext.Logs.Add(log);
+            employeeDbContext.SaveChanges();
             return Ok();
         }
     }

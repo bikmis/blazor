@@ -1,17 +1,17 @@
-﻿using Intel.EmployeeManagement.IdentityProvider.Models.Login;
+﻿using Intel.EmployeeManagement.Data;
+using Intel.EmployeeManagement.Data.Entities;
 using Intel.EmployeeManagement.IdentityProvider.Models.AccessToken;
+using Intel.EmployeeManagement.IdentityProvider.Models.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using Intel.EmployeeManagement.IdentityProvider.Services.Database_Service;
-using Intel.EmployeeManagement.Data.Entities;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 
 namespace Intel.EmployeeManagement.IdentityProvider.Controllers
 {
@@ -19,12 +19,12 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private IDatabaseService databaseService { get; set; }
+        private EmployeeDbContext employeeDbContext { get; set; }
        
         private IConfiguration configuration;
-        public LoginController(IDatabaseService _databaseService, IConfiguration _configuration)
+        public LoginController(EmployeeDbContext _employeeDbContext, IConfiguration _configuration)
         {
-            databaseService = _databaseService;
+            employeeDbContext = _employeeDbContext;
             configuration = _configuration;
         }
 
@@ -37,13 +37,13 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
                 return Unauthorized();
             }
 
-            var user = databaseService.EmployeeDbContext.Users.Where(u => u.Username == request.Username && u.Password == request.Password).FirstOrDefault();
+            var user = employeeDbContext.Users.Where(u => u.Username == request.Username && u.Password == request.Password).FirstOrDefault();
             if (user == null)
             {
                 return Unauthorized();
             }
 
-            var roleNames = databaseService.EmployeeDbContext.Roles.Where(r => r.UserID == user.ID).Select(role => role.RoleName).ToList();
+            var roleNames = employeeDbContext.Roles.Where(r => r.UserID == user.ID).Select(role => role.RoleName).ToList();
 
             var accessToken = createJwt(user, roleNames, configuration["AccessTokenSecurityKey"], issuer: configuration["TokenIssuer"], audience: configuration["AccessTokenAudience"], expiryInMinutes: 1440);        //https://localhost:44327/ is the base address of resource (employee) server
             var refreshToken = createJwt(user, roleNames, configuration["RefreshTokenSecurityKey"], issuer: configuration["TokenIssuer"], audience: configuration["RefreshTokenAudience"], expiryInMinutes: 2880);      //https://localhost:44382/ is the base address of token server
