@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.e2e_Tests
 {
-    public class LoginPage
+    public class LoginPageTests
     {       
         private IWebDriver createChromeDriver() {
             var options = new ChromeOptions();
