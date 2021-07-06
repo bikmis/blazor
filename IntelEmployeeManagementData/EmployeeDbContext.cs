@@ -10,12 +10,6 @@ namespace Intel.EmployeeManagement.Data
         public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : base(options) {            
         }       
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //Add reference to Microsoft.EntityFrameworkCore.SqlServer from NuGet packages to use "UseSqlServer" method on DbContextOptionsBuilder 
-            //Migrations are done from IdentityProvider service
-            optionsBuilder.UseSqlServer(b => b.MigrationsAssembly("Intel.EmployeeManagement.IdentityProvider"));
-        }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
