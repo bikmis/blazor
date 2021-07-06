@@ -25,7 +25,9 @@ namespace Intel.EmployeeManagement.IdentityProvider
         {
             services.AddControllers();
 
-            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:EmployeeDb"]));
+            services.AddDbContext<EmployeeDbContext>(options => 
+                                   options.UseSqlServer(Configuration["ConnectionStrings:EmployeeDb"], 
+                                   x => x.MigrationsAssembly("Intel.EmployeeManagement.IdentityProvider")));
 
             services.AddCors(options => options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
