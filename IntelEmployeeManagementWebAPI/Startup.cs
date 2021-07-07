@@ -25,7 +25,7 @@ namespace Intel.EmployeeManagement.WebAPI
         {
             services.AddControllers();
 
-            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:EmployeeDb"]));
+            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EmployeeDb")));
             
             services.AddCors(options => options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
