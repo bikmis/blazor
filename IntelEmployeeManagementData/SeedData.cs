@@ -4,9 +4,9 @@ using System;
 
 namespace Intel.EmployeeManagement.Data
 {
-    public class InitialData
+    public class SeedData
     {
-        public static void Seed(ModelBuilder modelBuilder)
+        public static void Populate(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>().HasData(
                 new Employee()

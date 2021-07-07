@@ -17,7 +17,7 @@ namespace Intel.EmployeeManagement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            InitialData.Seed(modelBuilder);
+            SeedData.Populate(modelBuilder);
         }
     }
 }
