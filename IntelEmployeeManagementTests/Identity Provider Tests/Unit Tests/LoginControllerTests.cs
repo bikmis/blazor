@@ -1,20 +1,19 @@
 ﻿using Intel.EmployeeManagement.IdentityProvider.Controllers;
 using Intel.EmployeeManagement.IdentityProvider.Models.AccessToken;
 using Intel.EmployeeManagement.IdentityProvider.Models.Login;
-using Intel.EmployeeManagement.Tests.Identity_Provider_Unit_Tests.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
-namespace Intel.EmployeeManagement.Tests.Identity_Provider_Unit_Tests
+namespace Intel.EmployeeManagement.Tests.Identity_Provider_Tests.Unit_Tests
 {
     public class LoginControllerTests
     {
         [Fact(DisplayName = "Test if you receive access and refresh tokens when you login with username and password")]
         public void TestLogin() {
             //Arrange
-            var employeeDbContext = LoginService.ProvideEmployeeDbContextWithInMemoryDatabase();
-            var configuration = LoginService.ProvideConfiguration();
+            var employeeDbContext = SharedService.ProvideEmployeeDbContextWithInMemoryDatabase();
+            var configuration = SharedService.ProvideConfiguration();
             var loginController = new LoginController(employeeDbContext, configuration);
             var loginRequest = new LoginRequest() { Username = "bikash@gmail.com", Password = "password" };
 
@@ -30,8 +29,8 @@ namespace Intel.EmployeeManagement.Tests.Identity_Provider_Unit_Tests
         [Fact(DisplayName = "Test if you receive access token via a request with refresh token")]
         public void TestAccessToken() {
             //Arrange
-            var employeeDbContext = LoginService.ProvideEmployeeDbContextWithInMemoryDatabase();
-            var configuration = LoginService.ProvideConfiguration();
+            var employeeDbContext = SharedService.ProvideEmployeeDbContextWithInMemoryDatabase();
+            var configuration = SharedService.ProvideConfiguration();
             var loginController = new LoginController(employeeDbContext, configuration);
             var loginRequest = new LoginRequest() { Username = "bikash@gmail.com", Password = "password" };
             var loginResponse = loginController.Login(loginRequest);

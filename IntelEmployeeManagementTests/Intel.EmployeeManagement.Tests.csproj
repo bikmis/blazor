@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IntelEmployeeManagementBlazorClientApp\Intel.EmployeeManagement.BlazorClientApp.csproj" />
     <ProjectReference Include="..\IntelEmployeeManagementIdentityProvider\Intel.EmployeeManagement.IdentityProvider.csproj" />
+    <ProjectReference Include="..\IntelEmployeeManagementWebAPI\Intel.EmployeeManagement.WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
