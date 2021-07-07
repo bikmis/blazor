@@ -113,7 +113,7 @@ namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
             Assert.True(JackIsDisplayed);
             Assert.True(isAlertHidden);
 
-            //Act - afer delete button is clicked
+            //Act - after delete button is clicked
             var deleteButton = cut.Find("#delete-1");
             deleteButton.Click();
             markup = cut.Markup;
@@ -143,7 +143,9 @@ namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
             Assert.True(isAlertHidden);
             Assert.False(middleNameExists);
 
-            //Act
+            //Act - input Thomas and submit form
+            var middleName = cut.Find("#middleName");
+            middleName.Change("Thomas");
             var editForm = cut.Find("#edit-form");
             editForm.Submit();
             isAlertHidden = alertPopup.HasAttribute("hidden");
@@ -154,6 +156,5 @@ namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
             Assert.False(isAlertHidden);
             Assert.True(middleNameExists);
         }
-        
     }
 }

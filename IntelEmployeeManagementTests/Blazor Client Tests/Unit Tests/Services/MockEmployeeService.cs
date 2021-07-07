@@ -42,7 +42,6 @@ namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services
             var emp = employees.Find(x => x.ID == employee.ID);
             var index = employees.IndexOf(emp);
             employees.RemoveAt(index);
-            employee.MiddleName = "Thomas";
             employees.Add(employee);
             HttpContent content = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
             HttpResponseMessage response = new HttpResponseMessage() { Content = content, StatusCode = HttpStatusCode.OK };
