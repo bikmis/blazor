@@ -81,7 +81,7 @@ namespace Intel.EmployeeManagement.IdentityProvider.Controllers
         [Authorize]
         [Route("accessToken")]
         [HttpPost]
-        public IActionResult AccessToken()
+        public IActionResult CreateAccessToken()
         {            
             var refreshToken = Request.Headers["Authorization"].ToString().Split(" ")[1];
             User user = new User()

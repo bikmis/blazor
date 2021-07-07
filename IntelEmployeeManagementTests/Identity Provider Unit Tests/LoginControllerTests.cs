@@ -42,7 +42,7 @@ namespace Intel.EmployeeManagement.Tests.Identity_Provider_Unit_Tests
             loginController.ControllerContext.HttpContext = httpContext;
 
             //Act
-            var accessTokenResponse = loginController.AccessToken();
+            var accessTokenResponse = loginController.CreateAccessToken();
             var accessTokenResponseObj = (AccessTokenResponse)(accessTokenResponse as OkObjectResult).Value;
 
             //Assert
