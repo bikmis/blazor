@@ -35,9 +35,9 @@ namespace Intel.EmployeeManagement.WebAPI
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
-                    ValidAudience = "https://localhost:44327/",  //base address of resource (employee) server
+                    ValidAudience = Configuration["AccessTokenAudience"],  //base address of resource (employee) server
                     ValidateIssuer = true,
-                    ValidIssuer = "https://localhost:44382/",  //base address of token server
+                    ValidIssuer = Configuration["AccessTokenIssuer"],  //base address of token server
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["AccessTokenSecurityKey"])),
