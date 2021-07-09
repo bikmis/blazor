@@ -10,7 +10,6 @@
     <PackageReference Include="bunit" Version="1.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <PrivateAssets>all</PrivateAssets>
@@ -24,12 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IntelEmployeeManagementBlazorClientApp\Intel.EmployeeManagement.BlazorClientApp.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Blazor Client Tests\e2e Tests\Drivers\chromedriver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.EmployeeWebApi.UnitTests", "Intel.EmployeeManagement.EmployeeWebApi.UnitTests\Intel.EmployeeManagement.EmployeeWebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.BlazorClientApp.e2eTests", "Intel.EmployeeManagement.BlazorClientApp.e2eTests\Intel.EmployeeManagement.BlazorClientApp.e2eTests.csproj", "{BFE10069-64F6-478B-8FE8-BA61D2B12868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{E3F2D727-7570-40A7-8555-C2EA1197EBE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3F2D727-7570-40A7-8555-C2EA1197EBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3F2D727-7570-40A7-8555-C2EA1197EBE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +105,7 @@ Global
 		{E2794DE8-D01D-451E-B076-2CFFDCEB82AF} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 		{6BC57CFB-9D7D-4A4F-A946-9A96C4590284} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 		{E3F2D727-7570-40A7-8555-C2EA1197EBE7} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
+		{BFE10069-64F6-478B-8FE8-BA61D2B12868} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00F41AF-6DF9-4695-B384-2DA67DB232FF}
