@@ -1,6 +1,11 @@
+using Intel.EmployeeManagement.Data.Entities;
 using Intel.EmployeeManagement.WebAPI;
 using Intel.EmployeeManagement.WebAPI.Models.Employee;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
@@ -25,6 +30,9 @@ namespace Intel.EmployeeManagement.IntegrationTests
         {
             //Arrange
             var client = factory.CreateClient();
+            var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            var accessToken = SharedService.CreateJwt(new User() { ID = 1, Username = "Bikash", Password = "password", Email = "bikash@gmail.com" }, new List<string>() { "admin" }, configuration["AccessTokenSecurityKey"], configuration["AccessTokenIssuer"], configuration["AccessTokenAudience"], 100);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             //Act
             var response = await client.GetAsync($"api/employees/{id}");
@@ -32,6 +40,6 @@ namespace Intel.EmployeeManagement.IntegrationTests
 
             //Assert
             Assert.True(employeeResponse.FirstName == "John");
-        }
+        }       
     }
 }
