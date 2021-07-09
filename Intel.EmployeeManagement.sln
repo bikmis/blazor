@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tests", "4. Tests", "{1E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data", "1. Data", "{66930D3C-82EF-4A8C-86B8-5D614A7FD129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IntegrationTests", "Intel.EmployeeManagement.IntegrationTests\Intel.EmployeeManagement.IntegrationTests.csproj", "{7B13AC62-29B5-4981-852A-9347F3CD2AD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests", "Intel.EmployeeManagement.IntegrationTests\Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests.csproj", "{7B13AC62-29B5-4981-852A-9347F3CD2AD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTests", "Intel.EmployeeManagement.IdentityProvider.IntegrationTests\Intel.EmployeeManagement.IdentityProvider.IntegrationTests.csproj", "{E2794DE8-D01D-451E-B076-2CFFDCEB82AF}"
 EndProject
