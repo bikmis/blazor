@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Em
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTests", "Intel.EmployeeManagement.IdentityProvider.IntegrationTests\Intel.EmployeeManagement.IdentityProvider.IntegrationTests.csproj", "{E2794DE8-D01D-451E-B076-2CFFDCEB82AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IdentityProvider.Tests", "Intel.EmployeeManagement.IdentityProvider.Tests\Intel.EmployeeManagement.IdentityProvider.Tests.csproj", "{6BC57CFB-9D7D-4A4F-A946-9A96C4590284}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IdentityProvider.UnitTests", "Intel.EmployeeManagement.IdentityProvider.UnitTests\Intel.EmployeeManagement.IdentityProvider.UnitTests.csproj", "{6BC57CFB-9D7D-4A4F-A946-9A96C4590284}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.EmployeeWebApi.UnitTests", "Intel.EmployeeManagement.EmployeeWebApi.UnitTests\Intel.EmployeeManagement.EmployeeWebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
 EndProject
