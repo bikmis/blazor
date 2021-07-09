@@ -1,11 +1,12 @@
 ﻿using Intel.EmployeeManagement.IdentityProvider.Controllers;
 using Intel.EmployeeManagement.IdentityProvider.Models.AccessToken;
 using Intel.EmployeeManagement.IdentityProvider.Models.Login;
+using Intel.EmployeeManagement.IdentyProvider.Tests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
-namespace Intel.EmployeeManagement.Tests.Identity_Provider_Tests.Unit_Tests
+namespace Intel.EmployeeManagement.Tests.IdentityProvider.Tests
 {
     public class LoginControllerTests
     {
