@@ -5,7 +5,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services
+namespace Intel.EmployeeManagement.BlazorClient.UnitTests.Services
 {
     public class MockAuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {

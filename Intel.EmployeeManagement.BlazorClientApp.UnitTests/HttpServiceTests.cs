@@ -1,10 +1,10 @@
-﻿using Intel.EmployeeManagement.RazorClassLibrary.Models;
+﻿using Intel.EmployeeManagement.BlazorClient.UnitTests.Services;
+using Intel.EmployeeManagement.RazorClassLibrary.Models;
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Http_Service;
-using Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services;
 using System.Net.Http;
 using Xunit;
 
-namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests
+namespace Intel.EmployeeManagement.BlazorClient.UnitTests
 {
     public class HttpServiceTests
     {

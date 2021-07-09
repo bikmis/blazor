@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider", "IntelEmployeeManagementIdentityProvider\Intel.EmployeeManagement.IdentityProvider.csproj", "{FA6038D0-096A-4292-9634-A1FF7FDA19E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Tests", "IntelEmployeeManagementTests\Intel.EmployeeManagement.Tests.csproj", "{65344585-304E-4B02-80DA-3933181A0AD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClientApp.UnitTests", "Intel.EmployeeManagement.BlazorClientApp.UnitTests\Intel.EmployeeManagement.BlazorClientApp.UnitTests.csproj", "{65344585-304E-4B02-80DA-3933181A0AD1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Blazor", "3. Blazor", "{4B9B3897-FEBC-4386-B596-462596F8881E}"
 EndProject
@@ -29,9 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Em
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTests", "Intel.EmployeeManagement.IdentityProvider.IntegrationTests\Intel.EmployeeManagement.IdentityProvider.IntegrationTests.csproj", "{E2794DE8-D01D-451E-B076-2CFFDCEB82AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IdentityProvider.UnitTests", "Intel.EmployeeManagement.IdentityProvider.UnitTests\Intel.EmployeeManagement.IdentityProvider.UnitTests.csproj", "{6BC57CFB-9D7D-4A4F-A946-9A96C4590284}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.UnitTests", "Intel.EmployeeManagement.IdentityProvider.UnitTests\Intel.EmployeeManagement.IdentityProvider.UnitTests.csproj", "{6BC57CFB-9D7D-4A4F-A946-9A96C4590284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.EmployeeWebApi.UnitTests", "Intel.EmployeeManagement.EmployeeWebApi.UnitTests\Intel.EmployeeManagement.EmployeeWebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.EmployeeWebApi.UnitTests", "Intel.EmployeeManagement.EmployeeWebApi.UnitTests\Intel.EmployeeManagement.EmployeeWebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

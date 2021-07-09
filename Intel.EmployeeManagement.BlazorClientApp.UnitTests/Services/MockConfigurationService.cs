@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using System.Collections.Generic;
 
-namespace Intel.EmployeeManagement.Tests.Blazor_Client_Tests.Unit_Tests.Services
+namespace Intel.EmployeeManagement.BlazorClient.UnitTests.Services
 {
     public class MockConfigurationService : IConfiguration
     {
