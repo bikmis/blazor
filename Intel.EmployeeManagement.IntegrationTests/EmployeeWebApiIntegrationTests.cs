@@ -36,7 +36,7 @@ namespace Intel.EmployeeManagement.IntegrationTests
 
             //Act
             var response = await client.GetAsync($"api/employees/{id}");
-            var employeeResponse = JsonSerializer.Deserialize<EmployeeResponse>(response.Content.ReadAsStringAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var employeeResponse = SharedService.DeserializeToType<EmployeeResponse>(response);
 
             //Assert
             Assert.True(employeeResponse.FirstName == "John");
