@@ -2,9 +2,7 @@ using Intel.EmployeeManagement.Data.Entities;
 using Intel.EmployeeManagement.IdentityProvider.Models.AccessToken;
 using Intel.EmployeeManagement.IdentityProvider.Models.Login;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
@@ -44,7 +42,7 @@ namespace Intel.EmployeeManagement.IdentityProvider.IntegrationTests
         public async Task Test_AccessToken() {
             //Arrange
             var client = factory.CreateClient();
-            var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            var configuration = SharedService.ProvideConfiguration();
             var refreshToken = SharedService.CreateJwt(new User() { ID = 1, Username = "Bikash", Password = "password", Email = "bikash@gmail.com" }, new List<string>() { "admin" }, configuration["RefreshTokenSecurityKey"], configuration["TokenIssuer"], configuration["RefreshTokenAudience"], 100);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", refreshToken);
 

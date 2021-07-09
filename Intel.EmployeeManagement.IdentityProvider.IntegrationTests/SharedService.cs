@@ -1,8 +1,10 @@
 ﻿using Intel.EmployeeManagement.Data.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
@@ -44,6 +46,12 @@ namespace Intel.EmployeeManagement.IdentityProvider.IntegrationTests
         {
             var deserializedToType = JsonSerializer.Deserialize<T>(response.Content.ReadAsStringAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             return deserializedToType;
+        }
+
+        public static IConfigurationRoot ProvideConfiguration()
+        {
+            var configurationRoot = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            return configurationRoot;
         }
     }
 }
