@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 
 namespace Intel.EmployeeManagement.IntegrationTests
 {
@@ -30,6 +32,18 @@ namespace Intel.EmployeeManagement.IntegrationTests
             var token = new JwtSecurityToken(issuer: issuer, audience: audience, claims: claims, notBefore: null, expires: DateTime.UtcNow.AddMinutes(expiryInMinutes), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public static HttpContent Serialize(object data)
+        {
+            var stringContent = new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json");
+            return stringContent;
+        }
+
+        public static T DeserializeToType<T>(HttpResponseMessage response)
+        {
+            var deserializedToType = JsonSerializer.Deserialize<T>(response.Content.ReadAsStringAsync().Result, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            return deserializedToType;
         }
     }
 }
