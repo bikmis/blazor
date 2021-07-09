@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Xunit;
 
 
-namespace Intel.EmployeeManagement.Tests.Employee_Web_API_Tests.Unit_Tests
+namespace Intel.EmployeeManagement.EmployeeWebApi.UnitTests
 {
     public class EmployeeControllerTests
     {
