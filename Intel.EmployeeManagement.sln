@@ -33,13 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.EmployeeWebApi.UnitTests", "Intel.EmployeeManagement.EmployeeWebApi.UnitTests\Intel.EmployeeManagement.EmployeeWebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.BlazorClientApp.e2eTests", "Intel.EmployeeManagement.BlazorClientApp.e2eTests\Intel.EmployeeManagement.BlazorClientApp.e2eTests.csproj", "{BFE10069-64F6-478B-8FE8-BA61D2B12868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClientApp.e2eTests", "Intel.EmployeeManagement.BlazorClientApp.e2eTests\Intel.EmployeeManagement.BlazorClientApp.e2eTests.csproj", "{BFE10069-64F6-478B-8FE8-BA61D2B12868}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Unit Tests", "1. Unit Tests", "{E9652A14-52D6-442E-9456-8D185DC1263F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests", "2. Integration Tests", "{C3509BDD-354A-4514-BD91-5D392C83FE40}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. e2e Tests", "3. e2e Tests", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2", "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2\Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +97,10 @@ Global
 		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFE10069-64F6-478B-8FE8-BA61D2B12868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{E9652A14-52D6-442E-9456-8D185DC1263F} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 		{C3509BDD-354A-4514-BD91-5D392C83FE40} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 		{BB669A17-EF9C-4567-9576-3CB20884A7E9} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
+		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F} = {C3509BDD-354A-4514-BD91-5D392C83FE40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00F41AF-6DF9-4695-B384-2DA67DB232FF}
