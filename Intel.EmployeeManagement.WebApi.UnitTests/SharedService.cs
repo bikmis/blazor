@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Intel.EmployeeManagement.EmployeeWebApi.UnitTests
+namespace Intel.EmployeeManagement.WebApi.UnitTests
 {
     public class SharedService
     {

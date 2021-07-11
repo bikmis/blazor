@@ -25,13 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tests", "4. Tests", "{1E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data", "1. Data", "{66930D3C-82EF-4A8C-86B8-5D614A7FD129}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_1", "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_1\Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_1.csproj", "{7B13AC62-29B5-4981-852A-9347F3CD2AD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.IntegrationTests_1", "Intel.EmployeeManagement.WebApi.IntegrationTests_1\Intel.EmployeeManagement.WebApi.IntegrationTests_1.csproj", "{7B13AC62-29B5-4981-852A-9347F3CD2AD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTests", "Intel.EmployeeManagement.IdentityProvider.IntegrationTests\Intel.EmployeeManagement.IdentityProvider.IntegrationTests.csproj", "{E2794DE8-D01D-451E-B076-2CFFDCEB82AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.UnitTests", "Intel.EmployeeManagement.IdentityProvider.UnitTests\Intel.EmployeeManagement.IdentityProvider.UnitTests.csproj", "{6BC57CFB-9D7D-4A4F-A946-9A96C4590284}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.EmployeeWebApi.UnitTests", "Intel.EmployeeManagement.EmployeeWebApi.UnitTests\Intel.EmployeeManagement.EmployeeWebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.UnitTests", "Intel.EmployeeManagement.WebApi.UnitTests\Intel.EmployeeManagement.WebApi.UnitTests.csproj", "{E3F2D727-7570-40A7-8555-C2EA1197EBE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClientApp.e2eTests", "Intel.EmployeeManagement.BlazorClientApp.e2eTests\Intel.EmployeeManagement.BlazorClientApp.e2eTests.csproj", "{BFE10069-64F6-478B-8FE8-BA61D2B12868}"
 EndProject
@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests", "2. 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. e2e Tests", "3. e2e Tests", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2", "Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2\Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.IntegrationTests_2", "Intel.EmployeeManagement.WebApi.IntegrationTests_2\Intel.EmployeeManagement.WebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

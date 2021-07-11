@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_2
+namespace Intel.EmployeeManagement.WebApi.IntegrationTests_2
 {
     public class SharedService
     {
