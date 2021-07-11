@@ -14,11 +14,11 @@ namespace Intel.EmployeeManagement.IntegrationTests
     //https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-5.0
     //At the above site, check "Test app prerequisites" which states that the project should have "<Project Sdk="Microsoft.NET.Sdk.Web">" instead of "<Project Sdk="Microsoft.NET.Sdk">" i.e. specify the Web SDK
     //and reference the Microsoft.AspNetCore.Mvc.Testing package.
-    public class EmployeeWebApiIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class EmployeeControllerTests : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly WebApplicationFactory<Startup> factory;
 
-        public EmployeeWebApiIntegrationTests(WebApplicationFactory<Startup> factory)
+        public EmployeeControllerTests(WebApplicationFactory<Startup> factory)
         {
             this.factory = factory;
         }
