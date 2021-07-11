@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 
-namespace Intel.EmployeeManagement.IntegrationTests
+namespace Intel.EmployeeManagement.EmployeeWebApi.IntegrationTests_1
 {
     public class SharedService
     {
