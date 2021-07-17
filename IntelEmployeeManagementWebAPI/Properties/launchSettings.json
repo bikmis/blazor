@@ -32,9 +32,12 @@
       "commandName": "IIS",
       "launchBrowser": true
     },
-    "IIS Express with prod db": {
+    "IIS Express with qa db": {
       "commandName": "IISExpress",
-      "launchBrowser": true
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "qa"
+      }
     }
   }
 }
