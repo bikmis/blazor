@@ -21,7 +21,7 @@ namespace Intel.EmployeeManagement.WebApi.IntegrationTests_2
 
         public static IConfigurationRoot ProvideConfiguration()
         {
-            var configurationRoot = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            var configurationRoot = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.Development.json").Build();
             return configurationRoot;
         }
     }
