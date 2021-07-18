@@ -29,7 +29,7 @@ namespace Intel.EmployeeManagement.WebApi.IntegrationTests_1
         {
             //Arrange
             var client = factory.CreateClient();
-            var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.Development.json").Build();
             var accessToken = SharedService.CreateJwt(new User() { ID = 1, Username = "Bikash", Password = "password", Email = "bikash@gmail.com" }, new List<string>() { "admin" }, configuration["AccessTokenSecurityKey"], configuration["AccessTokenIssuer"], configuration["AccessTokenAudience"], 100);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 

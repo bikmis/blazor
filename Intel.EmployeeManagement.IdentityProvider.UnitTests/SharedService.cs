@@ -43,7 +43,7 @@ namespace Intel.EmployeeManagement.IdentyProvider.Tests
 
         public static IConfigurationRoot ProvideConfiguration()
         {
-            var configurationRoot = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            var configurationRoot = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.Development.json").Build();
             return configurationRoot;
         }
     }
