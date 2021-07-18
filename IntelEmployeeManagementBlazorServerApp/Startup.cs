@@ -35,7 +35,7 @@ namespace Intel.EmployeeManagement.BlazorServerApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            var resourceBaseAddress = Configuration["ResourceBaseAddress"];
+            var employeeWebApiBaseAddress = Configuration["EmployeeWebApiBaseAddress"];
             var identityProviderBaseAddress = Configuration["IdentityProviderBaseAddress"];
             var frontendBaseAddress = Configuration["FrontendBaseAddress"];
             var photoServiceBaseAddress = Configuration["PhotoServiceBaseAddress"];
@@ -53,7 +53,7 @@ namespace Intel.EmployeeManagement.BlazorServerApp
             services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress)); ;
             services.AddScoped<IAuthenticationService>(provider => provider.GetRequiredService<AuthenticationService>());
             services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
-            services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
+            services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(employeeWebApiBaseAddress)); //For Blazor server, HttpService needs to be scoped and cannot be a singleton as a singleton cannot consume IJSRuntime which is scoped in Blazor Server (but IJSRuntime is singleton for WebAssembly/client side Blazor)
             services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(frontendBaseAddress));
             services.AddScoped<IDivideByZeroService, DivideByZeroService>();
             services.AddHttpClient<IPhotoService, PhotoService>(httpClient => httpClient.BaseAddress = new Uri(photoServiceBaseAddress));

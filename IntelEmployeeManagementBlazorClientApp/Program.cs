@@ -24,7 +24,7 @@ namespace Intel.EmployeeManagement.BlazorClientApp
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            var resourceBaseAddress = builder.Configuration["ResourceBaseAddress"];
+            var employeeWebApiBaseAddress = builder.Configuration["EmployeeWebApiBaseAddress"];
             var identityProviderBaseAddress = builder.Configuration["IdentityProviderBaseAddress"];
             var photoServiceBaseAddress = builder.Configuration["PhotoServiceBaseAddress"];
 
@@ -34,7 +34,7 @@ namespace Intel.EmployeeManagement.BlazorClientApp
             builder.Services.AddHttpClient<AuthenticationService>(httpClient => httpClient.BaseAddress = new Uri(identityProviderBaseAddress));
             builder.Services.AddScoped<IAuthenticationService>(provider => provider.GetRequiredService<AuthenticationService>());
             builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
-            builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(resourceBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
+            builder.Services.AddHttpClient<IHttpService, HttpService>(httpClient => httpClient.BaseAddress = new Uri(employeeWebApiBaseAddress)); ; //Since HttpService uses AuthenticationService(scoped) which uses AuthenticationStateProviderService(scoped), and so HttpService cannot be singleton for a webassembly/client side Blazor as a singleton cannot consume scoped services.
             builder.Services.AddHttpClient<IWeatherForecastService, WeatherForecastService>(httpClient => httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
             builder.Services.AddScoped<IDivideByZeroService, DivideByZeroService>();
             builder.Services.AddHttpClient<IPhotoService, PhotoService>(httpClient => httpClient.BaseAddress = new Uri(photoServiceBaseAddress));
