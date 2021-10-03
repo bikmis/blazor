@@ -25,7 +25,23 @@
         BlazorClientApp. Right-click on the website BlazorClientApp and Edit Permissions - Security - Edit - Add IIS AppPool\BlazorClientApp and click Ok.
     </li>
     <li>
-        web.config file is created when we deploy a Blazor application to IIS.
+        web.config file is created when we deploy a Blazor application to IIS. Add the following to the web.config
+        &lt;configuration> <br />
+        &nbsp;&nbsp;&lt;system.webServer> <br />
+        &nbsp;&nbsp;... <br />
+        &nbsp;&nbsp;...<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;httpProtocol> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;customHeaders> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add name="blazor-environment" value="Qa" /> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/customHeaders> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/httpProtocol> <br />
+        &nbsp;&nbsp;&lt;/system.webServer> <br />
+        &lt;/configuration>
+    </li>
+    <li>
+        Add the following for each application in IIS, click on Configuration Editor. Select "system.webServer/aspNetCore" and
+        ApplicationHost.config &lt;location path="IdentityProviderApiQa"> and click on the ... (three dots) on the right side of the environmentVariables 
+        to add add ASPNETCORE_ENVIRONMENT = 'Qa'.
     </li>
 </ul>
 <br />
