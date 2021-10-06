@@ -39,9 +39,9 @@
         &lt;/configuration>
     </li>
     <li>
-        Add the following for api applications in IIS (not required for blazor client app), click on Configuration Editor. Select "system.webServer/aspNetCore" and
-        ApplicationHost.config &lt;location path="IdentityProviderApiQa"> and click on the ... (three dots) on the right side of the environmentVariables
-        to add add ASPNETCORE_ENVIRONMENT = 'Qa' or add the following:
+        Add the following for server-side (or api) applications in IIS (not required for blazor client app). Select the website and click on Configuration Editor in IIS. 
+        Select "system.webServer/aspNetCore" and ApplicationHost.config &lt;location path="IdentityProviderApiQa"> and click on the ... (three dots) 
+        on the right side of the environmentVariables to add ASPNETCORE_ENVIRONMENT = 'Qa' or add the following to PublishProfile.pubxml: <br />
         &lt;PropertyGroup> <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;EnvironmentName>Qa&lt;/EnvironmentName> <br />
         &lt;/PropertyGroup>
