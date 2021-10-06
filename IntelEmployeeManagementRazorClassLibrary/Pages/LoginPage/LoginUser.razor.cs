@@ -2,6 +2,7 @@
 using Intel.EmployeeManagement.RazorClassLibrary.Services.Authentication_Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.JSInterop;
 using System;
 using System.Net;
@@ -16,6 +17,9 @@ namespace Intel.EmployeeManagement.RazorClassLibrary.Pages.LoginPage
 
         [Inject]
         private AuthenticationStateProvider authenticationService { get; set; }
+
+        [Inject]
+        private IConfiguration configuration { get; set; }
 
         private Login login { get; set; } = new Login();
 
