@@ -36,10 +36,6 @@
         </rule>
       </rules>
     </rewrite>
-        <modules>
-            <remove name="WebDAVModule" />
-        </modules>
-
     <httpProtocol>
       <customHeaders>
         <add name="blazor-environment" value="Qa" />
