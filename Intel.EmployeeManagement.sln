@@ -43,11 +43,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. e2e Tests", "3. e2e Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.IntegrationTests_2", "Intel.EmployeeManagement.WebApi.IntegrationTests_2\Intel.EmployeeManagement.WebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Jenkins", "5. Jenkins", "{553E82B8-F92C-4619-907A-9787506BB5AA}"
-	ProjectSection(SolutionItems) = preProject
-		Jenkinsfile = Jenkinsfile
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
