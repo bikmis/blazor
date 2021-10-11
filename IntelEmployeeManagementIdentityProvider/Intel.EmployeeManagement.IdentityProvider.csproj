@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Content Remove="Web.config" />
+    <Content Remove="Web.Production.config" />
+    <Content Remove="Web.Qa.config" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Web.Production.config" />
+    <None Include="Web.Qa.config" />
     <None Include="Web.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
