@@ -6,11 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="web.Production.config" />
     <Content Remove="web.Qa.config" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="web.Qa.config" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +15,27 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IntelEmployeeManagementRazorClassLibrary\Intel.EmployeeManagement.RazorClassLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="web.config">
+      <TransformOnBuild>True</TransformOnBuild>
+    </None>
+    <None Include="web.Qa.config">
+      <DependUpon>web.config</DependUpon>
+      <IsTrnasformFile>True</IsTrnasformFile>
+    </None>
+    <None Include="web.Production.config">
+      <DependUpon>web.config</DependUpon>
+      <IsTrnasformFile>True</IsTrnasformFile>
+    </None>
+  </ItemGroup>
 </Project>
