@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using System.IO;
 using System.Threading;
 using Xunit;
@@ -8,20 +9,45 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests
 {
     public class LoginPageTests
     {       
-        private IWebDriver createChromeDriver() {
-            var options = new ChromeOptions();
-            options.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            var chromeDriverPath = Path.GetFullPath(@"Drivers");
-            IWebDriver driver = new ChromeDriver(chromeDriverPath, options);
+        private IWebDriver createDriver(string driverName) {
+            var driverPath = Path.GetFullPath(@"Drivers");
+            IWebDriver driver = null;
+
+            if (driverName == "chrome") {
+                var chromeOptions = new ChromeOptions();
+                chromeOptions.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+                driver = new ChromeDriver(driverPath, chromeOptions);
+            }
+
+            if (driverName == "edge")
+            {
+                var edgeOptions = new EdgeOptions();
+                edgeOptions.BinaryLocation = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
+                driver = new EdgeDriver(driverPath, edgeOptions);
+            }
+
             return driver;
         }
 
-        [Fact(DisplayName = "Test login page validation")]
-        public void TestLoginPageValidation()
+        [Fact(DisplayName = "Test login page validation with Chrome")]
+        public void TestLoginPageValidationWithChrome()
         {
             //Arrange
-            var driver = createChromeDriver();
+            var driver = createDriver("chrome");
+            //Act and Assert
+            loginActAndAssert(driver);
+        }
 
+        [Fact(DisplayName = "Test login page validation with Edge")]
+        public void TestLoginPageValidationWithEdge()
+        {
+            //Arrange
+            var driver = createDriver("edge");
+            //Act and Assert
+            loginActAndAssert(driver);
+        }
+
+        private void loginActAndAssert(IWebDriver driver) {
             //Act
             driver.Navigate().GoToUrl("http://localhost:8090");
             Thread.Sleep(3000); //wait for 3 seconds 
