@@ -49,7 +49,7 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests
 
         private void loginActAndAssert(IWebDriver driver) {
             //Act
-            driver.Navigate().GoToUrl("http://localhost:8090");
+            driver.Navigate().GoToUrl("https://localhost:8080");
             Thread.Sleep(3000); //wait for 3 seconds 
             var logingBtn = driver.FindElement(By.Id("login"));
             logingBtn.Click();
