@@ -9,26 +9,6 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests
 {
     public class LoginPageTests
     {       
-        private IWebDriver createDriver(string driverName) {
-            var driverPath = Path.GetFullPath(@"Drivers");
-            IWebDriver driver = null;
-
-            if (driverName == "chrome") {
-                var chromeOptions = new ChromeOptions();
-                chromeOptions.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-                driver = new ChromeDriver(driverPath, chromeOptions);
-            }
-
-            if (driverName == "edge")
-            {
-                var edgeOptions = new EdgeOptions();
-                edgeOptions.BinaryLocation = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
-                driver = new EdgeDriver(driverPath, edgeOptions);
-            }
-
-            return driver;
-        }
-
         [Fact(DisplayName = "Test login page validation with Chrome")]
         public void TestLoginPageValidationWithChrome()
         {
@@ -45,6 +25,28 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests
             var driver = createDriver("edge");
             //Act and Assert
             loginActAndAssert(driver);
+        }
+
+        private IWebDriver createDriver(string driverName)
+        {
+            var driverPath = Path.GetFullPath(@"Drivers");
+            IWebDriver driver = null;
+
+            if (driverName == "chrome")
+            {
+                var chromeOptions = new ChromeOptions();
+                chromeOptions.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+                driver = new ChromeDriver(driverPath, chromeOptions);
+            }
+
+            if (driverName == "edge")
+            {
+                var edgeOptions = new EdgeOptions();
+                edgeOptions.BinaryLocation = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
+                driver = new EdgeDriver(driverPath, edgeOptions);
+            }
+
+            return driver;
         }
 
         private void loginActAndAssert(IWebDriver driver) {
