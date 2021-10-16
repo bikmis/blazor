@@ -37,9 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Bl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Unit Tests", "1. Unit Tests", "{E9652A14-52D6-442E-9456-8D185DC1263F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests", "2. Integration Tests", "{C3509BDD-354A-4514-BD91-5D392C83FE40}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests in Development environment", "2. Integration Tests in Development environment", "{C3509BDD-354A-4514-BD91-5D392C83FE40}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. e2e Tests", "3. e2e Tests", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. e2e Tests in Qa environment", "3. e2e Tests in Qa environment", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.IntegrationTests_2", "Intel.EmployeeManagement.WebApi.IntegrationTests_2\Intel.EmployeeManagement.WebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
 EndProject
