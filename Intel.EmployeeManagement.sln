@@ -39,9 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Unit Tests", "1. Unit Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests in Development environment", "2. Integration Tests in Development environment", "{C3509BDD-354A-4514-BD91-5D392C83FE40}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. e2e Tests in Qa environment", "3. e2e Tests in Qa environment", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. e2e Tests in Qa environment", "4. e2e Tests in Qa environment", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.IntegrationTests_2", "Intel.EmployeeManagement.WebApi.IntegrationTests_2\Intel.EmployeeManagement.WebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Integration Tests in Qa environment", "3. Integration Tests in Qa environment", "{52848ACE-4495-4F33-A9F6-2AC3D7C34CCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv", "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv\Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv.csproj", "{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +105,10 @@ Global
 		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +130,8 @@ Global
 		{C3509BDD-354A-4514-BD91-5D392C83FE40} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 		{BB669A17-EF9C-4567-9576-3CB20884A7E9} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
 		{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F} = {C3509BDD-354A-4514-BD91-5D392C83FE40}
+		{52848ACE-4495-4F33-A9F6-2AC3D7C34CCF} = {1E5B8394-62D5-4557-BBEE-FB8E01588237}
+		{DBA29C27-9DC2-414B-A5F1-114B49C30CF0} = {52848ACE-4495-4F33-A9F6-2AC3D7C34CCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00F41AF-6DF9-4695-B384-2DA67DB232FF}
