@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv.Helper
+namespace Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv.Response
 {
     public class Employee
     {
