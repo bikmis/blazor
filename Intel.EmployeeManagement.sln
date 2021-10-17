@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClientApp.UnitTests", "Intel.EmployeeManagement.BlazorClientApp.UnitTests\Intel.EmployeeManagement.BlazorClientApp.UnitTests.csproj", "{65344585-304E-4B02-80DA-3933181A0AD1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Blazor", "3. Blazor", "{4B9B3897-FEBC-4386-B596-462596F8881E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. UI", "3. UI", "{4B9B3897-FEBC-4386-B596-462596F8881E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. APIs", "2. APIs", "{307C4351-F678-4FEA-98CD-67C5A09ED024}"
 EndProject
@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Integration Tests in Qa 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv", "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv\Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv.csproj", "{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv", "Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv\Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv.csproj", "{744B0CA8-19BB-48A8-957C-EAAFFEC79E25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv", "Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv\Intel.EmployeeManagement.WebAPI.IntegrationTestsQaEnv.csproj", "{744B0CA8-19BB-48A8-957C-EAAFFEC79E25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
