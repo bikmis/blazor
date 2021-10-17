@@ -35,17 +35,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.BlazorClientApp.e2eTests", "Intel.EmployeeManagement.BlazorClientApp.e2eTests\Intel.EmployeeManagement.BlazorClientApp.e2eTests.csproj", "{BFE10069-64F6-478B-8FE8-BA61D2B12868}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Unit Tests", "1. Unit Tests", "{E9652A14-52D6-442E-9456-8D185DC1263F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Unit Tests (API and UI)", "1. Unit Tests (API and UI)", "{E9652A14-52D6-442E-9456-8D185DC1263F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests in Development environment", "2. Integration Tests in Development environment", "{C3509BDD-354A-4514-BD91-5D392C83FE40}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Integration Tests in Development environment (API)", "2. Integration Tests in Development environment (API)", "{C3509BDD-354A-4514-BD91-5D392C83FE40}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. e2e Tests in Qa environment", "4. e2e Tests in Qa environment", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. e2e Selenium Tests in Qa environment (UI)", "4. e2e Selenium Tests in Qa environment (UI)", "{BB669A17-EF9C-4567-9576-3CB20884A7E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.WebApi.IntegrationTests_2", "Intel.EmployeeManagement.WebApi.IntegrationTests_2\Intel.EmployeeManagement.WebApi.IntegrationTests_2.csproj", "{29D08ECE-C6BB-431A-8E27-B9E8CA3E509F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Integration Tests in Qa environment", "3. Integration Tests in Qa environment", "{52848ACE-4495-4F33-A9F6-2AC3D7C34CCF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Integration Tests in Qa environment (API)", "3. Integration Tests in Qa environment (API)", "{52848ACE-4495-4F33-A9F6-2AC3D7C34CCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv", "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv\Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv.csproj", "{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv", "Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv\Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv.csproj", "{DBA29C27-9DC2-414B-A5F1-114B49C30CF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
