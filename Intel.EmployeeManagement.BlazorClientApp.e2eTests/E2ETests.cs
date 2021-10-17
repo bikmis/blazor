@@ -12,12 +12,12 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests
         {
             //Arrange
             var drivers = WebDriver.Create();
-            var testSiteUrl = Configuration.Get().GetSection("TestSiteUrl").Value;
+            var testSiteUrl = Configuration.Build().GetSection("BlazorUiTestSiteBaseUrl").Value;
 
             //Act and Assert
             drivers.ForEach(driver =>
             {
-                LoginPage.TestValidation(driver, testSiteUrl);
+                LoginPage.TestLoginValidation(driver, testSiteUrl);
             });           
         }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests.Helper
+namespace Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv.Helper
 {
     public class Configuration
     {

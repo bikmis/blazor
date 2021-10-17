@@ -6,7 +6,7 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests.Pages
 {
     public class LoginPage
     {
-        public static void TestValidation(IWebDriver driver, string url)
+        public static void TestLoginValidation(IWebDriver driver, string url)
         {
             //Act
             driver.Navigate().GoToUrl(url);
