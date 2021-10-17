@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Intel.EmployeeManagement.IdentityProvider.IntegrationTestsQaEnv
 {
-    public class LoginTests
+    public class LoginControllerTests
     {
         string identityProviderTestSiteBaseUrl = Helper.Configuration.Build().GetSection("IdentityProviderTestSiteBaseUrl").Value;
 
