@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Content Remove="web.Production.config" />
-    <Content Remove="web.Qa.config" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,11 +28,14 @@
     <None Include="web.config">
       <TransformOnBuild>True</TransformOnBuild>
     </None>
-    <None Include="web.Qa.config">
+    <None Include="web.Production.config">
       <DependUpon>web.config</DependUpon>
       <IsTrnasformFile>True</IsTrnasformFile>
     </None>
-    <None Include="web.Production.config">
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Qa.transform">
       <DependUpon>web.config</DependUpon>
       <IsTrnasformFile>True</IsTrnasformFile>
     </None>
