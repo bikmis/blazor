@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Intel.EmployeeManagement.Data</AssemblyName>
     <RootNamespace>Intel.EmployeeManagement.Data</RootNamespace>
+    <Configurations>Debug;Release;Qa</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
