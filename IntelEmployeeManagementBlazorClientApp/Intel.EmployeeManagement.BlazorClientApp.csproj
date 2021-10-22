@@ -33,11 +33,4 @@
       <IsTrnasformFile>True</IsTrnasformFile>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Qa.transform">
-      <DependUpon>web.config</DependUpon>
-      <IsTrnasformFile>True</IsTrnasformFile>
-    </None>
-  </ItemGroup>
 </Project>
