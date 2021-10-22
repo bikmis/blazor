@@ -17,10 +17,10 @@ namespace Intel.EmployeeManagement.BlazorClientApp.e2eTests.Helper
             chromeOptions.BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
             drivers.Add(new ChromeDriver(driverPath, chromeOptions));
 
-          /*  var edgeOptions = new EdgeOptions();
+            var edgeOptions = new EdgeOptions();
             edgeOptions.BinaryLocation = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
             drivers.Add(new EdgeDriver(driverPath, edgeOptions));
-          */
+          
             return drivers;
         }
     }
